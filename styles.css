@@ -1,7 +1,7 @@
 /* ==========================================================================
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLESHEET
    Aesthetics: Deep Royal Blue, Gold Accent, Smooth Glassmorphism, Micro-Animations
-   Version: 17
+   Version: 19
    ========================================================================== */
 
 /* Typography & Root Design Tokens */
@@ -60,7 +60,7 @@ html {
 
 body {
   font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
-  background-color: #01132d; /* Deep backdrop for desktop frame */
+  background-color: #f8fafc; /* Clean Light Slate Backdrop */
   color: var(--text-dark);
   line-height: 1.5;
   display: flex;
@@ -78,7 +78,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 30px rgba(3, 42, 97, 0.12);
   padding-bottom: 74px; /* Space for Bottom Nav Bar */
 }
 
