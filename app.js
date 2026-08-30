@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Official YouTube Channels Catalog with Real Channel Header Banners & Profile Avatars, Audio Portals, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search
+ * Dynamic Tabs, Live Stream Detector, Official YouTube Channels Catalog with Live Dynamic YouTube CDN Sync & Offline Fallbacks, Audio Portals, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -86,7 +86,7 @@ let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
 
-// Official Maan Mandir YouTube Channels Catalog (Real Channel Banner Artworks & Profile Avatars)
+// Official Maan Mandir YouTube Channels Catalog (Live YouTube CDN URLs + Auto-Bypass Offline Fallbacks)
 const MAAN_MANDIR_YOUTUBE_CHANNELS = [
   {
     id: "yt-murlika",
@@ -97,6 +97,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "KATHA & SATSANG",
     badgeHi: "कथा व सत्संग",
     subscribers: "20.9K Subscribers • 1.5K Videos",
+    liveCdnAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_kX4J9R9X8w=s176-c-k-c0x00ffffff-no-rj",
     bannerImg: "assets/images/yt/yt-murlika_banner.jpg",
     avatarImg: "assets/images/shri_murlikaji_avatar.jpg",
     descEn: "Shrimad Bhagawat Katha (by Shri Murlika Ji): Spiritual orator and devotional singer, well known for Braj Ras Satsang.",
@@ -111,6 +112,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "MAIN LIVE CHANNEL",
     badgeHi: "मुख्य चैनल",
     subscribers: "20.9K Subscribers • Official Live Stream",
+    liveCdnAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_m2zyl6egAY2Ab0KU2xq_0TCT8wgoJt9yvIdAXYXscIzy8=s900-c-k-c0x00ffffff-no-rj",
     bannerImg: "assets/images/yt/yt-main_banner.jpg",
     avatarImg: "assets/images/yt/yt-main_avatar.jpg",
     descEn: "Official live webcast of Shri Ramesh Baba Ji Maharaj Pravachan, Satsang & Barsana Dham Darshan.",
@@ -125,6 +127,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "PRAVACHAN",
     badgeHi: "प्रवचन",
     subscribers: "106K Subscribers • Official Channel",
+    liveCdnAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_kcmwbpDOPd7yT5p1-zcfcSP8YWxNRpcepFQCfYVx7nuQ=s900-c-k-c0x00ffffff-no-rj",
     bannerImg: "assets/images/yt/yt-ramjilal_banner.jpg",
     avatarImg: "assets/images/yt/yt-ramjilal_avatar.jpg",
     descEn: "Shrimad Bhagawat Katha & Shastra Satsang by Ram Ji Lal Shastri Ji Maharaj (Maan Mandir Barsana).",
@@ -139,6 +142,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "SATSANG & BHAJAN",
     badgeHi: "सत्संग व भजन",
     subscribers: "106K Subscribers • Official Channel",
+    liveCdnAvatar: "https://yt3.googleusercontent.com/TFvkukeeV0ZLazaVOern9bDzO8n_Dn0FRk0S84eLF9B2Zn1KR638wSNFcdns9_NZo59KAY62vg=s900-c-k-c0x00ffffff-no-rj",
     bannerImg: "assets/images/yt/yt-shrijididi_banner.jpg",
     avatarImg: "assets/images/yt/yt-shrijididi_avatar.jpg",
     descEn: "Braj Baalika Sadhvi Shri Ji Maan Mandir Barsana: Devotional Satsang, Upadesh, and Bhajans.",
@@ -153,6 +157,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "DIVYA PATH",
     badgeHi: "दिव्य पथ",
     subscribers: "106K Subscribers • Daily Discourses",
+    liveCdnAvatar: "https://yt3.googleusercontent.com/B2K6S3wzj26DtRRrBRHwz2SrlIX6jzK8Kb9wFmvYk65qK-dpcK9v354Frdtz5pke96QX2FkN0_Y=s900-c-k-c0x00ffffff-no-rj",
     bannerImg: "assets/images/yt/yt-divyapath_banner.jpg",
     avatarImg: "assets/images/yt/yt-divyapath_avatar.jpg",
     descEn: "Official Divya Path channel for daily spiritual discourses, pravachans, and Sanatan Dharma teachings.",
@@ -167,6 +172,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "84 KOS YATRA",
     badgeHi: "८४ कोस यात्रा",
     subscribers: "106K Subscribers • Annual Yatra",
+    liveCdnAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_mEd9J7aWk5BCjzLpgiA9iIcIPmjwK9661h_e3DEpdPZw=s900-c-k-c0x00ffffff-no-rj",
     bannerImg: "assets/images/yt/yt-brajyatra_banner.jpg",
     avatarImg: "assets/images/yt/yt-brajyatra_avatar.jpg",
     descEn: "Shri Radharani Braj Yatra (MaanMandir Barsana): Video webcasts of the annual 84 Kos Braj Yatra.",
@@ -181,6 +187,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "GAUSEVA",
     badgeHi: "गौसेवा",
     subscribers: "Official Gauseva Channel",
+    liveCdnAvatar: "assets/images/app_icon.jpg",
     bannerImg: "assets/images/yt/yt-gaushala_banner.jpg",
     avatarImg: "assets/images/app_icon.jpg",
     descEn: "Live updates, Gauseva webcasts, and environment preservation initiatives from Shri Mataji Gaushala Barsana.",
@@ -195,6 +202,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "GAU CHIKITSA",
     badgeHi: "गौ चिकित्सा",
     subscribers: "106K Subscribers • Hospital Seva",
+    liveCdnAvatar: "https://yt3.googleusercontent.com/fiTWUeXBJbI6J5JqGlByubdX-3FMTjTGxciGGlWccMurCcYl2sgrnUYsHaqR_Pw_pv-UySibaw=s900-c-k-c0x00ffffff-no-rj",
     bannerImg: "assets/images/yt/yt-cowvet_banner.jpg",
     avatarImg: "assets/images/yt/yt-cowvet_avatar.jpg",
     descEn: "Shri ShyamLaxmi Gau Chikitsalay (Cow Vet Hospital): Emergency medical care, surgery & rehab for cows.",
@@ -750,36 +758,41 @@ function renderHomeRecentUpdates() {
   `).join('');
 }
 
-// Render YouTube Live & Official Channels Cards with Real Channel Banner Header & Profile Avatar Overlays
+// Render YouTube Live & Official Channels Cards with Live YouTube CDN Image Sync & Automatic Fallbacks
 function renderYouTubeTab() {
   const container = document.getElementById('youtube-videos-list');
   if (!container) return;
 
   const isHi = currentLang === 'hi';
-  container.innerHTML = MAAN_MANDIR_YOUTUBE_CHANNELS.map(ch => `
-    <div class="youtube-channel-card">
-      <div class="youtube-channel-banner-header" style="background-image: url('${ch.bannerImg}');">
-        <div class="youtube-banner-overlay">
-          <span class="youtube-banner-badge">${isHi ? ch.badgeHi : ch.badgeEn}</span>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.4));"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+  container.innerHTML = MAAN_MANDIR_YOUTUBE_CHANNELS.map(ch => {
+    // Primary image is Live YouTube CDN avatar, falling back smoothly to local cached avatar if offline
+    const avatarSrc = ch.liveCdnAvatar || ch.avatarImg;
+
+    return `
+      <div class="youtube-channel-card">
+        <div class="youtube-channel-banner-header" style="background-image: url('${ch.bannerImg}');">
+          <div class="youtube-banner-overlay">
+            <span class="youtube-banner-badge">${isHi ? ch.badgeHi : ch.badgeEn}</span>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.4));"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+        </div>
+        <div class="youtube-channel-content">
+          <div class="youtube-avatar-row">
+            <img class="youtube-channel-avatar-lg" src="${avatarSrc}" alt="${isHi ? ch.nameHi : ch.nameEn}" onerror="this.onerror=null; this.src='${ch.avatarImg}';" />
+            <div class="youtube-subscribers-count">${ch.subscribers}</div>
+          </div>
+          <div class="youtube-channel-title">${isHi ? ch.nameHi : ch.nameEn}</div>
+          <div class="youtube-handle">${ch.handle}</div>
+          <p style="font-size: 0.84rem; color: var(--text-medium); line-height: 1.5; margin: 8px 0 12px;">
+            ${isHi ? ch.descHi : ch.descEn}
+          </p>
+          <a href="${ch.url}" target="_blank" class="btn-primary" style="background:#FF0000; color:#FFF; text-decoration:none; justify-content:center; padding:9px 14px; font-weight:800; border-radius: var(--radius-sm); width:100%; box-shadow: 0 3px 8px rgba(255,0,0,0.25);">
+            ▶ ${isHi ? 'यूट्यूब चैनल खोलें ↗' : 'Open Channel in YouTube ↗'}
+          </a>
         </div>
       </div>
-      <div class="youtube-channel-content">
-        <div class="youtube-avatar-row">
-          <img class="youtube-channel-avatar-lg" src="${ch.avatarImg}" alt="${isHi ? ch.nameHi : ch.nameEn}" onerror="this.onerror=null; this.src='assets/images/app_icon.jpg';" />
-          <div class="youtube-subscribers-count">${ch.subscribers}</div>
-        </div>
-        <div class="youtube-channel-title">${isHi ? ch.nameHi : ch.nameEn}</div>
-        <div class="youtube-handle">${ch.handle}</div>
-        <p style="font-size: 0.84rem; color: var(--text-medium); line-height: 1.5; margin: 8px 0 12px;">
-          ${isHi ? ch.descHi : ch.descEn}
-        </p>
-        <a href="${ch.url}" target="_blank" class="btn-primary" style="background:#FF0000; color:#FFF; text-decoration:none; justify-content:center; padding:9px 14px; font-weight:800; border-radius: var(--radius-sm); width:100%; box-shadow: 0 3px 8px rgba(255,0,0,0.25);">
-          ▶ ${isHi ? 'यूट्यूब चैनल खोलें ↗' : 'Open Channel in YouTube ↗'}
-        </a>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 // Render Books Section with Single Direct Download / Open Button & Search Filter
@@ -969,7 +982,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=28')
+    navigator.serviceWorker.register('./sw.js?v=29')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
