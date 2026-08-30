@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Publications Menu Label
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search (Input/Keyup/Enter)
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -426,7 +426,9 @@ function fetchLiveWebsiteBooks() {
 
         if (parsedBooks.length > 0) {
           fetchedBooksList = parsedBooks;
-          if (currentSubTab === 'books') renderBooksTab();
+          const searchInput = document.getElementById('global-search-input');
+          const query = searchInput ? searchInput.value.trim() : '';
+          if (currentSubTab === 'books') renderBooksTab(query);
         }
       }
     })
@@ -482,7 +484,9 @@ function fetchLiveWebsiteMagazines() {
 
         if (parsedMagazines.length > 0) {
           fetchedMagazinesList = parsedMagazines;
-          if (currentSubTab === 'magazines') renderMagazinesTab();
+          const searchInput = document.getElementById('global-search-input');
+          const query = searchInput ? searchInput.value.trim() : '';
+          if (currentSubTab === 'magazines') renderMagazinesTab(query);
         }
       }
     })
@@ -857,26 +861,45 @@ window.closeModal = function() {
   if (modal) modal.classList.remove('active');
 };
 
-// Realtime Search Filter Logic for Books & Magazines
+// Instant Realtime Search Filter Logic (Multi-event listener + Enter key + Active Tab Switch)
 function initSearch() {
   const searchInput = document.getElementById('global-search-input');
   if (!searchInput) return;
 
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.trim();
+  function performSearch() {
+    const query = searchInput.value.trim();
 
-    // Auto-switch to Publications tab if typing in search from another tab
-    if (query) {
-      const activeTab = document.querySelector('.nav-item.active');
-      if (activeTab && activeTab.getAttribute('data-tab') !== 'books') {
-        switchTab('books');
-      }
+    // Force active state onto Publications pane when searching
+    const booksPane = document.getElementById('tab-books');
+    if (booksPane && !booksPane.classList.contains('active')) {
+      const navItems = document.querySelectorAll('.nav-item');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      navItems.forEach(nav => nav.classList.remove('active'));
+      tabPanes.forEach(pane => pane.classList.remove('active'));
+
+      const publicationsNav = document.querySelector('.nav-item[data-tab="books"]');
+      if (publicationsNav) publicationsNav.classList.add('active');
+      booksPane.classList.add('active');
     }
 
     if (currentSubTab === 'books') {
       renderBooksTab(query);
     } else {
       renderMagazinesTab(query);
+    }
+  }
+
+  // Bind to input, keyup, change, search events for instant responsiveness on mobile & desktop
+  ['input', 'keyup', 'change', 'search'].forEach(evt => {
+    searchInput.addEventListener(evt, performSearch);
+  });
+
+  // Handle Enter key on mobile soft keyboards
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      e.preventDefault();
+      performSearch();
+      searchInput.blur();
     }
   });
 }
