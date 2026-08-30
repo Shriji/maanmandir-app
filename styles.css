@@ -1,7 +1,7 @@
 /* ==========================================================================
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLESHEET
-   Aesthetics: Deep Royal Blue, Gold Accent, Smooth Glassmorphism, Micro-Animations
-   Version: 30
+   Aesthetics: Deep Royal Blue Theme with Red YouTube Vector Accent Icon
+   Version: 31
    ========================================================================== */
 
 /* Typography & Root Design Tokens */
@@ -9,8 +9,8 @@
   /* Color Palette */
   --primary-blue: #032a61;
   --primary-blue-hover: #021e47;
-  --accent-blue: #51bedb;
-  --accent-blue-light: #e6f7fa;
+  --accent-blue: #0284c7;
+  --accent-blue-light: #e0f2fe;
   --gold-accent: #f59e0b;
   --gold-light: #fef3c7;
   
@@ -618,7 +618,7 @@ body {
   color: var(--text-white);
 }
 
-/* Lightweight YouTube Gateway Card (Zero Local Maintenance) */
+/* YouTube Gateway Card - Royal Blue Theme with Red YouTube Vector Icon */
 .youtube-gateway-card {
   background: var(--bg-primary);
   border: 1px solid var(--border-light);
@@ -633,7 +633,7 @@ body {
 }
 
 .youtube-gateway-card:hover {
-  border-color: #FF0000;
+  border-color: var(--primary-blue);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -657,7 +657,8 @@ body {
   height: 44px;
   border-radius: var(--radius-full);
   object-fit: cover;
-  border: 2px solid #FF0000;
+  border: 2px solid var(--light-blue);
+  box-shadow: var(--shadow-sm);
   flex-shrink: 0;
 }
 
@@ -665,8 +666,8 @@ body {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-full);
-  background: #FFF5F5;
-  border: 2px solid #FF0000;
+  background: var(--ice-blue);
+  border: 2px solid var(--light-blue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -682,20 +683,20 @@ body {
 .youtube-gateway-name {
   font-size: 0.95rem;
   font-weight: 800;
-  color: var(--text-dark);
+  color: var(--primary-blue);
   line-height: 1.25;
 }
 
 .youtube-gateway-handle {
   font-size: 0.76rem;
-  color: #FF0000;
+  color: var(--accent-blue);
   font-weight: 700;
 }
 
 .youtube-gateway-badge {
-  background: #FFF5F5;
-  color: #FF0000;
-  border: 1px solid rgba(255, 0, 0, 0.2);
+  background: var(--ice-blue);
+  color: var(--primary-blue);
+  border: 1px solid var(--border-blue);
   font-size: 0.65rem;
   font-weight: 800;
   padding: 3px 8px;
@@ -712,8 +713,8 @@ body {
 }
 
 .youtube-gateway-btn {
-  background: #FF0000;
-  color: #FFFFFF;
+  background: var(--primary-blue);
+  color: var(--text-white);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -723,12 +724,13 @@ body {
   font-weight: 800;
   font-size: 0.85rem;
   border-radius: var(--radius-sm);
-  box-shadow: 0 3px 8px rgba(255, 0, 0, 0.2);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
 
 .youtube-gateway-btn:hover {
-  background: #CC0000;
+  background: var(--primary-blue-hover);
+  transform: translateY(-1px);
 }
 
 /* Sub-Tab Navigation Pill Bar (Books vs Monthly Magazines) */
