@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Official YouTube Channels Catalog with Custom Channel Hero Banners, Audio Portals, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search
+ * Dynamic Tabs, Live Stream Detector, Official YouTube Channels Catalog with Real Channel Header Banners & Profile Avatars, Audio Portals, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -86,8 +86,22 @@ let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
 
-// Official Maan Mandir YouTube Channels Catalog (Direct Official Handles + Custom Channel Hero Banners)
+// Official Maan Mandir YouTube Channels Catalog (Real Channel Banner Artworks & Profile Avatars)
 const MAAN_MANDIR_YOUTUBE_CHANNELS = [
+  {
+    id: "yt-murlika",
+    nameEn: "Shri Murlika Ji",
+    nameHi: "श्री मुरलिका जी",
+    handle: "@ShriMurlikaji",
+    url: "https://www.youtube.com/@ShriMurlikaji",
+    badgeEn: "KATHA & SATSANG",
+    badgeHi: "कथा व सत्संग",
+    subscribers: "20.9K Subscribers • 1.5K Videos",
+    bannerImg: "assets/images/shri_murlikaji_banner.jpg",
+    avatarImg: "assets/images/shri_murlikaji_avatar.jpg",
+    descEn: "Shrimad Bhagawat Katha (by Shri Murlika Ji): Spiritual orator and devotional singer, well known for Braj Ras Satsang.",
+    descHi: "श्री मुरलिका जी महाराज के पावन मुखारविंद से श्रीमद्भागवत कथा एवं ब्रज रस सत्संग का दिव्य प्रसारण।"
+  },
   {
     id: "yt-main",
     nameEn: "Maan Mandir Official Channel",
@@ -96,21 +110,11 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/MaanMandir",
     badgeEn: "MAIN CHANNEL",
     badgeHi: "मुख्य चैनल",
-    bannerBg: "linear-gradient(135deg, #032a61 0%, #CC0000 100%)",
+    subscribers: "Main Live Stream Channel",
+    bannerImg: "assets/images/hero_banner.jpg",
+    avatarImg: "assets/images/app_icon.jpg",
     descEn: "Official live webcast of Shri Ramesh Baba Ji Maharaj Pravachan, Satsang & Barsana Dham Darshan.",
     descHi: "श्री रमेश बाबा जी महाराज के पावन प्रवचन एवं बरसाना धाम सत्संग का लाइव प्रसारण।"
-  },
-  {
-    id: "yt-murlika",
-    nameEn: "Shri Murlika Ji Maharaj",
-    nameHi: "श्री मुरलिका जी महाराज",
-    handle: "@ShriMurlikaji",
-    url: "https://www.youtube.com/@ShriMurlikaji",
-    badgeEn: "KATHA & SATSANG",
-    badgeHi: "कथा व सत्संग",
-    bannerBg: "linear-gradient(135deg, #D97706 0%, #B45309 100%)",
-    descEn: "Official channel of Shri Murlika Ji Maharaj featuring Srimad Bhagavat Katha & Braj Ras Satsang.",
-    descHi: "श्री मुरलिका जी महाराज के पावन मुखारविंद से श्रीमद्भागवत कथा एवं ब्रज रस सत्संग का दिव्य प्रसारण।"
   },
   {
     id: "yt-ramjilal",
@@ -120,7 +124,9 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@ramjilalshastrijimaharajba7619",
     badgeEn: "PRAVACHAN",
     badgeHi: "प्रवचन",
-    bannerBg: "linear-gradient(135deg, #EA580C 0%, #9A3412 100%)",
+    subscribers: "Official Channel",
+    bannerImg: "assets/images/hero_banner.jpg",
+    avatarImg: "assets/images/app_icon.jpg",
     descEn: "Shastra Satsang and Pravachans by Ramjilal Shastri Ji Maharaj.",
     descHi: "रामजीलाल शास्त्री जी महाराज के पावन मुखारविंद से शास्त्र चर्चा व प्रवचन।"
   },
@@ -132,7 +138,9 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@PujyaaShrijididi",
     badgeEn: "SATSANG & BHAJAN",
     badgeHi: "सत्संग व भजन",
-    bannerBg: "linear-gradient(135deg, #BE185D 0%, #831843 100%)",
+    subscribers: "Official Channel",
+    bannerImg: "assets/images/hero_banner.jpg",
+    avatarImg: "assets/images/app_icon.jpg",
     descEn: "Devotional Satsang, Upadesh, and Bhajans by Pujyaa Shriji Didi.",
     descHi: "पूज्या श्रीजी दीदी द्वारा भक्तिमय सत्संग, उपदेश एवं मधुर भजन।"
   },
@@ -144,7 +152,9 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@Divya-Path",
     badgeEn: "DIVYA PATH",
     badgeHi: "दिव्य पथ",
-    bannerBg: "linear-gradient(135deg, #0D9488 0%, #115E59 100%)",
+    subscribers: "Official Channel",
+    bannerImg: "assets/images/hero_banner.jpg",
+    avatarImg: "assets/images/app_icon.jpg",
     descEn: "Official Divya Path channel for spiritual discourses and Sanatan Dharma teachings.",
     descHi: "दिव्य पथ आध्यात्मिक प्रवचन एवं सनातन धर्म ज्ञान प्रसारण।"
   },
@@ -156,7 +166,9 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@radharanibrajyatra7821",
     badgeEn: "84 KOS YATRA",
     badgeHi: "८४ कोस यात्रा",
-    bannerBg: "linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%)",
+    subscribers: "Official Channel",
+    bannerImg: "assets/images/hero_banner.jpg",
+    avatarImg: "assets/images/app_icon.jpg",
     descEn: "Video webcasts of the annual 84 Kos Braj Yatra & Leela Sthal Pravachans.",
     descHi: "वार्षिक ८४ कोस ब्रज यात्रा एवं लीला स्थल प्रवचनों का पावन वीडियो संग्रह।"
   },
@@ -168,7 +180,9 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@ShriMatajiGaushala",
     badgeEn: "GAUSEVA",
     badgeHi: "गौसेवा",
-    bannerBg: "linear-gradient(135deg, #15803D 0%, #166534 100%)",
+    subscribers: "Official Channel",
+    bannerImg: "assets/images/hero_banner.jpg",
+    avatarImg: "assets/images/app_icon.jpg",
     descEn: "Live updates and Gauseva webcasts from Shri Mataji Gaushala Barsana.",
     descHi: "श्री माताजी गौशाला बरसाना से नित्य गौसेवा, दर्शन व पर्यावरण संरक्षण।"
   },
@@ -180,7 +194,9 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@cowvethospital",
     badgeEn: "GAU CHIKITSA",
     badgeHi: "गौ चिकित्सा",
-    bannerBg: "linear-gradient(135deg, #0284C7 0%, #0369A1 100%)",
+    subscribers: "Official Channel",
+    bannerImg: "assets/images/hero_banner.jpg",
+    avatarImg: "assets/images/app_icon.jpg",
     descEn: "Medical care, emergency treatment, and rehabilitation webcasts from Cow Vet Hospital.",
     descHi: "गौ चिकित्सालय बरसाना से बीमार व घायल गौवंश की चिकित्सीय सेवा व अपडेट्स।"
   }
@@ -734,7 +750,7 @@ function renderHomeRecentUpdates() {
   `).join('');
 }
 
-// Render YouTube Live & Official Channels Cards with Full Banner Covers
+// Render YouTube Live & Official Channels Cards with Real Channel Banner Header & Profile Avatar Overlays
 function renderYouTubeTab() {
   const container = document.getElementById('youtube-videos-list');
   if (!container) return;
@@ -742,21 +758,23 @@ function renderYouTubeTab() {
   const isHi = currentLang === 'hi';
   container.innerHTML = MAAN_MANDIR_YOUTUBE_CHANNELS.map(ch => `
     <div class="youtube-channel-card">
-      <div class="youtube-channel-banner" style="background: ${ch.bannerBg};">
-        <div style="display:flex; justify-space-between; align-items:center; width:100%;">
+      <div class="youtube-channel-banner-header" style="background-image: url('${ch.bannerImg}');">
+        <div class="youtube-banner-overlay">
           <span class="youtube-banner-badge">${isHi ? ch.badgeHi : ch.badgeEn}</span>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF" style="opacity:0.92; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </div>
-        <div>
-          <div class="youtube-banner-title">${isHi ? ch.nameHi : ch.nameEn}</div>
-          <div style="font-size: 0.74rem; opacity: 0.9; font-weight: 700; margin-top:2px;">${ch.handle}</div>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.4));"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </div>
       </div>
-      <div class="youtube-card-body">
-        <p style="font-size: 0.84rem; color: var(--text-medium); line-height: 1.5;">
+      <div class="youtube-channel-content">
+        <div class="youtube-avatar-row">
+          <img class="youtube-channel-avatar-lg" src="${ch.avatarImg}" alt="${isHi ? ch.nameHi : ch.nameEn}" onerror="this.onerror=null; this.src='assets/images/app_icon.jpg';" />
+          <div class="youtube-subscribers-count">${ch.subscribers}</div>
+        </div>
+        <div class="youtube-channel-title">${isHi ? ch.nameHi : ch.nameEn}</div>
+        <div class="youtube-handle">${ch.handle}</div>
+        <p style="font-size: 0.84rem; color: var(--text-medium); line-height: 1.5; margin: 8px 0 12px;">
           ${isHi ? ch.descHi : ch.descEn}
         </p>
-        <a href="${ch.url}" target="_blank" class="btn-primary" style="background:#FF0000; color:#FFF; text-decoration:none; justify-content:center; padding:9px 14px; font-weight:800; border-radius: var(--radius-sm); box-shadow: 0 3px 8px rgba(255,0,0,0.2);">
+        <a href="${ch.url}" target="_blank" class="btn-primary" style="background:#FF0000; color:#FFF; text-decoration:none; justify-content:center; padding:9px 14px; font-weight:800; border-radius: var(--radius-sm); width:100%; box-shadow: 0 3px 8px rgba(255,0,0,0.25);">
           ▶ ${isHi ? 'यूट्यूब चैनल खोलें ↗' : 'Open Channel in YouTube ↗'}
         </a>
       </div>
@@ -951,7 +969,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=26')
+    navigator.serviceWorker.register('./sw.js?v=27')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;

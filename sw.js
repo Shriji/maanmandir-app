@@ -1,13 +1,15 @@
-// Maan Mandir Devotee Mobile Portal - Service Worker (v26)
-const CACHE_NAME = 'maanmandir-v26';
+// Maan Mandir Devotee Mobile Portal - Service Worker (v27)
+const CACHE_NAME = 'maanmandir-v27';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css?v=26',
-  './app.js?v=26',
+  './styles.css?v=27',
+  './app.js?v=27',
   './manifest.json',
   './assets/images/app_icon.jpg',
-  './assets/images/hero_banner.jpg'
+  './assets/images/hero_banner.jpg',
+  './assets/images/shri_murlikaji_banner.jpg',
+  './assets/images/shri_murlikaji_avatar.jpg'
 ];
 
 self.addEventListener('install', (event) => {
