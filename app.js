@@ -1,7 +1,7 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Gateway Architecture: Side Navigation Drawer Menu for Maanmandir.org, Zero Local Maintenance, Live YouTube CDN Avatars, Direct Handle Links, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
- * Version: 32
+ * Senior Architecture Gateway: Curated Side Navigation Drawer, In-App Native Views vs External Website Gateway Links, Live YouTube CDN Avatars, Direct Handle Links, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
+ * Version: 33
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -87,7 +87,7 @@ let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
 
-// Official Maanmandir.org Website Menu Gateway Categories
+// Senior Architect Curated Side Navigation Drawer Menu (Essential Maanmandir.org Website Gateways)
 const MAANMANDIR_ORG_MENU_CATEGORIES = [
   {
     catId: "sansthan",
@@ -95,13 +95,9 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "संस्थान व संत परिचय",
     icon: "🌸",
     links: [
-      { textEn: "About Maan Mandir", textHi: "मान मंदिर परिचय", url: "https://maanmandir.org/about-us/" },
-      { textEn: "Shri Ramesh Baba Ji Maharaj", textHi: "श्री रमेश बाबा जी महाराज", url: "https://maanmandir.org/shri-ramesh-baba-ji-maharaj/" },
-      { textEn: "Pujyaa Shriji Didi", textHi: "पूज्या श्रीजी दीदी", url: "https://maanmandir.org/pujyaa-shriji-didi/" },
-      { textEn: "Pujyaa Braj Balika Murlika Ji", textHi: "पूज्या ब्रज बालिका मुरलिका जी", url: "https://maanmandir.org/murlikasharma/" },
-      { textEn: "Dr. Ram Ji Lal Shastri Ji", textHi: "डॉ. रामजीलाल शास्त्री जी", url: "https://maanmandir.org/dr-ram-ji-lal-shashtri-shrimad-bhagwat-vyasacharya/" },
-      { textEn: "Plan Your Visit To Maan Mandir", textHi: "मान मंदिर दर्शन यात्रा योजना", url: "https://maanmandir.org/plan-your-visit-to-maan-mandir/" },
-      { textEn: "A Typical Day at Temple", textHi: "मंदिर की नित्य दिनचर्या", url: "https://maanmandir.org/a-typical-day-of-temple/" }
+      { textEn: "About Maan Mandir", textHi: "मान मंदिर परिचय", url: "https://maanmandir.org/about-us/", isExternal: true },
+      { textEn: "Shri Ramesh Baba Ji Maharaj", textHi: "श्री रमेश बाबा जी महाराज", url: "https://maanmandir.org/shri-ramesh-baba-ji-maharaj/", isExternal: true },
+      { textEn: "Plan Your Visit To Barsana", textHi: "बरसाना धाम दर्शन यात्रा योजना", url: "https://maanmandir.org/plan-your-visit-to-maan-mandir/", isExternal: true }
     ]
   },
   {
@@ -110,10 +106,8 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "ब्रज यात्रा व मानचित्र",
     icon: "🗺️",
     links: [
-      { textEn: "Radha Rani Braj Yatra", textHi: "राधारानी ब्रज यात्रा", url: "https://maanmandir.org/radha-rani-braj-yatra/" },
-      { textEn: "Rasili Braj Yatra (Encyclopedia)", textHi: "रसीली ब्रज यात्रा (ग्रंथ)", url: "https://maanmandir.org/rasili-braj-yatra-encyclopedia-of-braj/" },
-      { textEn: "Braj 84 Kos Parikrama", textHi: "ब्रज ८४ कोस परिक्रमा", url: "https://maanmandir.org/?page_id=154" },
-      { textEn: "Map of Braj Dham", textHi: "ब्रज धाम मानचित्र", url: "https://maanmandir.org/braj-map/" }
+      { textEn: "Radha Rani Braj Yatra", textHi: "राधारानी ब्रज यात्रा", url: "https://maanmandir.org/radha-rani-braj-yatra/", isExternal: true },
+      { textEn: "Map of Braj Dham (ब्रज मानचित्र)", textHi: "ब्रज धाम मानचित्र", url: "https://maanmandir.org/braj-map/", isExternal: true }
     ]
   },
   {
@@ -122,15 +116,9 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "गौसेवा व जनहित प्रकल्प",
     icon: "🐄",
     links: [
-      { textEn: "Shri Mataji Gaushala", textHi: "श्री माताजी गौशाला बरसाना", url: "https://maanmandir.org/mataji-goshala/" },
-      { textEn: "Prasad Seva (Free Feast)", textHi: "नित्य अन्नक्षेत्र प्रसाद सेवा", url: "https://maanmandir.org/prasad-seva-free-feast/" },
-      { textEn: "Kund & Water Body Restoration", textHi: "ब्रज सरोवर व कुंड संरक्षण", url: "https://maanmandir.org/kund-water-body-restoration/" },
-      { textEn: "Tree Plantation (वृक्षारोपण)", textHi: "वृक्षारोपण एवं पर्यावरण सेवा", url: "https://maanmandir.org/tree-plantation/" },
-      { textEn: "Maan Mandir Gurukul", textHi: "मान मंदिर गुरुकुल", url: "https://maanmandir.org/maan-mandir-gurukul/" },
-      { textEn: "Mobile Clinic Service", textHi: "ब्रज सचल चिकित्सालय सेवा", url: "https://maanmandir.org/first-ever-mobile-clinic-in-service-of-braj/" },
-      { textEn: "Maan Mandir Kala Akadami", textHi: "मान मंदिर कला अकादमी", url: "https://maanmandir.org/maan-mandir-kala-akadami/" },
-      { textEn: "Prabhat Pheri Mandal", textHi: "प्रभात फेरी मण्डल", url: "https://maanmandir.org/maan-mandir-prabhat-pheri-mandal/" },
-      { textEn: "Bhagwan Naam Pheries", textHi: "भगवान नाम प्रचार", url: "https://maanmandir.org/bhagwan-naam-prachar/" }
+      { textEn: "Shri Mataji Gaushala", textHi: "श्री माताजी गौशाला बरसाना", url: "https://maanmandir.org/mataji-goshala/", isExternal: true },
+      { textEn: "Prasad Seva (Free Feast)", textHi: "नित्य अन्नक्षेत्र प्रसाद सेवा", url: "https://maanmandir.org/prasad-seva-free-feast/", isExternal: true },
+      { textEn: "Kund & Water Body Restoration", textHi: "ब्रज सरोवर व कुंड संरक्षण", url: "https://maanmandir.org/kund-water-body-restoration/", isExternal: true }
     ]
   },
   {
@@ -139,17 +127,9 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "मीडिया व साहित्य संग्रह",
     icon: "📚",
     links: [
-      { textEn: "Live Webcast Stream", textHi: "लाइव वेबकास्ट प्रसारण", url: "https://maanmandir.org/live/" },
-      { textEn: "Search Satsang & Lectures", textHi: "सत्संग एवं प्रवचन खोजें", url: "https://maanmandir.org/search-satsang/" },
-      { textEn: "Satsang Playlists", textHi: "सत्संग प्लेलिस्ट संग्रह", url: "https://maanmandir.org/satsang/" },
-      { textEn: "Satsang Quotes", textHi: "दिव्य विचार व सूक्तियां", url: "https://maanmandir.org/quotes/" },
-      { textEn: "English Lecture Translations", textHi: "अंग्रेजी प्रवचन अनुवाद", url: "https://maanmandir.org/category/english-translation-of-lectures/" },
-      { textEn: "Download Books & Grantha", textHi: "ग्रंथ व पुस्तकें डाउनलोड", url: "https://maanmandir.org/books/" },
-      { textEn: "Monthly Magazine (Patrika)", textHi: "मासिक पत्रिका (Patrika)", url: "https://maanmandir.org/magazine/" },
-      { textEn: "Vrishbhanupur Shatakam Book", textHi: "वृषभानुपुर शतकम् ऑनलाइन पुस्तक", url: "https://maanmandir.org/vrishbhanupur-shatakam-online-book/" },
-      { textEn: "Holi Saagar Pad Sangrah", textHi: "होली सागर पद संग्रह", url: "https://maanmandir.org/holi-saagar/" },
-      { textEn: "Bulk Audio ZIP Downloads", textHi: "ऑडियो ज़िप डाउनलोड", url: "https://maanmandir.org/zip/" },
-      { textEn: "Maanini Mobile App", textHi: "मानिनी मोबाइल ऐप", url: "https://maanmandir.org/maanini/" }
+      { textEn: "Search Satsang & Lectures", textHi: "सत्संग एवं प्रवचन खोजें", url: "https://maanmandir.org/search-satsang/", isExternal: true },
+      { textEn: "Books & Grantha Catalog", textHi: "ग्रंथ व पुस्तकें (इन-ऐप)", isTab: "books", subTab: "books" },
+      { textEn: "Monthly Magazine (Patrika)", textHi: "मासिक पत्रिका (इन-ऐप)", isTab: "books", subTab: "magazines" }
     ]
   },
   {
@@ -158,10 +138,8 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "भक्त सेवा व संपर्क",
     icon: "💖",
     links: [
-      { textEn: "Donate / Seva Support", textHi: "दान एवं सेवा सहयोग", url: "https://maanmandir.org/donate/" },
-      { textEn: "News & Sansthan Updates", textHi: "समाचार व संस्थान समाचार", url: "https://maanmandir.org/news/" },
-      { textEn: "Upcoming Events", textHi: "आगामी उत्सव व कार्यक्रम", url: "https://maanmandir.org/upcoming-events/" },
-      { textEn: "Contact Sansthan", textHi: "संपर्क करें", url: "https://maanmandir.org/contact-us/" }
+      { textEn: "Donate / Support Seva", textHi: "दान एवं सेवा सहयोग", url: "https://maanmandir.org/donate/", isExternal: true },
+      { textEn: "Contact Sansthan", textHi: "संस्थान संपर्क करें", url: "https://maanmandir.org/contact-us/", isExternal: true }
     ]
   }
 ];
@@ -576,6 +554,21 @@ function initSideNavigationDrawer() {
   renderSideDrawerMenu();
 }
 
+window.handleSideMenuLinkClick = function(isTab, targetTab, subTab, url) {
+  const sideOverlay = document.getElementById('side-drawer-overlay');
+  const sidePanel = document.getElementById('side-drawer-panel');
+  if (sideOverlay) sideOverlay.classList.remove('active');
+  if (sidePanel) sidePanel.classList.remove('active');
+  document.body.style.overflow = '';
+
+  if (isTab) {
+    switchTab(targetTab);
+    if (subTab) switchPublicationSubTab(subTab);
+  } else if (url) {
+    window.open(url, '_blank');
+  }
+};
+
 function renderSideDrawerMenu() {
   const container = document.getElementById('side-menu-categories-list');
   if (!container) return;
@@ -589,12 +582,23 @@ function renderSideDrawerMenu() {
         <span>${isHi ? cat.titleHi : cat.titleEn}</span>
       </div>
       <div class="menu-links-list">
-        ${cat.links.map(l => `
-          <a href="${l.url}" target="_blank" class="menu-link-item">
-            <span>${isHi ? l.textHi : l.textEn}</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
-          </a>
-        `).join('')}
+        ${cat.links.map(l => {
+          if (l.isTab) {
+            return `
+              <a href="#" onclick="handleSideMenuLinkClick(true, '${l.isTab}', '${l.subTab || ''}', ''); return false;" class="menu-link-item">
+                <span>${isHi ? l.textHi : l.textEn}</span>
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
+              </a>
+            `;
+          } else {
+            return `
+              <a href="${l.url}" target="_blank" onclick="handleSideMenuLinkClick(false, '', '', '${l.url}');" class="menu-link-item">
+                <span>${isHi ? l.textHi : l.textEn}</span>
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </a>
+            `;
+          }
+        }).join('')}
       </div>
     </div>
   `).join('');
@@ -1089,7 +1093,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=32')
+    navigator.serviceWorker.register('./sw.js?v=33')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
