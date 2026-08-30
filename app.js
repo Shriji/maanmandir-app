@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Realtime Books/Magazine Search
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Publications Menu Label
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -19,8 +19,8 @@ const TRANSLATIONS = {
     tileLiveDesc: "Pravachans & Streams",
     tileAudio: "Kirtan & Audio",
     tileAudioDesc: "SoundCloud & MP3s",
-    tileBooks: "Books & Magazine",
-    tileBooksDesc: "PDF Publications",
+    tileBooks: "Publications",
+    tileBooksDesc: "Books & Magazines",
     tileMaanini: "Maanini Portal",
     tileMaaniniDesc: "Maanini.app Launcher",
     tileSocial: "Social Media",
@@ -31,7 +31,7 @@ const TRANSLATIONS = {
     tabHome: "Home",
     tabLive: "Live",
     tabAudio: "Audio",
-    tabBooks: "Books & Magazines",
+    tabBooks: "Publications",
     tabMaanini: "Maanini",
     tabSeva: "Seva",
     subtabBooks: "Books (ग्रंथ)",
@@ -55,8 +55,8 @@ const TRANSLATIONS = {
     tileLiveDesc: "प्रवचन व कथाएं",
     tileAudio: "कीर्तन व ऑडियो",
     tileAudioDesc: "साउंडक्लाउड व संकीर्तन",
-    tileBooks: "पुस्तके व पत्रिका",
-    tileBooksDesc: "पीडीएफ ग्रंथ एवं पत्रिका",
+    tileBooks: "प्रकाशन",
+    tileBooksDesc: "ग्रंथ एवं मासिक पत्रिकाएं",
     tileMaanini: "मानिनी पोर्टल",
     tileMaaniniDesc: "मानिनी ऐप खोलें",
     tileSocial: "सोशल मीडिया",
@@ -67,7 +67,7 @@ const TRANSLATIONS = {
     tabHome: "मुख्य",
     tabLive: "लाइव",
     tabAudio: "ऑडियो",
-    tabBooks: "ग्रंथ व पत्रिका",
+    tabBooks: "प्रकाशन",
     tabMaanini: "मानिनी",
     tabSeva: "सेवा",
     subtabBooks: "ग्रंथ व पुस्तकें",
@@ -865,7 +865,7 @@ function initSearch() {
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value.trim();
 
-    // Auto-switch to Books tab if typing in search from another tab
+    // Auto-switch to Publications tab if typing in search from another tab
     if (query) {
       const activeTab = document.querySelector('.nav-item.active');
       if (activeTab && activeTab.getAttribute('data-tab') !== 'books') {
