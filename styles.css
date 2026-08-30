@@ -1010,3 +1010,39 @@ body {
   border-radius: 50%;
   cursor: pointer;
 }
+
+/* Sub Tab Pill Bar for Books & Magazines */
+.sub-tab-pill-bar {
+  display: flex;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-blue);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  margin-bottom: 16px;
+  gap: 4px;
+}
+
+.sub-tab-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 9px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--text-medium);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.sub-tab-btn.active {
+  background: var(--primary-blue);
+  color: var(--text-white);
+  box-shadow: var(--shadow-sm);
+}
+

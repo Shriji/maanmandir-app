@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Real Book Cover Artwork Sync
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Books + Magazine Sub-Tabs
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -31,13 +31,16 @@ const TRANSLATIONS = {
     tabHome: "Home",
     tabLive: "Live",
     tabAudio: "Audio",
-    tabBooks: "Books",
+    tabBooks: "Books & Magazines",
     tabMaanini: "Maanini",
     tabSeva: "Seva",
+    subtabBooks: "Books (ग्रंथ)",
+    subtabMagazines: "Monthly Magazine (पत्रिका)",
     readBtn: "Read PDF",
     downloadBtn: "Download",
     notificationsTitle: "Devotee Updates",
-    loadingBooks: "🌸 Syncing live book covers from MaanMandir.org..."
+    loadingBooks: "🌸 Syncing live books from MaanMandir.org...",
+    loadingMagazines: "📰 Syncing monthly magazines from MaanMandir.org..."
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -65,13 +68,16 @@ const TRANSLATIONS = {
     tabHome: "मुख्य",
     tabLive: "लाइव",
     tabAudio: "ऑडियो",
-    tabBooks: "ग्रंथ",
+    tabBooks: "ग्रंथ व पत्रिका",
     tabMaanini: "मानिनी",
     tabSeva: "सेवा",
+    subtabBooks: "ग्रंथ व पुस्तकें",
+    subtabMagazines: "मासिक पत्रिका (Patrika)",
     readBtn: "पढ़ें",
     downloadBtn: "डाउनलोड",
     notificationsTitle: "भक्त अपडेट्स",
-    loadingBooks: "🌸 maanmandir.org से पुस्तकें व आवरण चित्र सिंक हो रहे हैं..."
+    loadingBooks: "🌸 maanmandir.org से पुस्तकें व आवरण चित्र सिंक हो रहे हैं...",
+    loadingMagazines: "📰 maanmandir.org से मासिक पत्रिकाएं सिंक हो रही हैं..."
   }
 };
 
@@ -80,14 +86,16 @@ let currentLang = localStorage.getItem('mm_lang') || 'en';
 let fontScaleStep = parseInt(localStorage.getItem('mm_font_step') || '1');
 let currentPlayingAudio = null;
 let isAudioPlaying = false;
+let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
+let fetchedMagazinesList = [];
 
 // Sample Data Catalog
 const APP_DATA = {
   notifications: [
     { id: 1, titleEn: "🔴 Live Webcast Started", titleHi: "🔴 लाइव सत्संग प्रारंभ", descEn: "Shri Ramesh Baba Ji Maharaj Pravachan live from Barsana Dham.", descHi: "बरसाना धाम से श्री रमेश बाबा जी महाराज का लाइव प्रवचन।", time: "10m ago", unread: true },
     { id: 2, titleEn: "🎵 New Audio Released", titleHi: "🎵 नया संकीर्तन जारी", descEn: "Radha Naama Mahima & Daily Braj Kirtan.", descHi: "राधा नाम महिमा एवं नित्य ब्रज संकीर्तन।", time: "2h ago", unread: true },
-    { id: 3, titleEn: "📚 Official Book Cover Artworks Synced", titleHi: "📚 मान मंदिर ग्रंथ आवरण चित्र सिंक हुए", descEn: "All book covers and PDF links synced directly from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से सभी ग्रंथ चित्र व लिंक सिंक हो गए।", time: "1d ago", unread: true }
+    { id: 3, titleEn: "📰 Monthly Magazines & Books Synced", titleHi: "📰 मासिक पत्रिका व ग्रंथ सिंक हुए", descEn: "All book covers & monthly magazines synced from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से पुस्तकें व पत्रिकाएं सिंक हो गईं।", time: "1d ago", unread: true }
   ],
 
   youtubeVideos: [
@@ -103,7 +111,7 @@ const APP_DATA = {
   ]
 };
 
-// Official MaanMandir.org Books Catalog with Real Website Covers & Clean Titles
+// Official MaanMandir.org Books Catalog with Real Website Covers
 const FALLBACK_WEBSITE_BOOKS = [
   { 
     id: "b1", 
@@ -197,6 +205,20 @@ const FALLBACK_WEBSITE_BOOKS = [
   }
 ];
 
+// Official MaanMandir.org Monthly Magazines Catalog (Synced from Website /magazine/)
+const FALLBACK_WEBSITE_MAGAZINES = [
+  { id: "m1", titleEn: "Maan Mandir Patrika - June 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - जून २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-june-2026/", isNew: true, downloads: "271 Downloads" },
+  { id: "m2", titleEn: "Maan Mandir Patrika - May 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - मई २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-may-2026/", isNew: true, downloads: "235 Downloads" },
+  { id: "m3", titleEn: "Maan Mandir Patrika - April 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - अप्रैल २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-april-2026/", isNew: true, downloads: "213 Downloads" },
+  { id: "m4", titleEn: "Maan Mandir Patrika - March 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - मार्च २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-mar-2026/", isNew: false, downloads: "122 Downloads" },
+  { id: "m5", titleEn: "Maan Mandir Patrika - February 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - फरवरी २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-feb-2026/", isNew: false, downloads: "2.7K Downloads" },
+  { id: "m6", titleEn: "Maan Mandir Patrika - January 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - जनवरी २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-jan-2026/", isNew: false, downloads: "2.7K Downloads" },
+  { id: "m7", titleEn: "Maan Mandir Patrika - December 2025 Issue", titleHi: "मान मंदिर मासिक पत्रिका - दिसंबर २०२५ अंक", pdfUrl: "https://maanmandir.org/download/patrika-dec-2025/", isNew: false, downloads: "2.6K Downloads" },
+  { id: "m8", titleEn: "Maan Mandir Patrika - November 2025 Issue", titleHi: "मान मंदिर मासिक पत्रिका - नवंबर २०२५ अंक", pdfUrl: "https://maanmandir.org/download/patrika-nov-2025/", isNew: false, downloads: "1.8K Downloads" },
+  { id: "m9", titleEn: "Maan Mandir Patrika - October 2025 Issue", titleHi: "मान मंदिर मासिक पत्रिका - अक्टूबर २०२५ अंक", pdfUrl: "https://maanmandir.org/download/patrika-oct-2025/", isNew: false, downloads: "1.8K Downloads" },
+  { id: "m10", titleEn: "Maan Mandir Patrika - September 2025 Issue", titleHi: "मान मंदिर मासिक पत्रिका - सितंबर २०२५ अंक", pdfUrl: "https://maanmandir.org/download/patrika-sep-2025/", isNew: false, downloads: "1.7K Downloads" }
+];
+
 // DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
   initLanguage();
@@ -205,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNotificationDrawer();
   renderContent();
   fetchLiveWebsiteBooks();
+  fetchLiveWebsiteMagazines();
   initAudioPlayer();
   initSearch();
   registerServiceWorker();
@@ -253,6 +276,8 @@ window.setLanguage = function(lang) {
   setElementText('txt-tab-books', t.tabBooks);
   setElementText('txt-tab-maanini', t.tabMaanini);
   setElementText('txt-tab-seva', t.tabSeva);
+  setElementText('txt-subtab-books', t.subtabBooks);
+  setElementText('txt-subtab-magazines', t.subtabMagazines);
   setElementText('txt-notifications-title', t.notificationsTitle);
 
   const searchInput = document.getElementById('global-search-input');
@@ -267,7 +292,7 @@ function setElementText(id, text) {
   if (el) el.textContent = text;
 }
 
-// Fetch Live Books with Real WordPress Titles & Cover Artworks (Category 208)
+// Fetch Live Books with Real WordPress Titles & Cover Artworks
 function fetchLiveWebsiteBooks() {
   fetchedBooksList = FALLBACK_WEBSITE_BOOKS; // Start with verified catalog immediately
 
@@ -277,12 +302,10 @@ function fetchLiveWebsiteBooks() {
       if (posts && posts.length > 0) {
         const parsedBooks = [];
         posts.forEach((post, idx) => {
-          // Clean WordPress Post Title
           let cleanTitle = post.title && post.title.rendered 
             ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
             : 'Maan Mandir Book';
 
-          // Extract Cover Image Artwork URL from Post Content HTML
           let coverImgUrl = '';
           let pdfDownloadUrl = '';
           let downloadCount = 'Synced';
@@ -316,14 +339,76 @@ function fetchLiveWebsiteBooks() {
 
         if (parsedBooks.length > 0) {
           fetchedBooksList = parsedBooks;
-          renderBooksTab();
+          if (currentSubTab === 'books') renderBooksTab();
         }
       }
     })
     .catch(err => {
-      console.log('Website Live Fetch Sync: Using pre-cached artwork catalog', err);
+      console.log('Website Live Fetch Sync (Books): Using pre-cached catalog', err);
     });
 }
+
+// Fetch Live Magazines from Website REST API (maanmandir.org/wp-json/wp/v2/pages/9241)
+function fetchLiveWebsiteMagazines() {
+  fetchedMagazinesList = FALLBACK_WEBSITE_MAGAZINES;
+
+  fetch('https://maanmandir.org/wp-json/wp/v2/pages/9241')
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.content && data.content.rendered) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.content.rendered, 'text/html');
+        const downloadLinks = doc.querySelectorAll('a.dlm-download-link');
+
+        if (downloadLinks && downloadLinks.length > 0) {
+          const parsedMagazines = [];
+          downloadLinks.forEach((link, idx) => {
+            let rawTitle = link.getAttribute('title') || link.textContent;
+            let url = link.getAttribute('href');
+            let pdfName = link.textContent.replace(/\(.*?\)/g, '').replace(/\.pdf/gi, '').trim();
+
+            let cleanTitle = `Maan Mandir Patrika - ${pdfName}`;
+            if (rawTitle && rawTitle.includes('patrika')) {
+              cleanTitle = `Maan Mandir Patrika (${rawTitle.replace('Version', '').replace('patrika', '').trim()})`;
+            }
+
+            if (url) {
+              parsedMagazines.push({
+                id: `mag-link-${idx}`,
+                titleEn: cleanTitle,
+                titleHi: cleanTitle.replace('Maan Mandir Patrika', 'मान मंदिर मासिक पत्रिका'),
+                pdfUrl: url,
+                isNew: idx < 3,
+                downloads: 'Synced'
+              });
+            }
+          });
+
+          if (parsedMagazines.length > 0) {
+            fetchedMagazinesList = parsedMagazines;
+            if (currentSubTab === 'magazines') renderMagazinesTab();
+          }
+        }
+      }
+    })
+    .catch(err => {
+      console.log('Website Live Fetch Sync (Magazines): Using pre-cached issues', err);
+    });
+}
+
+// Switch Sub Tab (Books vs Magazines)
+window.switchPublicationSubTab = function(subTab) {
+  currentSubTab = subTab;
+
+  const booksBtn = document.getElementById('btn-subtab-books');
+  const magBtn = document.getElementById('btn-subtab-magazines');
+
+  if (booksBtn) booksBtn.classList.toggle('active', subTab === 'books');
+  if (magBtn) magBtn.classList.toggle('active', subTab === 'magazines');
+
+  if (subTab === 'books') renderBooksTab();
+  else renderMagazinesTab();
+};
 
 // Interactive Font Size Controls (A- / A / A+)
 function initFontResizer() {
@@ -423,7 +508,8 @@ function renderContent() {
   renderHomeRecentUpdates();
   renderYouTubeTab();
   renderAudioTab();
-  renderBooksTab();
+  if (currentSubTab === 'books') renderBooksTab();
+  else renderMagazinesTab();
 }
 
 function renderHomeRecentUpdates() {
@@ -434,7 +520,7 @@ function renderHomeRecentUpdates() {
   const recentItems = [
     { title: isHi ? "🔴 लाइव: सांध्य प्रवचन श्री रमेश बाबा जी" : "🔴 Live: Evening Pravachan by Ramesh Baba Ji", type: isHi ? "लाइव प्रसारण" : "Live Webcast", time: "Active Now" },
     { title: isHi ? "🎵 नया कीर्तन: श्री राधा नाम स्मरण" : "🎵 New Audio: Radha Naama Smaran Kirtan", type: "SoundCloud", time: "2h ago" },
-    { title: isHi ? "📚 आवरण चित्र सहित ग्रंथ सिंक" : "📚 Official Books & Covers Synced from Website", type: isHi ? "पीडीएफ ग्रंथ" : "PDF Book", time: "Live Sync" }
+    { title: isHi ? "📚 मासिक पत्रिका व ग्रंथ सिंक" : "📚 Official Books & Monthly Magazines Synced", type: isHi ? "पीडीएफ प्रकाशन" : "PDF Magazine", time: "Live Sync" }
   ];
 
   container.innerHTML = recentItems.map(item => `
@@ -500,7 +586,7 @@ function renderAudioTab() {
   `).join('');
 }
 
-// Render Books Catalog with Real Website Book Cover Image Artworks
+// Render Books Section
 function renderBooksTab() {
   const container = document.getElementById('books-catalog-list');
   if (!container) return;
@@ -528,6 +614,40 @@ function renderBooksTab() {
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg> ${t.readBtn}
           </button>
           <a href="${book.pdfUrl}" target="_blank" class="btn-outline" style="text-decoration:none;">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> ${t.downloadBtn}
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Render Monthly Magazine Section
+function renderMagazinesTab() {
+  const container = document.getElementById('books-catalog-list');
+  if (!container) return;
+
+  const isHi = currentLang === 'hi';
+  const t = TRANSLATIONS[currentLang];
+  const magsToRender = fetchedMagazinesList.length > 0 ? fetchedMagazinesList : FALLBACK_WEBSITE_MAGAZINES;
+
+  container.innerHTML = magsToRender.map(mag => `
+    <div class="book-card">
+      <div class="book-cover" style="background: linear-gradient(135deg, var(--primary-blue), #0f52ba); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8px;">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+        <div style="font-size: 0.68rem; font-weight:800; margin-top:4px; text-transform:uppercase; letter-spacing:0.5px;">Patrika</div>
+      </div>
+      <div class="book-info">
+        <div>
+          <div class="book-title">${isHi ? mag.titleHi : mag.titleEn} ${mag.isNew ? `<span class="badge-new" style="position:static; display:inline-block; vertical-align:middle; margin-left:6px;">${isHi ? 'नया' : 'NEW'}</span>` : ''}</div>
+          <div class="book-desc">${isHi ? 'मान मंदिर मासिक पत्रिका • बरसाना' : 'Maan Mandir Monthly Magazine • Barsana'}</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">PDF Edition • ${mag.downloads || 'Direct Download'}</div>
+        </div>
+        <div class="book-buttons">
+          <button class="btn-primary" onclick="openPdfModal('${isHi ? mag.titleHi : mag.titleEn}', '${mag.pdfUrl}')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg> ${t.readBtn}
+          </button>
+          <a href="${mag.pdfUrl}" target="_blank" class="btn-outline" style="text-decoration:none;">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> ${t.downloadBtn}
           </a>
         </div>
@@ -632,20 +752,23 @@ function initSearch() {
       return;
     }
 
-    const filteredBooks = (fetchedBooksList.length > 0 ? fetchedBooksList : FALLBACK_WEBSITE_BOOKS).filter(b => 
+    const itemsToSearch = currentSubTab === 'books'
+      ? (fetchedBooksList.length > 0 ? fetchedBooksList : FALLBACK_WEBSITE_BOOKS)
+      : (fetchedMagazinesList.length > 0 ? fetchedMagazinesList : FALLBACK_WEBSITE_MAGAZINES);
+
+    const filtered = itemsToSearch.filter(b => 
       (b.titleEn && b.titleEn.toLowerCase().includes(query)) ||
       (b.titleHi && b.titleHi.toLowerCase().includes(query))
     );
 
-    const booksContainer = document.getElementById('books-catalog-list');
-    if (booksContainer) {
-      booksContainer.innerHTML = filteredBooks.map(book => `
+    const container = document.getElementById('books-catalog-list');
+    if (container) {
+      container.innerHTML = filtered.map(item => `
         <div class="book-card">
-          <div class="book-cover" style="${book.coverImg ? `background: url('${book.coverImg}') center/cover no-repeat;` : ''}"></div>
           <div class="book-info">
-            <div class="book-title">${isHi ? book.titleHi : book.titleEn}</div>
+            <div class="book-title">${isHi ? item.titleHi : item.titleEn}</div>
             <div class="book-buttons" style="margin-top:8px;">
-              <a href="${book.pdfUrl}" target="_blank" class="btn-primary" style="text-decoration:none;">Download PDF</a>
+              <a href="${item.pdfUrl}" target="_blank" class="btn-primary" style="text-decoration:none;">Download PDF</a>
             </div>
           </div>
         </div>
