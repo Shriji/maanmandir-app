@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Books + Magazine Category 175 Sync
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Realtime Books/Magazine Search
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -36,8 +36,7 @@ const TRANSLATIONS = {
     tabSeva: "Seva",
     subtabBooks: "Books (ग्रंथ)",
     subtabMagazines: "Monthly Magazine (पत्रिका)",
-    readBtn: "Read PDF",
-    downloadBtn: "Download",
+    downloadBtn: "Download / Open PDF",
     notificationsTitle: "Devotee Updates",
     loadingBooks: "🌸 Syncing live books from MaanMandir.org...",
     loadingMagazines: "📰 Syncing monthly magazine covers from MaanMandir.org..."
@@ -73,8 +72,7 @@ const TRANSLATIONS = {
     tabSeva: "सेवा",
     subtabBooks: "ग्रंथ व पुस्तकें",
     subtabMagazines: "मासिक पत्रिका (Patrika)",
-    readBtn: "पढ़ें",
-    downloadBtn: "डाउनलोड",
+    downloadBtn: "डाउनलोड / खोलें",
     notificationsTitle: "भक्त अपडेट्स",
     loadingBooks: "🌸 maanmandir.org से पुस्तकें व आवरण चित्र सिंक हो रहे हैं...",
     loadingMagazines: "📰 maanmandir.org से मासिक पत्रिका के मुख्य पृष्ठ सिंक हो रहे हैं..."
@@ -503,8 +501,11 @@ window.switchPublicationSubTab = function(subTab) {
   if (booksBtn) booksBtn.classList.toggle('active', subTab === 'books');
   if (magBtn) magBtn.classList.toggle('active', subTab === 'magazines');
 
-  if (subTab === 'books') renderBooksTab();
-  else renderMagazinesTab();
+  const searchInput = document.getElementById('global-search-input');
+  const query = searchInput ? searchInput.value.trim() : '';
+
+  if (subTab === 'books') renderBooksTab(query);
+  else renderMagazinesTab(query);
 };
 
 // Interactive Font Size Controls (A- / A / A+)
@@ -605,8 +606,11 @@ function renderContent() {
   renderHomeRecentUpdates();
   renderYouTubeTab();
   renderAudioTab();
-  if (currentSubTab === 'books') renderBooksTab();
-  else renderMagazinesTab();
+  const searchInput = document.getElementById('global-search-input');
+  const query = searchInput ? searchInput.value.trim() : '';
+
+  if (currentSubTab === 'books') renderBooksTab(query);
+  else renderMagazinesTab(query);
 }
 
 function renderHomeRecentUpdates() {
@@ -683,14 +687,32 @@ function renderAudioTab() {
   `).join('');
 }
 
-// Render Books Section
-function renderBooksTab() {
+// Render Books Section with Single Direct Download / Open Button & Search Filter
+function renderBooksTab(searchQuery = '') {
   const container = document.getElementById('books-catalog-list');
   if (!container) return;
 
   const isHi = currentLang === 'hi';
-  const t = TRANSLATIONS[currentLang];
-  const booksToRender = fetchedBooksList.length > 0 ? fetchedBooksList : FALLBACK_WEBSITE_BOOKS;
+  let booksToRender = fetchedBooksList.length > 0 ? fetchedBooksList : FALLBACK_WEBSITE_BOOKS;
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    booksToRender = booksToRender.filter(b => 
+      (b.titleEn && b.titleEn.toLowerCase().includes(q)) ||
+      (b.titleHi && b.titleHi.toLowerCase().includes(q))
+    );
+  }
+
+  if (booksToRender.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:35px 15px; color:var(--text-muted);">
+        <div style="font-size:2rem; margin-bottom:8px;">🔍</div>
+        <p style="font-size:1.05rem; font-weight:700;">${isHi ? 'कोई पुस्तक नहीं मिली' : 'No books found matching search'}</p>
+        <p style="font-size:0.82rem; margin-top:4px;">${isHi ? 'कृपया अन्य शब्द का प्रयोग करें' : 'Try searching for another title or author'}</p>
+      </div>
+    `;
+    return;
+  }
 
   container.innerHTML = booksToRender.map(book => `
     <div class="book-card">
@@ -706,12 +728,10 @@ function renderBooksTab() {
           <div class="book-desc">${isHi ? 'मान मंदिर सेवा संस्थान ट्रस्ट' : 'Maan Mandir Seva Sansthan Trust'}</div>
           <div style="font-size: 0.78rem; color: var(--text-muted);">PDF Document • ${book.downloads || 'Direct Download'}</div>
         </div>
-        <div class="book-buttons">
-          <button class="btn-primary" onclick="openPdfModal('${isHi ? book.titleHi : book.titleEn}', '${book.pdfUrl}')">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg> ${t.readBtn}
-          </button>
-          <a href="${book.pdfUrl}" target="_blank" class="btn-outline" style="text-decoration:none;">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> ${t.downloadBtn}
+        <div class="book-buttons" style="margin-top:8px;">
+          <a href="${book.pdfUrl}" target="_blank" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; width:100%; justify-content:center;">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            ${isHi ? 'डाउनलोड / PDF खोलें' : 'Download / Open PDF'}
           </a>
         </div>
       </div>
@@ -719,14 +739,32 @@ function renderBooksTab() {
   `).join('');
 }
 
-// Render Monthly Magazine Section with Real Website Cover Artworks
-function renderMagazinesTab() {
+// Render Monthly Magazine Section with Single Direct Download / Open Button & Search Filter
+function renderMagazinesTab(searchQuery = '') {
   const container = document.getElementById('books-catalog-list');
   if (!container) return;
 
   const isHi = currentLang === 'hi';
-  const t = TRANSLATIONS[currentLang];
-  const magsToRender = fetchedMagazinesList.length > 0 ? fetchedMagazinesList : FALLBACK_WEBSITE_MAGAZINES;
+  let magsToRender = fetchedMagazinesList.length > 0 ? fetchedMagazinesList : FALLBACK_WEBSITE_MAGAZINES;
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    magsToRender = magsToRender.filter(m => 
+      (m.titleEn && m.titleEn.toLowerCase().includes(q)) ||
+      (m.titleHi && m.titleHi.toLowerCase().includes(q))
+    );
+  }
+
+  if (magsToRender.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:35px 15px; color:var(--text-muted);">
+        <div style="font-size:2rem; margin-bottom:8px;">🔍</div>
+        <p style="font-size:1.05rem; font-weight:700;">${isHi ? 'कोई मासिक पत्रिका नहीं मिली' : 'No magazine issues found matching search'}</p>
+        <p style="font-size:0.82rem; margin-top:4px;">${isHi ? 'कृपया अन्य वर्ष या माह खोजें' : 'Try searching for another month or year'}</p>
+      </div>
+    `;
+    return;
+  }
 
   container.innerHTML = magsToRender.map(mag => `
     <div class="book-card">
@@ -742,12 +780,10 @@ function renderMagazinesTab() {
           <div class="book-desc">${isHi ? 'मान मंदिर मासिक पत्रिका • बरसाना' : 'Maan Mandir Monthly Magazine • Barsana'}</div>
           <div style="font-size: 0.78rem; color: var(--text-muted);">PDF Edition • ${mag.downloads || 'Direct Download'}</div>
         </div>
-        <div class="book-buttons">
-          <button class="btn-primary" onclick="openPdfModal('${isHi ? mag.titleHi : mag.titleEn}', '${mag.pdfUrl}')">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg> ${t.readBtn}
-          </button>
-          <a href="${mag.pdfUrl}" target="_blank" class="btn-outline" style="text-decoration:none;">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> ${t.downloadBtn}
+        <div class="book-buttons" style="margin-top:8px;">
+          <a href="${mag.pdfUrl}" target="_blank" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; width:100%; justify-content:center;">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            ${isHi ? 'डाउनलोड / PDF खोलें' : 'Download / Open PDF'}
           </a>
         </div>
       </div>
@@ -816,63 +852,31 @@ window.openVideoModal = function(title) {
   modal.classList.add('active');
 };
 
-window.openPdfModal = function(title, url) {
-  const modal = document.getElementById('app-modal');
-  const modalBody = document.getElementById('modal-body-content');
-  if (!modal || !modalBody) return;
-
-  modalBody.innerHTML = `
-    <h3 style="font-size: 1.1rem; font-weight:800; color: var(--primary-blue); margin-bottom: 6px;">${title}</h3>
-    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">Maan Mandir Official In-App Document Viewer</p>
-    <iframe src="${url}" style="width:100%; height:360px; border:1px solid var(--border-blue); border-radius: var(--radius-md);"></iframe>
-    <div style="margin-top: 14px; display:flex; justify-content:space-between; align-items:center;">
-      <a href="${url}" target="_blank" class="btn-outline" style="text-decoration:none;">Direct Download</a>
-      <button class="btn-primary" onclick="closeModal()">Close Reader</button>
-    </div>
-  `;
-  modal.classList.add('active');
-};
-
 window.closeModal = function() {
   const modal = document.getElementById('app-modal');
   if (modal) modal.classList.remove('active');
 };
 
-// Search Filter Logic
+// Realtime Search Filter Logic for Books & Magazines
 function initSearch() {
   const searchInput = document.getElementById('global-search-input');
   if (!searchInput) return;
 
   searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    const isHi = currentLang === 'hi';
-    if (!query) {
-      renderContent();
-      return;
+    const query = e.target.value.trim();
+
+    // Auto-switch to Books tab if typing in search from another tab
+    if (query) {
+      const activeTab = document.querySelector('.nav-item.active');
+      if (activeTab && activeTab.getAttribute('data-tab') !== 'books') {
+        switchTab('books');
+      }
     }
 
-    const itemsToSearch = currentSubTab === 'books'
-      ? (fetchedBooksList.length > 0 ? fetchedBooksList : FALLBACK_WEBSITE_BOOKS)
-      : (fetchedMagazinesList.length > 0 ? fetchedMagazinesList : FALLBACK_WEBSITE_MAGAZINES);
-
-    const filtered = itemsToSearch.filter(b => 
-      (b.titleEn && b.titleEn.toLowerCase().includes(query)) ||
-      (b.titleHi && b.titleHi.toLowerCase().includes(query))
-    );
-
-    const container = document.getElementById('books-catalog-list');
-    if (container) {
-      container.innerHTML = filtered.map(item => `
-        <div class="book-card">
-          <div class="book-cover" style="${item.coverImg ? `background: url('${item.coverImg}') center/cover no-repeat;` : ''}"></div>
-          <div class="book-info">
-            <div class="book-title">${isHi ? item.titleHi : item.titleEn}</div>
-            <div class="book-buttons" style="margin-top:8px;">
-              <a href="${item.pdfUrl}" target="_blank" class="btn-primary" style="text-decoration:none;">Download PDF</a>
-            </div>
-          </div>
-        </div>
-      `).join('');
+    if (currentSubTab === 'books') {
+      renderBooksTab(query);
+    } else {
+      renderMagazinesTab(query);
     }
   });
 }
