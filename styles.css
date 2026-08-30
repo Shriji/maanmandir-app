@@ -1,26 +1,27 @@
 /* ==========================================================================
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLES
-   Theme: Pristine White & TalkingPoints Signature Vibrant Blue
-   Exact Color Palette: TalkingPoints Cobalt Blue (#0052CC / #0066FF) & Soft Ice Blue (#E8F0FE)
+   Custom Palette:
+   Dark Blue:  #2596be (Primary Brand Blue)
+   Light Blue: #51bedb (Accent Aqua-Blue)
    ========================================================================== */
 
 :root {
-  /* TalkingPoints Signature Color Palette */
+  /* User Specified Blue Palette */
   --bg-primary: #FFFFFF;
-  --bg-secondary: #F4F6F9;
-  --bg-tertiary: #E8F0FE;
+  --bg-secondary: #F4F8FA;
+  --bg-tertiary: #EAF7FA;
   --bg-card: #FFFFFF;
   
-  --primary-blue: #0052CC;        /* TalkingPoints Signature Blue */
-  --primary-blue-hover: #0040A8;
-  --accent-blue: #0066FF;         /* Vibrant Cobalt Blue */
-  --light-blue: #D0E1FD;
-  --ice-blue: #F0F6FF;
+  --primary-blue: #2596be;        /* User Specified Dark Blue */
+  --primary-blue-hover: #1e7a9c;
+  --accent-blue: #51bedb;         /* User Specified Light Blue */
+  --light-blue: #C4ECF5;
+  --ice-blue: #EAF7FA;
   
-  --text-dark: #091E42;
-  --text-medium: #172B4D;
-  --text-muted: #5E6C84;
-  --text-light: #8993A4;
+  --text-dark: #0F2D38;
+  --text-medium: #1B4554;
+  --text-muted: #4F6F7C;
+  --text-light: #7E9FA9;
   --text-white: #FFFFFF;
   
   --gold-accent: #F59E0B;
@@ -30,14 +31,14 @@
   --live-red: #E53E3E;
   --live-red-light: #FFF5F5;
   
-  --border-light: #DFE1E6;
-  --border-blue: #B3D4FF;
+  --border-light: #E2EBF0;
+  --border-blue: #8BD4E6;
   
   /* Elevation Shadows */
-  --shadow-sm: 0 1px 3px rgba(9, 30, 66, 0.08);
-  --shadow-md: 0 4px 14px rgba(0, 82, 204, 0.10);
-  --shadow-lg: 0 10px 25px rgba(0, 82, 204, 0.15);
-  --shadow-float: 0 12px 30px rgba(9, 30, 66, 0.18);
+  --shadow-sm: 0 1px 3px rgba(15, 45, 56, 0.06);
+  --shadow-md: 0 4px 14px rgba(37, 150, 190, 0.12);
+  --shadow-lg: 0 10px 25px rgba(37, 150, 190, 0.18);
+  --shadow-float: 0 12px 30px rgba(15, 45, 56, 0.18);
 
   /* Radius & Transitions */
   --radius-sm: 8px;
@@ -268,7 +269,7 @@ body {
 .search-input:focus {
   background: var(--bg-primary);
   border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
+  box-shadow: 0 0 0 3px rgba(37, 150, 190, 0.18);
 }
 
 /* App Main Content Container */
@@ -342,7 +343,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(9, 30, 66, 0.90) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 45, 56, 0.90) 100%);
   padding: 16px;
   color: var(--text-white);
 }
@@ -429,7 +430,7 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: var(--primary-blue);
+  background: var(--accent-blue);
   color: var(--text-white);
   font-size: 9px;
   font-weight: 800;
@@ -437,7 +438,7 @@ body {
   border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 6px rgba(0, 82, 204, 0.3);
+  box-shadow: 0 2px 6px rgba(81, 190, 219, 0.4);
 }
 
 .badge-live-pulse {
@@ -557,7 +558,7 @@ body {
   width: 70px;
   height: 95px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, #0052CC 0%, #0066FF 100%);
+  background: linear-gradient(135deg, #2596be 0%, #51bedb 100%);
   color: var(--text-white);
   display: flex;
   flex-direction: column;
@@ -641,7 +642,7 @@ body {
 
 /* Maanini Portal Special Hero Banner */
 .maanini-hero-card {
-  background: linear-gradient(135deg, #091E42 0%, #172B4D 100%);
+  background: linear-gradient(135deg, #0F2D38 0%, #1B4554 100%);
   color: var(--text-white);
   border-radius: var(--radius-lg);
   padding: 20px;
@@ -658,7 +659,7 @@ body {
   right: -40px;
   width: 120px;
   height: 120px;
-  background: rgba(0, 102, 255, 0.35);
+  background: rgba(81, 190, 219, 0.35);
   border-radius: 50%;
   filter: blur(30px);
 }
@@ -682,7 +683,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(9, 30, 66, 0.5);
+  background: rgba(15, 45, 56, 0.5);
   backdrop-filter: blur(4px);
   z-index: 200;
   display: none;
@@ -743,7 +744,7 @@ body {
 
 .drawer-content {
   flex: 1;
-  overflow-y: auto;
+  overflow-y.auto;
   padding: 16px;
 }
 
@@ -847,7 +848,7 @@ body {
   justify-content: space-around;
   padding: 8px 0 10px;
   z-index: 99;
-  box-shadow: 0 -4px 15px rgba(9, 30, 66, 0.06);
+  box-shadow: 0 -4px 15px rgba(15, 45, 56, 0.06);
 }
 
 .nav-item {
@@ -891,7 +892,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(9, 30, 66, 0.7);
+  background: rgba(15, 45, 56, 0.7);
   backdrop-filter: blur(5px);
   z-index: 300;
   display: none;
