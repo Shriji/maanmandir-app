@@ -14,13 +14,13 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/jpeg" href="assets/images/app_icon.jpg">
 
-  <!-- Typography: Google Fonts Plus Jakarta Sans -->
+  <!-- Typography: Google Fonts Plus Jakarta Sans & Noto Sans Devanagari for Hindi -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet with Cache Busting Version 5 -->
-  <link rel="stylesheet" href="styles.css?v=5">
+  <!-- Stylesheet with Cache Busting Version 6 -->
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -34,9 +34,9 @@
       <div class="live-header-banner" onclick="switchTab('youtube')">
         <div class="live-badge-content">
           <span class="pulse-dot"></span>
-          <span>🔴 LIVE NOW: Ramesh Baba Ji Pravachan</span>
+          <span id="txt-live-banner">🔴 LIVE NOW: Ramesh Baba Ji Pravachan</span>
         </div>
-        <span class="watch-now-btn">Watch Live</span>
+        <span class="watch-now-btn" id="txt-watch-live">Watch Live</span>
       </div>
 
       <!-- Main Top Bar -->
@@ -44,12 +44,18 @@
         <div class="brand-wrapper">
           <img src="assets/images/app_icon.jpg" alt="Maan Mandir Logo" class="brand-icon">
           <div class="brand-title-group">
-            <h1>Maan Mandir</h1>
-            <span>Barsana Dham Portal</span>
+            <h1 id="txt-app-title">Maan Mandir</h1>
+            <span id="txt-app-subtitle">Barsana Dham Portal</span>
           </div>
         </div>
 
         <div class="header-actions">
+          <!-- Bilingual Language Switcher (EN / हिंदी) -->
+          <div class="lang-switch-controls">
+            <button class="lang-btn active" id="btn-lang-en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" id="btn-lang-hi" onclick="setLanguage('hi')">हिंदी</button>
+          </div>
+
           <!-- Dynamic Font Resizer Buttons (A- / A / A+) -->
           <div class="font-size-controls">
             <button class="font-btn" id="btn-font-dec" onclick="changeFontSize(-1)" title="Decrease Text Size">A-</button>
@@ -91,9 +97,9 @@
         <div class="hero-card">
           <img src="assets/images/hero_banner.jpg" alt="Maan Mandir Barsana" class="hero-image">
           <div class="hero-overlay">
-            <span class="hero-tag">Barsana Dham</span>
-            <h2 class="hero-title">Shri Radharani Temple & Maan Mandir</h2>
-            <p class="hero-subtitle">Maan Mandir Seva Sansthan Trust • Shri Ramesh Baba Ji Maharaj</p>
+            <span class="hero-tag" id="txt-hero-tag">Barsana Dham</span>
+            <h2 class="hero-title" id="txt-hero-title">Shri Radharani Temple & Maan Mandir</h2>
+            <p class="hero-subtitle" id="txt-hero-subtitle">Maan Mandir Seva Sansthan Trust • Shri Ramesh Baba Ji Maharaj</p>
           </div>
         </div>
 
@@ -101,7 +107,7 @@
         <div class="section-header">
           <h3 class="section-title">
             <svg class="section-title-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-            Devotee Resources
+            <span id="txt-section-resources">Devotee Resources</span>
           </h3>
         </div>
 
@@ -112,8 +118,8 @@
             <div class="tile-icon-container" style="background: var(--live-red-light); color: var(--live-red);">
               <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </div>
-            <div class="tile-title">Live & YouTube</div>
-            <div class="tile-desc">Pravachans & Streams</div>
+            <div class="tile-title" id="txt-tile-live">Live & YouTube</div>
+            <div class="tile-desc" id="txt-tile-live-desc">Pravachans & Streams</div>
           </div>
 
           <!-- 2. Audio Library -->
@@ -122,8 +128,8 @@
             <div class="tile-icon-container">
               <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
             </div>
-            <div class="tile-title">Kirtan & Audio</div>
-            <div class="tile-desc">SoundCloud & MP3s</div>
+            <div class="tile-title" id="txt-tile-audio">Kirtan & Audio</div>
+            <div class="tile-desc" id="txt-tile-audio-desc">SoundCloud & MP3s</div>
           </div>
 
           <!-- 3. Books & Magazines -->
@@ -132,8 +138,8 @@
             <div class="tile-icon-container" style="background: #FEF3C7; color: #D97706;">
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
             </div>
-            <div class="tile-title">Books & Magazine</div>
-            <div class="tile-desc">PDF Publications</div>
+            <div class="tile-title" id="txt-tile-books">Books & Magazine</div>
+            <div class="tile-desc" id="txt-tile-books-desc">PDF Publications</div>
           </div>
 
           <!-- 4. Maanini Portal -->
@@ -141,8 +147,8 @@
             <div class="tile-icon-container" style="background: var(--bg-tertiary); color: var(--primary-blue);">
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
             </div>
-            <div class="tile-title">Maanini Portal</div>
-            <div class="tile-desc">Maanini.app Launcher</div>
+            <div class="tile-title" id="txt-tile-maanini">Maanini Portal</div>
+            <div class="tile-desc" id="txt-tile-maanini-desc">Maanini.app Launcher</div>
           </div>
 
           <!-- 5. Social Media Hub -->
@@ -150,8 +156,8 @@
             <div class="tile-icon-container" style="background: #E0E7FF; color: #4338CA;">
               <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
             </div>
-            <div class="tile-title">Social Media</div>
-            <div class="tile-desc">Facebook, Insta, X</div>
+            <div class="tile-title" id="txt-tile-social">Social Media</div>
+            <div class="tile-desc" id="txt-tile-social-desc">Facebook, Insta, X</div>
           </div>
 
           <!-- 6. Seva & Information -->
@@ -159,14 +165,14 @@
             <div class="tile-icon-container" style="background: #DCFCE7; color: #15803D;">
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
             </div>
-            <div class="tile-title">Gauseva & Info</div>
-            <div class="tile-desc">Braj Yatra & Seva</div>
+            <div class="tile-title" id="txt-tile-seva">Gauseva & Info</div>
+            <div class="tile-desc" id="txt-tile-seva-desc">Braj Yatra & Seva</div>
           </div>
         </div>
 
         <!-- Recent Updates Ticker -->
         <div class="section-header">
-          <h3 class="section-title">⚡ Latest Updates for Devotees</h3>
+          <h3 class="section-title" id="txt-latest-updates">⚡ Latest Updates for Devotees</h3>
         </div>
         <div id="home-updates-list" class="content-list"></div>
 
@@ -322,7 +328,7 @@
       <div class="drawer-header">
         <div class="drawer-title">
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-          Devotee Updates
+          <span id="txt-notifications-title">Devotee Updates</span>
         </div>
         <button id="drawer-close-btn" class="drawer-close-btn">✕</button>
       </div>
@@ -354,28 +360,28 @@
     <nav class="bottom-nav">
       <div class="nav-item active" data-tab="home">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-        <span>Home</span>
+        <span id="txt-tab-home">Home</span>
       </div>
       <div class="nav-item" data-tab="youtube">
         <span class="nav-item-badge"></span>
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-        <span>Live</span>
+        <span id="txt-tab-live">Live</span>
       </div>
       <div class="nav-item" data-tab="audio">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
-        <span>Audio</span>
+        <span id="txt-tab-audio">Audio</span>
       </div>
       <div class="nav-item" data-tab="books">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-        <span>Books</span>
+        <span id="txt-tab-books">Books</span>
       </div>
       <div class="nav-item" data-tab="maanini">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-        <span>Maanini</span>
+        <span id="txt-tab-maanini">Maanini</span>
       </div>
       <div class="nav-item" data-tab="seva">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-        <span>Seva</span>
+        <span id="txt-tab-seva">Seva</span>
       </div>
     </nav>
 

@@ -1,7 +1,7 @@
 /* ==========================================================================
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLES
    Theme: Pristine White & Deep Royal Navy Blue (#032a61 / #51bedb)
-   Features: Compact Banner & Interactive Font Resizer (A- / A / A+)
+   Features: Bilingual Hindi/English Switcher, Font Resizer (A-/A/A+)
    ========================================================================== */
 
 :root {
@@ -49,7 +49,7 @@
 
 /* Base HTML Font Resizing Support */
 html {
-  font-size: 106%; /* Default boosted base scale */
+  font-size: 106%;
 }
 
 /* Reset & Base Styles */
@@ -57,7 +57,7 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -116,7 +116,7 @@ body {
 }
 
 .brand-title-group h1 {
-  font-size: 1.25rem;            /* Scalable font sizes */
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--primary-blue);
   line-height: 1.1;
@@ -132,7 +132,36 @@ body {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+}
+
+/* Bilingual Language Switcher Controls (EN / हिंदी) */
+.lang-switch-controls {
+  display: flex;
+  align-items: center;
+  background: #EAF6F9;
+  border: 1px solid var(--border-blue);
+  border-radius: var(--radius-full);
+  padding: 2px;
+  gap: 2px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-blue);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 5px 8px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.lang-btn.active {
+  background: var(--primary-blue);
+  color: var(--text-white);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Interactive Font Size Switcher (A- / A / A+) */
@@ -150,9 +179,9 @@ body {
   background: transparent;
   border: none;
   color: var(--primary-blue);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  padding: 5px 8px;
+  padding: 5px 7px;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: var(--transition);
@@ -166,8 +195,8 @@ body {
 .icon-btn {
   background: var(--bg-tertiary);
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
@@ -333,7 +362,7 @@ body {
 }
 
 .section-title {
-  font-size: 1.15rem;            /* Scalable Section Title */
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--text-dark);
   display: flex;
@@ -353,7 +382,7 @@ body {
   cursor: pointer;
 }
 
-/* COMPACT HERO BANNER (Sleek & Reduced Height) */
+/* COMPACT HERO BANNER */
 .hero-card {
   width: 100%;
   border-radius: var(--radius-md);
@@ -365,7 +394,7 @@ body {
 
 .hero-image {
   width: 100%;
-  height: 125px;                 /* Sleek Reduced Height */
+  height: 125px;
   object-fit: cover;
   display: block;
 }
@@ -446,14 +475,14 @@ body {
 }
 
 .tile-title {
-  font-size: 0.98rem;            /* Scalable Tile Title */
+  font-size: 0.98rem;
   font-weight: 800;
   color: var(--text-dark);
   margin-bottom: 2px;
 }
 
 .tile-desc {
-  font-size: 0.78rem;            /* Scalable Tile Subtitle */
+  font-size: 0.78rem;
   color: var(--text-muted);
 }
 
@@ -537,7 +566,7 @@ body {
 }
 
 .card-title {
-  font-size: 0.98rem;            /* Scalable Card Title */
+  font-size: 0.98rem;
   font-weight: 800;
   color: var(--text-dark);
   margin-bottom: 4px;
@@ -616,7 +645,7 @@ body {
 }
 
 .book-title {
-  font-size: 1.05rem;            /* Scalable Book Title */
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--text-dark);
   margin-bottom: 4px;
@@ -890,7 +919,7 @@ body {
   gap: 4px;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.78rem;            /* Scalable Bottom Nav Labels */
+  font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
