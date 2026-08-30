@@ -100,6 +100,17 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     descHi: "श्री रमेश बाबा जी महाराज के पावन प्रवचन एवं बरसाना धाम सत्संग का लाइव प्रसारण।"
   },
   {
+    id: "yt-murlika",
+    nameEn: "Shri Murlika Ji Official Channel",
+    nameHi: "श्री मुरलिका जी आधिकारिक चैनल",
+    handle: "@ShriMurlikaji",
+    url: "https://www.youtube.com/@ShriMurlikaji",
+    badgeEn: "KATHA & SATSANG",
+    badgeHi: "कथा व सत्संग",
+    descEn: "Official channel of Shri Murlika Ji Maharaj featuring Srimad Bhagavat Katha & Braj Ras Satsang.",
+    descHi: "श्री मुरलिका जी महाराज के पावन मुखारविंद से श्रीमद्भागवत कथा एवं ब्रज रस सत्संग का दिव्य प्रसारण।"
+  },
+  {
     id: "yt-gaushala",
     nameEn: "Shri Mataji Gaushala Barsana",
     nameHi: "श्री माताजी गौशाला बरसाना",
@@ -897,7 +908,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=22')
+    navigator.serviceWorker.register('./sw.js?v=23')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
