@@ -909,11 +909,25 @@ function initSearch() {
   });
 }
 
-// Service Worker Registration for PWA Installation
+// Service Worker Registration for PWA Installation & Auto-Bypass
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('Service Worker Registered Successfully', reg.scope))
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      registrations.forEach(registration => registration.update());
+    });
+    navigator.serviceWorker.register('./sw.js?v=18')
+      .then(reg => {
+        reg.onupdatefound = () => {
+          const installingWorker = reg.installing;
+          if (installingWorker) {
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                window.location.reload();
+              }
+            };
+          }
+        };
+      })
       .catch(err => console.error('Service Worker Registration Failed', err));
   }
 }
