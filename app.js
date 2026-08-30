@@ -1,6 +1,7 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Gateway Architecture: Zero Local Maintenance, Live YouTube CDN Avatars, Direct Handle Links, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
+ * Dynamic Gateway Architecture: Side Navigation Drawer Menu for Maanmandir.org, Zero Local Maintenance, Live YouTube CDN Avatars, Direct Handle Links, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
+ * Version: 32
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -86,7 +87,86 @@ let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
 
-// Official Maan Mandir YouTube Channels Gateway Catalog (Dynamic Live CDN Avatars + Handle Links)
+// Official Maanmandir.org Website Menu Gateway Categories
+const MAANMANDIR_ORG_MENU_CATEGORIES = [
+  {
+    catId: "sansthan",
+    titleEn: "Sansthan & Sant Sangh",
+    titleHi: "संस्थान व संत परिचय",
+    icon: "🌸",
+    links: [
+      { textEn: "About Maan Mandir", textHi: "मान मंदिर परिचय", url: "https://maanmandir.org/about-us/" },
+      { textEn: "Shri Ramesh Baba Ji Maharaj", textHi: "श्री रमेश बाबा जी महाराज", url: "https://maanmandir.org/shri-ramesh-baba-ji-maharaj/" },
+      { textEn: "Pujyaa Shriji Didi", textHi: "पूज्या श्रीजी दीदी", url: "https://maanmandir.org/pujyaa-shriji-didi/" },
+      { textEn: "Pujyaa Braj Balika Murlika Ji", textHi: "पूज्या ब्रज बालिका मुरलिका जी", url: "https://maanmandir.org/murlikasharma/" },
+      { textEn: "Dr. Ram Ji Lal Shastri Ji", textHi: "डॉ. रामजीलाल शास्त्री जी", url: "https://maanmandir.org/dr-ram-ji-lal-shashtri-shrimad-bhagwat-vyasacharya/" },
+      { textEn: "Plan Your Visit To Maan Mandir", textHi: "मान मंदिर दर्शन यात्रा योजना", url: "https://maanmandir.org/plan-your-visit-to-maan-mandir/" },
+      { textEn: "A Typical Day at Temple", textHi: "मंदिर की नित्य दिनचर्या", url: "https://maanmandir.org/a-typical-day-of-temple/" }
+    ]
+  },
+  {
+    catId: "yatra",
+    titleEn: "Braj Yatra & Geography",
+    titleHi: "ब्रज यात्रा व मानचित्र",
+    icon: "🗺️",
+    links: [
+      { textEn: "Radha Rani Braj Yatra", textHi: "राधारानी ब्रज यात्रा", url: "https://maanmandir.org/radha-rani-braj-yatra/" },
+      { textEn: "Rasili Braj Yatra (Encyclopedia)", textHi: "रसीली ब्रज यात्रा (ग्रंथ)", url: "https://maanmandir.org/rasili-braj-yatra-encyclopedia-of-braj/" },
+      { textEn: "Braj 84 Kos Parikrama", textHi: "ब्रज ८४ कोस परिक्रमा", url: "https://maanmandir.org/?page_id=154" },
+      { textEn: "Map of Braj Dham", textHi: "ब्रज धाम मानचित्र", url: "https://maanmandir.org/braj-map/" }
+    ]
+  },
+  {
+    catId: "seva",
+    titleEn: "Seva & Environmental Projects",
+    titleHi: "गौसेवा व जनहित प्रकल्प",
+    icon: "🐄",
+    links: [
+      { textEn: "Shri Mataji Gaushala", textHi: "श्री माताजी गौशाला बरसाना", url: "https://maanmandir.org/mataji-goshala/" },
+      { textEn: "Prasad Seva (Free Feast)", textHi: "नित्य अन्नक्षेत्र प्रसाद सेवा", url: "https://maanmandir.org/prasad-seva-free-feast/" },
+      { textEn: "Kund & Water Body Restoration", textHi: "ब्रज सरोवर व कुंड संरक्षण", url: "https://maanmandir.org/kund-water-body-restoration/" },
+      { textEn: "Tree Plantation (वृक्षारोपण)", textHi: "वृक्षारोपण एवं पर्यावरण सेवा", url: "https://maanmandir.org/tree-plantation/" },
+      { textEn: "Maan Mandir Gurukul", textHi: "मान मंदिर गुरुकुल", url: "https://maanmandir.org/maan-mandir-gurukul/" },
+      { textEn: "Mobile Clinic Service", textHi: "ब्रज सचल चिकित्सालय सेवा", url: "https://maanmandir.org/first-ever-mobile-clinic-in-service-of-braj/" },
+      { textEn: "Maan Mandir Kala Akadami", textHi: "मान मंदिर कला अकादमी", url: "https://maanmandir.org/maan-mandir-kala-akadami/" },
+      { textEn: "Prabhat Pheri Mandal", textHi: "प्रभात फेरी मण्डल", url: "https://maanmandir.org/maan-mandir-prabhat-pheri-mandal/" },
+      { textEn: "Bhagwan Naam Pheries", textHi: "भगवान नाम प्रचार", url: "https://maanmandir.org/bhagwan-naam-prachar/" }
+    ]
+  },
+  {
+    catId: "media",
+    titleEn: "Media & Literature",
+    titleHi: "मीडिया व साहित्य संग्रह",
+    icon: "📚",
+    links: [
+      { textEn: "Live Webcast Stream", textHi: "लाइव वेबकास्ट प्रसारण", url: "https://maanmandir.org/live/" },
+      { textEn: "Search Satsang & Lectures", textHi: "सत्संग एवं प्रवचन खोजें", url: "https://maanmandir.org/search-satsang/" },
+      { textEn: "Satsang Playlists", textHi: "सत्संग प्लेलिस्ट संग्रह", url: "https://maanmandir.org/satsang/" },
+      { textEn: "Satsang Quotes", textHi: "दिव्य विचार व सूक्तियां", url: "https://maanmandir.org/quotes/" },
+      { textEn: "English Lecture Translations", textHi: "अंग्रेजी प्रवचन अनुवाद", url: "https://maanmandir.org/category/english-translation-of-lectures/" },
+      { textEn: "Download Books & Grantha", textHi: "ग्रंथ व पुस्तकें डाउनलोड", url: "https://maanmandir.org/books/" },
+      { textEn: "Monthly Magazine (Patrika)", textHi: "मासिक पत्रिका (Patrika)", url: "https://maanmandir.org/magazine/" },
+      { textEn: "Vrishbhanupur Shatakam Book", textHi: "वृषभानुपुर शतकम् ऑनलाइन पुस्तक", url: "https://maanmandir.org/vrishbhanupur-shatakam-online-book/" },
+      { textEn: "Holi Saagar Pad Sangrah", textHi: "होली सागर पद संग्रह", url: "https://maanmandir.org/holi-saagar/" },
+      { textEn: "Bulk Audio ZIP Downloads", textHi: "ऑडियो ज़िप डाउनलोड", url: "https://maanmandir.org/zip/" },
+      { textEn: "Maanini Mobile App", textHi: "मानिनी मोबाइल ऐप", url: "https://maanmandir.org/maanini/" }
+    ]
+  },
+  {
+    catId: "support",
+    titleEn: "Devotee Support & Contact",
+    titleHi: "भक्त सेवा व संपर्क",
+    icon: "💖",
+    links: [
+      { textEn: "Donate / Seva Support", textHi: "दान एवं सेवा सहयोग", url: "https://maanmandir.org/donate/" },
+      { textEn: "News & Sansthan Updates", textHi: "समाचार व संस्थान समाचार", url: "https://maanmandir.org/news/" },
+      { textEn: "Upcoming Events", textHi: "आगामी उत्सव व कार्यक्रम", url: "https://maanmandir.org/upcoming-events/" },
+      { textEn: "Contact Sansthan", textHi: "संपर्क करें", url: "https://maanmandir.org/contact-us/" }
+    ]
+  }
+];
+
+// Official Maan Mandir YouTube Channels Gateway Catalog
 const MAAN_MANDIR_YOUTUBE_CHANNELS = [
   {
     id: "yt-main",
@@ -289,7 +369,7 @@ const FALLBACK_WEBSITE_BOOKS = [
   }
 ];
 
-// Official MaanMandir.org Monthly Magazines Catalog with Real Website Covers & Downloads
+// Official MaanMandir.org Monthly Magazines Catalog
 const FALLBACK_WEBSITE_MAGAZINES = [
   { 
     id: "m1", 
@@ -398,6 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFontResizer();
   initNavigation();
   initNotificationDrawer();
+  initSideNavigationDrawer();
   renderContent();
   fetchLiveWebsiteBooks();
   fetchLiveWebsiteMagazines();
@@ -461,11 +542,62 @@ window.setLanguage = function(lang) {
 
   renderContent();
   renderNotificationsList();
+  renderSideDrawerMenu();
 };
 
 function setElementText(id, text) {
   const el = document.getElementById(id);
   if (el) el.textContent = text;
+}
+
+// Side Navigation Drawer Menu Logic (Maanmandir.org Website Gateway)
+function initSideNavigationDrawer() {
+  const menuBtn = document.getElementById('menu-drawer-btn');
+  const sideOverlay = document.getElementById('side-drawer-overlay');
+  const sidePanel = document.getElementById('side-drawer-panel');
+  const sideCloseBtn = document.getElementById('side-drawer-close-btn');
+
+  function openSideDrawer() {
+    sideOverlay.classList.add('active');
+    sidePanel.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSideDrawer() {
+    sideOverlay.classList.remove('active');
+    sidePanel.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (menuBtn) menuBtn.addEventListener('click', openSideDrawer);
+  if (sideCloseBtn) sideCloseBtn.addEventListener('click', closeSideDrawer);
+  if (sideOverlay) sideOverlay.addEventListener('click', closeSideDrawer);
+
+  renderSideDrawerMenu();
+}
+
+function renderSideDrawerMenu() {
+  const container = document.getElementById('side-menu-categories-list');
+  if (!container) return;
+
+  const isHi = currentLang === 'hi';
+
+  container.innerHTML = MAANMANDIR_ORG_MENU_CATEGORIES.map(cat => `
+    <div class="menu-cat-group">
+      <div class="menu-cat-title">
+        <span>${cat.icon}</span>
+        <span>${isHi ? cat.titleHi : cat.titleEn}</span>
+      </div>
+      <div class="menu-links-list">
+        ${cat.links.map(l => `
+          <a href="${l.url}" target="_blank" class="menu-link-item">
+            <span>${isHi ? l.textHi : l.textEn}</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
 }
 
 // Fetch Live Books with Real WordPress Titles & Cover Artworks (Category 208)
@@ -650,7 +782,7 @@ function initNavigation() {
   });
 }
 
-// Notifications Drawer
+// Devotee Notifications Drawer
 function initNotificationDrawer() {
   const bellBtn = document.getElementById('bell-notification-btn');
   const drawerOverlay = document.getElementById('drawer-overlay');
@@ -734,7 +866,7 @@ function renderHomeRecentUpdates() {
   `).join('');
 }
 
-// Render YouTube Live & Official Channels Gateway Cards (Zero Local Maintenance)
+// Render YouTube Live & Official Channels Gateway Cards
 function renderYouTubeTab() {
   const container = document.getElementById('youtube-videos-list');
   if (!container) return;
@@ -763,7 +895,7 @@ function renderYouTubeTab() {
       </div>
       <p class="youtube-gateway-desc">${isHi ? ch.descHi : ch.descEn}</p>
       <a href="${ch.url}" target="_blank" class="youtube-gateway-btn">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        <svg width="18" height="18" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         <span>${isHi ? 'यूट्यूब पर देखें ↗' : 'Open Channel in YouTube ↗'}</span>
       </a>
     </div>
@@ -957,7 +1089,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=30')
+    navigator.serviceWorker.register('./sw.js?v=32')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;

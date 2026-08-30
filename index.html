@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet with Cache Busting Version 31 -->
-  <link rel="stylesheet" href="styles.css?v=31">
+  <!-- Stylesheet with Cache Busting Version 32 -->
+  <link rel="stylesheet" href="styles.css?v=32">
 </head>
 <body>
 
@@ -39,9 +39,15 @@
         <span class="watch-now-btn" id="txt-watch-live">Watch Live</span>
       </div>
 
-      <!-- TOP ROW: Brand Logo & Title + Notification Bell -->
+      <!-- TOP ROW: Hamburger Menu + Brand Logo & Title + Notification Bell -->
       <div class="top-bar-row1">
         <div class="brand-wrapper">
+          <!-- Side Navigation Menu Button (☰) -->
+          <button class="icon-btn" id="menu-drawer-btn" aria-label="Main Menu Drawer" style="margin-right: 4px;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
           <img src="assets/images/app_icon.jpg" alt="Maan Mandir Logo" class="brand-icon">
           <div class="brand-title-group">
             <h1 id="txt-app-title">Maan Mandir</h1>
@@ -270,7 +276,7 @@
 
     </main>
 
-    <!-- Devotee Updates Notification Drawer (Slide-Over Panel) -->
+    <!-- Devotee Updates Notification Drawer (Right Slide-Over Panel) -->
     <div id="drawer-overlay" class="drawer-overlay"></div>
     <div id="drawer-panel" class="drawer-panel">
       <div class="drawer-header">
@@ -282,6 +288,24 @@
       </div>
       <div class="drawer-content" id="notifications-container"></div>
     </div>
+
+    <!-- Side Navigation Menu Drawer (Left Slide-Over Panel) -->
+    <div id="side-drawer-overlay" class="drawer-overlay"></div>
+    <aside id="side-drawer-panel" class="side-drawer-panel">
+      <div class="side-drawer-header">
+        <div class="brand-wrapper">
+          <img src="assets/images/app_icon.jpg" alt="Maan Mandir Logo" class="brand-icon" style="width:34px; height:34px;">
+          <div class="brand-title-group">
+            <h2 style="font-size: 0.98rem; font-weight:800; color: #FFF; line-height:1.1;">Maan Mandir</h2>
+            <span style="font-size: 0.68rem; color: var(--gold-accent);">maanmandir.org Portal</span>
+          </div>
+        </div>
+        <button id="side-drawer-close-btn" class="drawer-close-btn">✕</button>
+      </div>
+      <div class="side-drawer-content" id="side-menu-categories-list">
+        <!-- Dynamic Categorized Menu Items -->
+      </div>
+    </aside>
 
     <!-- Floating Audio Player Bar -->
     <div id="floating-audio-player" class="audio-floating-player">
@@ -331,8 +355,8 @@
 
   </div>
 
-  <!-- Main JavaScript File with Cache Busting Version 31 -->
-  <script src="app.js?v=31"></script>
+  <!-- Main JavaScript File with Cache Busting Version 32 -->
+  <script src="app.js?v=32"></script>
 
 </body>
 </html>
