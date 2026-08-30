@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & PWA Registration
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Live Website Books Sync
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -34,9 +34,10 @@ const TRANSLATIONS = {
     tabBooks: "Books",
     tabMaanini: "Maanini",
     tabSeva: "Seva",
-    readBtn: "Read",
+    readBtn: "Read PDF",
     downloadBtn: "Download",
-    notificationsTitle: "Devotee Updates"
+    notificationsTitle: "Devotee Updates",
+    loadingBooks: "🌸 Syncing live books from MaanMandir.org..."
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -69,7 +70,8 @@ const TRANSLATIONS = {
     tabSeva: "सेवा",
     readBtn: "पढ़ें",
     downloadBtn: "डाउनलोड",
-    notificationsTitle: "भक्त अपडेट्स"
+    notificationsTitle: "भक्त अपडेट्स",
+    loadingBooks: "🌸 maanmandir.org से पुस्तकें सिंक हो रही हैं..."
   }
 };
 
@@ -78,13 +80,14 @@ let currentLang = localStorage.getItem('mm_lang') || 'en';
 let fontScaleStep = parseInt(localStorage.getItem('mm_font_step') || '1');
 let currentPlayingAudio = null;
 let isAudioPlaying = false;
+let fetchedBooksList = [];
 
 // Sample Data Catalog
 const APP_DATA = {
   notifications: [
     { id: 1, titleEn: "🔴 Live Webcast Started", titleHi: "🔴 लाइव सत्संग प्रारंभ", descEn: "Shri Ramesh Baba Ji Maharaj Pravachan live from Barsana Dham.", descHi: "बरसाना धाम से श्री रमेश बाबा जी महाराज का लाइव प्रवचन।", time: "10m ago", unread: true },
     { id: 2, titleEn: "🎵 New Audio Released", titleHi: "🎵 नया संकीर्तन जारी", descEn: "Radha Naama Mahima & Daily Braj Kirtan.", descHi: "राधा नाम महिमा एवं नित्य ब्रज संकीर्तन।", time: "2h ago", unread: true },
-    { id: 3, titleEn: "📚 New Magazine Issue", titleHi: "📚 नई ब्रज रस पत्रिका", descEn: "Braj Ras Monthly Magazine - Current Issue.", descHi: "ब्रज रस मासिक पत्रिका का नवीनतम अंक प्रकाशित।", time: "1d ago", unread: true }
+    { id: 3, titleEn: "📚 New Books & Magazine Uploaded", titleHi: "📚 नवीन ग्रंथ एवं पत्रिकाएं उपलब्ध", descEn: "All official publications synced directly from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से सभी ग्रंथ व पुस्तकें सिंक हो गईं।", time: "1d ago", unread: true }
   ],
 
   youtubeVideos: [
@@ -97,14 +100,37 @@ const APP_DATA = {
     { id: "a1", titleEn: "Radha Krishna Name Smaran Kirtan", titleHi: "श्री राधा कृष्ण नाम स्मरण कीर्तन", artist: "Maan Mandir Kirtan Mandal", duration: "28:15", isNew: true },
     { id: "a2", titleEn: "Braj Dham Mahima Katha - Part 1", titleHi: "ब्रज धाम महिमा कथा - भाग १", artist: "Shri Ramesh Baba Ji Maharaj", duration: "42:10", isNew: true },
     { id: "a3", titleEn: "Shri Ji Ki Aarti & Morning Stuti", titleHi: "श्री लाडली जू की आरती व प्रातः स्तुति", artist: "Maan Mandir Priests", duration: "12:30", isNew: false }
-  ],
-
-  booksAndMagazines: [
-    { id: "b1", titleEn: "Braj Ras Monthly Magazine (Latest)", titleHi: "ब्रज रस मासिक पत्रिका (नवीनतम अंक)", subtitleEn: "Monthly Spiritual Publication", subtitleHi: "मान मंदिर ट्रस्ट की मासिक पत्रिका", pages: 48, size: "4.2 MB", isNew: true },
-    { id: "b2", titleEn: "Shri Braj 84 Kos Yatra Margadarshika", titleHi: "श्री ब्रज ८४ कोस यात्रा मार्गदर्शिका", subtitleEn: "Complete Guide for Braj Dham Parikrama", subtitleHi: "ब्रज परिक्रमा हेतु सम्पूर्ण गाइड", pages: 120, size: "12.5 MB", isNew: true },
-    { id: "b3", titleEn: "Maan Mandir Gauseva & Gaushala Info", titleHi: "मान मंदिर गौसेवा व माताजी गौशाला जानकारी", subtitleEn: "History of Mataji Gaushala Barsana", subtitleHi: "श्री माताजी गौशाला बरसाना का इतिहास", pages: 36, size: "3.1 MB", isNew: false }
   ]
 };
+
+// Official MaanMandir.org Books Catalog (Synced Directly from Website)
+const FALLBACK_WEBSITE_BOOKS = [
+  { id: "b1", titleEn: "Rasili Braj Yatra (English)", titleHi: "रसीली ब्रज यात्रा (अंग्रेजी)", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-english/", isNew: true, downloads: "51.4K" },
+  { id: "b2", titleEn: "Shri Radha Sudha Nidhi (Short Gutka)", titleHi: "श्री राधा सुधा निधि (गुटका)", pdfUrl: "https://maanmandir.org/download/radha-sudha-nidhi-gutka/", isNew: true, downloads: "17.7K" },
+  { id: "b3", titleEn: "Bhagvatamritam (Part 01)", titleHi: "भगवदामृतम् (प्रथम भाग)", pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-01/", isNew: true, downloads: "10.4K" },
+  { id: "b4", titleEn: "Bhagvatamritam (Part 02)", titleHi: "भगवदामृतम् (द्वितीय भाग)", pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-02/", isNew: true, downloads: "10.3K" },
+  { id: "b5", titleEn: "Gahvar Pradeep Book", titleHi: "गह्वर प्रदीप (गह्वरवन के ज्योतिमान संत)", pdfUrl: "https://maanmandir.org/download/gahvar-pradeep-gahvarvan-ke-jyotimaan-sant/", isNew: false, downloads: "9.4K" },
+  { id: "b6", titleEn: "Mandir Nirman Se Bhagwat Prapti", titleHi: "मंदिर निर्माण से भगवत प्राप्ति", pdfUrl: "https://maanmandir.org/download/mandir-nirman-se-bhagwat-prapti/", isNew: false, downloads: "10.1K" },
+  { id: "b7", titleEn: "Shri Chandra Sakhi Ji Rachit Pad", titleHi: "श्री चंद्रसखी जी रचित पद", pdfUrl: "https://maanmandir.org/download/shri-chandra-sakhi-ji-rachit-pad/", isNew: false, downloads: "10.5K" },
+  { id: "b8", titleEn: "Shri Radha Ras", titleHi: "श्री राधा रस", pdfUrl: "https://maanmandir.org/download/shri-radha-ras/", isNew: false, downloads: "10.8K" },
+  { id: "b9", titleEn: "Shri Radha Sudha Shatak", titleHi: "श्री राधा सुधा शतक", pdfUrl: "https://maanmandir.org/download/shri-radha-sudha-shatak/", isNew: false, downloads: "10.4K" },
+  { id: "b10", titleEn: "Shri Radha Naam Mahatma", titleHi: "श्री राधा नाम महात्म्य", pdfUrl: "https://maanmandir.org/download/shri-radha-naam-mahatma/", isNew: false, downloads: "11.2K" },
+  { id: "b11", titleEn: "Hori Sagar (Rare Rasia Collection)", titleHi: "होरी सागर (दुर्लभ रंगीली होली रसिया संग्रह)", pdfUrl: "https://maanmandir.org/download/holi-sagar-collection-of-rare-rasia-of-rangili-holi/", isNew: false, downloads: "11.5K" },
+  { id: "b12", titleEn: "Swar Vanshi Ke Shabda Nupoor Ke", titleHi: "स्वर वंशी के शब्द नूपुर के (द्वितीय संस्करण)", pdfUrl: "https://maanmandir.org/download/swar-vanshi-ke-shabda-nupoor-ke-2nd-edition/", isNew: false, downloads: "10.7K" },
+  { id: "b13", titleEn: "Vrishbhanupur Shatakam", titleHi: "वृषभानपुर शतकम्", pdfUrl: "https://maanmandir.org/download/vrishbhanupur-shatakam-vanshi-ali-ji/", isNew: false, downloads: "13.3K" },
+  { id: "b14", titleEn: "Bhav Sagar Ki Yatra (Bhayaavah Drashya)", titleHi: "भव सागर की यात्रा (एक भयावह दृश्य)", pdfUrl: "https://maanmandir.org/download/bhav-sagar-ki-yatra-ek-bhayaavah-drashya/", isNew: false, downloads: "32.8K" },
+  { id: "b15", titleEn: "Satsang Saramrit", titleHi: "सत्संग सारामृत", pdfUrl: "https://maanmandir.org/download/satsang-saramrit-%e0%a4%b8%e0%a4%a4%e0%a5%8d%e0%a4%b8%e0%a4%82%e0%a4%97-%e0%a4%b8%e0%a4%be%e0%a4%b0%e0%a4%be%e0%a4%ae%e0%a5%83%e0%a4%a4/", isNew: false, downloads: "28.6K" },
+  { id: "b16", titleEn: "Rasia Raseshwari (Braj Ke Rasia)", titleHi: "रसिया रसेश्वरी (ब्रज के रसिया संग्रह)", pdfUrl: "https://maanmandir.org/download/rasia-raseshwari-collection-of-braj-ke-rasias/", isNew: false, downloads: "26.1K" },
+  { id: "b17", titleEn: "Prahlad Sabha", titleHi: "प्रह्लाद सभा", pdfUrl: "https://maanmandir.org/download/prahlad-sabha/", isNew: false, downloads: "31.6K" },
+  { id: "b18", titleEn: "Prabhat Pheri Bhagwan Naam Mahima", titleHi: "प्रभात फेरी भगवान नाम महिमा", pdfUrl: "https://maanmandir.org/download/prabhat-pheri-bhagwan-naam-mahima/", isNew: false, downloads: "15.4K" },
+  { id: "b19", titleEn: "Meera Ke Prabhu Giridhar Nagar", titleHi: "मीरा के प्रभु गिरिधर नागर", pdfUrl: "https://maanmandir.org/download/meera-ke-prabhu-giridhar-nagar/", isNew: false, downloads: "16.4K" },
+  { id: "b20", titleEn: "Manini Yash Muktamala (Part 01)", titleHi: "मानिनी यश मुक्तामाला (प्रथम भाग)", pdfUrl: "https://maanmandir.org/download/manini-yash-muktamala-part-01/", isNew: false, downloads: "13.1K" },
+  { id: "b21", titleEn: "Manini Yash Muktamala (Part 02)", titleHi: "मानिनी यश मुक्तामाला (द्वितीय भाग)", pdfUrl: "https://maanmandir.org/download/manini-yash-muktamala-part-02/", isNew: false, downloads: "15.1K" },
+  { id: "b22", titleEn: "Gahvarvan Tarangini", titleHi: "गह्वरवन तरंगिणी", pdfUrl: "https://maanmandir.org/download/gahvarvan-tarangini/", isNew: false, downloads: "18.8K" },
+  { id: "b23", titleEn: "Barsana Gazals Collection", titleHi: "बरसाना गज़ल संग्रह", pdfUrl: "https://maanmandir.org/download/barsana-collection-of-gazals/", isNew: false, downloads: "16.4K" },
+  { id: "b24", titleEn: "Saar Grahita (Part 01)", titleHi: "सार ग्रहीता (प्रथम भाग - बाबा जी प्रवचन)", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-01-collection-of-lectures-of-shri-ramesh-baba-ji-maharaj/", isNew: false, downloads: "12.6K" },
+  { id: "b25", titleEn: "Saar Grahita (Part 02)", titleHi: "सार ग्रहीता (द्वितीय भाग - बाबा जी प्रवचन)", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-02-collection-of-lectures-of-shri-ramesh-baba-ji-maharaj/", isNew: false, downloads: "12.0K" }
+];
 
 // DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
@@ -113,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initNotificationDrawer();
   renderContent();
+  fetchLiveWebsiteBooks();
   initAudioPlayer();
   initSearch();
   registerServiceWorker();
@@ -127,13 +154,11 @@ window.setLanguage = function(lang) {
   currentLang = lang;
   localStorage.setItem('mm_lang', lang);
 
-  // Update Button Active Classes
   const enBtn = document.getElementById('btn-lang-en');
   const hiBtn = document.getElementById('btn-lang-hi');
   if (enBtn) enBtn.classList.toggle('active', lang === 'en');
   if (hiBtn) hiBtn.classList.toggle('active', lang === 'hi');
 
-  // Translate static UI elements
   const t = TRANSLATIONS[lang];
 
   setElementText('txt-app-title', t.appTitle);
@@ -168,7 +193,6 @@ window.setLanguage = function(lang) {
   const searchInput = document.getElementById('global-search-input');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
 
-  // Re-render dynamic list content with new language
   renderContent();
   renderNotificationsList();
 };
@@ -176,6 +200,47 @@ window.setLanguage = function(lang) {
 function setElementText(id, text) {
   const el = document.getElementById(id);
   if (el) el.textContent = text;
+}
+
+// Fetch Live Books from Website REST API (maanmandir.org/wp-json/wp/v2/pages/9345)
+function fetchLiveWebsiteBooks() {
+  fetchedBooksList = FALLBACK_WEBSITE_BOOKS; // Start with complete catalog immediately
+
+  fetch('https://maanmandir.org/wp-json/wp/v2/pages/9345')
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.content && data.content.rendered) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.content.rendered, 'text/html');
+        const downloadLinks = doc.querySelectorAll('a.dlm-download-link');
+        
+        if (downloadLinks && downloadLinks.length > 0) {
+          const parsedBooks = [];
+          downloadLinks.forEach((link, idx) => {
+            let title = link.textContent.replace(/\(.*?\)/g, '').replace(/\.pdf/gi, '').trim();
+            let url = link.getAttribute('href');
+            if (title && url) {
+              parsedBooks.push({
+                id: `wp-b-${idx}`,
+                titleEn: title,
+                titleHi: title,
+                pdfUrl: url,
+                isNew: idx < 3,
+                downloads: 'Synced'
+              });
+            }
+          });
+
+          if (parsedBooks.length > 0) {
+            fetchedBooksList = parsedBooks;
+            renderBooksTab();
+          }
+        }
+      }
+    })
+    .catch(err => {
+      console.log('Website Live Fetch Sync: Using pre-cached catalog', err);
+    });
 }
 
 // Interactive Font Size Controls (A- / A / A+)
@@ -287,7 +352,7 @@ function renderHomeRecentUpdates() {
   const recentItems = [
     { title: isHi ? "🔴 लाइव: सांध्य प्रवचन श्री रमेश बाबा जी" : "🔴 Live: Evening Pravachan by Ramesh Baba Ji", type: isHi ? "लाइव प्रसारण" : "Live Webcast", time: "Active Now" },
     { title: isHi ? "🎵 नया कीर्तन: श्री राधा नाम स्मरण" : "🎵 New Audio: Radha Naama Smaran Kirtan", type: "SoundCloud", time: "2h ago" },
-    { title: isHi ? "📚 नवीन अंक: ब्रज रस मासिक पत्रिका" : "📚 New Release: Braj Ras Monthly Magazine", type: isHi ? "पीडीएफ ग्रंथ" : "PDF Book", time: "1d ago" }
+    { title: isHi ? "📚 मान मंदिर वेबसाइट से 25+ ग्रंथ सिंक" : "📚 25+ Official Books Synced from MaanMandir.org", type: isHi ? "पीडीएफ ग्रंथ" : "PDF Book", time: "Synced" }
   ];
 
   container.innerHTML = recentItems.map(item => `
@@ -353,14 +418,16 @@ function renderAudioTab() {
   `).join('');
 }
 
+// Render Books Catalog (Synced Directly from MaanMandir.org Website)
 function renderBooksTab() {
   const container = document.getElementById('books-catalog-list');
   if (!container) return;
 
   const isHi = currentLang === 'hi';
   const t = TRANSLATIONS[currentLang];
+  const booksToRender = fetchedBooksList.length > 0 ? fetchedBooksList : FALLBACK_WEBSITE_BOOKS;
 
-  container.innerHTML = APP_DATA.booksAndMagazines.map(book => `
+  container.innerHTML = booksToRender.map(book => `
     <div class="book-card">
       <div class="book-cover">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
@@ -369,16 +436,16 @@ function renderBooksTab() {
       <div class="book-info">
         <div>
           <div class="book-title">${isHi ? book.titleHi : book.titleEn} ${book.isNew ? `<span class="badge-new" style="position:static; display:inline-block; vertical-align:middle; margin-left:6px;">${isHi ? 'नया' : 'NEW'}</span>` : ''}</div>
-          <div class="book-desc">${isHi ? book.subtitleHi : book.subtitleEn}</div>
-          <div style="font-size: 0.78rem; color: var(--text-muted);">${book.pages} Pages • ${book.size} PDF</div>
+          <div class="book-desc">${isHi ? 'मान मंदिर सेवा संस्थान ट्रस्ट' : 'Maan Mandir Seva Sansthan Trust'}</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">PDF Document • ${book.downloads || 'Direct Download'}</div>
         </div>
         <div class="book-buttons">
-          <button class="btn-primary" onclick="openPdfModal('${isHi ? book.titleHi : book.titleEn}')">
+          <button class="btn-primary" onclick="openPdfModal('${isHi ? book.titleHi : book.titleEn}', '${book.pdfUrl}')">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg> ${t.readBtn}
           </button>
-          <button class="btn-outline" onclick="downloadPdf('${isHi ? book.titleHi : book.titleEn}')">
+          <a href="${book.pdfUrl}" target="_blank" class="btn-outline" style="text-decoration:none;">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> ${t.downloadBtn}
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -446,30 +513,21 @@ window.openVideoModal = function(title) {
   modal.classList.add('active');
 };
 
-window.openPdfModal = function(title) {
+window.openPdfModal = function(title, url) {
   const modal = document.getElementById('app-modal');
   const modalBody = document.getElementById('modal-body-content');
   if (!modal || !modalBody) return;
 
   modalBody.innerHTML = `
-    <h3 style="font-size: 1.1rem; font-weight:800; color: var(--primary-blue); margin-bottom: 8px;">${title}</h3>
-    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px;">Maan Mandir Official In-App Reader</p>
-    <div style="width:100%; height:320px; background: var(--bg-tertiary); border-radius: var(--radius-md); border:1px solid var(--border-blue); display:flex; align-items:center; justify-content:center; color: var(--primary-blue); flex-direction:column; gap:10px; padding:20px; text-align:center;">
-      <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-      <span style="font-size: 0.92rem; font-weight:700;">Interactive PDF Document Viewer</span>
-      <span style="font-size: 0.78rem; color: var(--text-muted);">Loaded from Maan Mandir Server</span>
-    </div>
+    <h3 style="font-size: 1.1rem; font-weight:800; color: var(--primary-blue); margin-bottom: 6px;">${title}</h3>
+    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">Maan Mandir Official In-App Document Viewer</p>
+    <iframe src="${url}" style="width:100%; height:360px; border:1px solid var(--border-blue); border-radius: var(--radius-md);"></iframe>
     <div style="margin-top: 14px; display:flex; justify-content:space-between; align-items:center;">
-      <button class="btn-outline" onclick="downloadPdf('${title}')">Direct Download</button>
+      <a href="${url}" target="_blank" class="btn-outline" style="text-decoration:none;">Direct Download</a>
       <button class="btn-primary" onclick="closeModal()">Close Reader</button>
     </div>
   `;
   modal.classList.add('active');
-};
-
-window.downloadPdf = function(title) {
-  const isHi = currentLang === 'hi';
-  alert(`${isHi ? 'राधे राधे! डाउनलोड हो रहा है:' : 'Radhe Radhe! Downloading PDF:'} ${title}`);
 };
 
 window.closeModal = function() {
@@ -490,19 +548,20 @@ function initSearch() {
       return;
     }
 
-    const filteredAudio = APP_DATA.audioTracks.filter(t => 
-      (t.titleEn && t.titleEn.toLowerCase().includes(query)) ||
-      (t.titleHi && t.titleHi.toLowerCase().includes(query)) ||
-      (t.artist && t.artist.toLowerCase().includes(query))
+    const filteredBooks = (fetchedBooksList.length > 0 ? fetchedBooksList : FALLBACK_WEBSITE_BOOKS).filter(b => 
+      (b.titleEn && b.titleEn.toLowerCase().includes(query)) ||
+      (b.titleHi && b.titleHi.toLowerCase().includes(query))
     );
 
-    const audioContainer = document.getElementById('audio-tracks-list');
-    if (audioContainer) {
-      audioContainer.innerHTML = filteredAudio.map(track => `
-        <div class="content-card" onclick="playAudioTrack('${track.id}')">
-          <div class="card-body">
-            <div class="card-title">${isHi ? track.titleHi : track.titleEn}</div>
-            <div class="card-meta"><span>${track.artist}</span></div>
+    const booksContainer = document.getElementById('books-catalog-list');
+    if (booksContainer) {
+      booksContainer.innerHTML = filteredBooks.map(book => `
+        <div class="book-card">
+          <div class="book-info">
+            <div class="book-title">${isHi ? book.titleHi : book.titleEn}</div>
+            <div class="book-buttons" style="margin-top:8px;">
+              <a href="${book.pdfUrl}" target="_blank" class="btn-primary" style="text-decoration:none;">Download PDF</a>
+            </div>
           </div>
         </div>
       `).join('');
