@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search (Input/Keyup/Enter/Paste)
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search Filter Engine
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -861,44 +861,48 @@ window.closeModal = function() {
   if (modal) modal.classList.remove('active');
 };
 
+// Global Instant Perform Search Function (Exposed to Window for Failsafe oninput)
+window.performSearch = function() {
+  const searchInput = document.getElementById('global-search-input');
+  if (!searchInput) return;
+
+  const query = searchInput.value.trim();
+
+  // Only switch active tab pane if user is NOT already on Publications tab
+  const booksPane = document.getElementById('tab-books');
+  if (booksPane && !booksPane.classList.contains('active')) {
+    const navItems = document.querySelectorAll('.nav-item');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    navItems.forEach(nav => nav.classList.remove('active'));
+    tabPanes.forEach(pane => pane.classList.remove('active'));
+
+    const publicationsNav = document.querySelector('.nav-item[data-tab="books"]');
+    if (publicationsNav) publicationsNav.classList.add('active');
+    booksPane.classList.add('active');
+  }
+
+  if (currentSubTab === 'books') {
+    renderBooksTab(query);
+  } else {
+    renderMagazinesTab(query);
+  }
+};
+
 // Instant Realtime Search Filter Logic
 function initSearch() {
   const searchInput = document.getElementById('global-search-input');
   if (!searchInput) return;
 
-  function performSearch() {
-    const query = searchInput.value.trim();
-
-    // Force active state onto Publications pane when searching
-    const booksPane = document.getElementById('tab-books');
-    if (booksPane) {
-      const navItems = document.querySelectorAll('.nav-item');
-      const tabPanes = document.querySelectorAll('.tab-pane');
-      navItems.forEach(nav => nav.classList.remove('active'));
-      tabPanes.forEach(pane => pane.classList.remove('active'));
-
-      const publicationsNav = document.querySelector('.nav-item[data-tab="books"]');
-      if (publicationsNav) publicationsNav.classList.add('active');
-      booksPane.classList.add('active');
-    }
-
-    if (currentSubTab === 'books') {
-      renderBooksTab(query);
-    } else {
-      renderMagazinesTab(query);
-    }
-  }
-
   // Bind to input, keyup, change, search, paste events for instant responsiveness
   ['input', 'keyup', 'change', 'search', 'paste'].forEach(evt => {
-    searchInput.addEventListener(evt, performSearch);
+    searchInput.addEventListener(evt, window.performSearch);
   });
 
   // Handle Enter key on mobile soft keyboards
   searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.keyCode === 13) {
       e.preventDefault();
-      performSearch();
+      window.performSearch();
       searchInput.blur();
     }
   });
