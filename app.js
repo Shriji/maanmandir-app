@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Books + Magazine Sub-Tabs
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Books + Magazine Category 175 Sync
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -40,7 +40,7 @@ const TRANSLATIONS = {
     downloadBtn: "Download",
     notificationsTitle: "Devotee Updates",
     loadingBooks: "🌸 Syncing live books from MaanMandir.org...",
-    loadingMagazines: "📰 Syncing monthly magazines from MaanMandir.org..."
+    loadingMagazines: "📰 Syncing monthly magazine covers from MaanMandir.org..."
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -77,7 +77,7 @@ const TRANSLATIONS = {
     downloadBtn: "डाउनलोड",
     notificationsTitle: "भक्त अपडेट्स",
     loadingBooks: "🌸 maanmandir.org से पुस्तकें व आवरण चित्र सिंक हो रहे हैं...",
-    loadingMagazines: "📰 maanmandir.org से मासिक पत्रिकाएं सिंक हो रही हैं..."
+    loadingMagazines: "📰 maanmandir.org से मासिक पत्रिका के मुख्य पृष्ठ सिंक हो रहे हैं..."
   }
 };
 
@@ -95,7 +95,7 @@ const APP_DATA = {
   notifications: [
     { id: 1, titleEn: "🔴 Live Webcast Started", titleHi: "🔴 लाइव सत्संग प्रारंभ", descEn: "Shri Ramesh Baba Ji Maharaj Pravachan live from Barsana Dham.", descHi: "बरसाना धाम से श्री रमेश बाबा जी महाराज का लाइव प्रवचन।", time: "10m ago", unread: true },
     { id: 2, titleEn: "🎵 New Audio Released", titleHi: "🎵 नया संकीर्तन जारी", descEn: "Radha Naama Mahima & Daily Braj Kirtan.", descHi: "राधा नाम महिमा एवं नित्य ब्रज संकीर्तन।", time: "2h ago", unread: true },
-    { id: 3, titleEn: "📰 Monthly Magazines & Books Synced", titleHi: "📰 मासिक पत्रिका व ग्रंथ सिंक हुए", descEn: "All book covers & monthly magazines synced from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से पुस्तकें व पत्रिकाएं सिंक हो गईं।", time: "1d ago", unread: true }
+    { id: 3, titleEn: "📰 Monthly Magazines & Cover Artworks Synced", titleHi: "📰 मासिक पत्रिका मुख्य पृष्ठ चित्र सिंक हुए", descEn: "All book & magazine covers synced directly from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से सभी पत्रिका व ग्रंथ आवरण चित्र सिंक हो गए।", time: "1d ago", unread: true }
   ],
 
   youtubeVideos: [
@@ -205,18 +205,107 @@ const FALLBACK_WEBSITE_BOOKS = [
   }
 ];
 
-// Official MaanMandir.org Monthly Magazines Catalog (Synced from Website /magazine/)
+// Official MaanMandir.org Monthly Magazines Catalog with Real Website Covers & Downloads
 const FALLBACK_WEBSITE_MAGAZINES = [
-  { id: "m1", titleEn: "Maan Mandir Patrika - June 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - जून २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-june-2026/", isNew: true, downloads: "271 Downloads" },
-  { id: "m2", titleEn: "Maan Mandir Patrika - May 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - मई २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-may-2026/", isNew: true, downloads: "235 Downloads" },
-  { id: "m3", titleEn: "Maan Mandir Patrika - April 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - अप्रैल २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-april-2026/", isNew: true, downloads: "213 Downloads" },
-  { id: "m4", titleEn: "Maan Mandir Patrika - March 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - मार्च २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-mar-2026/", isNew: false, downloads: "122 Downloads" },
-  { id: "m5", titleEn: "Maan Mandir Patrika - February 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - फरवरी २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-feb-2026/", isNew: false, downloads: "2.7K Downloads" },
-  { id: "m6", titleEn: "Maan Mandir Patrika - January 2026 Issue", titleHi: "मान मंदिर मासिक पत्रिका - जनवरी २०२६ अंक", pdfUrl: "https://maanmandir.org/download/patrika-jan-2026/", isNew: false, downloads: "2.7K Downloads" },
-  { id: "m7", titleEn: "Maan Mandir Patrika - December 2025 Issue", titleHi: "मान मंदिर मासिक पत्रिका - दिसंबर २०२५ अंक", pdfUrl: "https://maanmandir.org/download/patrika-dec-2025/", isNew: false, downloads: "2.6K Downloads" },
-  { id: "m8", titleEn: "Maan Mandir Patrika - November 2025 Issue", titleHi: "मान मंदिर मासिक पत्रिका - नवंबर २०२५ अंक", pdfUrl: "https://maanmandir.org/download/patrika-nov-2025/", isNew: false, downloads: "1.8K Downloads" },
-  { id: "m9", titleEn: "Maan Mandir Patrika - October 2025 Issue", titleHi: "मान मंदिर मासिक पत्रिका - अक्टूबर २०२५ अंक", pdfUrl: "https://maanmandir.org/download/patrika-oct-2025/", isNew: false, downloads: "1.8K Downloads" },
-  { id: "m10", titleEn: "Maan Mandir Patrika - September 2025 Issue", titleHi: "मान मंदिर मासिक पत्रिका - सितंबर २०२५ अंक", pdfUrl: "https://maanmandir.org/download/patrika-sep-2025/", isNew: false, downloads: "1.7K Downloads" }
+  { 
+    id: "m1", 
+    titleEn: "Maan Mandir Patrika June 2026", 
+    titleHi: "मान मंदिर मासिक पत्रिका - जून २०२६ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-06-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-june-2026/", 
+    isNew: true, 
+    downloads: "271 Downloads" 
+  },
+  { 
+    id: "m2", 
+    titleEn: "Maan Mandir Patrika May 2026", 
+    titleHi: "मान मंदिर मासिक पत्रिका - मई २०२६ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-05-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-may-2026/", 
+    isNew: true, 
+    downloads: "235 Downloads" 
+  },
+  { 
+    id: "m3", 
+    titleEn: "Maan Mandir Patrika April 2026", 
+    titleHi: "मान मंदिर मासिक पत्रिका - अप्रैल २०२६ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-04-Patrika-frong-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-april-2026/", 
+    isNew: true, 
+    downloads: "213 Downloads" 
+  },
+  { 
+    id: "m4", 
+    titleEn: "Maan Mandir Patrika March 2026", 
+    titleHi: "मान मंदिर मासिक पत्रिका - मार्च २०२६ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-03-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-mar-2026/", 
+    isNew: false, 
+    downloads: "122 Downloads" 
+  },
+  { 
+    id: "m5", 
+    titleEn: "Maan Mandir Patrika February 2026", 
+    titleHi: "मान मंदिर मासिक पत्रिका - फरवरी २०२६ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2026-02-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-feb-2026/", 
+    isNew: false, 
+    downloads: "2.7K Downloads" 
+  },
+  { 
+    id: "m6", 
+    titleEn: "Maan Mandir Patrika January 2026", 
+    titleHi: "मान मंदिर मासिक पत्रिका - जनवरी २०२६ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2026-01-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-jan-2026/", 
+    isNew: false, 
+    downloads: "2.7K Downloads" 
+  },
+  { 
+    id: "m7", 
+    titleEn: "Maan Mandir Patrika December 2025", 
+    titleHi: "मान मंदिर मासिक पत्रिका - दिसंबर २०२५ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-12-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-dec-2025/", 
+    isNew: false, 
+    downloads: "2.6K Downloads" 
+  },
+  { 
+    id: "m8", 
+    titleEn: "Maan Mandir Patrika November 2025", 
+    titleHi: "मान मंदिर मासिक पत्रिका - नवंबर २०२५ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-11-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-nov-2025/", 
+    isNew: false, 
+    downloads: "1.8K Downloads" 
+  },
+  { 
+    id: "m9", 
+    titleEn: "Maan Mandir Patrika October 2025", 
+    titleHi: "मान मंदिर मासिक पत्रिका - अक्टूबर २०२५ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-10-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-oct-2025/", 
+    isNew: false, 
+    downloads: "1.8K Downloads" 
+  },
+  { 
+    id: "m10", 
+    titleEn: "Maan Mandir Patrika September 2025", 
+    titleHi: "मान मंदिर मासिक पत्रिका - सितंबर २०२५ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-09-Patrika-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-sep-2025/", 
+    isNew: false, 
+    downloads: "1.7K Downloads" 
+  },
+  { 
+    id: "m11", 
+    titleEn: "Maan Mandir Patrika August 2025", 
+    titleHi: "मान मंदिर मासिक पत्रिका - अगस्त २०२५ अंक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2025/08/2025-08-Patrika-front-page.jpg", 
+    pdfUrl: "https://maanmandir.org/download/patrika-aug-2025/", 
+    isNew: false, 
+    downloads: "4.8K Downloads" 
+  }
 ];
 
 // DOM Initialization
@@ -292,7 +381,7 @@ function setElementText(id, text) {
   if (el) el.textContent = text;
 }
 
-// Fetch Live Books with Real WordPress Titles & Cover Artworks
+// Fetch Live Books with Real WordPress Titles & Cover Artworks (Category 208)
 function fetchLiveWebsiteBooks() {
   fetchedBooksList = FALLBACK_WEBSITE_BOOKS; // Start with verified catalog immediately
 
@@ -348,51 +437,59 @@ function fetchLiveWebsiteBooks() {
     });
 }
 
-// Fetch Live Magazines from Website REST API (maanmandir.org/wp-json/wp/v2/pages/9241)
+// Fetch Live Magazine Posts with Real WordPress Titles & Front-Page Cover Artworks (Category 175)
 function fetchLiveWebsiteMagazines() {
-  fetchedMagazinesList = FALLBACK_WEBSITE_MAGAZINES;
+  fetchedMagazinesList = FALLBACK_WEBSITE_MAGAZINES; // Start with verified catalog immediately
 
-  fetch('https://maanmandir.org/wp-json/wp/v2/pages/9241')
+  fetch('https://maanmandir.org/wp-json/wp/v2/posts?categories=175&per_page=50')
     .then(res => res.json())
-    .then(data => {
-      if (data && data.content && data.content.rendered) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(data.content.rendered, 'text/html');
-        const downloadLinks = doc.querySelectorAll('a.dlm-download-link');
+    .then(posts => {
+      if (posts && posts.length > 0) {
+        const parsedMagazines = [];
+        posts.forEach((post, idx) => {
+          let cleanTitle = post.title && post.title.rendered 
+            ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
+            : 'Maan Mandir Patrika';
 
-        if (downloadLinks && downloadLinks.length > 0) {
-          const parsedMagazines = [];
-          downloadLinks.forEach((link, idx) => {
-            let rawTitle = link.getAttribute('title') || link.textContent;
-            let url = link.getAttribute('href');
-            let pdfName = link.textContent.replace(/\(.*?\)/g, '').replace(/\.pdf/gi, '').trim();
+          let coverImgUrl = '';
+          let pdfDownloadUrl = '';
+          let downloadCount = 'Synced';
 
-            let cleanTitle = `Maan Mandir Patrika - ${pdfName}`;
-            if (rawTitle && rawTitle.includes('patrika')) {
-              cleanTitle = `Maan Mandir Patrika (${rawTitle.replace('Version', '').replace('patrika', '').trim()})`;
-            }
+          if (post.content && post.content.rendered) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(post.content.rendered, 'text/html');
+            
+            const imgEl = doc.querySelector('img');
+            if (imgEl) coverImgUrl = imgEl.getAttribute('src');
 
-            if (url) {
-              parsedMagazines.push({
-                id: `mag-link-${idx}`,
-                titleEn: cleanTitle,
-                titleHi: cleanTitle.replace('Maan Mandir Patrika', 'मान मंदिर मासिक पत्रिका'),
-                pdfUrl: url,
-                isNew: idx < 3,
-                downloads: 'Synced'
-              });
-            }
-          });
+            const linkEl = doc.querySelector('a.dlm-download-link');
+            if (linkEl) pdfDownloadUrl = linkEl.getAttribute('href');
 
-          if (parsedMagazines.length > 0) {
-            fetchedMagazinesList = parsedMagazines;
-            if (currentSubTab === 'magazines') renderMagazinesTab();
+            const countEl = doc.querySelector('.dlm-download-count');
+            if (countEl) downloadCount = countEl.textContent.trim();
           }
+
+          if (cleanTitle && pdfDownloadUrl) {
+            parsedMagazines.push({
+              id: `wp-mag-${post.id}`,
+              titleEn: cleanTitle,
+              titleHi: cleanTitle.replace('Maan Mandir Patrika', 'मान मंदिर मासिक पत्रिका'),
+              coverImg: coverImgUrl || FALLBACK_WEBSITE_MAGAZINES[idx % FALLBACK_WEBSITE_MAGAZINES.length].coverImg,
+              pdfUrl: pdfDownloadUrl,
+              isNew: idx < 3,
+              downloads: downloadCount
+            });
+          }
+        });
+
+        if (parsedMagazines.length > 0) {
+          fetchedMagazinesList = parsedMagazines;
+          if (currentSubTab === 'magazines') renderMagazinesTab();
         }
       }
     })
     .catch(err => {
-      console.log('Website Live Fetch Sync (Magazines): Using pre-cached issues', err);
+      console.log('Website Live Fetch Sync (Magazines): Using pre-cached magazine catalog', err);
     });
 }
 
@@ -622,7 +719,7 @@ function renderBooksTab() {
   `).join('');
 }
 
-// Render Monthly Magazine Section
+// Render Monthly Magazine Section with Real Website Cover Artworks
 function renderMagazinesTab() {
   const container = document.getElementById('books-catalog-list');
   if (!container) return;
@@ -633,9 +730,11 @@ function renderMagazinesTab() {
 
   container.innerHTML = magsToRender.map(mag => `
     <div class="book-card">
-      <div class="book-cover" style="background: linear-gradient(135deg, var(--primary-blue), #0f52ba); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8px;">
-        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
-        <div style="font-size: 0.68rem; font-weight:800; margin-top:4px; text-transform:uppercase; letter-spacing:0.5px;">Patrika</div>
+      <div class="book-cover" style="${mag.coverImg ? `background: url('${mag.coverImg}') center/cover no-repeat;` : 'background: linear-gradient(135deg, var(--primary-blue), #0f52ba);'}">
+        ${!mag.coverImg ? `
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+          <div class="book-cover-title" style="margin-top: 6px;">Patrika</div>
+        ` : ''}
       </div>
       <div class="book-info">
         <div>
@@ -765,6 +864,7 @@ function initSearch() {
     if (container) {
       container.innerHTML = filtered.map(item => `
         <div class="book-card">
+          <div class="book-cover" style="${item.coverImg ? `background: url('${item.coverImg}') center/cover no-repeat;` : ''}"></div>
           <div class="book-info">
             <div class="book-title">${isHi ? item.titleHi : item.titleEn}</div>
             <div class="book-buttons" style="margin-top:8px;">
