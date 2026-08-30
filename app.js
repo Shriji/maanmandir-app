@@ -86,7 +86,7 @@ let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
 
-// Official Maan Mandir YouTube Channels Catalog
+// Official Maan Mandir YouTube Channels Catalog (Direct Working Links)
 const MAAN_MANDIR_YOUTUBE_CHANNELS = [
   {
     id: "yt-main",
@@ -103,8 +103,8 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     id: "yt-gaushala",
     nameEn: "Shri Mataji Gaushala Barsana",
     nameHi: "श्री माताजी गौशाला बरसाना",
-    handle: "@ShriMatajiGaushala",
-    url: "https://www.youtube.com/@ShriMatajiGaushala",
+    handle: "Gaushala Videos",
+    url: "https://www.youtube.com/results?search_query=Shri+Mataji+Gaushala+Barsana",
     badgeEn: "GAUSEVA",
     badgeHi: "गौसेवा",
     descEn: "Live updates, daily Gauseva, and environmental initiatives from Shri Mataji Gaushala.",
@@ -114,8 +114,8 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     id: "yt-brajyatra",
     nameEn: "Braj Yatra Sansthan",
     nameHi: "ब्रज यात्रा संस्थान",
-    handle: "@BrajYatraSansthan",
-    url: "https://www.youtube.com/@BrajYatraSansthan",
+    handle: "Braj Yatra Videos",
+    url: "https://www.youtube.com/results?search_query=Braj+Yatra+Maan+Mandir+Barsana",
     badgeEn: "84 KOS YATRA",
     badgeHi: "८४ कोस यात्रा",
     descEn: "Video coverage of the annual 40-day 84 Kos Braj Yatra & Leela Sthal Pravachans.",
@@ -125,8 +125,8 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     id: "yt-kirtan",
     nameEn: "Maan Mandir Kirtan & Sangeet Mandal",
     nameHi: "मान मंदिर संकीर्तन व संगीत मण्डल",
-    handle: "@MaanMandirKirtan",
-    url: "https://www.youtube.com/@MaanMandirKirtan",
+    handle: "Kirtan Videos",
+    url: "https://www.youtube.com/results?search_query=Maan+Mandir+Kirtan+Barsana",
     badgeEn: "KIRTAN & BHAJAN",
     badgeHi: "कीर्तन व भजन",
     descEn: "Devotional Braj Kirtan, Ashtachhap Pad Gayan, and daily temple stuti webcasts.",
@@ -177,7 +177,7 @@ const FALLBACK_WEBSITE_BOOKS = [
     titleEn: "Bhagvatamritam - Part 02", 
     titleHi: "भगवदामृतम् - द्वितीय भाग", 
     coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/bhagwatam-cover-part-02-1-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-02/", 
+    pdfUrl: "https://maanmandir.org/download/bhagwatamritam-part-02/", 
     isNew: false, 
     downloads: "10.3K Downloads" 
   },
@@ -186,7 +186,7 @@ const FALLBACK_WEBSITE_BOOKS = [
     titleEn: "Bhagvatamritam - Part 01", 
     titleHi: "भगवदामृतम् - प्रथम भाग", 
     coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/bhagwatam-cover-part-01-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-01/", 
+    pdfUrl: "https://maanmandir.org/download/bhagwatamritam-part-01/", 
     isNew: false, 
     downloads: "10.4K Downloads" 
   },
@@ -704,7 +704,7 @@ function renderYouTubeTab() {
         ${isHi ? ch.descHi : ch.descEn}
       </p>
       <a href="${ch.url}" target="_blank" class="btn-primary" style="background:#FF0000; color:#FFF; text-decoration:none; justify-content:center; padding:7px 12px; margin-top:4px; font-weight:800;">
-        ▶ ${isHi ? 'यूट्यूब चैनल खोलें ↗' : 'Open Channel in YouTube ↗'}
+        ▶ ${isHi ? 'यूट्यूब खोलें ↗' : 'Open in YouTube ↗'}
       </a>
     </div>
   `).join('');
@@ -897,7 +897,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=21')
+    navigator.serviceWorker.register('./sw.js?v=22')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
