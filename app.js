@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, & PWA Registration
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), & PWA Registration
  */
 
 // Sample Data Catalog for Maan Mandir Digital Content
@@ -171,8 +171,12 @@ const APP_DATA = {
 let currentPlayingAudio = null;
 let isAudioPlaying = false;
 
+// Font Scaling State (0: Small, 1: Default/Medium, 2: Large, 3: Extra Large)
+let fontScaleStep = parseInt(localStorage.getItem('mm_font_step') || '1');
+
 // DOM Content Loaded Handler
 document.addEventListener('DOMContentLoaded', () => {
+  initFontResizer();
   initNavigation();
   initNotificationDrawer();
   renderContent();
@@ -180,6 +184,38 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearch();
   registerServiceWorker();
 });
+
+// Interactive Font Size Control (A- / A / A+)
+function initFontResizer() {
+  applyFontStep(fontScaleStep);
+}
+
+window.changeFontSize = function(delta) {
+  if (delta === 0) {
+    fontScaleStep = 1; // reset to default
+  } else {
+    fontScaleStep = Math.max(0, Math.min(3, fontScaleStep + delta));
+  }
+  applyFontStep(fontScaleStep);
+};
+
+function applyFontStep(step) {
+  fontScaleStep = step;
+  localStorage.setItem('mm_font_step', fontScaleStep);
+
+  // Font Percentage Multipliers: 95%, 112%, 128%, 145%
+  const fontScales = [95, 112, 128, 145];
+  document.documentElement.style.fontSize = fontScales[fontScaleStep] + '%';
+
+  // Update active state on font buttons
+  const decBtn = document.getElementById('btn-font-dec');
+  const resetBtn = document.getElementById('btn-font-reset');
+  const incBtn = document.getElementById('btn-font-inc');
+
+  if (decBtn) decBtn.classList.toggle('active', step === 0);
+  if (resetBtn) resetBtn.classList.toggle('active', step === 1);
+  if (incBtn) incBtn.classList.toggle('active', step >= 2);
+}
 
 // Tab Navigation logic
 function initNavigation() {
@@ -236,10 +272,10 @@ function renderNotificationsList() {
 
   container.innerHTML = APP_DATA.notifications.map(notif => `
     <div class="notification-item ${notif.unread ? 'unread' : ''}">
-      <div style="font-weight: 700; font-size: 13px; color: var(--text-dark); margin-bottom: 2px;">
+      <div style="font-weight: 800; font-size: 0.92rem; color: var(--text-dark); margin-bottom: 2px;">
         ${notif.title}
       </div>
-      <div style="font-size: 12px; color: var(--text-medium);">
+      <div style="font-size: 0.82rem; color: var(--text-medium);">
         ${notif.desc}
       </div>
       <div class="notification-time">${notif.time}</div>
@@ -344,7 +380,7 @@ function renderBooksTab() {
         <div>
           <div class="book-title">${book.title} ${book.isNew ? '<span class="badge-new" style="position:static; display:inline-block; vertical-align:middle; margin-left:6px;">NEW</span>' : ''}</div>
           <div class="book-desc">${book.subtitle}</div>
-          <div style="font-size: 11px; color: var(--text-muted);">${book.pages} Pages • ${book.size} PDF</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">${book.pages} Pages • ${book.size} PDF</div>
         </div>
         <div class="book-buttons">
           <button class="btn-primary" onclick="openPdfModal('${book.title}', '${book.pdfUrl}')">
@@ -383,7 +419,7 @@ window.playAudioTrack = function(trackId) {
     authorEl.textContent = track.artist;
     player.classList.add('active');
     if (playBtnIcon) {
-      playBtnIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`; // pause icon
+      playBtnIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
     }
   }
 };
@@ -407,10 +443,10 @@ window.openVideoModal = function(title) {
   if (!modal || !modalBody) return;
 
   modalBody.innerHTML = `
-    <h3 style="font-size: 16px; font-weight:700; color: var(--primary-blue); margin-bottom: 12px;">${title}</h3>
+    <h3 style="font-size: 1.1rem; font-weight:800; color: var(--primary-blue); margin-bottom: 12px;">${title}</h3>
     <div style="width:100%; height:210px; background:#000; border-radius: var(--radius-md); display:flex; align-items:center; justify-content:center; color:#fff; flex-direction:column; gap:10px;">
       <svg width="48" height="48" fill="red" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      <span style="font-size: 13px;">YouTube Video Player Embed</span>
+      <span style="font-size: 0.9rem;">YouTube Video Player Embed</span>
     </div>
     <div style="margin-top: 14px; text-align:right;">
       <button class="btn-primary" onclick="closeModal()">Close Player</button>
@@ -425,12 +461,12 @@ window.openPdfModal = function(title, url) {
   if (!modal || !modalBody) return;
 
   modalBody.innerHTML = `
-    <h3 style="font-size: 16px; font-weight:700; color: var(--primary-blue); margin-bottom: 8px;">${title}</h3>
-    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Maan Mandir Official In-App Reader</p>
+    <h3 style="font-size: 1.1rem; font-weight:800; color: var(--primary-blue); margin-bottom: 8px;">${title}</h3>
+    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px;">Maan Mandir Official In-App Reader</p>
     <div style="width:100%; height:320px; background: var(--bg-tertiary); border-radius: var(--radius-md); border:1px solid var(--border-blue); display:flex; align-items:center; justify-content:center; color: var(--primary-blue); flex-direction:column; gap:10px; padding:20px; text-align:center;">
       <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-      <span style="font-size: 13px; font-weight:600;">Interactive PDF Document Viewer</span>
-      <span style="font-size: 11px; color: var(--text-muted);">Loaded from Maan Mandir Server</span>
+      <span style="font-size: 0.92rem; font-weight:700;">Interactive PDF Document Viewer</span>
+      <span style="font-size: 0.78rem; color: var(--text-muted);">Loaded from Maan Mandir Server</span>
     </div>
     <div style="margin-top: 14px; display:flex; justify-content:space-between; align-items:center;">
       <button class="btn-outline" onclick="downloadPdf('${title}', '${url}')">Direct Download</button>
