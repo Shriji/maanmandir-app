@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet with Cache Busting Version 6 -->
-  <link rel="stylesheet" href="styles.css?v=6">
+  <!-- Stylesheet with Cache Busting Version 7 -->
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -30,17 +30,17 @@
     <!-- Top Header Bar -->
     <header class="top-header">
       
-      <!-- Live Webcast Pulsing Banner -->
+      <!-- 🔴 Live Webcast Pulsing Banner (Single Line Bar) -->
       <div class="live-header-banner" onclick="switchTab('youtube')">
         <div class="live-badge-content">
           <span class="pulse-dot"></span>
-          <span id="txt-live-banner">🔴 LIVE NOW: Ramesh Baba Ji Pravachan</span>
+          <span id="txt-live-banner">🔴 LIVE: Ramesh Baba Ji Pravachan</span>
         </div>
         <span class="watch-now-btn" id="txt-watch-live">Watch Live</span>
       </div>
 
-      <!-- Main Top Bar -->
-      <div class="top-bar">
+      <!-- TOP ROW: Brand Logo & Title + Notification Bell -->
+      <div class="top-bar-row1">
         <div class="brand-wrapper">
           <img src="assets/images/app_icon.jpg" alt="Maan Mandir Logo" class="brand-icon">
           <div class="brand-title-group">
@@ -49,27 +49,26 @@
           </div>
         </div>
 
-        <div class="header-actions">
-          <!-- Bilingual Language Switcher (EN / हिंदी) -->
-          <div class="lang-switch-controls">
-            <button class="lang-btn active" id="btn-lang-en" onclick="setLanguage('en')">EN</button>
-            <button class="lang-btn" id="btn-lang-hi" onclick="setLanguage('hi')">हिंदी</button>
-          </div>
+        <!-- Devotee Notifications Bell Button -->
+        <button class="icon-btn" id="bell-notification-btn" aria-label="Devotee Notifications">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+          </svg>
+          <span class="notification-count">3</span>
+        </button>
+      </div>
 
-          <!-- Dynamic Font Resizer Buttons (A- / A / A+) -->
-          <div class="font-size-controls">
-            <button class="font-btn" id="btn-font-dec" onclick="changeFontSize(-1)" title="Decrease Text Size">A-</button>
-            <button class="font-btn active" id="btn-font-reset" onclick="changeFontSize(0)" title="Default Text Size">A</button>
-            <button class="font-btn" id="btn-font-inc" onclick="changeFontSize(1)" title="Increase Text Size">A+</button>
-          </div>
+      <!-- SECOND ROW: Language Switcher (EN / हिंदी) & Font Resizer (A- / A / A+) -->
+      <div class="top-bar-row2">
+        <div class="lang-switch-controls">
+          <button class="lang-btn active" id="btn-lang-en" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" id="btn-lang-hi" onclick="setLanguage('hi')">हिंदी</button>
+        </div>
 
-          <!-- Devotee Notifications Bell Button -->
-          <button class="icon-btn" id="bell-notification-btn" aria-label="Devotee Notifications">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-            </svg>
-            <span class="notification-count">3</span>
-          </button>
+        <div class="font-size-controls">
+          <button class="font-btn" id="btn-font-dec" onclick="changeFontSize(-1)" title="Decrease Text Size">A-</button>
+          <button class="font-btn active" id="btn-font-reset" onclick="changeFontSize(0)" title="Default Text Size">A</button>
+          <button class="font-btn" id="btn-font-inc" onclick="changeFontSize(1)" title="Increase Text Size">A+</button>
         </div>
       </div>
 
