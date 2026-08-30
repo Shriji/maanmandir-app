@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Maan Mandir Barsana - Devotee Mobile Portal</title>
+  
+  <!-- SEO & PWA Meta Tags -->
+  <meta name="description" content="Official Mobile App & Portal for Maan Mandir Seva Sansthan Trust, Barsana Dham. Access Live Webcasts, Kirtans, Books, Monthly Magazines, and Maanini App.">
+  <meta name="theme-color" content="#1D4ED8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Maan Mandir">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/jpeg" href="assets/images/app_icon.jpg">
+
+  <!-- Typography: Google Fonts Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Mobile App Frame Container -->
+  <div id="app-root">
+
+    <!-- Top Header Bar -->
+    <header class="top-header">
+      
+      <!-- Live Webcast Pulsing Banner -->
+      <div class="live-header-banner" onclick="switchTab('youtube')">
+        <div class="live-badge-content">
+          <span class="pulse-dot"></span>
+          <span>🔴 LIVE NOW: Ramesh Baba Ji Pravachan</span>
+        </div>
+        <span class="watch-now-btn">Watch Live</span>
+      </div>
+
+      <!-- Main Top Bar -->
+      <div class="top-bar">
+        <div class="brand-wrapper">
+          <img src="assets/images/app_icon.jpg" alt="Maan Mandir Logo" class="brand-icon">
+          <div class="brand-title-group">
+            <h1>Maan Mandir</h1>
+            <span>Barsana Dham Portal</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" id="bell-notification-btn" aria-label="Devotee Notifications">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+            </svg>
+            <span class="notification-count">3</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <input type="text" id="global-search-input" class="search-input" placeholder="Search Pravachans, Kirtan, Books, Magazines...">
+        </div>
+      </div>
+
+    </header>
+
+    <!-- Main Content Area (Dynamic Tabs) -->
+    <main class="main-content">
+
+      <!-- ==========================================
+           TAB 1: HOME DASHBOARD
+           ========================================== -->
+      <section id="tab-home" class="tab-pane active">
+
+        <!-- Hero Darshan Banner -->
+        <div class="hero-card">
+          <img src="assets/images/hero_banner.jpg" alt="Maan Mandir Barsana" class="hero-image">
+          <div class="hero-overlay">
+            <span class="hero-tag">Barsana Dham</span>
+            <h2 class="hero-title">Shri Radharani Temple & Maan Mandir</h2>
+            <p class="hero-subtitle">Maan Mandir Seva Sansthan Trust • Shri Ramesh Baba Ji Maharaj</p>
+          </div>
+        </div>
+
+        <!-- Quick Access 2x3 Grid Tiles -->
+        <div class="section-header">
+          <h3 class="section-title">
+            <svg class="section-title-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+            Devotee Resources
+          </h3>
+        </div>
+
+        <div class="action-grid">
+          <!-- 1. Live & YouTube -->
+          <div class="grid-tile" onclick="switchTab('youtube')">
+            <span class="badge-live-pulse">LIVE</span>
+            <div class="tile-icon-container" style="background: var(--live-red-light); color: var(--live-red);">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="tile-title">Live & YouTube</div>
+            <div class="tile-desc">Pravachans & Streams</div>
+          </div>
+
+          <!-- 2. Audio Library -->
+          <div class="grid-tile" onclick="switchTab('audio')">
+            <span class="badge-new">NEW</span>
+            <div class="tile-icon-container">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+            </div>
+            <div class="tile-title">Kirtan & Audio</div>
+            <div class="tile-desc">SoundCloud & MP3s</div>
+          </div>
+
+          <!-- 3. Books & Magazines -->
+          <div class="grid-tile" onclick="switchTab('books')">
+            <span class="badge-new">NEW</span>
+            <div class="tile-icon-container" style="background: #FEF3C7; color: #D97706;">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+            <div class="tile-title">Books & Magazine</div>
+            <div class="tile-desc">PDF Publications</div>
+          </div>
+
+          <!-- 4. Maanini Portal -->
+          <div class="grid-tile" onclick="switchTab('maanini')">
+            <div class="tile-icon-container" style="background: #F0F9FF; color: #0284C7;">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+            </div>
+            <div class="tile-title">Maanini Portal</div>
+            <div class="tile-desc">Maanini.app Launcher</div>
+          </div>
+
+          <!-- 5. Social Media Hub -->
+          <div class="grid-tile" onclick="switchTab('social')">
+            <div class="tile-icon-container" style="background: #E0E7FF; color: #4338CA;">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </div>
+            <div class="tile-title">Social Media</div>
+            <div class="tile-desc">Facebook, Insta, X</div>
+          </div>
+
+          <!-- 6. Seva & Information -->
+          <div class="grid-tile" onclick="switchTab('seva')">
+            <div class="tile-icon-container" style="background: #DCFCE7; color: #15803D;">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </div>
+            <div class="tile-title">Gauseva & Info</div>
+            <div class="tile-desc">Braj Yatra & Seva</div>
+          </div>
+        </div>
+
+        <!-- Recent Updates Ticker -->
+        <div class="section-header">
+          <h3 class="section-title">⚡ Latest Updates for Devotees</h3>
+        </div>
+        <div id="home-updates-list" class="content-list"></div>
+
+      </section>
+
+      <!-- ==========================================
+           TAB 2: LIVE & YOUTUBE VIDEOS
+           ========================================== -->
+      <section id="tab-youtube" class="tab-pane">
+        <div class="section-header">
+          <h3 class="section-title">🔴 Live & YouTube Pravachans</h3>
+        </div>
+
+        <!-- Live Webcast Highlight Card -->
+        <div class="maanini-hero-card" style="background: linear-gradient(135deg, #1E40AF 0%, #1D4ED8 100%);">
+          <span class="maanini-tag">LIVE STREAM</span>
+          <h3 style="font-size: 18px; margin-bottom: 6px;">Shri Ramesh Baba Ji Maharaj Pravachan</h3>
+          <p style="font-size: 12px; opacity: 0.9; margin-bottom: 14px;">Broadcasting Live from Maan Mandir Barsana Dham. Join thousands of devotees in daily Satsang.</p>
+          <button class="btn-primary" style="background: var(--text-white); color: var(--primary-blue);" onclick="openVideoModal('Shri Ramesh Baba Ji Maharaj Live Pravachan')">
+            ▶ Watch Live Stream
+          </button>
+        </div>
+
+        <div class="section-header">
+          <h3 class="section-title">Recent YouTube Satsangs</h3>
+        </div>
+        <div id="youtube-videos-list" class="content-list"></div>
+      </section>
+
+      <!-- ==========================================
+           TAB 3: AUDIO LIBRARY & SOUNDCLOUD
+           ========================================== -->
+      <section id="tab-audio" class="tab-pane">
+        <div class="section-header">
+          <h3 class="section-title">🎵 SoundCloud & Audio Library</h3>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Listen to daily Kirtan, Pravachan recordings, and Bhajans by Maan Mandir Sangeet Mandal.</p>
+
+        <div id="audio-tracks-list" class="content-list"></div>
+      </section>
+
+      <!-- ==========================================
+           TAB 4: BOOKS & MAGAZINES
+           ========================================== -->
+      <section id="tab-books" class="tab-pane">
+        <div class="section-header">
+          <h3 class="section-title">📚 Books & Monthly Magazine Catalog</h3>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Download and read official publications, Braj Yatra guides, and monthly magazines from Maan Mandir Trust.</p>
+
+        <div id="books-catalog-list"></div>
+      </section>
+
+      <!-- ==========================================
+           TAB 5: MAANINI PORTAL
+           ========================================== -->
+      <section id="tab-maanini" class="tab-pane">
+        <div class="section-header">
+          <h3 class="section-title">🌸 Maanini Portal</h3>
+        </div>
+
+        <div class="maanini-hero-card">
+          <span class="maanini-tag">MAANINI APP</span>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Welcome to Maanini Portal</h3>
+          <p style="font-size: 13px; opacity: 0.9; margin-bottom: 16px; line-height: 1.5;">Access the dedicated Maanini.app digital experience directly from your mobile device.</p>
+          <a href="https://maanini.app" target="_blank" class="btn-primary" style="background: var(--primary-blue); display: inline-flex;">
+            Launch Maanini.app Portal ↗
+          </a>
+        </div>
+
+        <div class="content-card" style="padding: 16px;">
+          <div>
+            <h4 style="font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">Integrated Portal Access</h4>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.4;">All Maanini features, services, and spiritual updates are accessible seamlessly within this unified devotee app.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 6: SOCIAL MEDIA HUB
+           ========================================== -->
+      <section id="tab-social" class="tab-pane">
+        <div class="section-header">
+          <h3 class="section-title">📲 Official Social Media Channels</h3>
+        </div>
+        <div class="content-list">
+          <a href="https://facebook.com" target="_blank" class="content-card" style="text-decoration:none;">
+            <div class="card-thumb" style="background:#E0E7FF; color:#3730A3;">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Official Facebook Page</div>
+              <div class="card-meta">Daily Darshan & Post Updates</div>
+            </div>
+            <span class="card-action-btn">↗</span>
+          </a>
+
+          <a href="https://instagram.com" target="_blank" class="content-card" style="text-decoration:none;">
+            <div class="card-thumb" style="background:#FCE7F3; color:#BE185D;">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <div class="card-body">
+              <div class="card-title">Instagram Updates</div>
+              <div class="card-meta">Photos, Reels & Short Clips</div>
+            </div>
+            <span class="card-action-btn">↗</span>
+          </a>
+
+          <a href="https://whatsapp.com" target="_blank" class="content-card" style="text-decoration:none;">
+            <div class="card-thumb" style="background:#DCFCE7; color:#15803D;">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </div>
+            <div class="card-body">
+              <div class="card-title">WhatsApp Devotee Channel</div>
+              <div class="card-meta">Instant Daily Messages & Webcasts</div>
+            </div>
+            <span class="card-action-btn">↗</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 7: SEVA & MANDIR INFO
+           ========================================== -->
+      <section id="tab-seva" class="tab-pane">
+        <div class="section-header">
+          <h3 class="section-title">🐄 Gauseva & Sansthan Initiatives</h3>
+        </div>
+
+        <div class="content-card" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+          <h4 style="font-size: 16px; font-weight: 700; color: var(--primary-blue);">Shri Mataji Gaushala Barsana</h4>
+          <p style="font-size: 13px; color: var(--text-medium); line-height: 1.5;">Home to tens of thousands of indigenous cows, maintained under the guidance of Shri Ramesh Baba Ji Maharaj. Supported purely through devotee seva.</p>
+          <div style="font-size: 12px; font-weight: 600; color: var(--text-dark);">
+            📍 Location: Barsana Dham, Mathura, Uttar Pradesh
+          </div>
+        </div>
+
+        <div class="content-card" style="flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 14px;">
+          <h4 style="font-size: 16px; font-weight: 700; color: var(--primary-blue);">Temple Darshan Timings</h4>
+          <div style="font-size: 13px; color: var(--text-medium); line-height: 1.6;">
+            <div>🌅 <strong>Morning Darshan:</strong> 05:00 AM – 12:00 PM</div>
+            <div>🌇 <strong>Evening Darshan:</strong> 04:00 PM – 08:30 PM</div>
+            <div>🎙️ <strong>Daily Pravachan:</strong> 04:30 PM onwards</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Devotee Updates Notification Drawer (Slide-Over Panel) -->
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+    <div id="drawer-panel" class="drawer-panel">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+          Devotee Updates
+        </div>
+        <button id="drawer-close-btn" class="drawer-close-btn">✕</button>
+      </div>
+      <div class="drawer-content" id="notifications-container"></div>
+    </div>
+
+    <!-- Floating Audio Player Bar -->
+    <div id="floating-audio-player" class="audio-floating-player">
+      <div class="audio-track-info">
+        <div id="player-track-title" class="audio-track-title">Radha Krishna Smaran</div>
+        <div id="player-track-author" class="audio-track-author">Maan Mandir Kirtan Mandal</div>
+      </div>
+      <div class="audio-controls">
+        <button class="audio-control-btn audio-play-main" onclick="toggleAudioPlay()">
+          <svg id="player-play-icon" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Reader / Player -->
+    <div id="app-modal" class="modal-wrapper">
+      <div class="modal-card">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div id="modal-body-content"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Mobile Tab Bar -->
+    <nav class="bottom-nav">
+      <div class="nav-item active" data-tab="home">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" data-tab="youtube">
+        <span class="nav-item-badge"></span>
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        <span>Live</span>
+      </div>
+      <div class="nav-item" data-tab="audio">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+        <span>Audio</span>
+      </div>
+      <div class="nav-item" data-tab="books">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        <span>Books</span>
+      </div>
+      <div class="nav-item" data-tab="maanini">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+        <span>Maanini</span>
+      </div>
+      <div class="nav-item" data-tab="seva">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        <span>Seva</span>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+
+</body>
+</html>

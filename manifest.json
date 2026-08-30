@@ -1,0 +1,18 @@
+{
+  "name": "Maan Mandir Barsana - Devotee Portal",
+  "short_name": "Maan Mandir",
+  "description": "Official Mobile Portal for Maan Mandir Seva Sansthan Trust, Barsana Dham. Access Live Webcasts, Kirtan, Books, Magazines, and Maanini Portal.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1D4ED8",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./assets/images/app_icon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
