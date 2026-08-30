@@ -1,7 +1,7 @@
 /* ==========================================================================
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLESHEET
    Aesthetics: Deep Royal Blue, Gold Accent, Smooth Glassmorphism, Micro-Animations
-   Version: 27
+   Version: 30
    ========================================================================== */
 
 /* Typography & Root Design Tokens */
@@ -618,99 +618,117 @@ body {
   color: var(--text-white);
 }
 
-/* Premium YouTube Channel Card with Real Channel Banner Artwork & Profile Avatar */
-.youtube-channel-card {
+/* Lightweight YouTube Gateway Card (Zero Local Maintenance) */
+.youtube-gateway-card {
   background: var(--bg-primary);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-md);
+  gap: 10px;
   transition: var(--transition);
-  margin-bottom: 16px;
 }
 
-.youtube-channel-card:hover {
+.youtube-gateway-card:hover {
   border-color: #FF0000;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
-.youtube-channel-banner-header {
-  width: 100%;
-  height: 110px;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-}
-
-.youtube-banner-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%);
-  padding: 10px 12px;
+.youtube-gateway-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
+  gap: 10px;
 }
 
-.youtube-banner-badge {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(8px);
-  color: #FFFFFF;
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 3px 9px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.5px;
-}
-
-.youtube-channel-content {
-  padding: 0 14px 14px;
-  position: relative;
-}
-
-.youtube-avatar-row {
+.youtube-gateway-brand {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-top: -30px; /* Overlap top banner */
-  margin-bottom: 8px;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
 }
 
-.youtube-channel-avatar-lg {
-  width: 60px;
-  height: 60px;
+.youtube-gateway-avatar {
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-full);
-  border: 3px solid var(--bg-primary);
   object-fit: cover;
-  box-shadow: var(--shadow-md);
-  background: var(--bg-primary);
+  border: 2px solid #FF0000;
+  flex-shrink: 0;
 }
 
-.youtube-channel-title {
-  font-size: 1.05rem;
+.youtube-gateway-icon-fallback {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: #FFF5F5;
+  border: 2px solid #FF0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.youtube-gateway-titles {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.youtube-gateway-name {
+  font-size: 0.95rem;
   font-weight: 800;
   color: var(--text-dark);
   line-height: 1.25;
 }
 
-.youtube-handle {
-  font-size: 0.78rem;
+.youtube-gateway-handle {
+  font-size: 0.76rem;
   color: #FF0000;
   font-weight: 700;
-  margin-top: 1px;
 }
 
-.youtube-subscribers-count {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  font-weight: 700;
-  margin-bottom: 6px;
+.youtube-gateway-badge {
+  background: #FFF5F5;
+  color: #FF0000;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.youtube-gateway-desc {
+  font-size: 0.84rem;
+  color: var(--text-medium);
+  line-height: 1.45;
+}
+
+.youtube-gateway-btn {
+  background: #FF0000;
+  color: #FFFFFF;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 14px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 3px 8px rgba(255, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.youtube-gateway-btn:hover {
+  background: #CC0000;
 }
 
 /* Sub-Tab Navigation Pill Bar (Books vs Monthly Magazines) */
