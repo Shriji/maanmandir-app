@@ -97,7 +97,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     badgeEn: "KATHA & SATSANG",
     badgeHi: "कथा व सत्संग",
     subscribers: "20.9K Subscribers • 1.5K Videos",
-    bannerImg: "assets/images/shri_murlikaji_banner.jpg",
+    bannerImg: "assets/images/yt/yt-murlika_banner.jpg",
     avatarImg: "assets/images/shri_murlikaji_avatar.jpg",
     descEn: "Shrimad Bhagawat Katha (by Shri Murlika Ji): Spiritual orator and devotional singer, well known for Braj Ras Satsang.",
     descHi: "श्री मुरलिका जी महाराज के पावन मुखारविंद से श्रीमद्भागवत कथा एवं ब्रज रस सत्संग का दिव्य प्रसारण।"
@@ -108,27 +108,27 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     nameHi: "मान मंदिर आधिकारिक यूट्यूब चैनल",
     handle: "@MaanMandir",
     url: "https://www.youtube.com/MaanMandir",
-    badgeEn: "MAIN CHANNEL",
+    badgeEn: "MAIN LIVE CHANNEL",
     badgeHi: "मुख्य चैनल",
-    subscribers: "Main Live Stream Channel",
-    bannerImg: "assets/images/hero_banner.jpg",
-    avatarImg: "assets/images/app_icon.jpg",
+    subscribers: "20.9K Subscribers • Official Live Stream",
+    bannerImg: "assets/images/yt/yt-main_banner.jpg",
+    avatarImg: "assets/images/yt/yt-main_avatar.jpg",
     descEn: "Official live webcast of Shri Ramesh Baba Ji Maharaj Pravachan, Satsang & Barsana Dham Darshan.",
     descHi: "श्री रमेश बाबा जी महाराज के पावन प्रवचन एवं बरसाना धाम सत्संग का लाइव प्रसारण।"
   },
   {
     id: "yt-ramjilal",
-    nameEn: "Ramjilal Shastri Ji Maharaj",
+    nameEn: "RamJi Lal Shastri Ji Maharaj",
     nameHi: "रामजीलाल शास्त्री जी महाराज",
     handle: "@ramjilalshastrijimaharajba7619",
     url: "https://www.youtube.com/@ramjilalshastrijimaharajba7619",
     badgeEn: "PRAVACHAN",
     badgeHi: "प्रवचन",
-    subscribers: "Official Channel",
-    bannerImg: "assets/images/hero_banner.jpg",
-    avatarImg: "assets/images/app_icon.jpg",
-    descEn: "Shastra Satsang and Pravachans by Ramjilal Shastri Ji Maharaj.",
-    descHi: "रामजीलाल शास्त्री जी महाराज के पावन मुखारविंद से शास्त्र चर्चा व प्रवचन।"
+    subscribers: "106K Subscribers • Official Channel",
+    bannerImg: "assets/images/yt/yt-ramjilal_banner.jpg",
+    avatarImg: "assets/images/yt/yt-ramjilal_avatar.jpg",
+    descEn: "Shrimad Bhagawat Katha & Shastra Satsang by Ram Ji Lal Shastri Ji Maharaj (Maan Mandir Barsana).",
+    descHi: "रामजीलाल शास्त्री जी महाराज के पावन मुखारविंद से श्रीमद्भागवत कथा व शास्त्र चर्चा।"
   },
   {
     id: "yt-shrijididi",
@@ -138,11 +138,11 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@PujyaaShrijididi",
     badgeEn: "SATSANG & BHAJAN",
     badgeHi: "सत्संग व भजन",
-    subscribers: "Official Channel",
-    bannerImg: "assets/images/hero_banner.jpg",
-    avatarImg: "assets/images/app_icon.jpg",
-    descEn: "Devotional Satsang, Upadesh, and Bhajans by Pujyaa Shriji Didi.",
-    descHi: "पूज्या श्रीजी दीदी द्वारा भक्तिमय सत्संग, उपदेश एवं मधुर भजन।"
+    subscribers: "106K Subscribers • Official Channel",
+    bannerImg: "assets/images/yt/yt-shrijididi_banner.jpg",
+    avatarImg: "assets/images/yt/yt-shrijididi_avatar.jpg",
+    descEn: "Braj Baalika Sadhvi Shri Ji Maan Mandir Barsana: Devotional Satsang, Upadesh, and Bhajans.",
+    descHi: "ब्रज बालिका साध्वी श्री जी मान मंदिर बरसाना द्वारा भक्तिमय सत्संग, उपदेश एवं मधुर भजन।"
   },
   {
     id: "yt-divyapath",
@@ -152,11 +152,11 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@Divya-Path",
     badgeEn: "DIVYA PATH",
     badgeHi: "दिव्य पथ",
-    subscribers: "Official Channel",
-    bannerImg: "assets/images/hero_banner.jpg",
-    avatarImg: "assets/images/app_icon.jpg",
-    descEn: "Official Divya Path channel for spiritual discourses and Sanatan Dharma teachings.",
-    descHi: "दिव्य पथ आध्यात्मिक प्रवचन एवं सनातन धर्म ज्ञान प्रसारण।"
+    subscribers: "106K Subscribers • Daily Discourses",
+    bannerImg: "assets/images/yt/yt-divyapath_banner.jpg",
+    avatarImg: "assets/images/yt/yt-divyapath_avatar.jpg",
+    descEn: "Official Divya Path channel for daily spiritual discourses, pravachans, and Sanatan Dharma teachings.",
+    descHi: "दिव्य पथ आधिकारिक चैनल - नित्य आध्यात्मिक प्रवचन एवं सनातन धर्म ज्ञान प्रसारण।"
   },
   {
     id: "yt-brajyatra",
@@ -166,11 +166,11 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@radharanibrajyatra7821",
     badgeEn: "84 KOS YATRA",
     badgeHi: "८४ कोस यात्रा",
-    subscribers: "Official Channel",
-    bannerImg: "assets/images/hero_banner.jpg",
-    avatarImg: "assets/images/app_icon.jpg",
-    descEn: "Video webcasts of the annual 84 Kos Braj Yatra & Leela Sthal Pravachans.",
-    descHi: "वार्षिक ८४ कोस ब्रज यात्रा एवं लीला स्थल प्रवचनों का पावन वीडियो संग्रह।"
+    subscribers: "106K Subscribers • Annual Yatra",
+    bannerImg: "assets/images/yt/yt-brajyatra_banner.jpg",
+    avatarImg: "assets/images/yt/yt-brajyatra_avatar.jpg",
+    descEn: "Shri Radharani Braj Yatra (MaanMandir Barsana): Video webcasts of the annual 84 Kos Braj Yatra.",
+    descHi: "श्री राधारानी ब्रज यात्रा (मान मंदिर बरसाना) - वार्षिक ८४ कोस ब्रज यात्रा का पावन वीडियो संग्रह।"
   },
   {
     id: "yt-gaushala",
@@ -180,25 +180,25 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/@ShriMatajiGaushala",
     badgeEn: "GAUSEVA",
     badgeHi: "गौसेवा",
-    subscribers: "Official Channel",
-    bannerImg: "assets/images/hero_banner.jpg",
+    subscribers: "Official Gauseva Channel",
+    bannerImg: "assets/images/yt/yt-gaushala_banner.jpg",
     avatarImg: "assets/images/app_icon.jpg",
-    descEn: "Live updates and Gauseva webcasts from Shri Mataji Gaushala Barsana.",
-    descHi: "श्री माताजी गौशाला बरसाना से नित्य गौसेवा, दर्शन व पर्यावरण संरक्षण।"
+    descEn: "Live updates, Gauseva webcasts, and environment preservation initiatives from Shri Mataji Gaushala Barsana.",
+    descHi: "श्री माताजी गौशाला बरसाना से नित्य गौसेवा, दर्शन, रक्षा व पर्यावरण संरक्षण।"
   },
   {
     id: "yt-cowvet",
-    nameEn: "Cow Vet Hospital Barsana",
+    nameEn: "Cow Vet Hospital (SMG Barsana)",
     nameHi: "गौ चिकित्सालय बरसाना",
     handle: "@cowvethospital",
     url: "https://www.youtube.com/@cowvethospital",
     badgeEn: "GAU CHIKITSA",
     badgeHi: "गौ चिकित्सा",
-    subscribers: "Official Channel",
-    bannerImg: "assets/images/hero_banner.jpg",
-    avatarImg: "assets/images/app_icon.jpg",
-    descEn: "Medical care, emergency treatment, and rehabilitation webcasts from Cow Vet Hospital.",
-    descHi: "गौ चिकित्सालय बरसाना से बीमार व घायल गौवंश की चिकित्सीय सेवा व अपडेट्स।"
+    subscribers: "106K Subscribers • Hospital Seva",
+    bannerImg: "assets/images/yt/yt-cowvet_banner.jpg",
+    avatarImg: "assets/images/yt/yt-cowvet_avatar.jpg",
+    descEn: "Shri ShyamLaxmi Gau Chikitsalay (Cow Vet Hospital): Emergency medical care, surgery & rehab for cows.",
+    descHi: "श्री श्यामलक्ष्मी गौ चिकित्सालय बरसाना से बीमार व घायल गौवंश की चिकित्सीय सेवा व पुनर्वास।"
   }
 ];
 
@@ -969,7 +969,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=27')
+    navigator.serviceWorker.register('./sw.js?v=28')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
