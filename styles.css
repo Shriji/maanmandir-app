@@ -1,7 +1,7 @@
 /* ==========================================================================
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLESHEET
    Aesthetics: Deep Royal Blue, Gold Accent, Smooth Glassmorphism, Micro-Animations
-   Version: 16
+   Version: 17
    ========================================================================== */
 
 /* Typography & Root Design Tokens */
@@ -454,7 +454,7 @@ body {
   margin-top: 2px;
 }
 
-/* Action Grid Tiles (2 Columns x 3 Rows Layout) */
+/* Action Grid Tiles (2 Columns Layout) */
 .action-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -765,31 +765,32 @@ body {
   background: var(--bg-tertiary);
 }
 
-/* SoundCloud Hero Banner Card */
+/* Lightweight Pure CSS SoundCloud Special Hero Banner */
 .soundcloud-hero-card {
-  background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+  background: linear-gradient(135deg, #FF5500 0%, #FF2200 50%, #D41400 100%);
   color: var(--text-white);
   border-radius: var(--radius-lg);
-  padding: 16px;
-  box-shadow: var(--shadow-lg);
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(255, 85, 0, 0.28);
   margin-bottom: 16px;
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
-.soundcloud-hero-banner-img {
-  width: 100%;
-  height: 135px;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  margin-bottom: 12px;
-  box-shadow: var(--shadow-md);
+.soundcloud-hero-card::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 140px;
+  height: 140px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  filter: blur(25px);
 }
 
 .soundcloud-tag {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(8px);
   color: #FFF;
   font-size: 0.7rem;
@@ -797,8 +798,6 @@ body {
   padding: 4px 10px;
   border-radius: var(--radius-full);
   display: inline-block;
-  margin-bottom: 8px;
-  align-self: flex-start;
 }
 
 /* Maanini Portal Special Hero Banner */
