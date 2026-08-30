@@ -1,43 +1,43 @@
 /* ==========================================================================
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLES
-   Theme: Pristine White & Royal Blue (TalkingPoints Inspired)
-   Color Tokens, Typography, Card Systems, Badges, and Mobile Layouts
+   Theme: Pristine White & TalkingPoints Signature Vibrant Blue
+   Exact Color Palette: TalkingPoints Cobalt Blue (#0052CC / #0066FF) & Soft Ice Blue (#E8F0FE)
    ========================================================================== */
 
 :root {
-  /* Color Palette - White & Royal Blue Base */
+  /* TalkingPoints Signature Color Palette */
   --bg-primary: #FFFFFF;
-  --bg-secondary: #F8FAFC;
-  --bg-tertiary: #EFF6FF;
+  --bg-secondary: #F4F6F9;
+  --bg-tertiary: #E8F0FE;
   --bg-card: #FFFFFF;
   
-  --primary-blue: #1D4ED8;
-  --primary-blue-hover: #1E40AF;
-  --accent-blue: #2563EB;
-  --light-blue: #DBEAFE;
-  --ice-blue: #F0F9FF;
+  --primary-blue: #0052CC;        /* TalkingPoints Signature Blue */
+  --primary-blue-hover: #0040A8;
+  --accent-blue: #0066FF;         /* Vibrant Cobalt Blue */
+  --light-blue: #D0E1FD;
+  --ice-blue: #F0F6FF;
   
-  --text-dark: #0F172A;
-  --text-medium: #334155;
-  --text-muted: #64748B;
-  --text-light: #94A3B8;
+  --text-dark: #091E42;
+  --text-medium: #172B4D;
+  --text-muted: #5E6C84;
+  --text-light: #8993A4;
   --text-white: #FFFFFF;
   
   --gold-accent: #F59E0B;
   --gold-dark: #D97706;
   --gold-light: #FEF3C7;
   
-  --live-red: #DC2626;
-  --live-red-light: #FEE2E2;
+  --live-red: #E53E3E;
+  --live-red-light: #FFF5F5;
   
-  --border-light: #E2E8F0;
-  --border-blue: #BFDBFE;
+  --border-light: #DFE1E6;
+  --border-blue: #B3D4FF;
   
   /* Elevation Shadows */
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 4px 12px rgba(37, 99, 235, 0.08);
-  --shadow-lg: 0 10px 25px rgba(37, 99, 235, 0.12);
-  --shadow-float: 0 12px 30px rgba(15, 23, 42, 0.15);
+  --shadow-sm: 0 1px 3px rgba(9, 30, 66, 0.08);
+  --shadow-md: 0 4px 14px rgba(0, 82, 204, 0.10);
+  --shadow-lg: 0 10px 25px rgba(0, 82, 204, 0.15);
+  --shadow-float: 0 12px 30px rgba(9, 30, 66, 0.18);
 
   /* Radius & Transitions */
   --radius-sm: 8px;
@@ -68,14 +68,14 @@ body {
 
 #app-root {
   width: 100%;
-  max-width: 480px; /* Mobile App Frame container for Desktop view */
+  max-width: 480px;
   background: var(--bg-primary);
   min-height: 100vh;
   position: relative;
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
-  padding-bottom: 90px; /* space for bottom nav */
+  padding-bottom: 90px;
 }
 
 /* Header & Top Bar */
@@ -102,8 +102,8 @@ body {
 }
 
 .brand-icon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-sm);
   object-fit: cover;
   border: 2px solid var(--light-blue);
@@ -111,17 +111,17 @@ body {
 }
 
 .brand-title-group h1 {
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   color: var(--primary-blue);
   line-height: 1.1;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.3px;
 }
 
 .brand-title-group span {
   font-size: 11px;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .header-actions {
@@ -157,7 +157,7 @@ body {
   background: var(--live-red);
   color: var(--text-white);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 800;
   min-width: 18px;
   height: 18px;
   border-radius: var(--radius-full);
@@ -176,22 +176,22 @@ body {
 
 /* 🔴 LIVE WEBCAST PULSING BANNER */
 .live-header-banner {
-  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+  background: linear-gradient(135deg, #E53E3E 0%, #C53030 100%);
   color: var(--text-white);
   padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
+  box-shadow: 0 4px 10px rgba(229, 62, 62, 0.25);
   animation: glowPulse 2s infinite ease-in-out;
 }
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25); }
-  50% { box-shadow: 0 4px 18px rgba(220, 38, 38, 0.45); }
+  0%, 100% { box-shadow: 0 4px 10px rgba(229, 62, 62, 0.25); }
+  50% { box-shadow: 0 4px 18px rgba(229, 62, 62, 0.45); }
 }
 
 .live-badge-content {
@@ -229,7 +229,7 @@ body {
   background: var(--text-white);
   color: var(--live-red);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 800;
   padding: 4px 10px;
   border-radius: var(--radius-full);
   text-transform: uppercase;
@@ -268,7 +268,7 @@ body {
 .search-input:focus {
   background: var(--bg-primary);
   border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
 }
 
 /* App Main Content Container */
@@ -342,7 +342,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.88) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(9, 30, 66, 0.90) 100%);
   padding: 16px;
   color: var(--text-white);
 }
@@ -360,15 +360,15 @@ body {
 }
 
 .hero-title {
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   line-height: 1.25;
   margin-bottom: 4px;
 }
 
 .hero-subtitle {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 /* Grid Quick Action Tiles */
@@ -437,7 +437,7 @@ body {
   border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 82, 204, 0.3);
 }
 
 .badge-live-pulse {
@@ -498,10 +498,6 @@ body {
   position: relative;
 }
 
-.card-thumb-icon {
-  font-size: 24px;
-}
-
 .card-body {
   flex: 1;
   min-width: 0;
@@ -509,7 +505,7 @@ body {
 
 .card-title {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 4px;
   white-space: nowrap;
@@ -561,7 +557,7 @@ body {
   width: 70px;
   height: 95px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
+  background: linear-gradient(135deg, #0052CC 0%, #0066FF 100%);
   color: var(--text-white);
   display: flex;
   flex-direction: column;
@@ -608,15 +604,16 @@ body {
   background: var(--primary-blue);
   color: var(--text-white);
   border: none;
-  padding: 7px 14px;
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   transition: var(--transition);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
@@ -626,11 +623,11 @@ body {
 .btn-outline {
   background: transparent;
   color: var(--primary-blue);
-  border: 1px solid var(--primary-blue);
-  padding: 7px 14px;
+  border: 1.5px solid var(--primary-blue);
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -642,9 +639,9 @@ body {
   background: var(--bg-tertiary);
 }
 
-/* Maanini Portal Special Banner */
+/* Maanini Portal Special Hero Banner */
 .maanini-hero-card {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  background: linear-gradient(135deg, #091E42 0%, #172B4D 100%);
   color: var(--text-white);
   border-radius: var(--radius-lg);
   padding: 20px;
@@ -661,7 +658,7 @@ body {
   right: -40px;
   width: 120px;
   height: 120px;
-  background: rgba(37, 99, 235, 0.3);
+  background: rgba(0, 102, 255, 0.35);
   border-radius: 50%;
   filter: blur(30px);
 }
@@ -671,7 +668,7 @@ body {
   backdrop-filter: blur(8px);
   color: var(--gold-accent);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 800;
   padding: 4px 10px;
   border-radius: var(--radius-full);
   display: inline-block;
@@ -685,7 +682,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 23, 42, 0.5);
+  background: rgba(9, 30, 66, 0.5);
   backdrop-filter: blur(4px);
   z-index: 200;
   display: none;
@@ -727,7 +724,7 @@ body {
 
 .drawer-title {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--primary-blue);
   display: flex;
   align-items: center;
@@ -801,7 +798,7 @@ body {
 
 .audio-track-title {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -850,7 +847,7 @@ body {
   justify-content: space-around;
   padding: 8px 0 10px;
   z-index: 99;
-  box-shadow: 0 -4px 15px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 -4px 15px rgba(9, 30, 66, 0.06);
 }
 
 .nav-item {
@@ -861,7 +858,7 @@ body {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
   position: relative;
@@ -870,7 +867,7 @@ body {
 
 .nav-item.active {
   color: var(--primary-blue);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .nav-item.active svg {
@@ -894,7 +891,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(9, 30, 66, 0.7);
   backdrop-filter: blur(5px);
   z-index: 300;
   display: none;
