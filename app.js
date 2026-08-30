@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search Filter Engine
+ * Dynamic Tabs, Live Stream Detector, Audio Player with SoundCloud & Maanini Banners, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -18,13 +18,9 @@ const TRANSLATIONS = {
     tileLive: "Live & YouTube",
     tileLiveDesc: "Pravachans & Streams",
     tileAudio: "Kirtan & Audio",
-    tileAudioDesc: "SoundCloud & MP3s",
+    tileAudioDesc: "SoundCloud & Maanini",
     tileBooks: "Publications",
     tileBooksDesc: "Books & Magazines",
-    tileMaanini: "Maanini Portal",
-    tileMaaniniDesc: "Maanini.app Launcher",
-    tileSocial: "Social Media",
-    tileSocialDesc: "Facebook, Insta, X",
     tileSeva: "Gauseva & Info",
     tileSevaDesc: "Braj Yatra & Seva",
     latestUpdates: "⚡ Latest Updates for Devotees",
@@ -32,14 +28,17 @@ const TRANSLATIONS = {
     tabLive: "Live",
     tabAudio: "Audio",
     tabBooks: "Publications",
-    tabMaanini: "Maanini",
     tabSeva: "Seva",
     subtabBooks: "Books (ग्रंथ)",
     subtabMagazines: "Monthly Magazine (पत्रिका)",
     downloadBtn: "Download / Open PDF",
     notificationsTitle: "Devotee Updates",
-    loadingBooks: "🌸 Syncing live books from MaanMandir.org...",
-    loadingMagazines: "📰 Syncing monthly magazine covers from MaanMandir.org..."
+    scTitle: "Maan Mandir SoundCloud Channel",
+    scDesc: "Listen to official Pravachans, daily Braj Kirtan, and Bhajans by Maan Mandir Sangeet Mandal on SoundCloud.",
+    scBtn: "Launch SoundCloud Channel ↗",
+    maaniniTitle: "Maanini.app Portal",
+    maaniniDesc: "Access the dedicated Maanini.app digital experience directly from your mobile device.",
+    maaniniBtn: "Launch Maanini.app Portal ↗"
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -54,13 +53,9 @@ const TRANSLATIONS = {
     tileLive: "लाइव व यूट्यूब",
     tileLiveDesc: "प्रवचन व कथाएं",
     tileAudio: "कीर्तन व ऑडियो",
-    tileAudioDesc: "साउंडक्लाउड व संकीर्तन",
+    tileAudioDesc: "साउंडक्लाउड व मानिनी",
     tileBooks: "प्रकाशन",
     tileBooksDesc: "ग्रंथ एवं मासिक पत्रिकाएं",
-    tileMaanini: "मानिनी पोर्टल",
-    tileMaaniniDesc: "मानिनी ऐप खोलें",
-    tileSocial: "सोशल मीडिया",
-    tileSocialDesc: "फेसबुक, इंस्टा, व्हाट्सएप",
     tileSeva: "गौसेवा व जानकारी",
     tileSevaDesc: "ब्रज यात्रा व गौशाला",
     latestUpdates: "⚡ भक्तों हेतु नवीनतम समाचार",
@@ -68,14 +63,17 @@ const TRANSLATIONS = {
     tabLive: "लाइव",
     tabAudio: "ऑडियो",
     tabBooks: "प्रकाशन",
-    tabMaanini: "मानिनी",
     tabSeva: "सेवा",
     subtabBooks: "ग्रंथ व पुस्तकें",
     subtabMagazines: "मासिक पत्रिका (Patrika)",
     downloadBtn: "डाउनलोड / खोलें",
     notificationsTitle: "भक्त अपडेट्स",
-    loadingBooks: "🌸 maanmandir.org से पुस्तकें व आवरण चित्र सिंक हो रहे हैं...",
-    loadingMagazines: "📰 maanmandir.org से मासिक पत्रिका के मुख्य पृष्ठ सिंक हो रहे हैं..."
+    scTitle: "मान मंदिर आधिकारिक साउंडक्लाउड",
+    scDesc: "साउंडक्लाउड पर मान मंदिर संगीत मंडल द्वारा नित्य ब्रज संकीर्तन, भजन व बाबा जी के दिव्य प्रवचन सुनें।",
+    scBtn: "साउंडक्लाउड चैनल खोलें ↗",
+    maaniniTitle: "मानिनी ऐप पोर्टल",
+    maaniniDesc: "मानिनी डिजिटल अनुभव का आनंद सीधे अपने मोबाइल में लें।",
+    maaniniBtn: "मानिनी पोर्टल खोलें ↗"
   }
 };
 
@@ -350,10 +348,6 @@ window.setLanguage = function(lang) {
   setElementText('txt-tile-audio-desc', t.tileAudioDesc);
   setElementText('txt-tile-books', t.tileBooks);
   setElementText('txt-tile-books-desc', t.tileBooksDesc);
-  setElementText('txt-tile-maanini', t.tileMaanini);
-  setElementText('txt-tile-maanini-desc', t.tileMaaniniDesc);
-  setElementText('txt-tile-social', t.tileSocial);
-  setElementText('txt-tile-social-desc', t.tileSocialDesc);
   setElementText('txt-tile-seva', t.tileSeva);
   setElementText('txt-tile-seva-desc', t.tileSevaDesc);
   setElementText('txt-latest-updates', t.latestUpdates);
@@ -361,11 +355,18 @@ window.setLanguage = function(lang) {
   setElementText('txt-tab-live', t.tabLive);
   setElementText('txt-tab-audio', t.tabAudio);
   setElementText('txt-tab-books', t.tabBooks);
-  setElementText('txt-tab-maanini', t.tabMaanini);
   setElementText('txt-tab-seva', t.tabSeva);
   setElementText('txt-subtab-books', t.subtabBooks);
   setElementText('txt-subtab-magazines', t.subtabMagazines);
   setElementText('txt-notifications-title', t.notificationsTitle);
+  
+  // SoundCloud & Maanini Banner Text
+  setElementText('txt-sc-title', t.scTitle);
+  setElementText('txt-sc-desc', t.scDesc);
+  setElementText('txt-sc-btn', t.scBtn);
+  setElementText('txt-maanini-title', t.maaniniTitle);
+  setElementText('txt-maanini-desc', t.maaniniDesc);
+  setElementText('txt-maanini-btn', t.maaniniBtn);
 
   const searchInput = document.getElementById('global-search-input');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
@@ -861,7 +862,7 @@ window.closeModal = function() {
   if (modal) modal.classList.remove('active');
 };
 
-// Global Instant Perform Search Function (Exposed to Window for Failsafe oninput)
+// Global Instant Perform Search Function
 window.performSearch = function() {
   const searchInput = document.getElementById('global-search-input');
   if (!searchInput) return;

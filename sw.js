@@ -1,13 +1,14 @@
-// Maan Mandir Devotee Mobile Portal - Service Worker (v14)
-const CACHE_NAME = 'maanmandir-v14';
+// Maan Mandir Devotee Mobile Portal - Service Worker (v16)
+const CACHE_NAME = 'maanmandir-v16';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css?v=14',
-  './app.js?v=14',
+  './styles.css?v=16',
+  './app.js?v=16',
   './manifest.json',
   './assets/images/app_icon.jpg',
-  './assets/images/hero_banner.jpg'
+  './assets/images/hero_banner.jpg',
+  './assets/images/soundcloud_banner.jpg'
 ];
 
 self.addEventListener('install', (event) => {
@@ -34,9 +35,8 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Network First Strategy: Always fetch fresh JS/CSS from server first
+// Network First Strategy: Always fetch fresh JS/CSS/Images from server first
 self.addEventListener('fetch', (event) => {
-  // Only handle GET requests
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
