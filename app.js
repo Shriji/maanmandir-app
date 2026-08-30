@@ -86,7 +86,7 @@ let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
 
-// Official Maan Mandir YouTube Channels Catalog (Direct Working Links)
+// Official Maan Mandir YouTube Channels Catalog (Direct Official Handles)
 const MAAN_MANDIR_YOUTUBE_CHANNELS = [
   {
     id: "yt-main",
@@ -101,8 +101,8 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
   },
   {
     id: "yt-murlika",
-    nameEn: "Shri Murlika Ji Official Channel",
-    nameHi: "श्री मुरलिका जी आधिकारिक चैनल",
+    nameEn: "Shri Murlika Ji Maharaj",
+    nameHi: "श्री मुरलिका जी महाराज",
     handle: "@ShriMurlikaji",
     url: "https://www.youtube.com/@ShriMurlikaji",
     badgeEn: "KATHA & SATSANG",
@@ -111,37 +111,70 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     descHi: "श्री मुरलिका जी महाराज के पावन मुखारविंद से श्रीमद्भागवत कथा एवं ब्रज रस सत्संग का दिव्य प्रसारण।"
   },
   {
-    id: "yt-gaushala",
-    nameEn: "Shri Mataji Gaushala Barsana",
-    nameHi: "श्री माताजी गौशाला बरसाना",
-    handle: "Gaushala Videos",
-    url: "https://www.youtube.com/results?search_query=Shri+Mataji+Gaushala+Barsana",
-    badgeEn: "GAUSEVA",
-    badgeHi: "गौसेवा",
-    descEn: "Live updates, daily Gauseva, and environmental initiatives from Shri Mataji Gaushala.",
-    descHi: "श्री माताजी गौशाला बरसाना से नित्य गौसेवा, दर्शन व पर्यावरण संरक्षण गतिविधियां।"
+    id: "yt-ramjilal",
+    nameEn: "Ramjilal Shastri Ji Maharaj",
+    nameHi: "रामजीलाल शास्त्री जी महाराज",
+    handle: "@ramjilalshastrijimaharajba7619",
+    url: "https://www.youtube.com/@ramjilalshastrijimaharajba7619",
+    badgeEn: "PRAVACHAN",
+    badgeHi: "प्रवचन",
+    descEn: "Shastra Satsang and Pravachans by Ramjilal Shastri Ji Maharaj.",
+    descHi: "रामजीलाल शास्त्री जी महाराज के पावन मुखारविंद से शास्त्र चर्चा व प्रवचन।"
+  },
+  {
+    id: "yt-shrijididi",
+    nameEn: "Pujyaa Shriji Didi",
+    nameHi: "पूज्या श्रीजी दीदी",
+    handle: "@PujyaaShrijididi",
+    url: "https://www.youtube.com/@PujyaaShrijididi",
+    badgeEn: "SATSANG",
+    badgeHi: "सत्संग",
+    descEn: "Devotional Satsang, Upadesh, and Bhajans by Pujyaa Shriji Didi.",
+    descHi: "पूज्या श्रीजी दीदी द्वारा भक्तिमय सत्संग, उपदेश एवं मधुर भजन।"
+  },
+  {
+    id: "yt-divyapath",
+    nameEn: "Divya Path",
+    nameHi: "दिव्य पथ",
+    handle: "@Divya-Path",
+    url: "https://www.youtube.com/@Divya-Path",
+    badgeEn: "DIVYA PATH",
+    badgeHi: "दिव्य पथ",
+    descEn: "Official Divya Path channel for spiritual discourses and Sanatan Dharma teachings.",
+    descHi: "दिव्य पथ आध्यात्मिक प्रवचन एवं सनातन धर्म ज्ञान प्रसारण।"
   },
   {
     id: "yt-brajyatra",
-    nameEn: "Braj Yatra Sansthan",
-    nameHi: "ब्रज यात्रा संस्थान",
-    handle: "Braj Yatra Videos",
-    url: "https://www.youtube.com/results?search_query=Braj+Yatra+Maan+Mandir+Barsana",
+    nameEn: "Radharani Braj Yatra",
+    nameHi: "राधारानी ब्रज यात्रा",
+    handle: "@radharanibrajyatra7821",
+    url: "https://www.youtube.com/@radharanibrajyatra7821",
     badgeEn: "84 KOS YATRA",
     badgeHi: "८४ कोस यात्रा",
-    descEn: "Video coverage of the annual 40-day 84 Kos Braj Yatra & Leela Sthal Pravachans.",
-    descHi: "वार्षिक ४० दिवसीय ८४ कोस ब्रज यात्रा व ब्रज के दिव्य लीला स्थलों का वीडियो संग्रह।"
+    descEn: "Video webcasts of the annual 84 Kos Braj Yatra & Leela Sthal Pravachans.",
+    descHi: "वार्षिक ८४ कोस ब्रज यात्रा एवं लीला स्थल प्रवचनों का पावन वीडियो संग्रह।"
   },
   {
-    id: "yt-kirtan",
-    nameEn: "Maan Mandir Kirtan & Sangeet Mandal",
-    nameHi: "मान मंदिर संकीर्तन व संगीत मण्डल",
-    handle: "Kirtan Videos",
-    url: "https://www.youtube.com/results?search_query=Maan+Mandir+Kirtan+Barsana",
-    badgeEn: "KIRTAN & BHAJAN",
-    badgeHi: "कीर्तन व भजन",
-    descEn: "Devotional Braj Kirtan, Ashtachhap Pad Gayan, and daily temple stuti webcasts.",
-    descHi: "मान मंदिर संकीर्तन मण्डल द्वारा दैनिक पद गायन, अष्टछाप पद व दिव्य आरती प्रसारण।"
+    id: "yt-gaushala",
+    nameEn: "Shri Mataji Gaushala Barsana",
+    nameHi: "श्री माताजी गौशाला बरसाना",
+    handle: "@ShriMatajiGaushala",
+    url: "https://www.youtube.com/@ShriMatajiGaushala",
+    badgeEn: "GAUSEVA",
+    badgeHi: "गौसेवा",
+    descEn: "Live updates and Gauseva webcasts from Shri Mataji Gaushala Barsana.",
+    descHi: "श्री माताजी गौशाला बरसाना से नित्य गौसेवा, दर्शन व पर्यावरण संरक्षण।"
+  },
+  {
+    id: "yt-cowvet",
+    nameEn: "Cow Vet Hospital Barsana",
+    nameHi: "गौ चिकित्सालय बरसाना",
+    handle: "@cowvethospital",
+    url: "https://www.youtube.com/@cowvethospital",
+    badgeEn: "GAU CHIKITSA",
+    badgeHi: "गौ चिकित्सा",
+    descEn: "Medical care, emergency treatment, and rehabilitation webcasts from Cow Vet Hospital.",
+    descHi: "गौ चिकित्सालय बरसाना से बीमार व घायल गौवंश की चिकित्सीय सेवा व अपडेट्स।"
   }
 ];
 
@@ -715,7 +748,7 @@ function renderYouTubeTab() {
         ${isHi ? ch.descHi : ch.descEn}
       </p>
       <a href="${ch.url}" target="_blank" class="btn-primary" style="background:#FF0000; color:#FFF; text-decoration:none; justify-content:center; padding:7px 12px; margin-top:4px; font-weight:800;">
-        ▶ ${isHi ? 'यूट्यूब खोलें ↗' : 'Open in YouTube ↗'}
+        ▶ ${isHi ? 'यूट्यूब चैनल खोलें ↗' : 'Open Channel in YouTube ↗'}
       </a>
     </div>
   `).join('');
@@ -908,7 +941,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=23')
+    navigator.serviceWorker.register('./sw.js?v=24')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
