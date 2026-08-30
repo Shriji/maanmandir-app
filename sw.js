@@ -1,10 +1,10 @@
-// Maan Mandir Devotee Mobile Portal - Service Worker
-const CACHE_NAME = 'maanmandir-v1';
+// Maan Mandir Devotee Mobile Portal - Service Worker (v14)
+const CACHE_NAME = 'maanmandir-v14';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css',
-  './app.js',
+  './styles.css?v=14',
+  './app.js?v=14',
   './manifest.json',
   './assets/images/app_icon.jpg',
   './assets/images/hero_banner.jpg'
@@ -34,12 +34,26 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+// Network First Strategy: Always fetch fresh JS/CSS from server first
 self.addEventListener('fetch', (event) => {
+  // Only handle GET requests
+  if (event.request.method !== 'GET') return;
+
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request).catch(() => {
-        return caches.match('./index.html');
-      });
-    })
+    fetch(event.request)
+      .then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200 && event.request.url.startsWith(self.location.origin)) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+        }
+        return networkResponse;
+      })
+      .catch(() => {
+        return caches.match(event.request).then((cachedResponse) => {
+          return cachedResponse || caches.match('./index.html');
+        });
+      })
   );
 });

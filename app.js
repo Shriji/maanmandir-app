@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search (Input/Keyup/Enter)
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search (Input/Keyup/Enter/Paste)
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -861,7 +861,7 @@ window.closeModal = function() {
   if (modal) modal.classList.remove('active');
 };
 
-// Instant Realtime Search Filter Logic (Multi-event listener + Enter key + Active Tab Switch)
+// Instant Realtime Search Filter Logic
 function initSearch() {
   const searchInput = document.getElementById('global-search-input');
   if (!searchInput) return;
@@ -871,7 +871,7 @@ function initSearch() {
 
     // Force active state onto Publications pane when searching
     const booksPane = document.getElementById('tab-books');
-    if (booksPane && !booksPane.classList.contains('active')) {
+    if (booksPane) {
       const navItems = document.querySelectorAll('.nav-item');
       const tabPanes = document.querySelectorAll('.tab-pane');
       navItems.forEach(nav => nav.classList.remove('active'));
@@ -889,8 +889,8 @@ function initSearch() {
     }
   }
 
-  // Bind to input, keyup, change, search events for instant responsiveness on mobile & desktop
-  ['input', 'keyup', 'change', 'search'].forEach(evt => {
+  // Bind to input, keyup, change, search, paste events for instant responsiveness
+  ['input', 'keyup', 'change', 'search', 'paste'].forEach(evt => {
     searchInput.addEventListener(evt, performSearch);
   });
 
