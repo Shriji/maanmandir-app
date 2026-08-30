@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet with Cache Busting Version 20 -->
-  <link rel="stylesheet" href="styles.css?v=20">
+  <!-- Stylesheet with Cache Busting Version 21 -->
+  <link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body>
 
@@ -160,27 +160,27 @@
       </section>
 
       <!-- ==========================================
-           TAB 2: LIVE & YOUTUBE VIDEOS
+           TAB 2: LIVE & YOUTUBE CHANNELS
            ========================================== -->
       <section id="tab-youtube" class="tab-pane">
         <div class="section-header">
-          <h3 class="section-title">🔴 Live & YouTube Pravachans</h3>
+          <h3 class="section-title">🔴 Live & YouTube Webcasts</h3>
         </div>
 
         <!-- Live Webcast Highlight Card -->
-        <div class="maanini-hero-card">
-          <span class="maanini-tag">LIVE STREAM</span>
+        <div class="maanini-hero-card" style="background: linear-gradient(135deg, #CC0000 0%, #990000 100%);">
+          <span class="maanini-tag" style="background: rgba(255,255,255,0.2); color:#FFF;">🔴 LIVE WEBCAST</span>
           <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 6px;">Shri Ramesh Baba Ji Maharaj Pravachan</h3>
-          <p style="font-size: 0.88rem; opacity: 0.92; margin-bottom: 16px;">Broadcasting Live from Maan Mandir Barsana Dham. Join thousands of devotees in daily Satsang.</p>
-          <button class="btn-primary" style="background: var(--text-white); color: var(--primary-blue);" onclick="openVideoModal('Shri Ramesh Baba Ji Maharaj Live Pravachan')">
-            ▶ Watch Live Stream
-          </button>
+          <p style="font-size: 0.88rem; opacity: 0.94; margin-bottom: 16px;">Broadcasting Live from Maan Mandir Barsana Dham on our Official YouTube Channel (@MaanMandir).</p>
+          <a href="https://www.youtube.com/MaanMandir" target="_blank" class="btn-primary" style="background: var(--text-white); color: #CC0000; text-decoration:none; font-weight:800; display:inline-flex;">
+            ▶ Watch Live Stream on YouTube ↗
+          </a>
         </div>
 
         <div class="section-header">
-          <h3 class="section-title">Recent YouTube Satsangs</h3>
+          <h3 class="section-title">📺 Official Maan Mandir YouTube Channels</h3>
         </div>
-        <div id="youtube-videos-list" class="content-list"></div>
+        <div id="youtube-videos-list"></div>
       </section>
 
       <!-- ==========================================
@@ -331,8 +331,8 @@
 
   </div>
 
-  <!-- Main JavaScript File with Cache Busting Version 20 -->
-  <script src="app.js?v=20"></script>
+  <!-- Main JavaScript File with Cache Busting Version 21 -->
+  <script src="app.js?v=21"></script>
 
 </body>
 </html>

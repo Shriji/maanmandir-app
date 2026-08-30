@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player with SoundCloud & Maanini Banners, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search
+ * Dynamic Tabs, Live Stream Detector, Official YouTube Channels Catalog, Audio Portals, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), Single Direct Download Link, & Instant Search
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -86,24 +86,60 @@ let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
 
-// Sample Data Catalog
+// Official Maan Mandir YouTube Channels Catalog
+const MAAN_MANDIR_YOUTUBE_CHANNELS = [
+  {
+    id: "yt-main",
+    nameEn: "Maan Mandir Official Channel",
+    nameHi: "मान मंदिर आधिकारिक यूट्यूब चैनल",
+    handle: "@MaanMandir",
+    url: "https://www.youtube.com/MaanMandir",
+    badgeEn: "MAIN CHANNEL",
+    badgeHi: "मुख्य चैनल",
+    descEn: "Official live webcast of Shri Ramesh Baba Ji Maharaj Pravachan, Satsang & Barsana Dham Darshan.",
+    descHi: "श्री रमेश बाबा जी महाराज के पावन प्रवचन एवं बरसाना धाम सत्संग का लाइव प्रसारण।"
+  },
+  {
+    id: "yt-gaushala",
+    nameEn: "Shri Mataji Gaushala Barsana",
+    nameHi: "श्री माताजी गौशाला बरसाना",
+    handle: "@ShriMatajiGaushala",
+    url: "https://www.youtube.com/@ShriMatajiGaushala",
+    badgeEn: "GAUSEVA",
+    badgeHi: "गौसेवा",
+    descEn: "Live updates, daily Gauseva, and environmental initiatives from Shri Mataji Gaushala.",
+    descHi: "श्री माताजी गौशाला बरसाना से नित्य गौसेवा, दर्शन व पर्यावरण संरक्षण गतिविधियां।"
+  },
+  {
+    id: "yt-brajyatra",
+    nameEn: "Braj Yatra Sansthan",
+    nameHi: "ब्रज यात्रा संस्थान",
+    handle: "@BrajYatraSansthan",
+    url: "https://www.youtube.com/@BrajYatraSansthan",
+    badgeEn: "84 KOS YATRA",
+    badgeHi: "८४ कोस यात्रा",
+    descEn: "Video coverage of the annual 40-day 84 Kos Braj Yatra & Leela Sthal Pravachans.",
+    descHi: "वार्षिक ४० दिवसीय ८४ कोस ब्रज यात्रा व ब्रज के दिव्य लीला स्थलों का वीडियो संग्रह।"
+  },
+  {
+    id: "yt-kirtan",
+    nameEn: "Maan Mandir Kirtan & Sangeet Mandal",
+    nameHi: "मान मंदिर संकीर्तन व संगीत मण्डल",
+    handle: "@MaanMandirKirtan",
+    url: "https://www.youtube.com/@MaanMandirKirtan",
+    badgeEn: "KIRTAN & BHAJAN",
+    badgeHi: "कीर्तन व भजन",
+    descEn: "Devotional Braj Kirtan, Ashtachhap Pad Gayan, and daily temple stuti webcasts.",
+    descHi: "मान मंदिर संकीर्तन मण्डल द्वारा दैनिक पद गायन, अष्टछाप पद व दिव्य आरती प्रसारण।"
+  }
+];
+
+// Sample Notifications Data
 const APP_DATA = {
   notifications: [
     { id: 1, titleEn: "🔴 Live Webcast Started", titleHi: "🔴 लाइव सत्संग प्रारंभ", descEn: "Shri Ramesh Baba Ji Maharaj Pravachan live from Barsana Dham.", descHi: "बरसाना धाम से श्री रमेश बाबा जी महाराज का लाइव प्रवचन।", time: "10m ago", unread: true },
     { id: 2, titleEn: "🎵 New Audio Released", titleHi: "🎵 नया संकीर्तन जारी", descEn: "Radha Naama Mahima & Daily Braj Kirtan.", descHi: "राधा नाम महिमा एवं नित्य ब्रज संकीर्तन।", time: "2h ago", unread: true },
     { id: 3, titleEn: "📰 Monthly Magazines & Cover Artworks Synced", titleHi: "📰 मासिक पत्रिका मुख्य पृष्ठ चित्र सिंक हुए", descEn: "All book & magazine covers synced directly from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से सभी पत्रिका व ग्रंथ आवरण चित्र सिंक हो गए।", time: "1d ago", unread: true }
-  ],
-
-  youtubeVideos: [
-    { id: "v1", titleEn: "Shri Ramesh Baba Ji Maharaj - Evening Pravachan", titleHi: "श्री रमेश बाबा जी महाराज - सांध्य प्रवचन", date: "Today", duration: "45:20", views: "12K", isNew: true, category: "Pravachan" },
-    { id: "v2", titleEn: "Braj Yatra Kirtan & Raas Leela at Barsana", titleHi: "बरसाना में ब्रज यात्रा कीर्तन व रासलीला", date: "Yesterday", duration: "32:10", views: "24K", isNew: true, category: "Braj Leela" },
-    { id: "v3", titleEn: "Shri Mataji Gaushala Seva & Gauseva Mahima", titleHi: "श्री माताजी गौशाला सेवा व गौ महिमा", date: "3 days ago", duration: "18:45", views: "8.5K", isNew: false, category: "Gauseva" }
-  ],
-
-  audioTracks: [
-    { id: "a1", titleEn: "Radha Krishna Name Smaran Kirtan", titleHi: "श्री राधा कृष्ण नाम स्मरण कीर्तन", artist: "Maan Mandir Kirtan Mandal", duration: "28:15", isNew: true },
-    { id: "a2", titleEn: "Braj Dham Mahima Katha - Part 1", titleHi: "ब्रज धाम महिमा कथा - भाग १", artist: "Shri Ramesh Baba Ji Maharaj", duration: "42:10", isNew: true },
-    { id: "a3", titleEn: "Shri Ji Ki Aarti & Morning Stuti", titleHi: "श्री लाडली जू की आरती व प्रातः स्तुति", artist: "Maan Mandir Priests", duration: "12:30", isNew: false }
   ]
 };
 
@@ -610,7 +646,6 @@ function renderNotificationsList() {
 function renderContent() {
   renderHomeRecentUpdates();
   renderYouTubeTab();
-  renderAudioTab();
   const searchInput = document.getElementById('global-search-input');
   const query = searchInput ? searchInput.value.trim() : '';
 
@@ -625,7 +660,7 @@ function renderHomeRecentUpdates() {
   const isHi = currentLang === 'hi';
   const recentItems = [
     { title: isHi ? "🔴 लाइव: सांध्य प्रवचन श्री रमेश बाबा जी" : "🔴 Live: Evening Pravachan by Ramesh Baba Ji", type: isHi ? "लाइव प्रसारण" : "Live Webcast", time: "Active Now" },
-    { title: isHi ? "🎵 नया कीर्तन: श्री राधा नाम स्मरण" : "🎵 New Audio: Radha Naama Smaran Kirtan", type: "SoundCloud", time: "2h ago" },
+    { title: isHi ? "🎵 साउंडक्लाउड व मानिनी पोर्टल" : "🎵 SoundCloud & Maanini Portals", type: "SoundCloud", time: "Official" },
     { title: isHi ? "📚 मासिक पत्रिका व ग्रंथ सिंक" : "📚 Official Books & Monthly Magazines Synced", type: isHi ? "पीडीएफ प्रकाशन" : "PDF Magazine", time: "Live Sync" }
   ];
 
@@ -647,47 +682,30 @@ function renderHomeRecentUpdates() {
   `).join('');
 }
 
+// Render YouTube Live & Official Channels Cards
 function renderYouTubeTab() {
   const container = document.getElementById('youtube-videos-list');
   if (!container) return;
 
   const isHi = currentLang === 'hi';
-  container.innerHTML = APP_DATA.youtubeVideos.map(video => `
-    <div class="content-card" onclick="openVideoModal('${isHi ? video.titleHi : video.titleEn}')">
-      <div class="card-thumb" style="background: var(--light-blue);">
-        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="card-title">${isHi ? video.titleHi : video.titleEn}</div>
-        <div class="card-meta">
-          <span>${video.category}</span> • <span>${video.duration}</span> • <span>${video.views} views</span>
+  container.innerHTML = MAAN_MANDIR_YOUTUBE_CHANNELS.map(ch => `
+    <div class="youtube-channel-card">
+      <div class="youtube-card-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <div>
+            <div class="youtube-channel-title">${isHi ? ch.nameHi : ch.nameEn}</div>
+            <div class="youtube-handle">${ch.handle}</div>
+          </div>
         </div>
+        <span class="youtube-badge">${isHi ? ch.badgeHi : ch.badgeEn}</span>
       </div>
-      ${video.isNew ? `<span class="badge-new">${isHi ? 'नया' : 'NEW'}</span>` : ''}
-    </div>
-  `).join('');
-}
-
-function renderAudioTab() {
-  const container = document.getElementById('audio-tracks-list');
-  if (!container) return;
-
-  const isHi = currentLang === 'hi';
-  container.innerHTML = APP_DATA.audioTracks.map(track => `
-    <div class="content-card">
-      <div class="card-thumb" style="background: var(--ice-blue);">
-        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-      </div>
-      <div class="card-body" onclick="playAudioTrack('${track.id}')">
-        <div class="card-title">${isHi ? track.titleHi : track.titleEn}</div>
-        <div class="card-meta">
-          <span>${track.artist}</span> • <span>${track.duration}</span>
-        </div>
-      </div>
-      ${track.isNew ? `<span class="badge-new">${isHi ? 'नया' : 'NEW'}</span>` : ''}
-      <button class="card-action-btn" onclick="playAudioTrack('${track.id}')">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </button>
+      <p style="font-size: 0.82rem; color: var(--text-medium); line-height: 1.45;">
+        ${isHi ? ch.descHi : ch.descEn}
+      </p>
+      <a href="${ch.url}" target="_blank" class="btn-primary" style="background:#FF0000; color:#FFF; text-decoration:none; justify-content:center; padding:7px 12px; margin-top:4px; font-weight:800;">
+        ▶ ${isHi ? 'यूट्यूब चैनल खोलें ↗' : 'Open Channel in YouTube ↗'}
+      </a>
     </div>
   `).join('');
 }
@@ -802,42 +820,6 @@ window.switchTab = function(tabName) {
   if (targetNav) targetNav.click();
 };
 
-// Play Audio Track
-window.playAudioTrack = function(trackId) {
-  const track = APP_DATA.audioTracks.find(t => t.id === trackId);
-  if (!track) return;
-
-  const isHi = currentLang === 'hi';
-  currentPlayingAudio = track;
-  isAudioPlaying = true;
-
-  const player = document.getElementById('floating-audio-player');
-  const titleEl = document.getElementById('player-track-title');
-  const authorEl = document.getElementById('player-track-author');
-  const playBtnIcon = document.getElementById('player-play-icon');
-
-  if (player && titleEl && authorEl) {
-    titleEl.textContent = isHi ? track.titleHi : track.titleEn;
-    authorEl.textContent = track.artist;
-    player.classList.add('active');
-    if (playBtnIcon) {
-      playBtnIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
-    }
-  }
-};
-
-window.toggleAudioPlay = function() {
-  isAudioPlaying = !isAudioPlaying;
-  const playBtnIcon = document.getElementById('player-play-icon');
-  if (playBtnIcon) {
-    if (isAudioPlaying) {
-      playBtnIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
-    } else {
-      playBtnIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
-    }
-  }
-};
-
 // Modals Handler
 window.openVideoModal = function(title) {
   const modal = document.getElementById('app-modal');
@@ -915,7 +897,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=18')
+    navigator.serviceWorker.register('./sw.js?v=21')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
