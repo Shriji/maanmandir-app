@@ -1,6 +1,6 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Live Website Books Sync
+ * Dynamic Tabs, Live Stream Detector, Audio Player, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Real Book Cover Artwork Sync
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -37,7 +37,7 @@ const TRANSLATIONS = {
     readBtn: "Read PDF",
     downloadBtn: "Download",
     notificationsTitle: "Devotee Updates",
-    loadingBooks: "🌸 Syncing live books from MaanMandir.org..."
+    loadingBooks: "🌸 Syncing live book covers from MaanMandir.org..."
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -71,7 +71,7 @@ const TRANSLATIONS = {
     readBtn: "पढ़ें",
     downloadBtn: "डाउनलोड",
     notificationsTitle: "भक्त अपडेट्स",
-    loadingBooks: "🌸 maanmandir.org से पुस्तकें सिंक हो रही हैं..."
+    loadingBooks: "🌸 maanmandir.org से पुस्तकें व आवरण चित्र सिंक हो रहे हैं..."
   }
 };
 
@@ -87,7 +87,7 @@ const APP_DATA = {
   notifications: [
     { id: 1, titleEn: "🔴 Live Webcast Started", titleHi: "🔴 लाइव सत्संग प्रारंभ", descEn: "Shri Ramesh Baba Ji Maharaj Pravachan live from Barsana Dham.", descHi: "बरसाना धाम से श्री रमेश बाबा जी महाराज का लाइव प्रवचन।", time: "10m ago", unread: true },
     { id: 2, titleEn: "🎵 New Audio Released", titleHi: "🎵 नया संकीर्तन जारी", descEn: "Radha Naama Mahima & Daily Braj Kirtan.", descHi: "राधा नाम महिमा एवं नित्य ब्रज संकीर्तन।", time: "2h ago", unread: true },
-    { id: 3, titleEn: "📚 New Books & Magazine Uploaded", titleHi: "📚 नवीन ग्रंथ एवं पत्रिकाएं उपलब्ध", descEn: "All official publications synced directly from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से सभी ग्रंथ व पुस्तकें सिंक हो गईं।", time: "1d ago", unread: true }
+    { id: 3, titleEn: "📚 Official Book Cover Artworks Synced", titleHi: "📚 मान मंदिर ग्रंथ आवरण चित्र सिंक हुए", descEn: "All book covers and PDF links synced directly from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से सभी ग्रंथ चित्र व लिंक सिंक हो गए।", time: "1d ago", unread: true }
   ],
 
   youtubeVideos: [
@@ -103,33 +103,98 @@ const APP_DATA = {
   ]
 };
 
-// Official MaanMandir.org Books Catalog (Synced Directly from Website)
+// Official MaanMandir.org Books Catalog with Real Website Covers & Clean Titles
 const FALLBACK_WEBSITE_BOOKS = [
-  { id: "b1", titleEn: "Rasili Braj Yatra (English)", titleHi: "रसीली ब्रज यात्रा (अंग्रेजी)", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-english/", isNew: true, downloads: "51.4K" },
-  { id: "b2", titleEn: "Shri Radha Sudha Nidhi (Short Gutka)", titleHi: "श्री राधा सुधा निधि (गुटका)", pdfUrl: "https://maanmandir.org/download/radha-sudha-nidhi-gutka/", isNew: true, downloads: "17.7K" },
-  { id: "b3", titleEn: "Bhagvatamritam (Part 01)", titleHi: "भगवदामृतम् (प्रथम भाग)", pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-01/", isNew: true, downloads: "10.4K" },
-  { id: "b4", titleEn: "Bhagvatamritam (Part 02)", titleHi: "भगवदामृतम् (द्वितीय भाग)", pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-02/", isNew: true, downloads: "10.3K" },
-  { id: "b5", titleEn: "Gahvar Pradeep Book", titleHi: "गह्वर प्रदीप (गह्वरवन के ज्योतिमान संत)", pdfUrl: "https://maanmandir.org/download/gahvar-pradeep-gahvarvan-ke-jyotimaan-sant/", isNew: false, downloads: "9.4K" },
-  { id: "b6", titleEn: "Mandir Nirman Se Bhagwat Prapti", titleHi: "मंदिर निर्माण से भगवत प्राप्ति", pdfUrl: "https://maanmandir.org/download/mandir-nirman-se-bhagwat-prapti/", isNew: false, downloads: "10.1K" },
-  { id: "b7", titleEn: "Shri Chandra Sakhi Ji Rachit Pad", titleHi: "श्री चंद्रसखी जी रचित पद", pdfUrl: "https://maanmandir.org/download/shri-chandra-sakhi-ji-rachit-pad/", isNew: false, downloads: "10.5K" },
-  { id: "b8", titleEn: "Shri Radha Ras", titleHi: "श्री राधा रस", pdfUrl: "https://maanmandir.org/download/shri-radha-ras/", isNew: false, downloads: "10.8K" },
-  { id: "b9", titleEn: "Shri Radha Sudha Shatak", titleHi: "श्री राधा सुधा शतक", pdfUrl: "https://maanmandir.org/download/shri-radha-sudha-shatak/", isNew: false, downloads: "10.4K" },
-  { id: "b10", titleEn: "Shri Radha Naam Mahatma", titleHi: "श्री राधा नाम महात्म्य", pdfUrl: "https://maanmandir.org/download/shri-radha-naam-mahatma/", isNew: false, downloads: "11.2K" },
-  { id: "b11", titleEn: "Hori Sagar (Rare Rasia Collection)", titleHi: "होरी सागर (दुर्लभ रंगीली होली रसिया संग्रह)", pdfUrl: "https://maanmandir.org/download/holi-sagar-collection-of-rare-rasia-of-rangili-holi/", isNew: false, downloads: "11.5K" },
-  { id: "b12", titleEn: "Swar Vanshi Ke Shabda Nupoor Ke", titleHi: "स्वर वंशी के शब्द नूपुर के (द्वितीय संस्करण)", pdfUrl: "https://maanmandir.org/download/swar-vanshi-ke-shabda-nupoor-ke-2nd-edition/", isNew: false, downloads: "10.7K" },
-  { id: "b13", titleEn: "Vrishbhanupur Shatakam", titleHi: "वृषभानपुर शतकम्", pdfUrl: "https://maanmandir.org/download/vrishbhanupur-shatakam-vanshi-ali-ji/", isNew: false, downloads: "13.3K" },
-  { id: "b14", titleEn: "Bhav Sagar Ki Yatra (Bhayaavah Drashya)", titleHi: "भव सागर की यात्रा (एक भयावह दृश्य)", pdfUrl: "https://maanmandir.org/download/bhav-sagar-ki-yatra-ek-bhayaavah-drashya/", isNew: false, downloads: "32.8K" },
-  { id: "b15", titleEn: "Satsang Saramrit", titleHi: "सत्संग सारामृत", pdfUrl: "https://maanmandir.org/download/satsang-saramrit-%e0%a4%b8%e0%a4%a4%e0%a5%8d%e0%a4%b8%e0%a4%82%e0%a4%97-%e0%a4%b8%e0%a4%be%e0%a4%b0%e0%a4%be%e0%a4%ae%e0%a5%83%e0%a4%a4/", isNew: false, downloads: "28.6K" },
-  { id: "b16", titleEn: "Rasia Raseshwari (Braj Ke Rasia)", titleHi: "रसिया रसेश्वरी (ब्रज के रसिया संग्रह)", pdfUrl: "https://maanmandir.org/download/rasia-raseshwari-collection-of-braj-ke-rasias/", isNew: false, downloads: "26.1K" },
-  { id: "b17", titleEn: "Prahlad Sabha", titleHi: "प्रह्लाद सभा", pdfUrl: "https://maanmandir.org/download/prahlad-sabha/", isNew: false, downloads: "31.6K" },
-  { id: "b18", titleEn: "Prabhat Pheri Bhagwan Naam Mahima", titleHi: "प्रभात फेरी भगवान नाम महिमा", pdfUrl: "https://maanmandir.org/download/prabhat-pheri-bhagwan-naam-mahima/", isNew: false, downloads: "15.4K" },
-  { id: "b19", titleEn: "Meera Ke Prabhu Giridhar Nagar", titleHi: "मीरा के प्रभु गिरिधर नागर", pdfUrl: "https://maanmandir.org/download/meera-ke-prabhu-giridhar-nagar/", isNew: false, downloads: "16.4K" },
-  { id: "b20", titleEn: "Manini Yash Muktamala (Part 01)", titleHi: "मानिनी यश मुक्तामाला (प्रथम भाग)", pdfUrl: "https://maanmandir.org/download/manini-yash-muktamala-part-01/", isNew: false, downloads: "13.1K" },
-  { id: "b21", titleEn: "Manini Yash Muktamala (Part 02)", titleHi: "मानिनी यश मुक्तामाला (द्वितीय भाग)", pdfUrl: "https://maanmandir.org/download/manini-yash-muktamala-part-02/", isNew: false, downloads: "15.1K" },
-  { id: "b22", titleEn: "Gahvarvan Tarangini", titleHi: "गह्वरवन तरंगिणी", pdfUrl: "https://maanmandir.org/download/gahvarvan-tarangini/", isNew: false, downloads: "18.8K" },
-  { id: "b23", titleEn: "Barsana Gazals Collection", titleHi: "बरसाना गज़ल संग्रह", pdfUrl: "https://maanmandir.org/download/barsana-collection-of-gazals/", isNew: false, downloads: "16.4K" },
-  { id: "b24", titleEn: "Saar Grahita (Part 01)", titleHi: "सार ग्रहीता (प्रथम भाग - बाबा जी प्रवचन)", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-01-collection-of-lectures-of-shri-ramesh-baba-ji-maharaj/", isNew: false, downloads: "12.6K" },
-  { id: "b25", titleEn: "Saar Grahita (Part 02)", titleHi: "सार ग्रहीता (द्वितीय भाग - बाबा जी प्रवचन)", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-02-collection-of-lectures-of-shri-ramesh-baba-ji-maharaj/", isNew: false, downloads: "12.0K" }
+  { 
+    id: "b1", 
+    titleEn: "Rasili Braj Yatra - Gujarati", 
+    titleHi: "रसीली ब्रज यात्रा - गुजराती", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/06/Rasili-Braj-Yatra-English-Cover-for-website-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-gujarati-3/", 
+    isNew: true, 
+    downloads: "382 Downloads" 
+  },
+  { 
+    id: "b2", 
+    titleEn: "Rasili Braj Yatra - English", 
+    titleHi: "रसीली ब्रज यात्रा - अंग्रेजी", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2026/06/Rasili-Braj-Yatra-English-Cover-for-website-1-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-english/", 
+    isNew: true, 
+    downloads: "379 Downloads" 
+  },
+  { 
+    id: "b3", 
+    titleEn: "Radha Sudha Nidhi - Short Gutka", 
+    titleHi: "श्री राधा सुधा निधि - लघुकथा गुटका", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2025/10/Radha-sudha-5-5x8-5.jpg", 
+    pdfUrl: "https://maanmandir.org/download/radha-sudha-nidhi-gutka/", 
+    isNew: true, 
+    downloads: "2.3K Downloads" 
+  },
+  { 
+    id: "b4", 
+    titleEn: "Bhagvatamritam - Part 02", 
+    titleHi: "भगवदामृतम् - द्वितीय भाग", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/bhagwatam-cover-part-02-1-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-02/", 
+    isNew: false, 
+    downloads: "10.3K Downloads" 
+  },
+  { 
+    id: "b5", 
+    titleEn: "Bhagvatamritam - Part 01", 
+    titleHi: "भगवदामृतम् - प्रथम भाग", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/bhagwatam-cover-part-01-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-01/", 
+    isNew: false, 
+    downloads: "10.4K Downloads" 
+  },
+  { 
+    id: "b6", 
+    titleEn: "Gahvar Pradeep - Gahvarvan Ke Diptimaan Sant", 
+    titleHi: "गह्वर प्रदीप - गह्वरवन के दीप्तिमान संत", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/Gahvar-Pradeep-Cover.jpg", 
+    pdfUrl: "https://maanmandir.org/download/gahvar-pradeep-gahvarvan-ke-jyotimaan-sant/", 
+    isNew: false, 
+    downloads: "9.4K Downloads" 
+  },
+  { 
+    id: "b7", 
+    titleEn: "Mandir Nirman Se Bhagwat Prapti", 
+    titleHi: "मंदिर निर्माण से भगवत प्राप्ति", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Mandir-Nirman-Se-Bhagwat-Prapti-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/mandir-nirman-se-bhagwat-prapti/", 
+    isNew: false, 
+    downloads: "10.1K Downloads" 
+  },
+  { 
+    id: "b8", 
+    titleEn: "Shri Chandra Sakhi Ji Rachit Pad", 
+    titleHi: "श्री चंद्रसखी जी रचित पद", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Chandra-Sakhi-Ji-Rachit-Pad-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/shri-chandra-sakhi-ji-rachit-pad/", 
+    isNew: false, 
+    downloads: "10.5K Downloads" 
+  },
+  { 
+    id: "b9", 
+    titleEn: "Shri Radha Ras", 
+    titleHi: "श्री राधा रस", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Radha-Ras-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/shri-radha-ras/", 
+    isNew: false, 
+    downloads: "10.8K Downloads" 
+  },
+  { 
+    id: "b10", 
+    titleEn: "Shri Radha Sudha Shatak", 
+    titleHi: "श्री राधा सुधा शतक", 
+    coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Radha-Sudha-Shatak-front-page-pdf.jpg", 
+    pdfUrl: "https://maanmandir.org/download/shri-radha-sudha-shatak/", 
+    isNew: false, 
+    downloads: "10.4K Downloads" 
+  }
 ];
 
 // DOM Initialization
@@ -202,44 +267,61 @@ function setElementText(id, text) {
   if (el) el.textContent = text;
 }
 
-// Fetch Live Books from Website REST API (maanmandir.org/wp-json/wp/v2/pages/9345)
+// Fetch Live Books with Real WordPress Titles & Cover Artworks (Category 208)
 function fetchLiveWebsiteBooks() {
-  fetchedBooksList = FALLBACK_WEBSITE_BOOKS; // Start with complete catalog immediately
+  fetchedBooksList = FALLBACK_WEBSITE_BOOKS; // Start with verified catalog immediately
 
-  fetch('https://maanmandir.org/wp-json/wp/v2/pages/9345')
+  fetch('https://maanmandir.org/wp-json/wp/v2/posts?categories=208&per_page=50')
     .then(res => res.json())
-    .then(data => {
-      if (data && data.content && data.content.rendered) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(data.content.rendered, 'text/html');
-        const downloadLinks = doc.querySelectorAll('a.dlm-download-link');
-        
-        if (downloadLinks && downloadLinks.length > 0) {
-          const parsedBooks = [];
-          downloadLinks.forEach((link, idx) => {
-            let title = link.textContent.replace(/\(.*?\)/g, '').replace(/\.pdf/gi, '').trim();
-            let url = link.getAttribute('href');
-            if (title && url) {
-              parsedBooks.push({
-                id: `wp-b-${idx}`,
-                titleEn: title,
-                titleHi: title,
-                pdfUrl: url,
-                isNew: idx < 3,
-                downloads: 'Synced'
-              });
-            }
-          });
+    .then(posts => {
+      if (posts && posts.length > 0) {
+        const parsedBooks = [];
+        posts.forEach((post, idx) => {
+          // Clean WordPress Post Title
+          let cleanTitle = post.title && post.title.rendered 
+            ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
+            : 'Maan Mandir Book';
 
-          if (parsedBooks.length > 0) {
-            fetchedBooksList = parsedBooks;
-            renderBooksTab();
+          // Extract Cover Image Artwork URL from Post Content HTML
+          let coverImgUrl = '';
+          let pdfDownloadUrl = '';
+          let downloadCount = 'Synced';
+
+          if (post.content && post.content.rendered) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(post.content.rendered, 'text/html');
+            
+            const imgEl = doc.querySelector('img');
+            if (imgEl) coverImgUrl = imgEl.getAttribute('src');
+
+            const linkEl = doc.querySelector('a.dlm-download-link');
+            if (linkEl) pdfDownloadUrl = linkEl.getAttribute('href');
+
+            const countEl = doc.querySelector('.dlm-download-count');
+            if (countEl) downloadCount = countEl.textContent.trim();
           }
+
+          if (cleanTitle && pdfDownloadUrl) {
+            parsedBooks.push({
+              id: `wp-post-${post.id}`,
+              titleEn: cleanTitle,
+              titleHi: cleanTitle,
+              coverImg: coverImgUrl || FALLBACK_WEBSITE_BOOKS[idx % FALLBACK_WEBSITE_BOOKS.length].coverImg,
+              pdfUrl: pdfDownloadUrl,
+              isNew: idx < 3,
+              downloads: downloadCount
+            });
+          }
+        });
+
+        if (parsedBooks.length > 0) {
+          fetchedBooksList = parsedBooks;
+          renderBooksTab();
         }
       }
     })
     .catch(err => {
-      console.log('Website Live Fetch Sync: Using pre-cached catalog', err);
+      console.log('Website Live Fetch Sync: Using pre-cached artwork catalog', err);
     });
 }
 
@@ -352,7 +434,7 @@ function renderHomeRecentUpdates() {
   const recentItems = [
     { title: isHi ? "🔴 लाइव: सांध्य प्रवचन श्री रमेश बाबा जी" : "🔴 Live: Evening Pravachan by Ramesh Baba Ji", type: isHi ? "लाइव प्रसारण" : "Live Webcast", time: "Active Now" },
     { title: isHi ? "🎵 नया कीर्तन: श्री राधा नाम स्मरण" : "🎵 New Audio: Radha Naama Smaran Kirtan", type: "SoundCloud", time: "2h ago" },
-    { title: isHi ? "📚 मान मंदिर वेबसाइट से 25+ ग्रंथ सिंक" : "📚 25+ Official Books Synced from MaanMandir.org", type: isHi ? "पीडीएफ ग्रंथ" : "PDF Book", time: "Synced" }
+    { title: isHi ? "📚 आवरण चित्र सहित ग्रंथ सिंक" : "📚 Official Books & Covers Synced from Website", type: isHi ? "पीडीएफ ग्रंथ" : "PDF Book", time: "Live Sync" }
   ];
 
   container.innerHTML = recentItems.map(item => `
@@ -418,7 +500,7 @@ function renderAudioTab() {
   `).join('');
 }
 
-// Render Books Catalog (Synced Directly from MaanMandir.org Website)
+// Render Books Catalog with Real Website Book Cover Image Artworks
 function renderBooksTab() {
   const container = document.getElementById('books-catalog-list');
   if (!container) return;
@@ -429,9 +511,11 @@ function renderBooksTab() {
 
   container.innerHTML = booksToRender.map(book => `
     <div class="book-card">
-      <div class="book-cover">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-        <div class="book-cover-title" style="margin-top: 6px;">${(isHi ? book.titleHi : book.titleEn).substring(0, 14)}...</div>
+      <div class="book-cover" style="${book.coverImg ? `background: url('${book.coverImg}') center/cover no-repeat;` : ''}">
+        ${!book.coverImg ? `
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          <div class="book-cover-title" style="margin-top: 6px;">${(isHi ? book.titleHi : book.titleEn).substring(0, 14)}...</div>
+        ` : ''}
       </div>
       <div class="book-info">
         <div>
@@ -557,6 +641,7 @@ function initSearch() {
     if (booksContainer) {
       booksContainer.innerHTML = filteredBooks.map(book => `
         <div class="book-card">
+          <div class="book-cover" style="${book.coverImg ? `background: url('${book.coverImg}') center/cover no-repeat;` : ''}"></div>
           <div class="book-info">
             <div class="book-title">${isHi ? book.titleHi : book.titleEn}</div>
             <div class="book-buttons" style="margin-top:8px;">
