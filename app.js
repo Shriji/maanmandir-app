@@ -1181,35 +1181,51 @@ function initPwaInstallPrompt() {
   const iosInstructions = document.getElementById('pwa-ios-instructions');
   const installBtn = document.getElementById('pwa-install-btn');
 
-  // Android & Chrome beforeinstallprompt event handler
+  const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  // Android & Chrome beforeinstallprompt event listener
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     if (androidControls) androidControls.style.display = 'block';
+    if (iosInstructions) iosInstructions.style.display = 'none';
     if (banner) {
-      setTimeout(() => banner.classList.add('active'), 1200);
+      setTimeout(() => banner.classList.add('active'), 1000);
     }
   });
 
   if (installBtn) {
     installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          dismissPwaInstall();
+        }
+        deferredPrompt = null;
+      } else {
+        // Fallback for Android Chrome browser menu
+        alert(currentLang === 'hi' 
+          ? 'होम स्क्रीन पर ऐप जोड़ने के लिए ब्राउज़र मेनू (⋮) पर टैप करें और "Add to Home screen" चुनें।' 
+          : 'To add to home screen, tap the browser menu (⋮) and select "Add to Home screen".');
         dismissPwaInstall();
       }
-      deferredPrompt = null;
     });
   }
 
-  // Detect iOS Mobile Safari
-  const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+  // Show banner on mobile devices (Android or iOS) if not running as standalone PWA
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  if (isMobile && !isStandalone) {
+    if (isIos) {
+      if (iosInstructions) iosInstructions.style.display = 'block';
+      if (androidControls) androidControls.style.display = 'none';
+    } else {
+      if (androidControls) androidControls.style.display = 'block';
+      if (iosInstructions) iosInstructions.style.display = 'none';
+    }
 
-  if (isIos && !isStandalone) {
-    if (iosInstructions) iosInstructions.style.display = 'block';
     if (banner) {
-      setTimeout(() => banner.classList.add('active'), 1800);
+      setTimeout(() => banner.classList.add('active'), 1500);
     }
   }
 
