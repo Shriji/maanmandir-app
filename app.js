@@ -1,7 +1,7 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Gateway Architecture: Curated Side Menu Sections (Maan Mandir, Mataji Gaushala, Radha Rani Braj Yatra, Donate, Contact Us), In-App Native Views vs External Website Gateway Links, Live YouTube CDN Avatars, Direct Handle Links, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
- * Version: 34
+ * Dynamic Gateway Architecture: In-App Native Donation Page with BharatQR Standee (SHRI MATAJI GAUVANSH SEWA), Merchant Details, One-Tap Copy, Curated Side Menu Sections (Maan Mandir, Mataji Gaushala, Radha Rani Braj Yatra, Donate, Contact Us), Live YouTube CDN Avatars, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
+ * Version: 35
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -30,6 +30,7 @@ const TRANSLATIONS = {
     tabAudio: "Audio",
     tabBooks: "Publications",
     tabSeva: "Seva",
+    tabDonate: "Donate",
     subtabBooks: "Books (ग्रंथ)",
     subtabMagazines: "Monthly Magazine (पत्रिका)",
     downloadBtn: "Download / Open PDF",
@@ -65,6 +66,7 @@ const TRANSLATIONS = {
     tabAudio: "ऑडियो",
     tabBooks: "प्रकाशन",
     tabSeva: "सेवा",
+    tabDonate: "दान व सेवा",
     subtabBooks: "ग्रंथ व पुस्तकें",
     subtabMagazines: "मासिक पत्रिका (Patrika)",
     downloadBtn: "डाउनलोड / खोलें",
@@ -130,8 +132,9 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "दान एवं सेवा",
     icon: "💖",
     links: [
-      { textEn: "Donate to Maan Mandir", textHi: "मान मंदिर दान एवं सेवा", url: "https://maanmandir.org/donate/", isExternal: true },
-      { textEn: "Donate to Mataji Gaushala", textHi: "माताजी गौशाला गौसेवा दान", url: "https://www.matajigaushala.org/donation", isExternal: true }
+      { textEn: "In-App BharatQR & UPI Donation", textHi: "भारतक्यूआर एवं यूपीआई दान (इन-ऐप)", isTab: "donate" },
+      { textEn: "Maan Mandir Online Netbanking", textHi: "मान मंदिर ऑनलाइन नेटबैंकिंग", url: "https://maanmandir.org/donate/", isExternal: true },
+      { textEn: "Mataji Gaushala Cow Adoption", textHi: "माताजी गौशाला गौ गोद सेवा", url: "https://www.matajigaushala.org/donation", isExternal: true }
     ]
   },
   {
@@ -251,7 +254,7 @@ const APP_DATA = {
   notifications: [
     { id: 1, titleEn: "🔴 Live Webcast Started", titleHi: "🔴 लाइव सत्संग प्रारंभ", descEn: "Shri Ramesh Baba Ji Maharaj Pravachan live from Barsana Dham.", descHi: "बरसाना धाम से श्री रमेश बाबा जी महाराज का लाइव प्रवचन।", time: "10m ago", unread: true },
     { id: 2, titleEn: "🎵 New Audio Released", titleHi: "🎵 नया संकीर्तन जारी", descEn: "Radha Naama Mahima & Daily Braj Kirtan.", descHi: "राधा नाम महिमा एवं नित्य ब्रज संकीर्तन।", time: "2h ago", unread: true },
-    { id: 3, titleEn: "📰 Monthly Magazines & Cover Artworks Synced", titleHi: "📰 मासिक पत्रिका मुख्य पृष्ठ चित्र सिंक हुए", descEn: "All book & magazine covers synced directly from MaanMandir.org.", descHi: "मान मंदिर वेबसाइट से सभी पत्रिका व ग्रंथ आवरण चित्र सिंक हो गए।", time: "1d ago", unread: true }
+    { id: 3, titleEn: "💖 BharatQR & UPI Donation Live", titleHi: "💖 भारतक्यूआर एवं यूपीआई सेवा उपलब्ध", descEn: "Shri Mataji Gauvansh Sewa BharatQR and payment details synced.", descHi: "श्री माताजी गौवंश सेवा भारतक्यूआर एवं भुगतान विवरण उपलब्ध।", time: "Just now", unread: true }
   ]
 };
 
@@ -467,6 +470,50 @@ document.addEventListener('DOMContentLoaded', () => {
   registerServiceWorker();
 });
 
+// One-Tap Clipboard Copy Helper
+window.copyToClipboard = function(text, successMsg) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(successMsg || 'Copied to clipboard!');
+    }).catch(err => {
+      fallbackCopyText(text, successMsg);
+    });
+  } else {
+    fallbackCopyText(text, successMsg);
+  }
+};
+
+function fallbackCopyText(text, successMsg) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position = "fixed";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  try {
+    document.execCommand('copy');
+    showToast(successMsg || 'Copied!');
+  } catch (err) {
+    alert('Copy failed: ' + text);
+  }
+  document.body.removeChild(textArea);
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('toast-notification');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast-notification';
+    toast.style.cssText = 'position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:#032a61; color:#FFF; padding:10px 18px; border-radius:30px; font-weight:800; font-size:0.84rem; box-shadow:0 4px 14px rgba(0,0,0,0.3); z-index:999; transition:opacity 0.3s ease; opacity:0; pointer-events:none;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = '✅ ' + msg;
+  toast.style.opacity = '1';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+  }, 2200);
+}
+
 // Bilingual Language Switcher Logic
 function initLanguage() {
   setLanguage(currentLang);
@@ -505,6 +552,7 @@ window.setLanguage = function(lang) {
   setElementText('txt-tab-audio', t.tabAudio);
   setElementText('txt-tab-books', t.tabBooks);
   setElementText('txt-tab-seva', t.tabSeva);
+  setElementText('txt-tab-donate', t.tabDonate);
   setElementText('txt-subtab-books', t.subtabBooks);
   setElementText('txt-subtab-magazines', t.subtabMagazines);
   setElementText('txt-notifications-title', t.notificationsTitle);
@@ -850,14 +898,14 @@ function renderHomeRecentUpdates() {
   const isHi = currentLang === 'hi';
   const recentItems = [
     { title: isHi ? "🔴 लाइव: सांध्य प्रवचन श्री रमेश बाबा जी" : "🔴 Live: Evening Pravachan by Ramesh Baba Ji", type: isHi ? "लाइव प्रसारण" : "Live Webcast", time: "Active Now" },
-    { title: isHi ? "🎵 साउंडक्लाउड व मानिनी पोर्टल" : "🎵 SoundCloud & Maanini Portals", type: "SoundCloud", time: "Official" },
-    { title: isHi ? "📚 मासिक पत्रिका व ग्रंथ सिंक" : "📚 Official Books & Monthly Magazines Synced", type: isHi ? "पीडीएफ प्रकाशन" : "PDF Magazine", time: "Live Sync" }
+    { title: isHi ? "💖 भारतक्यूआर एवं यूपीआई गौसेवा दान" : "💖 BharatQR & UPI Gauseva Donation", type: "Donate", time: "Official" },
+    { title: isHi ? "🎵 साउंडक्लाउड व मानिनी पोर्टल" : "🎵 SoundCloud & Maanini Portals", type: "SoundCloud", time: "Official" }
   ];
 
   container.innerHTML = recentItems.map(item => `
     <div class="content-card">
       <div class="card-thumb">
-        <span>${item.type.includes('Live') || item.type.includes('प्रसारण') ? '🔴' : item.type.includes('Audio') || item.type.includes('SoundCloud') ? '🎵' : '📚'}</span>
+        <span>${item.type.includes('Live') || item.type.includes('प्रसारण') ? '🔴' : item.type.includes('Donate') ? '💖' : '🎵'}</span>
       </div>
       <div class="card-body">
         <div class="card-title">${item.title}</div>
@@ -865,7 +913,7 @@ function renderHomeRecentUpdates() {
           <span>${item.type}</span> • <span>${item.time}</span>
         </div>
       </div>
-      <button class="card-action-btn" onclick="switchTab('${item.type.includes('Live') || item.type.includes('प्रसारण') ? 'youtube' : item.type.includes('Audio') || item.type.includes('SoundCloud') ? 'audio' : 'books'}')">
+      <button class="card-action-btn" onclick="switchTab('${item.type.includes('Live') || item.type.includes('प्रसारण') ? 'youtube' : item.type.includes('Donate') ? 'donate' : 'audio'}')">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
       </button>
     </div>
@@ -1015,7 +1063,19 @@ function renderMagazinesTab(searchQuery = '') {
 // Switch Tab Programmatically
 window.switchTab = function(tabName) {
   const targetNav = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
-  if (targetNav) targetNav.click();
+  if (targetNav) {
+    targetNav.click();
+  } else {
+    // If not in bottom bar, handle tab pane switching directly
+    const navItems = document.querySelectorAll('.nav-item');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    navItems.forEach(nav => nav.classList.remove('active'));
+    tabPanes.forEach(pane => pane.classList.remove('active'));
+
+    const activePane = document.getElementById(`tab-${tabName}`);
+    if (activePane) activePane.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 };
 
 // Modals Handler
@@ -1095,7 +1155,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=34')
+    navigator.serviceWorker.register('./sw.js?v=35')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;

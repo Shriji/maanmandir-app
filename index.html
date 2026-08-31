@@ -6,7 +6,7 @@
   <title>Maan Mandir Barsana - Devotee Mobile Portal</title>
   
   <!-- SEO & PWA Meta Tags -->
-  <meta name="description" content="Official Mobile App & Portal for Maan Mandir Seva Sansthan Trust, Barsana Dham. Access Live Webcasts, Kirtans, SoundCloud Audio, Books, Monthly Magazines, and Maanini App.">
+  <meta name="description" content="Official Mobile App & Portal for Maan Mandir Seva Sansthan Trust, Barsana Dham. Access Live Webcasts, Kirtans, SoundCloud Audio, Books, Monthly Magazines, BharatQR & UPI Gauseva Donation, and Maanini App.">
   <meta name="theme-color" content="#032a61">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet with Cache Busting Version 34 -->
-  <link rel="stylesheet" href="styles.css?v=34">
+  <!-- Stylesheet with Cache Busting Version 35 -->
+  <link rel="stylesheet" href="styles.css?v=35">
 </head>
 <body>
 
@@ -147,13 +147,14 @@
             <div class="tile-desc" id="txt-tile-books-desc">Books & Magazines</div>
           </div>
 
-          <!-- 4. Seva & Information -->
-          <div class="grid-tile" onclick="switchTab('seva')">
-            <div class="tile-icon-container" style="background: #DCFCE7; color: #15803D;">
+          <!-- 4. Native In-App BharatQR & UPI Donation -->
+          <div class="grid-tile" onclick="switchTab('donate')">
+            <span class="badge-new" style="background: #EC4899; color: #FFF;">DONATE</span>
+            <div class="tile-icon-container" style="background: #FCE7F3; color: #DB2777;">
               <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
             </div>
-            <div class="tile-title" id="txt-tile-seva">Gauseva & Info</div>
-            <div class="tile-desc" id="txt-tile-seva-desc">Braj Yatra & Seva</div>
+            <div class="tile-title">Donate / सेवा</div>
+            <div class="tile-desc">BharatQR & UPI Seva</div>
           </div>
         </div>
 
@@ -274,6 +275,103 @@
         </div>
       </section>
 
+      <!-- ==========================================
+           TAB 6: DONATE & SEVA (NATIVE IN-APP DONATION PAGE)
+           ========================================== -->
+      <section id="tab-donate" class="tab-pane">
+        <div class="section-header">
+          <h3 class="section-title">💖 Gauseva & Mandir Donation (सेवा व दान)</h3>
+        </div>
+
+        <!-- BharatQR Official Standee Card -->
+        <div class="donation-card">
+          <div class="donation-card-header">
+            <img src="assets/images/app_icon.jpg" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full);">
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);">SHRI MATAJI GAUVANSH SEWA</h3>
+              <p style="font-size: 0.78rem; color: var(--text-muted);">Axis Bank BharatQR • BHIM UPI / RuPay / Cards</p>
+            </div>
+          </div>
+
+          <!-- QR Standee Image Display -->
+          <div class="qr-standee-container">
+            <img src="assets/images/gauseva_qr_standee.jpg" alt="Shri Mataji Gauvansh Sewa BharatQR Code" class="qr-standee-img">
+          </div>
+
+          <!-- Copyable Payment Identifiers Grid -->
+          <div class="payment-details-box">
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">BENEFICIARY</span>
+                <span class="detail-value">SHRI MATAJI GAUVANSH SEWA</span>
+              </div>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">MERCHANT ID (MID)</span>
+                <span class="detail-value">037111010580034</span>
+              </div>
+              <button class="copy-btn" onclick="copyToClipboard('037111010580034', 'MID Copied!')">Copy</button>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">TERMINAL ID (TID)</span>
+                <span class="detail-value">78574894</span>
+              </div>
+              <button class="copy-btn" onclick="copyToClipboard('78574894', 'TID Copied!')">Copy</button>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">BHIM / RUPAY REF</span>
+                <span class="detail-value">6100020024266565</span>
+              </div>
+              <button class="copy-btn" onclick="copyToClipboard('6100020024266565', 'RuPay Ref Copied!')">Copy</button>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">MASTERCARD REF</span>
+                <span class="detail-value">512260002426654</span>
+              </div>
+              <button class="copy-btn" onclick="copyToClipboard('512260002426654', 'Mastercard Ref Copied!')">Copy</button>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">VISA REF</span>
+                <span class="detail-value">4604901024266554</span>
+              </div>
+              <button class="copy-btn" onclick="copyToClipboard('4604901024266554', 'VISA Ref Copied!')">Copy</button>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">HELPDESK CONTACT</span>
+                <span class="detail-value">1860 233 2332 / 022-40426060</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional External Online Payment Gateways -->
+        <div class="section-header" style="margin-top: 18px;">
+          <h3 class="section-title">🌐 Web Gateways & Bank Transfers</h3>
+        </div>
+
+        <div class="content-card" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--primary-blue);">Maan Mandir Sansthan Website Gateway</h4>
+          <p style="font-size: 0.82rem; color: var(--text-medium); line-height: 1.4;">For online netbanking, debit/credit cards, and international donations via MaanMandir.org.</p>
+          <a href="https://maanmandir.org/donate/" target="_blank" class="btn-primary" style="width:100%; justify-content:center; text-decoration:none;">
+            Launch MaanMandir.org Donate Page ↗
+          </a>
+        </div>
+
+        <div class="content-card" style="flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 10px;">
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--primary-blue);">Mataji Gaushala Website Gateway</h4>
+          <p style="font-size: 0.82rem; color: var(--text-medium); line-height: 1.4;">For direct fodder sponsorship and cow adoption donations via MatajiGaushala.org.</p>
+          <a href="https://www.matajigaushala.org/donation" target="_blank" class="btn-primary" style="width:100%; justify-content:center; text-decoration:none; background: #15803D;">
+            Launch MatajiGaushala.org Donate Page ↗
+          </a>
+        </div>
+      </section>
+
     </main>
 
     <!-- Devotee Updates Notification Drawer (Right Slide-Over Panel) -->
@@ -347,16 +445,16 @@
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
         <span id="txt-tab-books">Publications</span>
       </div>
-      <div class="nav-item" data-tab="seva">
+      <div class="nav-item" data-tab="donate">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-        <span id="txt-tab-seva">Seva</span>
+        <span id="txt-tab-donate">Donate</span>
       </div>
     </nav>
 
   </div>
 
-  <!-- Main JavaScript File with Cache Busting Version 34 -->
-  <script src="app.js?v=34"></script>
+  <!-- Main JavaScript File with Cache Busting Version 35 -->
+  <script src="app.js?v=35"></script>
 
 </body>
 </html>
