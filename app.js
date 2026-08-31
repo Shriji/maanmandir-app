@@ -40,7 +40,10 @@ const TRANSLATIONS = {
     scBtn: "Launch SoundCloud Channel ↗",
     maaniniTitle: "Maanini.app Portal",
     maaniniDesc: "Access the dedicated Maanini.app digital experience directly from your mobile device.",
-    maaniniBtn: "Launch Maanini.app Portal ↗"
+    maaniniBtn: "Launch Maanini.app Portal ↗",
+    pwaTitle: "Add Maan Mandir to Home Screen",
+    pwaSubtitle: "Access Live Webcasts, Kirtan & Books instantly from your phone!",
+    pwaBtn: "Add to Home Screen"
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -76,7 +79,10 @@ const TRANSLATIONS = {
     scBtn: "साउंडक्लाउड चैनल खोलें ↗",
     maaniniTitle: "मानिनी ऐप पोर्टल",
     maaniniDesc: "मानिनी डिजिटल अनुभव का आनंद सीधे अपने मोबाइल में लें।",
-    maaniniBtn: "मानिनी पोर्टल खोलें ↗"
+    maaniniBtn: "मानिनी पोर्टल खोलें ↗",
+    pwaTitle: "मान मंदिर ऐप होम स्क्रीन पर जोड़ें",
+    pwaSubtitle: "लाइव प्रसारण, कथा, कीर्तन व ग्रंथों का आनंद सीधे मोबाइल होम स्क्रीन से लें!",
+    pwaBtn: "होम स्क्रीन पर ऐप जोड़ें"
   }
 };
 
@@ -464,6 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initNotificationDrawer();
   initSideNavigationDrawer();
+  initPwaInstallPrompt();
   renderContent();
   fetchLiveWebsiteBooks();
   fetchLiveWebsiteMagazines();
@@ -566,6 +573,11 @@ window.setLanguage = function(lang) {
   setElementText('txt-maanini-title', t.maaniniTitle);
   setElementText('txt-maanini-desc', t.maaniniDesc);
   setElementText('txt-maanini-btn', t.maaniniBtn);
+  
+  // PWA Install Prompt Text
+  setElementText('txt-pwa-title', t.pwaTitle);
+  setElementText('txt-pwa-subtitle', t.pwaSubtitle);
+  setElementText('txt-pwa-btn', t.pwaBtn);
 
   const searchInput = document.getElementById('global-search-input');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
@@ -1151,13 +1163,74 @@ function initSearch() {
   });
 }
 
+// PWA Installation & Add to Home Screen Popup Logic
+let deferredPrompt = null;
+
+function initPwaInstallPrompt() {
+  const dismissedTime = localStorage.getItem('mm_install_dismissed');
+  if (dismissedTime && (Date.now() - parseInt(dismissedTime)) < 7 * 24 * 60 * 60 * 1000) {
+    return; // User dismissed within last 7 days
+  }
+
+  // Check if app is already running in standalone PWA mode
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if (isStandalone) return;
+
+  const banner = document.getElementById('pwa-install-banner');
+  const androidControls = document.getElementById('pwa-android-controls');
+  const iosInstructions = document.getElementById('pwa-ios-instructions');
+  const installBtn = document.getElementById('pwa-install-btn');
+
+  // Android & Chrome beforeinstallprompt event handler
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (androidControls) androidControls.style.display = 'block';
+    if (banner) {
+      setTimeout(() => banner.classList.add('active'), 1200);
+    }
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        dismissPwaInstall();
+      }
+      deferredPrompt = null;
+    });
+  }
+
+  // Detect iOS Mobile Safari
+  const isIos = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  if (isIos && !isStandalone) {
+    if (iosInstructions) iosInstructions.style.display = 'block';
+    if (banner) {
+      setTimeout(() => banner.classList.add('active'), 1800);
+    }
+  }
+
+  window.addEventListener('appinstalled', () => {
+    dismissPwaInstall();
+  });
+}
+
+window.dismissPwaInstall = function() {
+  const banner = document.getElementById('pwa-install-banner');
+  if (banner) banner.classList.remove('active');
+  localStorage.setItem('mm_install_dismissed', Date.now().toString());
+};
+
 // Service Worker Registration for PWA Installation & Auto-Bypass
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=41')
+    navigator.serviceWorker.register('./sw.js?v=46')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
