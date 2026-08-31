@@ -1,7 +1,7 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
  * Dynamic Gateway Architecture: Dedicated NRI & International Devotees PayPal Gateway (PayPal, Credit & Debit Cards for USD/Global), In-App Native Donation Page with BharatQR Standee (SHRI MATAJI GAUVANSH SEWA), Merchant Details, One-Tap Copy, Curated Side Menu Sections, Live YouTube CDN Avatars, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
- * Version: 37
+ * Version: 40
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -254,8 +254,8 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
 const APP_DATA = {
   notifications: [
     { id: 1, titleEn: "🔴 Live Webcast Started", titleHi: "🔴 लाइव सत्संग प्रारंभ", descEn: "Shri Ramesh Baba Ji Maharaj Pravachan live from Barsana Dham.", descHi: "बरसाना धाम से श्री रमेश बाबा जी महाराज का लाइव प्रवचन।", time: "10m ago", unread: true },
-    { id: 2, titleEn: "💳 NRI & Global PayPal Seva Live", titleHi: "💳 NRI व विदेशी भक्तों हेतु PayPal सेवा उपलब्ध", descEn: "PayPal, Credit & Debit Card donations live for NRI devotees.", descHi: "विदेशी भक्तों हेतु PayPal व कार्ड सेवा लिंक उपलब्ध।", time: "Just now", unread: true },
-    { id: 3, titleEn: "💖 BharatQR & UPI Donation Live", titleHi: "💖 भारतक्यूआर एवं यूपीआई सेवा उपलब्ध", descEn: "Shri Mataji Gauvansh Sewa BharatQR and payment details synced.", descHi: "श्री माताजी गौवंश सेवा भारतक्यूआर एवं भुगतान विवरण उपलब्ध।", time: "1h ago", unread: false }
+    { id: 2, titleEn: "🌸 Maanini.app Brand Icon Synced", titleHi: "🌸 मानिनी ऐप लोगो अद्यतन", descEn: "Official Maanini.app logo set as the app icon across all views.", descHi: "सभी व्यूज में मानिनी ऐप का आधिकारिक लोगो सेट हो गया।", time: "Just now", unread: true },
+    { id: 3, titleEn: "💳 NRI & Global PayPal Seva Live", titleHi: "💳 NRI व विदेशी भक्तों हेतु PayPal सेवा उपलब्ध", descEn: "PayPal, Credit & Debit Card donations live for NRI devotees.", descHi: "विदेशी भक्तों हेतु PayPal व कार्ड सेवा लिंक उपलब्ध।", time: "1h ago", unread: false }
   ]
 };
 
@@ -1156,7 +1156,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=37')
+    navigator.serviceWorker.register('./sw.js?v=40')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
