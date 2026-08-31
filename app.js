@@ -132,7 +132,8 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "दान एवं सेवा",
     icon: "💖",
     links: [
-      { textEn: "In-App BharatQR & UPI Donation", textHi: "भारतक्यूआर एवं यूपीआई दान (इन-ऐप)", isTab: "donate" },
+      { textEn: "Shri Maan Bihari Lal Mandir Seva (Dham Seva)", textHi: "श्री मान बिहारी लाल मंदिर सेवा (धाम सेवा)", isTab: "donate" },
+      { textEn: "Shri Mataji Gauseva BharatQR Donation", textHi: "श्री माताजी गौसेवा भारतक्यूआर दान", isTab: "donate" },
       { textEn: "NRI & International Devotees (PayPal / Cards)", textHi: "NRI व विदेशी भक्त सेवा (PayPal / कार्ड्स)", url: "https://www.paypal.com/biz/fund?id=4FVN2ALUJ5GJ8", isExternal: true },
       { textEn: "Maan Mandir Online Netbanking", textHi: "मान मंदिर ऑनलाइन नेटबैंकिंग", url: "https://maanmandir.org/donate/", isExternal: true },
       { textEn: "Mataji Gaushala Cow Adoption", textHi: "माताजी गौशाला गौ गोद सेवा", url: "https://www.matajigaushala.org/donation", isExternal: true }

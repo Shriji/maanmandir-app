@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Maan Mandir">
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/png" href="assets/images/maanini_app_logo.png?v=42">
+  <link rel="icon" type="image/png" href="assets/images/maanini_app_logo.png?v=43">
 
   <!-- Typography: Google Fonts Plus Jakarta Sans & Noto Sans Devanagari for Hindi -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
   <!-- Stylesheet with Cache Busting Version 42 -->
-  <link rel="stylesheet" href="styles.css?v=42">
+  <link rel="stylesheet" href="styles.css?v=43">
 </head>
 <body>
 
@@ -51,7 +51,7 @@
           
           <!-- Interactive Brand Logo & Title (Click to Go Home) -->
           <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="switchTab('home')" title="Go to Home Page">
-            <img src="assets/images/maanini_app_logo.png?v=42" alt="Maan Mandir Logo" class="brand-icon">
+            <img src="assets/images/maanini_app_logo.png?v=43" alt="Maan Mandir Logo" class="brand-icon">
             <div class="brand-title-group">
               <h1 id="txt-app-title">Maan Mandir</h1>
               <span id="txt-app-subtitle">Gahvarvan Barsana</span>
@@ -309,10 +309,66 @@
           </a>
         </div>
 
+        <!-- 🏛️ SHRI MAAN BIHARI LAL MANDIR SEWA (LEELA STHAL PURUDDHAR & DHAM SEVA) -->
+        <div class="donation-card" style="border-left: 4px solid var(--gold-accent); margin-bottom: 20px;">
+          <div class="donation-card-header">
+            <img src="assets/images/maanini_app_logo.png?v=43" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);">SHRI MAAN BIHARI LAL MANDIR SEWA</h3>
+              <p style="font-size: 0.78rem; color: var(--text-muted);">Leela Sthal Puruddhar & Dham Seva • HDFC Bank / UPI</p>
+            </div>
+          </div>
+
+          <!-- Official Banner Image Display -->
+          <div class="qr-standee-container" style="margin-bottom: 12px; background: #fff3e0;">
+            <img src="assets/images/maan_bihari_lal_banner.jpg?v=43" alt="Shri Maan Bihari Lal Mandir Sewa Banner" class="qr-standee-img" style="max-width: 100%;">
+          </div>
+
+          <div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 10px 12px; border-radius: var(--radius-sm); margin-bottom: 12px; font-size: 0.82rem; color: #92400E; line-height: 1.45; font-weight: 700;">
+            🌸 <strong>मान मंदिर लीला स्थल:</strong> श्रीराधाकृष्ण लीला स्थलियों में सबसे प्रमुख है। इस अति विलक्षण लीला स्थली के पुरूद्धार में जुड़ कर धाम सेवा का दुर्लभ लाभ प्राप्त करें।
+          </div>
+
+          <!-- Copyable Payment Identifiers Grid -->
+          <div class="payment-details-box">
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">ACCOUNT NAME</span>
+                <span class="detail-value">SHRI MAAN BIHARI LAL MANDIR SEWA</span>
+              </div>
+              <button class="copy-btn" onclick="copyToClipboard('SHRI MAAN BIHARI LAL MANDIR SEWA', 'Account Name Copied!')">Copy</button>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">BANK NAME</span>
+                <span class="detail-value">HDFC BANK LTD</span>
+              </div>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">BRANCH</span>
+                <span class="detail-value">BSA COLLEGE, MATHURA</span>
+              </div>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">SEVA HELPLINE (संपर्क)</span>
+                <span class="detail-value">9927338666</span>
+              </div>
+              <button class="copy-btn" onclick="copyToClipboard('9927338666', 'Helpline Copied!')">Copy</button>
+            </div>
+            <div class="payment-detail-row">
+              <div>
+                <span class="detail-label">OFFICIAL WEBSITE</span>
+                <span class="detail-value">www.maanmandir.org</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- BharatQR Official Enhanced Standee Card -->
         <div class="donation-card">
           <div class="donation-card-header">
-            <img src="assets/images/maanini_app_logo.png?v=42" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
+            <img src="assets/images/maanini_app_logo.png?v=43" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
             <div>
               <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);">SHRI MATAJI GAUVANSH SEWA</h3>
               <p style="font-size: 0.78rem; color: var(--text-muted);">Axis Bank BharatQR • BHIM UPI / RuPay / Cards</p>
@@ -321,7 +377,7 @@
 
           <!-- Enhanced High-Resolution QR Standee Image Display -->
           <div class="qr-standee-container">
-            <img src="assets/images/gauseva_qr_standee.jpg?v=42" alt="Shri Mataji Gauvansh Sewa BharatQR Code" class="qr-standee-img">
+            <img src="assets/images/gauseva_qr_standee.jpg?v=43" alt="Shri Mataji Gauvansh Sewa BharatQR Code" class="qr-standee-img">
           </div>
 
           <!-- Copyable Payment Identifiers Grid -->
@@ -418,7 +474,7 @@
     <aside id="side-drawer-panel" class="side-drawer-panel">
       <div class="side-drawer-header">
         <div class="brand-wrapper" style="cursor: pointer;" onclick="handleSideMenuLinkClick(true, 'home', '', '');">
-          <img src="assets/images/maanini_app_logo.png?v=42" alt="Maan Mandir Logo" class="brand-icon" style="width:34px; height:34px;">
+          <img src="assets/images/maanini_app_logo.png?v=43" alt="Maan Mandir Logo" class="brand-icon" style="width:34px; height:34px;">
           <div class="brand-title-group">
             <h2 style="font-size: 0.98rem; font-weight:800; color: #FFF; line-height:1.1;">Maan Mandir</h2>
             <span style="font-size: 0.68rem; color: var(--gold-accent);">Gahvarvan Barsana</span>
@@ -480,7 +536,7 @@
   </div>
 
   <!-- Main JavaScript File with Cache Busting Version 42 -->
-  <script src="app.js?v=42"></script>
+  <script src="app.js?v=43"></script>
 
 </body>
 </html>
