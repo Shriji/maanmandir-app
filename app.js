@@ -1,7 +1,7 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
  * Dynamic Gateway Architecture: Dedicated NRI & International Devotees PayPal Gateway (PayPal, Credit & Debit Cards for USD/Global), In-App Native Donation Page with BharatQR Standee (SHRI MATAJI GAUVANSH SEWA), Merchant Details, One-Tap Copy, Curated Side Menu Sections, Live YouTube CDN Avatars, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
- * Version: 40
+ * Version: 41
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -120,7 +120,7 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "राधारानी ब्रज यात्रा",
     icon: "🚩",
     links: [
-      { textEn: "Official Braj Yatra Portal (vrajayatra.in)", textHi: "ब्रज यात्रा पोर्टल (vrajayatra.in)", url: "https://vrajayatra.in/", isExternal: true },
+      { textEn: "Yatra Registration 2026", textHi: "यात्रा पंजीकरण २०२६", url: "https://vrajayatra.in/", isExternal: true },
       { textEn: "Map of Braj Dham (ब्रज मानचित्र)", textHi: "ब्रज धाम मानचित्र", url: "https://maanmandir.org/braj-map/", isExternal: true },
       { textEn: "Radha Rani Braj Yatra Overview", textHi: "राधारानी ब्रज यात्रा विवरण", url: "https://maanmandir.org/radha-rani-braj-yatra/", isExternal: true },
       { textEn: "Rasili Braj Yatra (Encyclopedia)", textHi: "रसीली ब्रज यात्रा (ग्रंथ)", url: "https://maanmandir.org/rasili-braj-yatra-encyclopedia-of-braj/", isExternal: true }
@@ -1156,7 +1156,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=40')
+    navigator.serviceWorker.register('./sw.js?v=41')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
