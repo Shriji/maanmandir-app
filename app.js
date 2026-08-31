@@ -48,7 +48,10 @@ const TRANSLATIONS = {
     qrModalSubtitle: "Scan with any mobile camera to open or install the app!",
     zipTitle: "Bulk Satsang Downloads (ZIP Format)",
     zipDesc: "Download complete albums, daily Pravachans, and Raag Seva Kirtans in ZIP archives for offline listening on any device.",
-    zipBtn: "Open Bulk Satsang Downloads ↗"
+    zipBtn: "Open Bulk Satsang Downloads ↗",
+    gaushalaTileTitle: "Shri Mataji Gaushala Barsana",
+    gaushalaTileDesc: "Home to tens of thousands of indigenous cows under the divine blessings of Shri Ramesh Baba Ji Maharaj. Visit the official website for Gau Seva, Gaushala Darshan & News.",
+    gaushalaTileBtn: "Visit MatajiGaushala.org"
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -92,7 +95,10 @@ const TRANSLATIONS = {
     qrModalSubtitle: "किसी भी मोबाइल कैमरे से स्कैन करके ऐप खोलें या इंस्टॉल करें!",
     zipTitle: "बल्क सत्संग डाउनलोड (ZIP फॉर्मेट)",
     zipDesc: "ऑफलाइन सुनने हेतु सभी प्रवचन, ब्रज संकीर्तन व एल्बम की ZIP फाइलें सीधे डाउनलोड करें।",
-    zipBtn: "बल्क सत्संग डाउनलोड खोलें ↗"
+    zipBtn: "बल्क सत्संग डाउनलोड खोलें ↗",
+    gaushalaTileTitle: "श्री माताजी गौशाला बरसाना",
+    gaushalaTileDesc: "श्री रमेश बाबा जी महाराज के पावन सानिध्य में 60,000+ गोवंश की नि:स्वार्थ सेवा। गौ सेवा, दर्शन एवं जानकारी हेतु माताजी गौशाला वेबसाइट देखें।",
+    gaushalaTileBtn: "MatajiGaushala.org खोलें"
   }
 };
 
@@ -594,6 +600,11 @@ window.setLanguage = function(lang) {
   setElementText('txt-zip-title', t.zipTitle);
   setElementText('txt-zip-desc', t.zipDesc);
   setElementText('txt-zip-btn', t.zipBtn);
+
+  // Front Page Gaushala Tile Text
+  setElementText('txt-gaushala-tile-title', t.gaushalaTileTitle);
+  setElementText('txt-gaushala-tile-desc', t.gaushalaTileDesc);
+  setElementText('txt-gaushala-tile-btn', t.gaushalaTileBtn);
 
   const searchInput = document.getElementById('global-search-input');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
@@ -1318,7 +1329,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=55')
+    navigator.serviceWorker.register('./sw.js?v=56')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
