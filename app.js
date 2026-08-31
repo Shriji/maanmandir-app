@@ -8,11 +8,11 @@
 const TRANSLATIONS = {
   en: {
     appTitle: "Maan Mandir",
-    appSubtitle: "Barsana Dham Portal",
+    appSubtitle: "Gahvarvan Barsana",
     liveBanner: "🔴 LIVE NOW: Ramesh Baba Ji Pravachan",
     watchLive: "Watch Live",
     searchPlaceholder: "Search Pravachans, Kirtan, Books, Magazines...",
-    heroTitle: "Shri Radharani Temple & Maan Mandir",
+    heroTitle: "Shri Maan Mandir Seva Sansthan Trust",
     heroSubtitle: "Maan Mandir Seva Sansthan Trust • Shri Ramesh Baba Ji Maharaj",
     heroTag: "Barsana Dham",
     sectionResources: "Devotee Resources",
@@ -44,11 +44,11 @@ const TRANSLATIONS = {
   },
   hi: {
     appTitle: "मान मंदिर",
-    appSubtitle: "बरसाना धाम पोर्टल",
+    appSubtitle: "गह्वरवन बरसाना",
     liveBanner: "🔴 लाइव: श्री रमेश बाबा जी महाराज प्रवचन",
     watchLive: "लाइव देखें",
     searchPlaceholder: "प्रवचन, कीर्तन, पुस्तकें, पत्रिका खोजें...",
-    heroTitle: "श्री लाडली लाला जू मंदिर व मान मंदिर",
+    heroTitle: "श्री मान मंदिर सेवा संस्थान ट्रस्ट",
     heroSubtitle: "मान मंदिर सेवा संस्थान ट्रस्ट • श्री रमेश बाबा जी महाराज",
     heroTag: "बरसाना धाम",
     sectionResources: "भक्त सेवा एवं साधन",
