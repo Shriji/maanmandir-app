@@ -1,17 +1,19 @@
-// Maan Mandir Devotee Mobile Portal - Service Worker (v49)
-const CACHE_NAME = 'maanmandir-v49';
+// Maan Mandir Devotee Mobile Portal - Service Worker (v50)
+const CACHE_NAME = 'maanmandir-v50';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css?v=49',
-  './app.js?v=49',
+  './styles.css?v=50',
+  './app.js?v=50',
   './manifest.json',
-  './assets/images/app_icon.jpg?v=49',
-  './assets/images/maanini_app_logo.png?v=49',
-  './assets/images/hero_banner.jpg?v=49',
-  './assets/images/maan_bihari_lal_banner.jpg?v=49',
-  './assets/images/gauseva_qr_standee.jpg?v=49',
-  './assets/images/gauseva_qr_code.jpg?v=49'
+  './assets/images/app_icon.jpg?v=50',
+  './assets/images/maanini_app_logo.png?v=50',
+  './assets/images/hero_banner.jpg?v=50',
+  './assets/images/maan_bihari_lal_banner.jpg?v=50',
+  './assets/images/gauseva_qr_standee.jpg?v=50',
+  './assets/images/gauseva_qr_code.jpg?v=50',
+  './assets/images/qr_maanmandir_app_branded.png?v=50',
+  './assets/images/qr_maanini_app_branded.png?v=50'
 ];
 
 self.addEventListener('install', (event) => {

@@ -43,7 +43,9 @@ const TRANSLATIONS = {
     maaniniBtn: "Launch Maanini.app Portal ↗",
     pwaTitle: "Add Maan Mandir to Home Screen",
     pwaSubtitle: "Access Live Webcasts, Kirtan & Books instantly from your phone!",
-    pwaBtn: "Add to Home Screen"
+    pwaBtn: "Add to Home Screen",
+    qrModalTitle: "📱 Scan & Share App QR Codes",
+    qrModalSubtitle: "Scan with any mobile camera to open or install the app!"
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -82,7 +84,9 @@ const TRANSLATIONS = {
     maaniniBtn: "मानिनी पोर्टल खोलें ↗",
     pwaTitle: "मान मंदिर ऐप होम स्क्रीन पर जोड़ें",
     pwaSubtitle: "लाइव प्रसारण, कथा, कीर्तन व ग्रंथों का आनंद सीधे मोबाइल होम स्क्रीन से लें!",
-    pwaBtn: "होम स्क्रीन पर ऐप जोड़ें"
+    pwaBtn: "होम स्क्रीन पर ऐप जोड़ें",
+    qrModalTitle: "📱 ऐप क्यूआर कोड (स्कैन व शेयर करें)",
+    qrModalSubtitle: "किसी भी मोबाइल कैमरे से स्कैन करके ऐप खोलें या इंस्टॉल करें!"
   }
 };
 
@@ -103,6 +107,7 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "मान मंदिर",
     icon: "🛕",
     links: [
+      { textEn: "App QR Codes (Scan & Share)", textHi: "ऐप क्यूआर कोड (स्कैन व शेयर)", isAction: "openQrModal" },
       { textEn: "Maan Mandir About", textHi: "मान मंदिर परिचय", url: "https://maanmandir.org/about-us/", isExternal: true },
       { textEn: "A Typical Day at Temple", textHi: "मंदिर की नित्य दिनचर्या", url: "https://maanmandir.org/a-typical-day-of-temple/", isExternal: true },
       { textEn: "Plan Your Visit To Maan Mandir", textHi: "मान मंदिर दर्शन यात्रा योजना", url: "https://maanmandir.org/plan-your-visit-to-maan-mandir/", isExternal: true }
@@ -618,14 +623,16 @@ function initSideNavigationDrawer() {
   renderSideDrawerMenu();
 }
 
-window.handleSideMenuLinkClick = function(isTab, targetTab, subTab, url) {
+window.handleSideMenuLinkClick = function(isTab, targetTab, subTab, url, isAction) {
   const sideOverlay = document.getElementById('side-drawer-overlay');
   const sidePanel = document.getElementById('side-drawer-panel');
   if (sideOverlay) sideOverlay.classList.remove('active');
   if (sidePanel) sidePanel.classList.remove('active');
   document.body.style.overflow = '';
 
-  if (isTab) {
+  if (isAction === 'openQrModal') {
+    openQrModal('mm');
+  } else if (isTab) {
     switchTab(targetTab);
     if (subTab) switchPublicationSubTab(subTab);
   } else if (url) {
@@ -647,7 +654,14 @@ function renderSideDrawerMenu() {
       </div>
       <div class="menu-links-list">
         ${cat.links.map(l => {
-          if (l.isTab) {
+          if (l.isAction) {
+            return `
+              <a href="#" onclick="handleSideMenuLinkClick(false, '', '', '', '${l.isAction}'); return false;" class="menu-link-item">
+                <span>${isHi ? l.textHi : l.textEn}</span>
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v1m6 11h2m-6 0h-2v4m0-6v-4m6 10v-2m-6 0h-2m10-8V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v4a2 2 0 002 2h4a2 2 0 002-2zM6 20H4a2 2 0 01-2-2v-4a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2zM6 10H4a2 2 0 01-2-2V4a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2z"></path></svg>
+              </a>
+            `;
+          } else if (l.isTab) {
             return `
               <a href="#" onclick="handleSideMenuLinkClick(true, '${l.isTab}', '${l.subTab || ''}', ''); return false;" class="menu-link-item">
                 <span>${isHi ? l.textHi : l.textEn}</span>
@@ -1162,6 +1176,39 @@ function initSearch() {
     }
   });
 }
+
+// App QR Codes Modal Window Logic
+window.openQrModal = function(initialTab = 'mm') {
+  const modal = document.getElementById('qr-modal');
+  if (modal) {
+    switchQrTab(initialTab);
+    modal.classList.add('active');
+  }
+};
+
+window.closeQrModal = function() {
+  const modal = document.getElementById('qr-modal');
+  if (modal) modal.classList.remove('active');
+};
+
+window.switchQrTab = function(tabKey) {
+  const mmBtn = document.getElementById('btn-qr-tab-mm');
+  const maaniniBtn = document.getElementById('btn-qr-tab-maanini');
+  const mmPane = document.getElementById('qr-pane-mm');
+  const maaniniPane = document.getElementById('qr-pane-maanini');
+
+  if (tabKey === 'mm') {
+    if (mmBtn) mmBtn.classList.add('active');
+    if (maaniniBtn) maaniniBtn.classList.remove('active');
+    if (mmPane) mmPane.style.display = 'block';
+    if (maaniniPane) maaniniPane.style.display = 'none';
+  } else {
+    if (maaniniBtn) maaniniBtn.classList.add('active');
+    if (mmBtn) mmBtn.classList.remove('active');
+    if (maaniniPane) maaniniPane.style.display = 'block';
+    if (mmPane) mmPane.style.display = 'none';
+  }
+};
 
 // PWA Installation & Add to Home Screen Popup Logic
 let deferredPrompt = null;
