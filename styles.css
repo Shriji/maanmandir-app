@@ -1050,6 +1050,43 @@ body {
   margin-bottom: 10px;
 }
 
+/* Bulk Zip Downloads Special Hero Card */
+.zip-hero-card {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  color: var(--text-white);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(49, 46, 129, 0.25);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.zip-hero-card::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 140px;
+  height: 140px;
+  background: rgba(245, 158, 11, 0.22);
+  border-radius: 50%;
+  filter: blur(25px);
+}
+
+.zip-tag {
+  background: rgba(245, 158, 11, 0.25);
+  border: 1px solid var(--gold-accent);
+  color: var(--gold-accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
 /* Devotee Updates Notifications & Side Navigation Drawers */
 .drawer-overlay {
   position: fixed;

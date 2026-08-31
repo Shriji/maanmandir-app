@@ -45,7 +45,10 @@ const TRANSLATIONS = {
     pwaSubtitle: "Access Live Webcasts, Kirtan & Books instantly from your phone!",
     pwaBtn: "Add to Home Screen",
     qrModalTitle: "📱 Scan & Share App QR Codes",
-    qrModalSubtitle: "Scan with any mobile camera to open or install the app!"
+    qrModalSubtitle: "Scan with any mobile camera to open or install the app!",
+    zipTitle: "Bulk Audio Downloads (ZIP Format)",
+    zipDesc: "Download complete albums, daily Pravachans, and Raag Seva Kirtans in ZIP archives for offline listening on any device.",
+    zipBtn: "Open Audio ZIP Downloads ↗"
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -86,7 +89,10 @@ const TRANSLATIONS = {
     pwaSubtitle: "लाइव प्रसारण, कथा, कीर्तन व ग्रंथों का आनंद सीधे मोबाइल होम स्क्रीन से लें!",
     pwaBtn: "होम स्क्रीन पर ऐप जोड़ें",
     qrModalTitle: "📱 ऐप क्यूआर कोड (स्कैन व शेयर करें)",
-    qrModalSubtitle: "किसी भी मोबाइल कैमरे से स्कैन करके ऐप खोलें या इंस्टॉल करें!"
+    qrModalSubtitle: "किसी भी मोबाइल कैमरे से स्कैन करके ऐप खोलें या इंस्टॉल करें!",
+    zipTitle: "बल्क ऑडियो डाउनलोड (ZIP फॉर्मेट)",
+    zipDesc: "ऑफलाइन सुनने हेतु सभी प्रवचन, ब्रज संकीर्तन व एल्बम की ZIP फाइलें सीधे डाउनलोड करें।",
+    zipBtn: "ऑडियो ZIP डाउनलोड खोलें ↗"
   }
 };
 
@@ -583,6 +589,11 @@ window.setLanguage = function(lang) {
   setElementText('txt-pwa-title', t.pwaTitle);
   setElementText('txt-pwa-subtitle', t.pwaSubtitle);
   setElementText('txt-pwa-btn', t.pwaBtn);
+
+  // Bulk ZIP Downloads Text
+  setElementText('txt-zip-title', t.zipTitle);
+  setElementText('txt-zip-desc', t.zipDesc);
+  setElementText('txt-zip-btn', t.zipBtn);
 
   const searchInput = document.getElementById('global-search-input');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
@@ -1307,7 +1318,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=51')
+    navigator.serviceWorker.register('./sw.js?v=52')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
