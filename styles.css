@@ -1,8 +1,8 @@
 /* ==========================================================================
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLESHEET
    Senior Architecture Edition: Clean Glassmorphism, Crisp Side Drawer, 
-   In-App Native Donation Page with BharatQR Standee, Desktop Centered
-   Version: 35
+   Official Maanini.app Brand Logo, In-App Native Donation Page with BharatQR Standee
+   Version: 39
    ========================================================================== */
 
 /* Typography & Root Design Tokens */
@@ -180,10 +180,12 @@ body {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-sm);
-  object-fit: cover;
-  border: 2px solid var(--light-blue);
+  object-fit: contain;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-blue);
   box-shadow: var(--shadow-sm);
   flex-shrink: 0;
+  padding: 2px;
 }
 
 .brand-title-group {
