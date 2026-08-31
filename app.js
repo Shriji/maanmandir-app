@@ -39,7 +39,7 @@ const TRANSLATIONS = {
     scDesc: "Listen to official daily Pravachans, divine Satsang, Braj Kirtan, and Bhajans by Maan Mandir Sangeet Mandal on SoundCloud.",
     scBtn: "Launch SoundCloud Channel ↗",
     maaniniTitle: "Maanini.app Portal",
-    maaniniDesc: "Access the dedicated Maanini.app digital experience directly from your mobile device.",
+    maaniniDesc: "Access divine Satsang, daily Pravachans, Kirtan, and the dedicated Maanini.app digital experience directly on your mobile device.",
     maaniniBtn: "Launch Maanini.app Portal ↗",
     pwaTitle: "Add Maan Mandir to Home Screen",
     pwaSubtitle: "Access Live Webcasts, Kirtan & Books instantly from your phone!",
@@ -83,7 +83,7 @@ const TRANSLATIONS = {
     scDesc: "साउंडक्लाउड पर मान मंदिर संगीत मंडल द्वारा नित्य सत्संग, ब्रज संकीर्तन, भजन व श्री बाबा जी के दिव्य प्रवचन सुनें।",
     scBtn: "साउंडक्लाउड चैनल खोलें ↗",
     maaniniTitle: "मानिनी ऐप पोर्टल",
-    maaniniDesc: "मानिनी डिजिटल अनुभव का आनंद सीधे अपने मोबाइल में लें।",
+    maaniniDesc: "श्री बाबा जी के दिव्य सत्संग, नित्य प्रवचन, संकीर्तन व मानिनी डिजिटल अनुभव का आनंद सीधे अपने मोबाइल में लें।",
     maaniniBtn: "मानिनी पोर्टल खोलें ↗",
     pwaTitle: "मान मंदिर ऐप होम स्क्रीन पर जोड़ें",
     pwaSubtitle: "लाइव प्रसारण, कथा, कीर्तन व ग्रंथों का आनंद सीधे मोबाइल होम स्क्रीन से लें!",
@@ -1318,7 +1318,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=54')
+    navigator.serviceWorker.register('./sw.js?v=55')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
