@@ -2,8 +2,8 @@
    MAAN MANDIR MOBILE DEVOTEE PORTAL - DESIGN SYSTEM & STYLESHEET
    Senior Architecture Edition: Clean Glassmorphism, Crisp Side Drawer, 
    Official Maanini.app Brand Logo, In-App Native Donation Page with BharatQR Standee,
-   & PWA Add to Home Screen Installation Popup
-   Version: 46
+   & Non-Blocking PWA Add to Home Screen Installation Popup
+   Version: 48
    ========================================================================== */
 
 /* Typography & Root Design Tokens */
@@ -1297,7 +1297,7 @@ body {
   color: var(--primary-blue);
 }
 
-/* PWA Add to Home Screen Installation Banner Component */
+/* PWA Add to Home Screen Installation Banner Component (Non-Blocking Pointer Controls) */
 .pwa-install-banner {
   position: fixed;
   bottom: 74px; /* Placed above bottom nav bar */
@@ -1311,12 +1311,18 @@ body {
   padding: 14px;
   box-shadow: 0 10px 30px rgba(3, 42, 97, 0.25);
   z-index: 400;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0.3s ease;
+  display: none; /* HARD HIDE BY DEFAULT TO PREVENT OVERLAPPING BOTTOM NAV BAR */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .pwa-install-banner.active {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
 

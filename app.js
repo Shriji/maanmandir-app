@@ -1167,16 +1167,25 @@ function initSearch() {
 let deferredPrompt = null;
 
 function initPwaInstallPrompt() {
+  const banner = document.getElementById('pwa-install-banner');
+
+  // Check if app is already running in standalone PWA mode (saved on home screen)
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if (isStandalone) {
+    if (banner) {
+      banner.classList.remove('active');
+      banner.style.display = 'none';
+      banner.remove(); // Safely remove from DOM in installed PWA mode!
+    }
+    return;
+  }
+
   const dismissedTime = localStorage.getItem('mm_install_dismissed');
   if (dismissedTime && (Date.now() - parseInt(dismissedTime)) < 7 * 24 * 60 * 60 * 1000) {
+    if (banner) banner.style.display = 'none';
     return; // User dismissed within last 7 days
   }
 
-  // Check if app is already running in standalone PWA mode
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  if (isStandalone) return;
-
-  const banner = document.getElementById('pwa-install-banner');
   const androidControls = document.getElementById('pwa-android-controls');
   const iosInstructions = document.getElementById('pwa-ios-instructions');
   const installBtn = document.getElementById('pwa-install-btn');
@@ -1190,6 +1199,7 @@ function initPwaInstallPrompt() {
     if (androidControls) androidControls.style.display = 'block';
     if (iosInstructions) iosInstructions.style.display = 'none';
     if (banner) {
+      banner.style.display = 'flex';
       setTimeout(() => banner.classList.add('active'), 1000);
     }
   });
@@ -1225,6 +1235,7 @@ function initPwaInstallPrompt() {
     }
 
     if (banner) {
+      banner.style.display = 'flex';
       setTimeout(() => banner.classList.add('active'), 1500);
     }
   }
@@ -1236,7 +1247,10 @@ function initPwaInstallPrompt() {
 
 window.dismissPwaInstall = function() {
   const banner = document.getElementById('pwa-install-banner');
-  if (banner) banner.classList.remove('active');
+  if (banner) {
+    banner.classList.remove('active');
+    banner.style.display = 'none';
+  }
   localStorage.setItem('mm_install_dismissed', Date.now().toString());
 };
 
