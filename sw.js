@@ -1,10 +1,10 @@
-// Maan Mandir Devotee Mobile Portal - Service Worker (v37)
-const CACHE_NAME = 'maanmandir-v37';
+// Maan Mandir Devotee Mobile Portal - Service Worker (v38)
+const CACHE_NAME = 'maanmandir-v38';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css?v=37',
-  './app.js?v=37',
+  './styles.css?v=38',
+  './app.js?v=38',
   './manifest.json',
   './assets/images/app_icon.jpg',
   './assets/images/hero_banner.jpg',
