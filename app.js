@@ -36,7 +36,7 @@ const TRANSLATIONS = {
     downloadBtn: "Download / Open PDF",
     notificationsTitle: "Devotee Updates",
     scTitle: "Maan Mandir SoundCloud Channel",
-    scDesc: "Listen to official Pravachans, daily Braj Kirtan, and Bhajans by Maan Mandir Sangeet Mandal on SoundCloud.",
+    scDesc: "Listen to official daily Pravachans, divine Satsang, Braj Kirtan, and Bhajans by Maan Mandir Sangeet Mandal on SoundCloud.",
     scBtn: "Launch SoundCloud Channel ↗",
     maaniniTitle: "Maanini.app Portal",
     maaniniDesc: "Access the dedicated Maanini.app digital experience directly from your mobile device.",
@@ -80,7 +80,7 @@ const TRANSLATIONS = {
     downloadBtn: "डाउनलोड / खोलें",
     notificationsTitle: "भक्त अपडेट्स",
     scTitle: "मान मंदिर आधिकारिक साउंडक्लाउड",
-    scDesc: "साउंडक्लाउड पर मान मंदिर संगीत मंडल द्वारा नित्य ब्रज संकीर्तन, भजन व बाबा जी के दिव्य प्रवचन सुनें।",
+    scDesc: "साउंडक्लाउड पर मान मंदिर संगीत मंडल द्वारा नित्य सत्संग, ब्रज संकीर्तन, भजन व श्री बाबा जी के दिव्य प्रवचन सुनें।",
     scBtn: "साउंडक्लाउड चैनल खोलें ↗",
     maaniniTitle: "मानिनी ऐप पोर्टल",
     maaniniDesc: "मानिनी डिजिटल अनुभव का आनंद सीधे अपने मोबाइल में लें।",
@@ -1318,7 +1318,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=53')
+    navigator.serviceWorker.register('./sw.js?v=54')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
