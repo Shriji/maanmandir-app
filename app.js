@@ -1,7 +1,7 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
  * Dynamic Gateway Architecture: Dedicated NRI & International Devotees PayPal Gateway (PayPal, Credit & Debit Cards for USD/Global), In-App Native Donation Page with BharatQR Standee (SHRI MATAJI GAUVANSH SEWA), Merchant Details, One-Tap Copy, Curated Side Menu Sections, Live YouTube CDN Avatars, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
- * Version: 36
+ * Version: 37
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -1156,7 +1156,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=36')
+    navigator.serviceWorker.register('./sw.js?v=37')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
