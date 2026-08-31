@@ -1,7 +1,7 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Senior Architecture Gateway: Curated Side Navigation Drawer, In-App Native Views vs External Website Gateway Links, Live YouTube CDN Avatars, Direct Handle Links, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
- * Version: 33
+ * Dynamic Gateway Architecture: Curated Side Menu Sections (Maan Mandir, Mataji Gaushala, Radha Rani Braj Yatra, Donate, Contact Us), In-App Native Views vs External Website Gateway Links, Live YouTube CDN Avatars, Direct Handle Links, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
+ * Version: 34
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -87,59 +87,61 @@ let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
 
-// Senior Architect Curated Side Navigation Drawer Menu (Essential Maanmandir.org Website Gateways)
+// Side Navigation Drawer Categories Structured as Requested
 const MAANMANDIR_ORG_MENU_CATEGORIES = [
   {
-    catId: "sansthan",
-    titleEn: "Sansthan & Sant Sangh",
-    titleHi: "संस्थान व संत परिचय",
-    icon: "🌸",
+    catId: "maanmandir",
+    titleEn: "Maan Mandir",
+    titleHi: "मान मंदिर",
+    icon: "🛕",
     links: [
-      { textEn: "About Maan Mandir", textHi: "मान मंदिर परिचय", url: "https://maanmandir.org/about-us/", isExternal: true },
-      { textEn: "Shri Ramesh Baba Ji Maharaj", textHi: "श्री रमेश बाबा जी महाराज", url: "https://maanmandir.org/shri-ramesh-baba-ji-maharaj/", isExternal: true },
-      { textEn: "Plan Your Visit To Barsana", textHi: "बरसाना धाम दर्शन यात्रा योजना", url: "https://maanmandir.org/plan-your-visit-to-maan-mandir/", isExternal: true }
+      { textEn: "Maan Mandir About", textHi: "मान मंदिर परिचय", url: "https://maanmandir.org/about-us/", isExternal: true },
+      { textEn: "A Typical Day at Temple", textHi: "मंदिर की नित्य दिनचर्या", url: "https://maanmandir.org/a-typical-day-of-temple/", isExternal: true },
+      { textEn: "Plan Your Visit To Maan Mandir", textHi: "मान मंदिर दर्शन यात्रा योजना", url: "https://maanmandir.org/plan-your-visit-to-maan-mandir/", isExternal: true }
+    ]
+  },
+  {
+    catId: "gaushala",
+    titleEn: "Mataji Gaushala",
+    titleHi: "माताजी गौशाला",
+    icon: "🐄",
+    links: [
+      { textEn: "Mataji Gaushala Home", textHi: "माताजी गौशाला मुख्य पृष्ठ", url: "https://www.matajigaushala.org/", isExternal: true },
+      { textEn: "Free Hospital for Cows", textHi: "निःशुल्क गौ चिकित्सालय", url: "https://www.matajigaushala.org/services-4", isExternal: true },
+      { textEn: "Rescue & Save Gaumata", textHi: "गौ संरक्षण व पुनर्वास", url: "https://www.matajigaushala.org/save-cow", isExternal: true },
+      { textEn: "Gau Aarti & Darshan", textHi: "नित्य गौ आरती व दर्शन", url: "https://www.matajigaushala.org/gau-aarti", isExternal: true }
     ]
   },
   {
     catId: "yatra",
-    titleEn: "Braj Yatra & Geography",
-    titleHi: "ब्रज यात्रा व मानचित्र",
-    icon: "🗺️",
+    titleEn: "Radha Rani Braj Yatra",
+    titleHi: "राधारानी ब्रज यात्रा",
+    icon: "🚩",
     links: [
-      { textEn: "Radha Rani Braj Yatra", textHi: "राधारानी ब्रज यात्रा", url: "https://maanmandir.org/radha-rani-braj-yatra/", isExternal: true },
-      { textEn: "Map of Braj Dham (ब्रज मानचित्र)", textHi: "ब्रज धाम मानचित्र", url: "https://maanmandir.org/braj-map/", isExternal: true }
+      { textEn: "Official Braj Yatra Portal (vrajayatra.in)", textHi: "ब्रज यात्रा पोर्टल (vrajayatra.in)", url: "https://vrajayatra.in/", isExternal: true },
+      { textEn: "Map of Braj Dham (ब्रज मानचित्र)", textHi: "ब्रज धाम मानचित्र", url: "https://maanmandir.org/braj-map/", isExternal: true },
+      { textEn: "Radha Rani Braj Yatra Overview", textHi: "राधारानी ब्रज यात्रा विवरण", url: "https://maanmandir.org/radha-rani-braj-yatra/", isExternal: true },
+      { textEn: "Rasili Braj Yatra (Encyclopedia)", textHi: "रसीली ब्रज यात्रा (ग्रंथ)", url: "https://maanmandir.org/rasili-braj-yatra-encyclopedia-of-braj/", isExternal: true }
     ]
   },
   {
-    catId: "seva",
-    titleEn: "Seva & Environmental Projects",
-    titleHi: "गौसेवा व जनहित प्रकल्प",
-    icon: "🐄",
-    links: [
-      { textEn: "Shri Mataji Gaushala", textHi: "श्री माताजी गौशाला बरसाना", url: "https://maanmandir.org/mataji-goshala/", isExternal: true },
-      { textEn: "Prasad Seva (Free Feast)", textHi: "नित्य अन्नक्षेत्र प्रसाद सेवा", url: "https://maanmandir.org/prasad-seva-free-feast/", isExternal: true },
-      { textEn: "Kund & Water Body Restoration", textHi: "ब्रज सरोवर व कुंड संरक्षण", url: "https://maanmandir.org/kund-water-body-restoration/", isExternal: true }
-    ]
-  },
-  {
-    catId: "media",
-    titleEn: "Media & Literature",
-    titleHi: "मीडिया व साहित्य संग्रह",
-    icon: "📚",
-    links: [
-      { textEn: "Search Satsang & Lectures", textHi: "सत्संग एवं प्रवचन खोजें", url: "https://maanmandir.org/search-satsang/", isExternal: true },
-      { textEn: "Books & Grantha Catalog", textHi: "ग्रंथ व पुस्तकें (इन-ऐप)", isTab: "books", subTab: "books" },
-      { textEn: "Monthly Magazine (Patrika)", textHi: "मासिक पत्रिका (इन-ऐप)", isTab: "books", subTab: "magazines" }
-    ]
-  },
-  {
-    catId: "support",
-    titleEn: "Devotee Support & Contact",
-    titleHi: "भक्त सेवा व संपर्क",
+    catId: "donate",
+    titleEn: "Donate",
+    titleHi: "दान एवं सेवा",
     icon: "💖",
     links: [
-      { textEn: "Donate / Support Seva", textHi: "दान एवं सेवा सहयोग", url: "https://maanmandir.org/donate/", isExternal: true },
-      { textEn: "Contact Sansthan", textHi: "संस्थान संपर्क करें", url: "https://maanmandir.org/contact-us/", isExternal: true }
+      { textEn: "Donate to Maan Mandir", textHi: "मान मंदिर दान एवं सेवा", url: "https://maanmandir.org/donate/", isExternal: true },
+      { textEn: "Donate to Mataji Gaushala", textHi: "माताजी गौशाला गौसेवा दान", url: "https://www.matajigaushala.org/donation", isExternal: true }
+    ]
+  },
+  {
+    catId: "contact",
+    titleEn: "Contact Us",
+    titleHi: "संपर्क करें",
+    icon: "📞",
+    links: [
+      { textEn: "Contact Maan Mandir Barsana", textHi: "मान मंदिर बरसाना संपर्क", url: "https://maanmandir.org/contact-us/", isExternal: true },
+      { textEn: "Contact Mataji Gaushala", textHi: "माताजी गौशाला संपर्क", url: "https://www.matajigaushala.org/contact-us", isExternal: true }
     ]
   }
 ];
@@ -594,7 +596,7 @@ function renderSideDrawerMenu() {
             return `
               <a href="${l.url}" target="_blank" onclick="handleSideMenuLinkClick(false, '', '', '${l.url}');" class="menu-link-item">
                 <span>${isHi ? l.textHi : l.textEn}</span>
-                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
               </a>
             `;
           }
@@ -1093,7 +1095,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=33')
+    navigator.serviceWorker.register('./sw.js?v=34')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
