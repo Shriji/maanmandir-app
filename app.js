@@ -1,7 +1,7 @@
 /**
  * MAAN MANDIR MOBILE DEVOTEE PORTAL - APPLICATION LOGIC
- * Dynamic Gateway Architecture: In-App Native Donation Page with BharatQR Standee (SHRI MATAJI GAUVANSH SEWA), Merchant Details, One-Tap Copy, Curated Side Menu Sections (Maan Mandir, Mataji Gaushala, Radha Rani Braj Yatra, Donate, Contact Us), Live YouTube CDN Avatars, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
- * Version: 35
+ * Dynamic Gateway Architecture: Dedicated NRI & International Devotees PayPal Gateway (PayPal, Credit & Debit Cards for USD/Global), In-App Native Donation Page with BharatQR Standee (SHRI MATAJI GAUVANSH SEWA), Merchant Details, One-Tap Copy, Curated Side Menu Sections, Live YouTube CDN Avatars, PDF Catalog, Updates Drawer, Font Resizer (A-/A/A+), Bilingual Switcher (EN/HI), & Instant Search
+ * Version: 36
  */
 
 // Bilingual Translation Dictionary (English 🇬🇧 & Hindi 🇮🇳)
@@ -133,6 +133,7 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     icon: "💖",
     links: [
       { textEn: "In-App BharatQR & UPI Donation", textHi: "भारतक्यूआर एवं यूपीआई दान (इन-ऐप)", isTab: "donate" },
+      { textEn: "NRI & International Devotees (PayPal / Cards)", textHi: "NRI व विदेशी भक्त सेवा (PayPal / कार्ड्स)", url: "https://www.paypal.com/biz/fund?id=4FVN2ALUJ5GJ8", isExternal: true },
       { textEn: "Maan Mandir Online Netbanking", textHi: "मान मंदिर ऑनलाइन नेटबैंकिंग", url: "https://maanmandir.org/donate/", isExternal: true },
       { textEn: "Mataji Gaushala Cow Adoption", textHi: "माताजी गौशाला गौ गोद सेवा", url: "https://www.matajigaushala.org/donation", isExternal: true }
     ]
@@ -253,8 +254,8 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
 const APP_DATA = {
   notifications: [
     { id: 1, titleEn: "🔴 Live Webcast Started", titleHi: "🔴 लाइव सत्संग प्रारंभ", descEn: "Shri Ramesh Baba Ji Maharaj Pravachan live from Barsana Dham.", descHi: "बरसाना धाम से श्री रमेश बाबा जी महाराज का लाइव प्रवचन।", time: "10m ago", unread: true },
-    { id: 2, titleEn: "🎵 New Audio Released", titleHi: "🎵 नया संकीर्तन जारी", descEn: "Radha Naama Mahima & Daily Braj Kirtan.", descHi: "राधा नाम महिमा एवं नित्य ब्रज संकीर्तन।", time: "2h ago", unread: true },
-    { id: 3, titleEn: "💖 BharatQR & UPI Donation Live", titleHi: "💖 भारतक्यूआर एवं यूपीआई सेवा उपलब्ध", descEn: "Shri Mataji Gauvansh Sewa BharatQR and payment details synced.", descHi: "श्री माताजी गौवंश सेवा भारतक्यूआर एवं भुगतान विवरण उपलब्ध।", time: "Just now", unread: true }
+    { id: 2, titleEn: "💳 NRI & Global PayPal Seva Live", titleHi: "💳 NRI व विदेशी भक्तों हेतु PayPal सेवा उपलब्ध", descEn: "PayPal, Credit & Debit Card donations live for NRI devotees.", descHi: "विदेशी भक्तों हेतु PayPal व कार्ड सेवा लिंक उपलब्ध।", time: "Just now", unread: true },
+    { id: 3, titleEn: "💖 BharatQR & UPI Donation Live", titleHi: "💖 भारतक्यूआर एवं यूपीआई सेवा उपलब्ध", descEn: "Shri Mataji Gauvansh Sewa BharatQR and payment details synced.", descHi: "श्री माताजी गौवंश सेवा भारतक्यूआर एवं भुगतान विवरण उपलब्ध।", time: "1h ago", unread: false }
   ]
 };
 
@@ -898,14 +899,14 @@ function renderHomeRecentUpdates() {
   const isHi = currentLang === 'hi';
   const recentItems = [
     { title: isHi ? "🔴 लाइव: सांध्य प्रवचन श्री रमेश बाबा जी" : "🔴 Live: Evening Pravachan by Ramesh Baba Ji", type: isHi ? "लाइव प्रसारण" : "Live Webcast", time: "Active Now" },
-    { title: isHi ? "💖 भारतक्यूआर एवं यूपीआई गौसेवा दान" : "💖 BharatQR & UPI Gauseva Donation", type: "Donate", time: "Official" },
-    { title: isHi ? "🎵 साउंडक्लाउड व मानिनी पोर्टल" : "🎵 SoundCloud & Maanini Portals", type: "SoundCloud", time: "Official" }
+    { title: isHi ? "💳 NRI व विदेशी भक्त सेवा (PayPal & Cards)" : "💳 NRI & Global Devotee Seva (PayPal & Cards)", type: "PayPal NRI", time: "Official" },
+    { title: isHi ? "💖 भारतक्यूआर एवं यूपीआई गौसेवा दान" : "💖 BharatQR & UPI Gauseva Donation", type: "Donate", time: "Official" }
   ];
 
   container.innerHTML = recentItems.map(item => `
     <div class="content-card">
       <div class="card-thumb">
-        <span>${item.type.includes('Live') || item.type.includes('प्रसारण') ? '🔴' : item.type.includes('Donate') ? '💖' : '🎵'}</span>
+        <span>${item.type.includes('Live') || item.type.includes('प्रसारण') ? '🔴' : item.type.includes('Donate') || item.type.includes('PayPal') ? '💳' : '🎵'}</span>
       </div>
       <div class="card-body">
         <div class="card-title">${item.title}</div>
@@ -913,7 +914,7 @@ function renderHomeRecentUpdates() {
           <span>${item.type}</span> • <span>${item.time}</span>
         </div>
       </div>
-      <button class="card-action-btn" onclick="switchTab('${item.type.includes('Live') || item.type.includes('प्रसारण') ? 'youtube' : item.type.includes('Donate') ? 'donate' : 'audio'}')">
+      <button class="card-action-btn" onclick="switchTab('${item.type.includes('Live') || item.type.includes('प्रसारण') ? 'youtube' : item.type.includes('Donate') || item.type.includes('PayPal') ? 'donate' : 'audio'}')">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
       </button>
     </div>
@@ -1039,7 +1040,7 @@ function renderMagazinesTab(searchQuery = '') {
     <div class="book-card">
       <div class="book-cover" style="${mag.coverImg ? `background: url('${mag.coverImg}') center/cover no-repeat;` : 'background: linear-gradient(135deg, var(--primary-blue), #0f52ba);'}">
         ${!mag.coverImg ? `
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 01-2-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
           <div class="book-cover-title" style="margin-top: 6px;">Patrika</div>
         ` : ''}
       </div>
@@ -1155,7 +1156,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=35')
+    navigator.serviceWorker.register('./sw.js?v=36')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
