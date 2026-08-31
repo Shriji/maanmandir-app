@@ -51,7 +51,7 @@ const TRANSLATIONS = {
     zipBtn: "Open Bulk Satsang Downloads ↗",
     gaushalaTileTitle: "Shri Mataji Gaushala Barsana",
     gaushalaTileDesc: "Home to tens of thousands of indigenous cows under the divine blessings of Shri Ramesh Baba Ji Maharaj. Visit the official website for Gau Seva, Gaushala Darshan & News.",
-    gaushalaTileBtn: "Visit MatajiGaushala.org"
+    gaushalaTileBtn: "Open Website ↗"
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -98,7 +98,7 @@ const TRANSLATIONS = {
     zipBtn: "बल्क सत्संग डाउनलोड खोलें ↗",
     gaushalaTileTitle: "श्री माताजी गौशाला बरसाना",
     gaushalaTileDesc: "श्री रमेश बाबा जी महाराज के पावन सानिध्य में 60,000+ गोवंश की नि:स्वार्थ सेवा। गौ सेवा, दर्शन एवं जानकारी हेतु माताजी गौशाला वेबसाइट देखें।",
-    gaushalaTileBtn: "MatajiGaushala.org खोलें"
+    gaushalaTileBtn: "वेबसाइट खोलें ↗"
   }
 };
 
@@ -1329,7 +1329,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=57')
+    navigator.serviceWorker.register('./sw.js?v=58')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
