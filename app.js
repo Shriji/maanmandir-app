@@ -1260,7 +1260,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=46')
+    navigator.serviceWorker.register('./sw.js?v=49')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;

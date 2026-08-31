@@ -81,7 +81,7 @@ body {
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-  padding-bottom: 74px; /* Space for Bottom Nav Bar */
+  padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px)); /* Space for Bottom Nav Bar & Mobile Gesture Inset */
 }
 
 /* Header Component */
@@ -1382,7 +1382,7 @@ body {
   line-height: 1.3;
 }
 
-/* Bottom Navigation Bar Component */
+/* Bottom Navigation Bar Component (Responsive Safe Area Insets for Mobile PWA) */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -1390,7 +1390,10 @@ body {
   transform: translateX(-50%);
   width: 100%;
   max-width: 480px;
-  height: 64px;
+  height: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding-left: calc(14px + env(safe-area-inset-left, 0px));
+  padding-right: calc(14px + env(safe-area-inset-right, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--bg-primary);
   border-top: 1px solid var(--border-light);
   display: flex;
@@ -1408,13 +1411,16 @@ body {
   gap: 3px;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
   flex: 1;
   height: 100%;
   cursor: pointer;
   transition: var(--transition);
   position: relative;
+  padding: 0 4px;
 }
 
 .nav-item svg {
