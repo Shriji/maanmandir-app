@@ -51,7 +51,10 @@ const TRANSLATIONS = {
     zipBtn: "Open Bulk Satsang Downloads ↗",
     gaushalaTileTitle: "Shri Mataji Gaushala Barsana",
     gaushalaTileDesc: "Home to tens of thousands of indigenous cows under the divine blessings of Shri Ramesh Baba Ji Maharaj. Visit the official website for Gau Seva, Gaushala Darshan & News.",
-    gaushalaTileBtn: "Open Website ↗"
+    gaushalaTileBtn: "Open Website ↗",
+    donateHeader: "💖 Gauseva & Mandir Donation",
+    mmCardInfo: "🌸 Shri Maan Mandir Seva Sansthan: Scan QR code using Google Pay, PhonePe, Paytm, BHIM UPI or any bank app to contribute directly to Maan Mandir Seva.",
+    renovCardInfo: "🌸 Maan Mandir Renovation Seva: Shri Maan Mandir is the supreme divine pastime site of Shri Radha Krishna. Participate in the renovation and restoration of this holy site to receive the rare blessings of Dham Seva."
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -77,7 +80,7 @@ const TRANSLATIONS = {
     tabAudio: "ऑडियो",
     tabBooks: "प्रकाशन",
     tabSeva: "सेवा",
-    tabDonate: "Donate",
+    tabDonate: "दान व सेवा",
     subtabBooks: "ग्रंथ व पुस्तकें",
     subtabMagazines: "मासिक पत्रिका (Patrika)",
     downloadBtn: "डाउनलोड / खोलें",
@@ -98,7 +101,10 @@ const TRANSLATIONS = {
     zipBtn: "बल्क सत्संग डाउनलोड खोलें ↗",
     gaushalaTileTitle: "श्री माताजी गौशाला बरसाना",
     gaushalaTileDesc: "श्री रमेश बाबा जी महाराज के पावन सानिध्य में 60,000+ गोवंश की नि:स्वार्थ सेवा। गौ सेवा, दर्शन एवं जानकारी हेतु माताजी गौशाला वेबसाइट देखें।",
-    gaushalaTileBtn: "वेबसाइट खोलें ↗"
+    gaushalaTileBtn: "वेबसाइट खोलें ↗",
+    donateHeader: "💖 गौसेवा एवं मंदिर दान",
+    mmCardInfo: "🌸 श्री मान मंदिर सेवा संस्थान: गूगल पे, फोनपे, पेटीएम, भीम UPI अथवा किसी भी बैंक ऐप से क्यूआर कोड स्कैन करके सीधे मान मंदिर सेवा में योगदान दें।",
+    renovCardInfo: "🌸 मान मंदिर जीर्णोद्धार सेवा: श्रीराधाकृष्ण लीला स्थलियों में मान मंदिर सबसे प्रमुख है। इस अति विलक्षण लीला स्थली के जीर्णोद्धार में जुड़कर धाम सेवा का दुर्लभ लाभ प्राप्त करें।"
   }
 };
 
@@ -152,15 +158,15 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
   {
     catId: "donate",
     titleEn: "Donate",
-    titleHi: "Donate",
+    titleHi: "दान एवं सेवा",
     icon: "💖",
     links: [
-      { textEn: "Shri Maan Mandir Seva Sansthan (IDFC UPI)", textHi: "Shri Maan Mandir Seva Sansthan (IDFC UPI)", isTab: "donate" },
-      { textEn: "Maan Mandir Renovation Seva (HDFC Bank)", textHi: "Maan Mandir Renovation Seva (HDFC Bank)", isTab: "donate" },
-      { textEn: "Shri Mataji Gauseva BharatQR Donation", textHi: "Shri Mataji Gauseva BharatQR Donation", isTab: "donate" },
-      { textEn: "NRI & International Devotees (PayPal / Cards)", textHi: "NRI & International Devotees (PayPal / Cards)", url: "https://www.paypal.com/biz/fund?id=4FVN2ALUJ5GJ8", isExternal: true },
-      { textEn: "Maan Mandir Online Netbanking", textHi: "Maan Mandir Online Netbanking", url: "https://maanmandir.org/donate/", isExternal: true },
-      { textEn: "Mataji Gaushala Cow Adoption", textHi: "Mataji Gaushala Cow Adoption", url: "https://www.matajigaushala.org/donation", isExternal: true }
+      { textEn: "Shri Maan Mandir Seva Sansthan (IDFC UPI)", textHi: "श्री मान मंदिर सेवा संस्थान (IDFC UPI)", isTab: "donate" },
+      { textEn: "Maan Mandir Renovation Seva (HDFC Bank)", textHi: "मान मंदिर जीर्णोद्धार सेवा (HDFC बैंक)", isTab: "donate" },
+      { textEn: "Shri Mataji Gauseva BharatQR Donation", textHi: "श्री माताजी गौसेवा भारतक्यूआर दान", isTab: "donate" },
+      { textEn: "NRI & International Devotees (PayPal / Cards)", textHi: "NRI व विदेशी भक्त सेवा (PayPal / कार्ड्स)", url: "https://www.paypal.com/biz/fund?id=4FVN2ALUJ5GJ8", isExternal: true },
+      { textEn: "Maan Mandir Online Netbanking", textHi: "मान मंदिर ऑनलाइन नेटबैंकिंग", url: "https://maanmandir.org/donate/", isExternal: true },
+      { textEn: "Mataji Gaushala Cow Adoption", textHi: "माताजी गौशाला गौ गोद सेवा", url: "https://www.matajigaushala.org/donation", isExternal: true }
     ]
   },
   {
@@ -606,6 +612,11 @@ window.setLanguage = function(lang) {
   setElementText('txt-gaushala-tile-title', t.gaushalaTileTitle);
   setElementText('txt-gaushala-tile-desc', t.gaushalaTileDesc);
   setElementText('txt-gaushala-tile-btn', t.gaushalaTileBtn);
+
+  // Donation Section Dynamic Texts
+  setElementText('txt-donate-header', t.donateHeader);
+  setElementText('txt-mm-card-info', t.mmCardInfo);
+  setElementText('txt-renov-card-info', t.renovCardInfo);
 
   const searchInput = document.getElementById('global-search-input');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
@@ -1330,7 +1341,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=60')
+    navigator.serviceWorker.register('./sw.js?v=61')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
