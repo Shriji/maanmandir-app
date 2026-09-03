@@ -1197,6 +1197,9 @@ function renderSocialPlatforms() {
     </div>
   `).join('');
 }
+
+// Render YouTube Live & Official Channels Gateway Cards
+function renderYouTubeTab() {
   const container = document.getElementById('youtube-videos-list');
   if (!container) return;
 
@@ -1565,7 +1568,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=68')
+    navigator.serviceWorker.register('./sw.js?v=69')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
