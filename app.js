@@ -1580,7 +1580,7 @@ function registerServiceWorker() {
     caches.keys().then(keys => {
       keys.forEach(key => caches.delete(key));
     });
-    navigator.serviceWorker.register('./sw.js?v=73')
+    navigator.serviceWorker.register('./sw.js?v=74')
       .catch(err => console.error('Service Worker Registration Failed', err));
   }
 }
