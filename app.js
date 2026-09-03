@@ -1571,25 +1571,16 @@ window.dismissPwaInstall = function() {
   localStorage.setItem('mm_install_dismissed', Date.now().toString());
 };
 
-// Service Worker Registration for PWA Installation & Auto-Bypass
+// Service Worker Cache Invalidation & Registration
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(registrations => {
-      registrations.forEach(registration => registration.update());
+      registrations.forEach(registration => registration.unregister());
     });
-    navigator.serviceWorker.register('./sw.js?v=72')
-      .then(reg => {
-        reg.onupdatefound = () => {
-          const installingWorker = reg.installing;
-          if (installingWorker) {
-            installingWorker.onstatechange = () => {
-              if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                window.location.reload();
-              }
-            };
-          }
-        };
-      })
+    caches.keys().then(keys => {
+      keys.forEach(key => caches.delete(key));
+    });
+    navigator.serviceWorker.register('./sw.js?v=73')
       .catch(err => console.error('Service Worker Registration Failed', err));
   }
 }
