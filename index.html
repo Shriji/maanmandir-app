@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
   <!-- Stylesheet with Cache Busting Version 42 -->
-  <link rel="stylesheet" href="styles.css?v=70">
+  <link rel="stylesheet" href="styles.css?v=71">
 </head>
 <body>
 
@@ -43,7 +43,7 @@
       <div class="top-bar-row1">
         <div class="brand-wrapper">
           <!-- Side Navigation Menu Button (☰) -->
-          <button class="icon-btn" id="menu-drawer-btn" aria-label="Main Menu Drawer" style="margin-right: 4px;">
+          <button class="icon-btn" id="menu-drawer-btn" onclick="openSideDrawer()" aria-label="Main Menu Drawer" style="margin-right: 4px;">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
@@ -67,7 +67,7 @@
             </svg>
           </button>
           
-          <button class="icon-btn" id="bell-notification-btn" aria-label="Devotee Notifications">
+          <button class="icon-btn" id="bell-notification-btn" onclick="openNotificationDrawer()" aria-label="Devotee Notifications">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
             </svg>
@@ -111,7 +111,7 @@
       <section id="tab-home" class="tab-pane active">
         <!-- Compact Hero Darshan Banner -->
         <div class="hero-card">
-          <img src="assets/images/hero_banner.jpg?v=70" alt="Maan Mandir Barsana" class="hero-image">
+          <img src="assets/images/hero_banner.jpg?v=71" alt="Maan Mandir Barsana" class="hero-image">
           <div class="hero-overlay">
             <span class="hero-tag" id="txt-hero-tag">Barsana Dham</span>
             <h2 class="hero-title" id="txt-hero-title">Shri Maan Mandir Seva Sansthan Trust</h2>
@@ -380,7 +380,7 @@
         <!-- 🏛️ SHRI MAAN MANDIR SEVA SANSTHAN (IDFC FIRST BANK BHIM UPI STANDEE) -->
         <div class="donation-card" style="border-left: 4px solid var(--primary-blue); margin-bottom: 20px;">
           <div class="donation-card-header">
-            <img src="assets/images/maanini_app_logo.png?v=70" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
+            <img src="assets/images/maanini_app_logo.png?v=71" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
             <div>
               <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);" id="txt-mm-card-title">SHRI MAAN MANDIR SEVA SANSTHAN</h3>
               <p style="font-size: 0.78rem; color: var(--text-muted);" id="txt-mm-card-sub">IDFC FIRST Bank • BHIM UPI / GPay / PhonePe / Paytm</p>
@@ -389,7 +389,7 @@
 
           <!-- Official IDFC FIRST Bank QR Standee Image Display -->
           <div class="qr-standee-container" style="margin-bottom: 12px; background: #fff; padding: 10px;">
-            <img src="assets/images/idfc_maanmandir_qr_standee.jpg?v=70" alt="Shri Maan Mandir Seva Sansthan IDFC UPI QR Code" class="qr-standee-img" style="max-width: 320px;">
+            <img src="assets/images/idfc_maanmandir_qr_standee.jpg?v=71" alt="Shri Maan Mandir Seva Sansthan IDFC UPI QR Code" class="qr-standee-img" style="max-width: 320px;">
           </div>
 
           <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 10px 12px; border-radius: var(--radius-sm); margin-bottom: 12px; font-size: 0.82rem; color: #1E40AF; line-height: 1.45; font-weight: 700;" id="txt-mm-card-info">
@@ -430,7 +430,7 @@
         <!-- 🏛️ MAAN MANDIR RENOVATION SEVA (LEELA STHAL PURUDDHAR & DHAM SEVA) -->
         <div class="donation-card" style="border-left: 4px solid var(--gold-accent); margin-bottom: 20px;">
           <div class="donation-card-header">
-            <img src="assets/images/maanini_app_logo.png?v=70" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
+            <img src="assets/images/maanini_app_logo.png?v=71" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
             <div>
               <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);" id="txt-renov-card-title">MAAN MANDIR RENOVATION SEVA</h3>
               <p style="font-size: 0.78rem; color: var(--text-muted);" id="txt-renov-card-sub">Leela Sthal Puruddhar & Dham Seva • HDFC Bank / UPI</p>
@@ -439,7 +439,7 @@
 
           <!-- Official Banner Image Display -->
           <div class="qr-standee-container" style="margin-bottom: 12px; background: #fff3e0;">
-            <img src="assets/images/maan_bihari_lal_banner.jpg?v=70" alt="Maan Mandir Renovation Seva Banner" class="qr-standee-img" style="max-width: 100%;">
+            <img src="assets/images/maan_bihari_lal_banner.jpg?v=71" alt="Maan Mandir Renovation Seva Banner" class="qr-standee-img" style="max-width: 100%;">
           </div>
 
           <div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 10px 12px; border-radius: var(--radius-sm); margin-bottom: 12px; font-size: 0.82rem; color: #92400E; line-height: 1.45; font-weight: 700;" id="txt-renov-card-info">
@@ -486,7 +486,7 @@
         <!-- BharatQR Official Enhanced Standee Card -->
         <div class="donation-card">
           <div class="donation-card-header">
-            <img src="assets/images/maanini_app_logo.png?v=70" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
+            <img src="assets/images/maanini_app_logo.png?v=71" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
             <div>
               <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);" id="txt-gau-card-title">SHRI MATAJI GAUVANSH SEWA</h3>
               <p style="font-size: 0.78rem; color: var(--text-muted);" id="txt-gau-card-sub">Axis Bank BharatQR • BHIM UPI / RuPay / Cards</p>
@@ -495,7 +495,7 @@
 
           <!-- Enhanced High-Resolution QR Standee Image Display -->
           <div class="qr-standee-container">
-            <img src="assets/images/gauseva_qr_standee.jpg?v=70" alt="Shri Mataji Gauvansh Sewa BharatQR Code" class="qr-standee-img">
+            <img src="assets/images/gauseva_qr_standee.jpg?v=71" alt="Shri Mataji Gauvansh Sewa BharatQR Code" class="qr-standee-img">
           </div>
 
           <!-- Copyable Payment Identifiers Grid -->
@@ -575,30 +575,30 @@
     </main>
 
     <!-- Devotee Updates Notification Drawer (Right Slide-Over Panel) -->
-    <div id="drawer-overlay" class="drawer-overlay"></div>
+    <div id="drawer-overlay" class="drawer-overlay" onclick="closeNotificationDrawer()"></div>
     <div id="drawer-panel" class="drawer-panel">
       <div class="drawer-header">
         <div class="drawer-title">
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
           <span id="txt-notifications-title">Devotee Updates</span>
         </div>
-        <button id="drawer-close-btn" class="drawer-close-btn">✕</button>
+        <button id="drawer-close-btn" class="drawer-close-btn" onclick="closeNotificationDrawer()">✕</button>
       </div>
       <div class="drawer-content" id="notifications-container"></div>
     </div>
 
     <!-- Side Navigation Menu Drawer (Left Slide-Over Panel) -->
-    <div id="side-drawer-overlay" class="drawer-overlay"></div>
+    <div id="side-drawer-overlay" class="drawer-overlay" onclick="closeSideDrawer()"></div>
     <aside id="side-drawer-panel" class="side-drawer-panel">
       <div class="side-drawer-header">
         <div class="brand-wrapper" style="cursor: pointer;" onclick="handleSideMenuLinkClick(true, 'home', '', '');">
-          <img src="assets/images/maanini_app_logo.png?v=59" alt="Maan Mandir Logo" class="brand-icon" style="width:34px; height:34px;">
+          <img src="assets/images/maanini_app_logo.png?v=71" alt="Maan Mandir Logo" class="brand-icon" style="width:34px; height:34px;">
           <div class="brand-title-group">
             <h2 style="font-size: 0.98rem; font-weight:800; color: #FFF; line-height:1.1;">Maan Mandir</h2>
             <span style="font-size: 0.68rem; color: var(--gold-accent);">Gahvarvan Barsana</span>
           </div>
         </div>
-        <button id="side-drawer-close-btn" class="drawer-close-btn">✕</button>
+        <button id="side-drawer-close-btn" class="drawer-close-btn" onclick="closeSideDrawer()">✕</button>
       </div>
       <div class="side-drawer-content" id="side-menu-categories-list">
         <!-- Dynamic Categorized Menu Items -->
@@ -643,7 +643,7 @@
         <!-- 1. Maan Mandir App QR Display -->
         <div id="qr-pane-mm" class="qr-pane active">
           <div style="background: var(--bg-tertiary); border: 2px solid var(--border-blue); border-radius: var(--radius-md); padding: 14px; display: inline-block; margin-bottom: 12px; box-shadow: var(--shadow-sm);">
-            <img src="assets/images/qr_maanmandir_app_branded.png?v=59" alt="Maan Mandir App QR Code" style="width: 220px; height: 220px; display: block; margin: 0 auto; border-radius: var(--radius-xs);">
+            <img src="assets/images/qr_maanmandir_app_branded.png?v=71" alt="Maan Mandir App QR Code" style="width: 220px; height: 220px; display: block; margin: 0 auto; border-radius: var(--radius-xs);">
           </div>
           <div style="font-size: 0.88rem; font-weight: 800; color: var(--primary-blue); margin-bottom: 2px;">
             Maan Mandir Mobile Portal
@@ -655,7 +655,7 @@
             <button class="btn-primary" onclick="copyToClipboard('https://app.MaanMandir.org', 'App Link Copied!')">
               📋 Copy Link
             </button>
-            <a href="assets/images/qr_maanmandir_app_branded.png?v=59" download="MaanMandir_App_QR.png" class="btn-outline" style="text-decoration:none;">
+            <a href="assets/images/qr_maanmandir_app_branded.png?v=71" download="MaanMandir_App_QR.png" class="btn-outline" style="text-decoration:none;">
               ⬇️ Save QR
             </a>
           </div>
@@ -664,7 +664,7 @@
         <!-- 2. Maanini.app QR Display -->
         <div id="qr-pane-maanini" class="qr-pane" style="display: none;">
           <div style="background: var(--bg-tertiary); border: 2px solid var(--border-blue); border-radius: var(--radius-md); padding: 14px; display: inline-block; margin-bottom: 12px; box-shadow: var(--shadow-sm);">
-            <img src="assets/images/qr_maanini_app_branded.png?v=59" alt="Maanini.app QR Code" style="width: 220px; height: 220px; display: block; margin: 0 auto; border-radius: var(--radius-xs);">
+            <img src="assets/images/qr_maanini_app_branded.png?v=71" alt="Maanini.app QR Code" style="width: 220px; height: 220px; display: block; margin: 0 auto; border-radius: var(--radius-xs);">
           </div>
           <div style="font-size: 0.88rem; font-weight: 800; color: var(--primary-blue); margin-bottom: 2px;">
             Maanini.app Digital Experience
@@ -676,7 +676,7 @@
             <button class="btn-primary" onclick="copyToClipboard('https://maanini.app', 'Maanini Link Copied!')">
               📋 Copy Link
             </button>
-            <a href="assets/images/qr_maanini_app_branded.png?v=59" download="Maanini_App_QR.png" class="btn-outline" style="text-decoration:none;">
+            <a href="assets/images/qr_maanini_app_branded.png?v=71" download="Maanini_App_QR.png" class="btn-outline" style="text-decoration:none;">
               ⬇️ Save QR
             </a>
           </div>
@@ -697,7 +697,7 @@
     <div id="pwa-install-banner" class="pwa-install-banner">
       <button id="pwa-install-close-btn" class="pwa-close-btn" onclick="dismissPwaInstall()">✕</button>
       <div class="pwa-banner-header">
-        <img src="assets/images/maanini_app_logo.png?v=59" alt="Maan Mandir App" class="pwa-app-icon">
+        <img src="assets/images/maanini_app_logo.png?v=71" alt="Maan Mandir App" class="pwa-app-icon">
         <div class="pwa-banner-titles">
           <h3 id="txt-pwa-title" class="pwa-title">Add Maan Mandir to Home Screen</h3>
           <p id="txt-pwa-subtitle" class="pwa-subtitle">Access Live Webcasts, Kirtan & Books instantly from your phone!</p>
@@ -721,24 +721,24 @@
 
     <!-- Bottom Mobile Tab Bar (5 Clean Tabs) -->
     <nav class="bottom-nav">
-      <div class="nav-item active" data-tab="home">
+      <div class="nav-item active" data-tab="home" onclick="switchTab('home')">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
         <span id="txt-tab-home">Home</span>
       </div>
-      <div class="nav-item" data-tab="youtube">
+      <div class="nav-item" data-tab="youtube" onclick="switchTab('youtube')">
         <span class="nav-item-badge"></span>
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 022 2z"></path></svg>
         <span id="txt-tab-live">Live</span>
       </div>
-      <div class="nav-item" data-tab="audio">
+      <div class="nav-item" data-tab="audio" onclick="switchTab('audio')">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
         <span id="txt-tab-audio">Audio</span>
       </div>
-      <div class="nav-item" data-tab="books">
+      <div class="nav-item" data-tab="books" onclick="switchTab('books')">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
         <span id="txt-tab-books">Publications</span>
       </div>
-      <div class="nav-item" data-tab="donate">
+      <div class="nav-item" data-tab="donate" onclick="switchTab('donate')">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
         <span id="txt-tab-donate">Donate</span>
       </div>
@@ -747,7 +747,7 @@
   </div>
 
   <!-- Main JavaScript File with Cache Busting Version 70 -->
-  <script src="app.js?v=70"></script>
+  <script src="app.js?v=71"></script>
 
 </body>
 </html>

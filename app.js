@@ -759,45 +759,43 @@ function setElementText(id, text) {
 }
 
 // Side Navigation Drawer Menu Logic (Maanmandir.org Website Gateway)
+window.openSideDrawer = function() {
+  const sideOverlay = document.getElementById('side-drawer-overlay');
+  const sidePanel = document.getElementById('side-drawer-panel');
+  if (sideOverlay) sideOverlay.classList.add('active');
+  if (sidePanel) sidePanel.classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeSideDrawer = function() {
+  const sideOverlay = document.getElementById('side-drawer-overlay');
+  const sidePanel = document.getElementById('side-drawer-panel');
+  if (sideOverlay) sideOverlay.classList.remove('active');
+  if (sidePanel) sidePanel.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
 function initSideNavigationDrawer() {
   const menuBtn = document.getElementById('menu-drawer-btn');
   const sideOverlay = document.getElementById('side-drawer-overlay');
   const sidePanel = document.getElementById('side-drawer-panel');
   const sideCloseBtn = document.getElementById('side-drawer-close-btn');
 
-  function openSideDrawer() {
-    sideOverlay.classList.add('active');
-    sidePanel.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeSideDrawer() {
-    sideOverlay.classList.remove('active');
-    sidePanel.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  if (menuBtn) menuBtn.addEventListener('click', openSideDrawer);
-  if (sideCloseBtn) sideCloseBtn.addEventListener('click', closeSideDrawer);
-  if (sideOverlay) sideOverlay.addEventListener('click', closeSideDrawer);
+  if (menuBtn) menuBtn.addEventListener('click', window.openSideDrawer);
+  if (sideCloseBtn) sideCloseBtn.addEventListener('click', window.closeSideDrawer);
+  if (sideOverlay) sideOverlay.addEventListener('click', window.closeSideDrawer);
 
   renderSideDrawerMenu();
 }
 
 window.handleSideMenuLinkClick = function(isTab, targetTab, subTab, url, isAction) {
-  const sideOverlay = document.getElementById('side-drawer-overlay');
-  const sidePanel = document.getElementById('side-drawer-panel');
-  if (sideOverlay) sideOverlay.classList.remove('active');
-  if (sidePanel) sidePanel.classList.remove('active');
-  document.body.style.overflow = '';
+  window.closeSideDrawer();
 
   if (isAction === 'openQrModal') {
     openQrModal('mm');
   } else if (isTab) {
     switchTab(targetTab);
     if (subTab) switchPublicationSubTab(subTab);
-  } else if (url) {
-    window.open(url, '_blank');
   }
 };
 
@@ -1026,27 +1024,31 @@ function initNavigation() {
 }
 
 // Devotee Notifications Drawer
+window.openNotificationDrawer = function() {
+  const drawerOverlay = document.getElementById('drawer-overlay');
+  const drawerPanel = document.getElementById('drawer-panel');
+  if (drawerOverlay) drawerOverlay.classList.add('active');
+  if (drawerPanel) drawerPanel.classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeNotificationDrawer = function() {
+  const drawerOverlay = document.getElementById('drawer-overlay');
+  const drawerPanel = document.getElementById('drawer-panel');
+  if (drawerOverlay) drawerOverlay.classList.remove('active');
+  if (drawerPanel) drawerPanel.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
 function initNotificationDrawer() {
   const bellBtn = document.getElementById('bell-notification-btn');
   const drawerOverlay = document.getElementById('drawer-overlay');
   const drawerPanel = document.getElementById('drawer-panel');
   const drawerCloseBtn = document.getElementById('drawer-close-btn');
 
-  function openDrawer() {
-    drawerOverlay.classList.add('active');
-    drawerPanel.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeDrawer() {
-    drawerOverlay.classList.remove('active');
-    drawerPanel.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  if (bellBtn) bellBtn.addEventListener('click', openDrawer);
-  if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
-  if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+  if (bellBtn) bellBtn.addEventListener('click', window.openNotificationDrawer);
+  if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', window.closeNotificationDrawer);
+  if (drawerOverlay) drawerOverlay.addEventListener('click', window.closeNotificationDrawer);
 
   renderNotificationsList();
 }
@@ -1351,20 +1353,26 @@ function renderMagazinesTab(searchQuery = '') {
 
 // Switch Tab Programmatically
 window.switchTab = function(tabName) {
-  const targetNav = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
-  if (targetNav) {
-    targetNav.click();
-  } else {
-    // If not in bottom bar, handle tab pane switching directly
-    const navItems = document.querySelectorAll('.nav-item');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-    navItems.forEach(nav => nav.classList.remove('active'));
-    tabPanes.forEach(pane => pane.classList.remove('active'));
+  const navItems = document.querySelectorAll('.nav-item');
+  const tabPanes = document.querySelectorAll('.tab-pane');
 
-    const activePane = document.getElementById(`tab-${tabName}`);
-    if (activePane) activePane.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  navItems.forEach(nav => {
+    if (nav.getAttribute('data-tab') === tabName) {
+      nav.classList.add('active');
+    } else {
+      nav.classList.remove('active');
+    }
+  });
+
+  tabPanes.forEach(pane => {
+    if (pane.id === `tab-${tabName}`) {
+      pane.classList.add('active');
+    } else {
+      pane.classList.remove('active');
+    }
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 // Modals Handler
@@ -1568,7 +1576,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=70')
+    navigator.serviceWorker.register('./sw.js?v=71')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
