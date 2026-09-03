@@ -155,7 +155,8 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "दान एवं सेवा",
     icon: "💖",
     links: [
-      { textEn: "Shri Maan Bihari Lal Mandir Seva (Dham Seva)", textHi: "श्री मान बिहारी लाल मंदिर सेवा (धाम सेवा)", isTab: "donate" },
+      { textEn: "Shri Maan Mandir Seva Sansthan (IDFC UPI)", textHi: "श्री मान मंदिर सेवा संस्थान (IDFC UPI)", isTab: "donate" },
+      { textEn: "Maan Mandir Renovation Seva (HDFC Bank)", textHi: "मान मंदिर जीर्णोद्धार सेवा (HDFC बैंक)", isTab: "donate" },
       { textEn: "Shri Mataji Gauseva BharatQR Donation", textHi: "श्री माताजी गौसेवा भारतक्यूआर दान", isTab: "donate" },
       { textEn: "NRI & International Devotees (PayPal / Cards)", textHi: "NRI व विदेशी भक्त सेवा (PayPal / कार्ड्स)", url: "https://www.paypal.com/biz/fund?id=4FVN2ALUJ5GJ8", isExternal: true },
       { textEn: "Maan Mandir Online Netbanking", textHi: "मान मंदिर ऑनलाइन नेटबैंकिंग", url: "https://maanmandir.org/donate/", isExternal: true },
@@ -1329,7 +1330,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=58')
+    navigator.serviceWorker.register('./sw.js?v=59')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
