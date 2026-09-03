@@ -87,7 +87,10 @@ const TRANSLATIONS = {
     gw1Btn: "Launch MaanMandir.org Donate Page ↗",
     gw2Title: "Mataji Gaushala Website Gateway",
     gw2Desc: "For direct fodder sponsorship and cow adoption donations via MatajiGaushala.org.",
-    gw2Btn: "Launch MatajiGaushala.org Donate Page ↗"
+    gw2Btn: "Launch MatajiGaushala.org Donate Page ↗",
+    yatraCardTitle: "Shri Radha Rani Braj Yatra 2026 Registration",
+    yatraCardDesc: "Join the divine 40-day foot pilgrimage across 84 Kos Braj Dham under the guidance of Shri Ramesh Baba Ji Maharaj. Register online for Yatra 2026.",
+    yatraCardBtn: "🚩 Register for Braj Yatra 2026 ↗"
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -170,7 +173,10 @@ const TRANSLATIONS = {
     gw1Btn: "MaanMandir.org दान पेज खोलें ↗",
     gw2Title: "माताजी गौशाला वेबसाइट गेटवे",
     gw2Desc: "गौ ग्रास, हरा चारा सेवा व गौ गोद सेवा हेतु माताजी गौशाला वेबसाइट खोलें।",
-    gw2Btn: "MatajiGaushala.org दान पेज खोलें ↗"
+    gw2Btn: "MatajiGaushala.org दान पेज खोलें ↗",
+    yatraCardTitle: "श्री राधारानी ब्रज यात्रा २०२६ पंजीकरण",
+    yatraCardDesc: "श्री रमेश बाबा जी महाराज के पावन सानिध्य में ८४ कोस ब्रज यात्रा हेतु ऑनलाइन पंजीकरण कराएं। नि:शुल्क भोजन, आवास व सुरक्षा व्यवस्था।",
+    yatraCardBtn: "🚩 ब्रज यात्रा २०२६ पंजीकरण करें ↗"
   }
 };
 
@@ -674,10 +680,13 @@ window.setLanguage = function(lang) {
   setElementText('txt-zip-desc', t.zipDesc);
   setElementText('txt-zip-btn', t.zipBtn);
 
-  // Front Page Gaushala Tile Text
+  // Front Page Gaushala Tile & Braj Yatra Registration Card Text
   setElementText('txt-gaushala-tile-title', t.gaushalaTileTitle);
   setElementText('txt-gaushala-tile-desc', t.gaushalaTileDesc);
   setElementText('txt-gaushala-tile-btn', t.gaushalaTileBtn);
+  setElementText('txt-yatra-card-title', t.yatraCardTitle);
+  setElementText('txt-yatra-card-desc', t.yatraCardDesc);
+  setElementText('txt-yatra-card-btn', t.yatraCardBtn);
 
   // Donation Section Dynamic Texts
   setElementText('txt-donate-header', t.donateHeader);
@@ -1445,7 +1454,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=64')
+    navigator.serviceWorker.register('./sw.js?v=65')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
