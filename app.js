@@ -242,6 +242,18 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     ]
   },
   {
+    catId: "social",
+    titleEn: "Social & Community",
+    titleHi: "सोशल मीडिया व कम्युनिटी",
+    icon: "🌐",
+    links: [
+      { textEn: "Official WhatsApp Channel", textHi: "आधिकारिक व्हाट्सएप चैनल", url: "https://whatsapp.com/channel/0029Va4x7nK29759H6O6R92N", isExternal: true },
+      { textEn: "Instagram (@maanmandir.barsana)", textHi: "इन्स्टाग्राम (@maanmandir.barsana)", url: "https://www.instagram.com/maanmandir.barsana/", isExternal: true },
+      { textEn: "Facebook (Maan Mandir Barsana)", textHi: "फ़ेसबुक (मान मंदिर बरसाना)", url: "https://www.facebook.com/MaanMandirBarsana/", isExternal: true },
+      { textEn: "YouTube (@MaanMandir)", textHi: "यूट्यूब (@MaanMandir)", url: "https://www.youtube.com/MaanMandir", isExternal: true }
+    ]
+  },
+  {
     catId: "contact",
     titleEn: "Contact Us",
     titleHi: "संपर्क करें",
@@ -731,6 +743,7 @@ window.setLanguage = function(lang) {
   setElementText('txt-gw2-title', t.gw2Title);
   setElementText('txt-gw2-desc', t.gw2Desc);
   setElementText('txt-gw2-btn', t.gw2Btn);
+  setElementText('txt-social-header', isHi ? '🌐 आधिकारिक सोशल मीडिया एवं भक्त कम्युनिटी' : '🌐 Official Social Media & Devotee Communities');
 
   const searchInput = document.getElementById('global-search-input');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
@@ -1060,6 +1073,7 @@ function renderNotificationsList() {
 function renderContent() {
   renderHomeRecentUpdates();
   renderYouTubeTab();
+  renderSocialPlatforms();
   const searchInput = document.getElementById('global-search-input');
   const query = searchInput ? searchInput.value.trim() : '';
 
@@ -1096,8 +1110,93 @@ function renderHomeRecentUpdates() {
   `).join('');
 }
 
-// Render YouTube Live & Official Channels Gateway Cards
-function renderYouTubeTab() {
+// Official Maan Mandir Social Media & Devotee Community Catalog
+const MAAN_MANDIR_SOCIAL_PLATFORMS = [
+  {
+    id: "soc-whatsapp",
+    nameEn: "Official WhatsApp Channel",
+    nameHi: "आधिकारिक व्हाट्सएप चैनल",
+    handle: "Maan Mandir Devotee Broadcast",
+    url: "https://whatsapp.com/channel/0029Va4x7nK29759H6O6R92N",
+    icon: "💬",
+    brandColor: "#25D366",
+    badgeEn: "DAILY UPDATES",
+    badgeHi: "दैनिक अपडेट्स",
+    descEn: "Get daily Pravachan clips, Braj Darshan photos, festival notices & Yatra updates directly on WhatsApp.",
+    descHi: "दैनिक प्रवचन, श्रीजी दर्शन, उत्सव सूचनाएं एवं यात्रा अपडेट्स सीधे अपने व्हाट्सएप पर प्राप्त करें।"
+  },
+  {
+    id: "soc-instagram",
+    nameEn: "Instagram Official Page",
+    nameHi: "इन्स्टाग्राम आधिकारिक पेज",
+    handle: "@maanmandir.barsana",
+    url: "https://www.instagram.com/maanmandir.barsana/",
+    icon: "📸",
+    brandColor: "#E1306C",
+    badgeEn: "REELS & DARSHAN",
+    badgeHi: "रील्स व दर्शन",
+    descEn: "Daily HD Darshan photos, divine Kirtan reels, and short Pravachan clips of Shri Ramesh Baba Ji Maharaj.",
+    descHi: "श्रीजी नित्य श्रृंगार दर्शन, ब्रज कीर्तन रील्स एवं श्री बाबा जी महाराज के प्रेरणादायक विचार।"
+  },
+  {
+    id: "soc-facebook",
+    nameEn: "Facebook Official Page",
+    nameHi: "फ़ेसबुक आधिकारिक पेज",
+    handle: "Maan Mandir Seva Sansthan",
+    url: "https://www.facebook.com/MaanMandirBarsana/",
+    icon: "📘",
+    brandColor: "#1877F2",
+    badgeEn: "COMMUNITY PAGE",
+    badgeHi: "आधिकारिक पेज",
+    descEn: "Live event streams, detailed Seva news, articles, and community announcements for devotees worldwide.",
+    descHi: "लाइव कार्यक्रम, सेवा समाचार, धार्मिक लेख एवं वैश्विक भक्त समुदाय समाचार।"
+  },
+  {
+    id: "soc-youtube",
+    nameEn: "YouTube Main Channel",
+    nameHi: "यूट्यूब मुख्य चैनल",
+    handle: "@MaanMandir",
+    url: "https://www.youtube.com/MaanMandir",
+    icon: "▶",
+    brandColor: "#FF0000",
+    badgeEn: "LIVE WEBCASTS",
+    badgeHi: "लाइव प्रसारण",
+    descEn: "Watch daily Live Pravachans, Srimad Bhagavat Kathas, and Gauseva webcasts in high definition.",
+    descHi: "नित्य लाइव प्रवचन, श्रीमद्भागवत कथाएं एवं गौसेवा कार्यक्रमों का सीधा प्रसारण।"
+  }
+];
+
+// Render Official Social Media & Community Platforms Catalog
+function renderSocialPlatforms() {
+  const container = document.getElementById('social-platforms-list');
+  if (!container) return;
+
+  const isHi = currentLang === 'hi';
+  container.innerHTML = MAAN_MANDIR_SOCIAL_PLATFORMS.map(sp => `
+    <div class="content-card" onclick="window.open('${sp.url}', '_blank')" style="cursor: pointer; flex-direction: column; align-items: stretch; gap: 10px; border-left: 4px solid ${sp.brandColor}; box-shadow: var(--shadow-sm); padding: 14px; background: var(--bg-primary);">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 38px; height: 38px; border-radius: var(--radius-full); background: ${sp.brandColor}15; color: ${sp.brandColor}; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 800;">
+            ${sp.icon}
+          </div>
+          <div>
+            <h4 style="font-size: 1rem; font-weight: 800; color: var(--text-dark); margin: 0;">${isHi ? sp.nameHi : sp.nameEn}</h4>
+            <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">${sp.handle}</div>
+          </div>
+        </div>
+        <span style="background: ${sp.brandColor}18; color: ${sp.brandColor}; font-size: 0.65rem; font-weight: 800; padding: 3px 8px; border-radius: var(--radius-full); text-transform: uppercase;">
+          ${isHi ? sp.badgeHi : sp.badgeEn}
+        </span>
+      </div>
+      <p style="font-size: 0.83rem; color: var(--text-medium); line-height: 1.45; margin: 0;">
+        ${isHi ? sp.descHi : sp.descEn}
+      </p>
+      <a href="${sp.url}" target="_blank" onclick="event.stopPropagation();" class="btn-primary" style="background: ${sp.brandColor}; color: #FFF; border: none; width: 100%; justify-content: center; text-decoration: none; font-size: 0.82rem; font-weight: 800; margin-top: 4px;">
+        ${sp.icon} <span>${isHi ? 'पेज / चैनल खोलें ↗' : 'Open Platform ↗'}</span>
+      </a>
+    </div>
+  `).join('');
+}
   const container = document.getElementById('youtube-videos-list');
   if (!container) return;
 
@@ -1466,7 +1565,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=67')
+    navigator.serviceWorker.register('./sw.js?v=68')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
