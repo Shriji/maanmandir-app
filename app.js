@@ -263,6 +263,7 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     url: "https://www.youtube.com/MaanMandir",
     badgeEn: "MAIN LIVE STREAM",
     badgeHi: "मुख्य लाइव चैनल",
+    isLive: true,
     cdnAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_m2zyl6egAY2Ab0KU2xq_0TCT8wgoJt9yvIdAXYXscIzy8=s176-c-k-c0x00ffffff-no-rj",
     descEn: "Official webcast of Shri Ramesh Baba Ji Maharaj Pravachan & Barsana Dham Live Darshan.",
     descHi: "श्री रमेश बाबा जी महाराज के पावन प्रवचन एवं बरसाना धाम सत्संग का लाइव प्रसारण।"
@@ -1102,30 +1103,41 @@ function renderYouTubeTab() {
 
   const isHi = currentLang === 'hi';
   container.innerHTML = MAAN_MANDIR_YOUTUBE_CHANNELS.map(ch => `
-    <div class="youtube-gateway-card">
+    <div class="youtube-gateway-card ${ch.isLive ? 'is-live-channel' : ''}">
       <div class="youtube-gateway-header">
         <div class="youtube-gateway-brand">
-          ${ch.cdnAvatar ? `
-            <img class="youtube-gateway-avatar" src="${ch.cdnAvatar}" alt="${isHi ? ch.nameHi : ch.nameEn}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="youtube-gateway-icon-fallback" style="display:none;">
-              <svg width="24" height="24" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </div>
-          ` : `
-            <div class="youtube-gateway-icon-fallback">
-              <svg width="24" height="24" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </div>
-          `}
+          <div style="position: relative; display: inline-flex;">
+            ${ch.cdnAvatar ? `
+              <img class="youtube-gateway-avatar" src="${ch.cdnAvatar}" alt="${isHi ? ch.nameHi : ch.nameEn}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="youtube-gateway-icon-fallback" style="display:none;">
+                <svg width="24" height="24" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </div>
+            ` : `
+              <div class="youtube-gateway-icon-fallback">
+                <svg width="24" height="24" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </div>
+            `}
+            ${ch.isLive ? '<span class="avatar-live-indicator-dot"></span>' : ''}
+          </div>
           <div class="youtube-gateway-titles">
             <div class="youtube-gateway-name">${isHi ? ch.nameHi : ch.nameEn}</div>
             <div class="youtube-gateway-handle">${ch.handle}</div>
           </div>
         </div>
-        <span class="youtube-gateway-badge">${isHi ? ch.badgeHi : ch.badgeEn}</span>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+          ${ch.isLive ? `
+            <span class="live-red-dot-container">
+              <span class="live-red-dot-animated"></span> LIVE
+            </span>
+          ` : `
+            <span class="youtube-gateway-badge">${isHi ? ch.badgeHi : ch.badgeEn}</span>
+          `}
+        </div>
       </div>
       <p class="youtube-gateway-desc">${isHi ? ch.descHi : ch.descEn}</p>
-      <a href="${ch.url}" target="_blank" class="youtube-gateway-btn">
-        <svg width="18" height="18" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        <span>${isHi ? 'यूट्यूब पर देखें ↗' : 'Open Channel in YouTube ↗'}</span>
+      <a href="${ch.url}" target="_blank" class="youtube-gateway-btn ${ch.isLive ? 'btn-live-red' : ''}">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        <span>${ch.isLive ? (isHi ? '🔴 लाइव देखें ↗' : '🔴 Watch Live Stream ↗') : (isHi ? 'यूट्यूब पर देखें ↗' : 'Open Channel in YouTube ↗')}</span>
       </a>
     </div>
   `).join('');
@@ -1454,7 +1466,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=66')
+    navigator.serviceWorker.register('./sw.js?v=67')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;

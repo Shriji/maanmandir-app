@@ -541,6 +541,80 @@ body {
   border-radius: var(--radius-full);
 }
 
+/* Animated Live Red Dot Badge & Live Channel Styles */
+.live-red-dot-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #FEE2E2;
+  color: #DC2626;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  border: 1px solid #FCA5A5;
+  letter-spacing: 0.5px;
+}
+
+.live-red-dot-animated {
+  width: 8px;
+  height: 8px;
+  background-color: #DC2626;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  animation: live-dot-pulse 1.4s infinite;
+}
+
+@keyframes live-dot-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  }
+  70% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(220, 38, 38, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+
+.avatar-live-indicator-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background-color: #DC2626;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.8);
+  animation: live-dot-pulse 1.4s infinite;
+}
+
+.youtube-gateway-card.is-live-channel {
+  border: 1.5px solid #FCA5A5;
+  background: linear-gradient(180deg, #FEF2F2 0%, #FFFFFF 100%);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.12);
+}
+
+.youtube-gateway-btn.btn-live-red {
+  background: #DC2626;
+  color: #FFFFFF;
+  border-color: #DC2626;
+}
+
+.youtube-gateway-btn.btn-live-red svg {
+  fill: #FFFFFF;
+}
+
+.youtube-gateway-btn.btn-live-red:hover {
+  background: #B91C1C;
+  color: #FFFFFF;
+}
+
 /* Content List Item Cards */
 .content-list {
   display: flex;
