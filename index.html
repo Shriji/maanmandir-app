@@ -315,12 +315,7 @@
           <div style="font-size: 0.88rem; color: var(--text-medium); line-height: 1.6;">
             <div>🌅 <strong>Morning Darshan:</strong> 05:00 AM – 12:00 PM</div>
             <div>🌇 <strong>Evening Darshan:</strong> 04:00 PM – 08:30 PM</div>
-            <div>🎙️ <strong>Daily Pravachan:</strong> 04:30 PM onwards</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==========================================
+              <!-- ==========================================
            TAB 6: DONATE & SEVA (NATIVE IN-APP DONATION PAGE)
            ========================================== -->
       <section id="tab-donate" class="tab-pane">
@@ -331,7 +326,7 @@
         <!-- 🌎 NRI & INTERNATIONAL DEVOTEES PAYPAL TILE -->
         <div class="content-card" style="flex-direction: column; align-items: flex-start; gap: 12px; background: linear-gradient(135deg, #003087 0%, #0070BA 100%); color: #FFF; border: none; box-shadow: var(--shadow-md); margin-bottom: 16px;">
           <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-            <span style="background: rgba(255,255,255,0.22); color: #FFF; font-size: 0.68rem; font-weight: 800; padding: 4px 10px; border-radius: var(--radius-full); text-transform: uppercase; letter-spacing: 0.5px;">
+            <span style="background: rgba(255,255,255,0.22); color: #FFF; font-size: 0.68rem; font-weight: 800; padding: 4px 10px; border-radius: var(--radius-full); text-transform: uppercase; letter-spacing: 0.5px;" id="txt-nri-tag">
               🌎 NRI & INTERNATIONAL DEVOTEES
             </span>
             <!-- Official PayPal Vector Logo -->
@@ -341,28 +336,28 @@
           </div>
 
           <div>
-            <h4 style="font-size: 1.1rem; font-weight: 800; color: #FFF; margin-bottom: 4px;">PayPal, Credit & Debit Cards (USD / Global)</h4>
-            <p style="font-size: 0.84rem; opacity: 0.94; line-height: 1.45;">Dedicated International Seva Portal for NRI Devotees outside India. Supports all major Credit Cards, Debit Cards, and PayPal accounts globally.</p>
+            <h4 style="font-size: 1.1rem; font-weight: 800; color: #FFF; margin-bottom: 4px;" id="txt-nri-title">PayPal, Credit & Debit Cards (USD / Global)</h4>
+            <p style="font-size: 0.84rem; opacity: 0.94; line-height: 1.45;" id="txt-nri-desc">Dedicated International Seva Portal for NRI Devotees outside India. Supports all major Credit Cards, Debit Cards, and PayPal accounts globally.</p>
           </div>
 
           <a href="https://www.paypal.com/biz/fund?id=4FVN2ALUJ5GJ8" target="_blank" class="btn-primary" style="width:100%; justify-content:center; text-decoration:none; background: #FFF; color: #003087; font-weight: 800; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-            💳 Donate via PayPal / Cards (NRI Seva) ↗
+            💳 <span id="txt-nri-btn">Donate via PayPal / Cards (NRI Seva) ↗</span>
           </a>
         </div>
 
         <!-- 🏛️ SHRI MAAN MANDIR SEVA SANSTHAN (IDFC FIRST BANK BHIM UPI STANDEE) -->
         <div class="donation-card" style="border-left: 4px solid var(--primary-blue); margin-bottom: 20px;">
           <div class="donation-card-header">
-            <img src="assets/images/maanini_app_logo.png?v=61" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
+            <img src="assets/images/maanini_app_logo.png?v=62" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
             <div>
-              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);">SHRI MAAN MANDIR SEVA SANSTHAN</h3>
-              <p style="font-size: 0.78rem; color: var(--text-muted);">IDFC FIRST Bank • BHIM UPI / GPay / PhonePe / Paytm</p>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);" id="txt-mm-card-title">SHRI MAAN MANDIR SEVA SANSTHAN</h3>
+              <p style="font-size: 0.78rem; color: var(--text-muted);" id="txt-mm-card-sub">IDFC FIRST Bank • BHIM UPI / GPay / PhonePe / Paytm</p>
             </div>
           </div>
 
           <!-- Official IDFC FIRST Bank QR Standee Image Display -->
           <div class="qr-standee-container" style="margin-bottom: 12px; background: #fff; padding: 10px;">
-            <img src="assets/images/idfc_maanmandir_qr_standee.jpg?v=61" alt="Shri Maan Mandir Seva Sansthan IDFC UPI QR Code" class="qr-standee-img" style="max-width: 320px;">
+            <img src="assets/images/idfc_maanmandir_qr_standee.jpg?v=62" alt="Shri Maan Mandir Seva Sansthan IDFC UPI QR Code" class="qr-standee-img" style="max-width: 320px;">
           </div>
 
           <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 10px 12px; border-radius: var(--radius-sm); margin-bottom: 12px; font-size: 0.82rem; color: #1E40AF; line-height: 1.45; font-weight: 700;" id="txt-mm-card-info">
@@ -373,28 +368,28 @@
           <div class="payment-details-box">
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">MERCHANT NAME</span>
+                <span class="detail-label" id="txt-lbl-merchant-name">MERCHANT NAME</span>
                 <span class="detail-value">SHRI MAAN MANDIR SEVA SANSTHAN</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('SHRI MAAN MANDIR SEVA SANSTHAN', 'Merchant Name Copied!')">Copy</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">UPI ID / VPA (GPay / PhonePe ID)</span>
+                <span class="detail-label" id="txt-lbl-upi-vpa">UPI ID / VPA (GPay / PhonePe ID)</span>
                 <span class="detail-value" style="color: var(--accent-blue);">SMMSST077.09@cmsidfc</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('SMMSST077.09@cmsidfc', 'UPI ID Copied!')">Copy UPI</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">BANK NAME</span>
+                <span class="detail-label" id="txt-lbl-bank-name">BANK NAME</span>
                 <span class="detail-value">IDFC FIRST BANK</span>
               </div>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">SUPPORTED PAYMENTS</span>
-                <span class="detail-value" style="font-size: 0.8rem;">GPay, PhonePe, Paytm, BHIM UPI & 100+ Apps</span>
+                <span class="detail-label" id="txt-lbl-supported-payments">SUPPORTED PAYMENTS</span>
+                <span class="detail-value" style="font-size: 0.8rem;" id="txt-val-supported-payments">GPay, PhonePe, Paytm, BHIM UPI & 100+ Apps</span>
               </div>
             </div>
           </div>
@@ -403,16 +398,16 @@
         <!-- 🏛️ MAAN MANDIR RENOVATION SEVA (LEELA STHAL PURUDDHAR & DHAM SEVA) -->
         <div class="donation-card" style="border-left: 4px solid var(--gold-accent); margin-bottom: 20px;">
           <div class="donation-card-header">
-            <img src="assets/images/maanini_app_logo.png?v=61" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
+            <img src="assets/images/maanini_app_logo.png?v=62" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
             <div>
-              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);">MAAN MANDIR RENOVATION SEVA</h3>
-              <p style="font-size: 0.78rem; color: var(--text-muted);">Leela Sthal Puruddhar & Dham Seva • HDFC Bank / UPI</p>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);" id="txt-renov-card-title">MAAN MANDIR RENOVATION SEVA</h3>
+              <p style="font-size: 0.78rem; color: var(--text-muted);" id="txt-renov-card-sub">Leela Sthal Puruddhar & Dham Seva • HDFC Bank / UPI</p>
             </div>
           </div>
 
           <!-- Official Banner Image Display -->
           <div class="qr-standee-container" style="margin-bottom: 12px; background: #fff3e0;">
-            <img src="assets/images/maan_bihari_lal_banner.jpg?v=61" alt="Maan Mandir Renovation Seva Banner" class="qr-standee-img" style="max-width: 100%;">
+            <img src="assets/images/maan_bihari_lal_banner.jpg?v=62" alt="Maan Mandir Renovation Seva Banner" class="qr-standee-img" style="max-width: 100%;">
           </div>
 
           <div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 10px 12px; border-radius: var(--radius-sm); margin-bottom: 12px; font-size: 0.82rem; color: #92400E; line-height: 1.45; font-weight: 700;" id="txt-renov-card-info">
@@ -423,33 +418,33 @@
           <div class="payment-details-box">
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">ACCOUNT NAME</span>
+                <span class="detail-label" id="txt-lbl-account-name">ACCOUNT NAME</span>
                 <span class="detail-value">SHRI MAAN BIHARI LAL MANDIR SEWA</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('SHRI MAAN BIHARI LAL MANDIR SEWA', 'Account Name Copied!')">Copy</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">BANK NAME</span>
+                <span class="detail-label" id="txt-lbl-bank-name2">BANK NAME</span>
                 <span class="detail-value">HDFC BANK LTD</span>
               </div>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">BRANCH</span>
+                <span class="detail-label" id="txt-lbl-branch">BRANCH</span>
                 <span class="detail-value">BSA COLLEGE, MATHURA</span>
               </div>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">SEVA HELPLINE (संपर्क)</span>
+                <span class="detail-label" id="txt-lbl-helpline">SEVA HELPLINE (संपर्क)</span>
                 <span class="detail-value">9927338666</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('9927338666', 'Helpline Copied!')">Copy</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">OFFICIAL WEBSITE</span>
+                <span class="detail-label" id="txt-lbl-website">OFFICIAL WEBSITE</span>
                 <span class="detail-value">www.maanmandir.org</span>
               </div>
             </div>
@@ -459,64 +454,64 @@
         <!-- BharatQR Official Enhanced Standee Card -->
         <div class="donation-card">
           <div class="donation-card-header">
-            <img src="assets/images/maanini_app_logo.png?v=59" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
+            <img src="assets/images/maanini_app_logo.png?v=62" alt="Maan Mandir Logo" style="width:36px; height:36px; border-radius: var(--radius-full); object-fit:contain; border:1px solid var(--border-blue); padding:2px;">
             <div>
-              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);">SHRI MATAJI GAUVANSH SEWA</h3>
-              <p style="font-size: 0.78rem; color: var(--text-muted);">Axis Bank BharatQR • BHIM UPI / RuPay / Cards</p>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-blue);" id="txt-gau-card-title">SHRI MATAJI GAUVANSH SEWA</h3>
+              <p style="font-size: 0.78rem; color: var(--text-muted);" id="txt-gau-card-sub">Axis Bank BharatQR • BHIM UPI / RuPay / Cards</p>
             </div>
           </div>
 
           <!-- Enhanced High-Resolution QR Standee Image Display -->
           <div class="qr-standee-container">
-            <img src="assets/images/gauseva_qr_standee.jpg?v=59" alt="Shri Mataji Gauvansh Sewa BharatQR Code" class="qr-standee-img">
+            <img src="assets/images/gauseva_qr_standee.jpg?v=62" alt="Shri Mataji Gauvansh Sewa BharatQR Code" class="qr-standee-img">
           </div>
 
           <!-- Copyable Payment Identifiers Grid -->
           <div class="payment-details-box">
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">BENEFICIARY</span>
+                <span class="detail-label" id="txt-lbl-beneficiary">BENEFICIARY</span>
                 <span class="detail-value">SHRI MATAJI GAUVANSH SEWA</span>
               </div>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">MERCHANT ID (MID)</span>
+                <span class="detail-label" id="txt-lbl-mid">MERCHANT ID (MID)</span>
                 <span class="detail-value">037111010580034</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('037111010580034', 'MID Copied!')">Copy</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">TERMINAL ID (TID)</span>
+                <span class="detail-label" id="txt-lbl-tid">TERMINAL ID (TID)</span>
                 <span class="detail-value">78574894</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('78574894', 'TID Copied!')">Copy</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">BHIM / RUPAY REF</span>
+                <span class="detail-label" id="txt-lbl-bhim-ref">BHIM / RUPAY REF</span>
                 <span class="detail-value">6100020024266565</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('6100020024266565', 'RuPay Ref Copied!')">Copy</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">MASTERCARD REF</span>
+                <span class="detail-label" id="txt-lbl-mastercard-ref">MASTERCARD REF</span>
                 <span class="detail-value">512260002426654</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('512260002426654', 'Mastercard Ref Copied!')">Copy</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">VISA REF</span>
+                <span class="detail-label" id="txt-lbl-visa-ref">VISA REF</span>
                 <span class="detail-value">4604901024266554</span>
               </div>
               <button class="copy-btn" onclick="copyToClipboard('4604901024266554', 'VISA Ref Copied!')">Copy</button>
             </div>
             <div class="payment-detail-row">
               <div>
-                <span class="detail-label">HELPDESK CONTACT</span>
+                <span class="detail-label" id="txt-lbl-helpdesk">HELPDESK CONTACT</span>
                 <span class="detail-value">1860 233 2332 / 022-40426060</span>
               </div>
             </div>
@@ -525,21 +520,25 @@
 
         <!-- Additional External Online Payment Gateways -->
         <div class="section-header" style="margin-top: 18px;">
-          <h3 class="section-title">🌐 Web Gateways & Bank Transfers</h3>
+          <h3 class="section-title" id="txt-gateways-header">🌐 Web Gateways & Bank Transfers</h3>
         </div>
 
         <div class="content-card" style="flex-direction: column; align-items: flex-start; gap: 10px;">
-          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--primary-blue);">Maan Mandir Sansthan Website Gateway</h4>
-          <p style="font-size: 0.82rem; color: var(--text-medium); line-height: 1.4;">For online netbanking, debit/credit cards, and international donations via MaanMandir.org.</p>
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--primary-blue);" id="txt-gw1-title">Maan Mandir Sansthan Website Gateway</h4>
+          <p style="font-size: 0.82rem; color: var(--text-medium); line-height: 1.4;" id="txt-gw1-desc">For online netbanking, debit/credit cards, and international donations via MaanMandir.org.</p>
           <a href="https://maanmandir.org/donate/" target="_blank" class="btn-primary" style="width:100%; justify-content:center; text-decoration:none;">
-            Launch MaanMandir.org Donate Page ↗
+            <span id="txt-gw1-btn">Launch MaanMandir.org Donate Page ↗</span>
           </a>
         </div>
 
         <div class="content-card" style="flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 10px;">
-          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--primary-blue);">Mataji Gaushala Website Gateway</h4>
-          <p style="font-size: 0.82rem; color: var(--text-medium); line-height: 1.4;">For direct fodder sponsorship and cow adoption donations via MatajiGaushala.org.</p>
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--primary-blue);" id="txt-gw2-title">Mataji Gaushala Website Gateway</h4>
+          <p style="font-size: 0.82rem; color: var(--text-medium); line-height: 1.4;" id="txt-gw2-desc">For direct fodder sponsorship and cow adoption donations via MatajiGaushala.org.</p>
           <a href="https://www.matajigaushala.org/donation" target="_blank" class="btn-primary" style="width:100%; justify-content:center; text-decoration:none; background: #15803D;">
+            <span id="txt-gw2-btn">Launch MatajiGaushala.org Donate Page ↗</span>
+          </a>
+        </div>
+      </section>dth:100%; justify-content:center; text-decoration:none; background: #15803D;">
             Launch MatajiGaushala.org Donate Page ↗
           </a>
         </div>

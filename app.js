@@ -54,7 +54,40 @@ const TRANSLATIONS = {
     gaushalaTileBtn: "Open Website ↗",
     donateHeader: "💖 Gauseva & Mandir Donation",
     mmCardInfo: "🌸 Shri Maan Mandir Seva Sansthan: Scan QR code using Google Pay, PhonePe, Paytm, BHIM UPI or any bank app to contribute directly to Maan Mandir Seva.",
-    renovCardInfo: "🌸 Maan Mandir Renovation Seva: Shri Maan Mandir is the supreme divine pastime site of Shri Radha Krishna. Participate in the renovation and restoration of this holy site to receive the rare blessings of Dham Seva."
+    renovCardInfo: "🌸 Maan Mandir Renovation Seva: Shri Maan Mandir is the supreme divine pastime site of Shri Radha Krishna. Participate in the renovation and restoration of this holy site to receive the rare blessings of Dham Seva.",
+    nriTag: "🌎 NRI & INTERNATIONAL DEVOTEES",
+    nriTitle: "PayPal, Credit & Debit Cards (USD / Global)",
+    nriDesc: "Dedicated International Seva Portal for NRI Devotees outside India. Supports all major Credit Cards, Debit Cards, and PayPal accounts globally.",
+    nriBtn: "Donate via PayPal / Cards (NRI Seva) ↗",
+    mmCardTitle: "SHRI MAAN MANDIR SEVA SANSTHAN",
+    mmCardSub: "IDFC FIRST Bank • BHIM UPI / GPay / PhonePe / Paytm",
+    lblMerchantName: "MERCHANT NAME",
+    lblUpiVpa: "UPI ID / VPA (GPay / PhonePe ID)",
+    lblBankName: "BANK NAME",
+    lblSupportedPayments: "SUPPORTED PAYMENTS",
+    valSupportedPayments: "GPay, PhonePe, Paytm, BHIM UPI & 100+ Apps",
+    renovCardTitle: "MAAN MANDIR RENOVATION SEVA",
+    renovCardSub: "Leela Sthal Puruddhar & Dham Seva • HDFC Bank / UPI",
+    lblAccountName: "ACCOUNT NAME",
+    lblBranch: "BRANCH",
+    lblHelpline: "SEVA HELPLINE (संपर्क)",
+    lblWebsite: "OFFICIAL WEBSITE",
+    gauCardTitle: "SHRI MATAJI GAUVANSH SEWA",
+    gauCardSub: "Axis Bank BharatQR • BHIM UPI / RuPay / Cards",
+    lblBeneficiary: "BENEFICIARY",
+    lblMid: "MERCHANT ID (MID)",
+    lblTid: "TERMINAL ID (TID)",
+    lblBhimRef: "BHIM / RUPAY REF",
+    lblMastercardRef: "MASTERCARD REF",
+    lblVisaRef: "VISA REF",
+    lblHelpdesk: "HELPDESK CONTACT",
+    gatewaysHeader: "🌐 Web Gateways & Bank Transfers",
+    gw1Title: "Maan Mandir Sansthan Website Gateway",
+    gw1Desc: "For online netbanking, debit/credit cards, and international donations via MaanMandir.org.",
+    gw1Btn: "Launch MaanMandir.org Donate Page ↗",
+    gw2Title: "Mataji Gaushala Website Gateway",
+    gw2Desc: "For direct fodder sponsorship and cow adoption donations via MatajiGaushala.org.",
+    gw2Btn: "Launch MatajiGaushala.org Donate Page ↗"
   },
   hi: {
     appTitle: "मान मंदिर",
@@ -104,7 +137,40 @@ const TRANSLATIONS = {
     gaushalaTileBtn: "वेबसाइट खोलें ↗",
     donateHeader: "💖 गौसेवा एवं मंदिर दान",
     mmCardInfo: "🌸 श्री मान मंदिर सेवा संस्थान: गूगल पे, फोनपे, पेटीएम, भीम UPI अथवा किसी भी बैंक ऐप से क्यूआर कोड स्कैन करके सीधे मान मंदिर सेवा में योगदान दें।",
-    renovCardInfo: "🌸 मान मंदिर जीर्णोद्धार सेवा: श्रीराधाकृष्ण लीला स्थलियों में मान मंदिर सबसे प्रमुख है। इस अति विलक्षण लीला स्थली के जीर्णोद्धार में जुड़कर धाम सेवा का दुर्लभ लाभ प्राप्त करें।"
+    renovCardInfo: "🌸 मान मंदिर जीर्णोद्धार सेवा: श्रीराधाकृष्ण लीला स्थलियों में मान मंदिर सबसे प्रमुख है। इस अति विलक्षण लीला स्थली के जीर्णोद्धार में जुड़कर धाम सेवा का दुर्लभ लाभ प्राप्त करें।",
+    nriTag: "🌎 NRI व विदेशी भक्त सेवा",
+    nriTitle: "PayPal, क्रेडिट व डेबिट कार्ड्स (USD / वैश्विक)",
+    nriDesc: "भारत के बाहर रहने वाले सभी अंतरराष्ट्रीय एवं NRI भक्तों हेतु समर्पित सेवा पोर्टल। सभी क्रेडिट/डेबिट कार्ड्स एवं PayPal समर्थित।",
+    nriBtn: "PayPal व कार्ड्स से दान करें (NRI सेवा) ↗",
+    mmCardTitle: "श्री मान मंदिर सेवा संस्थान",
+    mmCardSub: "IDFC फर्स्ट बैंक • भीम UPI / गूगल पे / फोनपे / पेटीएम",
+    lblMerchantName: "व्यापारी / ट्रस्ट नाम",
+    lblUpiVpa: "UPI आईडी (गूगल पे / फोनपे ID)",
+    lblBankName: "बैंक का नाम",
+    lblSupportedPayments: "समर्थित भुगतान माध्यम",
+    valSupportedPayments: "गूगल पे, फोनपे, पेटीएम, भीम UPI व 100+ ऐप्स",
+    renovCardTitle: "मान मंदिर जीर्णोद्धार सेवा",
+    renovCardSub: "लीला स्थल जीर्णोद्धार व धाम सेवा • HDFC बैंक",
+    lblAccountName: "खाता नाम",
+    lblBranch: "बैंक शाखा",
+    lblHelpline: "सेवा हेल्पलाइन (संपर्क)",
+    lblWebsite: "आधिकारिक वेबसाइट",
+    gauCardTitle: "श्री माताजी गोवंश सेवा",
+    gauCardSub: "एक्सिस बैंक भारतक्यूआर • भीम UPI / रुपे / कार्ड्स",
+    lblBeneficiary: "लाभार्थी (ट्रस्ट नाम)",
+    lblMid: "मर्चेंट आईडी (MID)",
+    lblTid: "टर्मिनल आईडी (TID)",
+    lblBhimRef: "भीम / रुपे संदर्भ संख्या",
+    lblMastercardRef: "मास्टरकार्ड संदर्भ संख्या",
+    lblVisaRef: "वीजा संदर्भ संख्या",
+    lblHelpdesk: "हेल्पडेस्क संपर्क",
+    gatewaysHeader: "🌐 वेब गेटवे एवं बैंक ट्रांसफर",
+    gw1Title: "मान मंदिर संस्थान वेबसाइट गेटवे",
+    gw1Desc: "ऑनलाइन नेटबैंकिंग, डेबिट/क्रेडिट कार्ड व ऑनलाइन दान हेतु मान मंदिर वेबसाइट खोलें।",
+    gw1Btn: "MaanMandir.org दान पेज खोलें ↗",
+    gw2Title: "माताजी गौशाला वेबसाइट गेटवे",
+    gw2Desc: "गौ ग्रास, हरा चारा सेवा व गौ गोद सेवा हेतु माताजी गौशाला वेबसाइट खोलें।",
+    gw2Btn: "MatajiGaushala.org दान पेज खोलें ↗"
   }
 };
 
@@ -617,6 +683,44 @@ window.setLanguage = function(lang) {
   setElementText('txt-donate-header', t.donateHeader);
   setElementText('txt-mm-card-info', t.mmCardInfo);
   setElementText('txt-renov-card-info', t.renovCardInfo);
+  setElementText('txt-nri-tag', t.nriTag);
+  setElementText('txt-nri-title', t.nriTitle);
+  setElementText('txt-nri-desc', t.nriDesc);
+  setElementText('txt-nri-btn', t.nriBtn);
+
+  setElementText('txt-mm-card-title', t.mmCardTitle);
+  setElementText('txt-mm-card-sub', t.mmCardSub);
+  setElementText('txt-lbl-merchant-name', t.lblMerchantName);
+  setElementText('txt-lbl-upi-vpa', t.lblUpiVpa);
+  setElementText('txt-lbl-bank-name', t.lblBankName);
+  setElementText('txt-lbl-supported-payments', t.lblSupportedPayments);
+  setElementText('txt-val-supported-payments', t.valSupportedPayments);
+
+  setElementText('txt-renov-card-title', t.renovCardTitle);
+  setElementText('txt-renov-card-sub', t.renovCardSub);
+  setElementText('txt-lbl-account-name', t.lblAccountName);
+  setElementText('txt-lbl-bank-name2', t.lblBankName);
+  setElementText('txt-lbl-branch', t.lblBranch);
+  setElementText('txt-lbl-helpline', t.lblHelpline);
+  setElementText('txt-lbl-website', t.lblWebsite);
+
+  setElementText('txt-gau-card-title', t.gauCardTitle);
+  setElementText('txt-gau-card-sub', t.gauCardSub);
+  setElementText('txt-lbl-beneficiary', t.lblBeneficiary);
+  setElementText('txt-lbl-mid', t.lblMid);
+  setElementText('txt-lbl-tid', t.lblTid);
+  setElementText('txt-lbl-bhim-ref', t.lblBhimRef);
+  setElementText('txt-lbl-mastercard-ref', t.lblMastercardRef);
+  setElementText('txt-lbl-visa-ref', t.lblVisaRef);
+  setElementText('txt-lbl-helpdesk', t.lblHelpdesk);
+
+  setElementText('txt-gateways-header', t.gatewaysHeader);
+  setElementText('txt-gw1-title', t.gw1Title);
+  setElementText('txt-gw1-desc', t.gw1Desc);
+  setElementText('txt-gw1-btn', t.gw1Btn);
+  setElementText('txt-gw2-title', t.gw2Title);
+  setElementText('txt-gw2-desc', t.gw2Desc);
+  setElementText('txt-gw2-btn', t.gw2Btn);
 
   const searchInput = document.getElementById('global-search-input');
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
@@ -1341,7 +1445,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=61')
+    navigator.serviceWorker.register('./sw.js?v=62')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
