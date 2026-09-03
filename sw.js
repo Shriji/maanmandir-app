@@ -1,21 +1,21 @@
-// Maan Mandir Devotee Mobile Portal - Service Worker (v71)
-const CACHE_NAME = 'maanmandir-v71';
+// Maan Mandir Devotee Mobile Portal - Service Worker (v72)
+const CACHE_NAME = 'maanmandir-v72';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css?v=71',
-  './app.js?v=71',
+  './styles.css?v=72',
+  './app.js?v=72',
   './manifest.json',
-  './assets/images/app_icon.jpg?v=71',
-  './assets/images/maanini_app_logo.png?v=71',
-  './assets/images/hero_banner.jpg?v=71',
-  './assets/images/maan_bihari_lal_banner.jpg?v=71',
-  './assets/images/gauseva_qr_standee.jpg?v=71',
-  './assets/images/gauseva_qr_code.jpg?v=71',
-  './assets/images/mataji_gaushala_banner.jpg?v=71',
-  './assets/images/idfc_maanmandir_qr_standee.jpg?v=71',
-  './assets/images/qr_maanmandir_app_branded.png?v=71',
-  './assets/images/qr_maanini_app_branded.png?v=71'
+  './assets/images/app_icon.jpg?v=72',
+  './assets/images/maanini_app_logo.png?v=72',
+  './assets/images/hero_banner.jpg?v=72',
+  './assets/images/maan_bihari_lal_banner.jpg?v=72',
+  './assets/images/gauseva_qr_standee.jpg?v=72',
+  './assets/images/gauseva_qr_code.jpg?v=72',
+  './assets/images/mataji_gaushala_banner.jpg?v=72',
+  './assets/images/idfc_maanmandir_qr_standee.jpg?v=72',
+  './assets/images/qr_maanmandir_app_branded.png?v=72',
+  './assets/images/qr_maanini_app_branded.png?v=72'
 ];
 
 self.addEventListener('install', (event) => {

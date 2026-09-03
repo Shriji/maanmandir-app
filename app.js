@@ -760,6 +760,7 @@ function setElementText(id, text) {
 
 // Side Navigation Drawer Menu Logic (Maanmandir.org Website Gateway)
 window.openSideDrawer = function() {
+  renderSideDrawerMenu();
   const sideOverlay = document.getElementById('side-drawer-overlay');
   const sidePanel = document.getElementById('side-drawer-panel');
   if (sideOverlay) sideOverlay.classList.add('active');
@@ -1212,7 +1213,7 @@ function renderYouTubeTab() {
         <div class="youtube-gateway-brand">
           <div style="position: relative; display: inline-flex;">
             ${ch.cdnAvatar ? `
-              <img class="youtube-gateway-avatar" src="${ch.cdnAvatar}" alt="${isHi ? ch.nameHi : ch.nameEn}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <img class="youtube-gateway-avatar" src="${ch.cdnAvatar}" alt="${isHi ? ch.nameHi : ch.nameEn}" onerror="this.style.display='none'; const fb = this.parentElement ? this.parentElement.querySelector('.youtube-gateway-icon-fallback') : null; if(fb) fb.style.display='flex';" />
               <div class="youtube-gateway-icon-fallback" style="display:none;">
                 <svg width="24" height="24" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
               </div>
@@ -1576,7 +1577,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=71')
+    navigator.serviceWorker.register('./sw.js?v=72')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
