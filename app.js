@@ -1383,6 +1383,16 @@ window.switchTab = function(tabName) {
     }
   });
 
+  if (tabName === 'youtube') {
+    renderYouTubeTab();
+    renderSocialPlatforms();
+  } else if (tabName === 'books') {
+    renderBooksTab();
+    renderMagazinesTab();
+  } else if (tabName === 'home') {
+    renderHomeRecentUpdates();
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
@@ -1590,7 +1600,7 @@ function registerServiceWorker() {
     caches.keys().then(keys => {
       keys.forEach(key => caches.delete(key));
     });
-    navigator.serviceWorker.register('./sw.js?v=75')
+    navigator.serviceWorker.register('./sw.js?v=76')
       .catch(err => console.error('Service Worker Registration Failed', err));
   }
 }
