@@ -77,7 +77,7 @@ const TRANSLATIONS = {
     tabAudio: "ऑडियो",
     tabBooks: "प्रकाशन",
     tabSeva: "सेवा",
-    tabDonate: "दान व सेवा",
+    tabDonate: "Donate",
     subtabBooks: "ग्रंथ व पुस्तकें",
     subtabMagazines: "मासिक पत्रिका (Patrika)",
     downloadBtn: "डाउनलोड / खोलें",
@@ -152,15 +152,15 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
   {
     catId: "donate",
     titleEn: "Donate",
-    titleHi: "दान एवं सेवा",
+    titleHi: "Donate",
     icon: "💖",
     links: [
-      { textEn: "Shri Maan Mandir Seva Sansthan (IDFC UPI)", textHi: "श्री मान मंदिर सेवा संस्थान (IDFC UPI)", isTab: "donate" },
-      { textEn: "Maan Mandir Renovation Seva (HDFC Bank)", textHi: "मान मंदिर जीर्णोद्धार सेवा (HDFC बैंक)", isTab: "donate" },
-      { textEn: "Shri Mataji Gauseva BharatQR Donation", textHi: "श्री माताजी गौसेवा भारतक्यूआर दान", isTab: "donate" },
-      { textEn: "NRI & International Devotees (PayPal / Cards)", textHi: "NRI व विदेशी भक्त सेवा (PayPal / कार्ड्स)", url: "https://www.paypal.com/biz/fund?id=4FVN2ALUJ5GJ8", isExternal: true },
-      { textEn: "Maan Mandir Online Netbanking", textHi: "मान मंदिर ऑनलाइन नेटबैंकिंग", url: "https://maanmandir.org/donate/", isExternal: true },
-      { textEn: "Mataji Gaushala Cow Adoption", textHi: "माताजी गौशाला गौ गोद सेवा", url: "https://www.matajigaushala.org/donation", isExternal: true }
+      { textEn: "Shri Maan Mandir Seva Sansthan (IDFC UPI)", textHi: "Shri Maan Mandir Seva Sansthan (IDFC UPI)", isTab: "donate" },
+      { textEn: "Maan Mandir Renovation Seva (HDFC Bank)", textHi: "Maan Mandir Renovation Seva (HDFC Bank)", isTab: "donate" },
+      { textEn: "Shri Mataji Gauseva BharatQR Donation", textHi: "Shri Mataji Gauseva BharatQR Donation", isTab: "donate" },
+      { textEn: "NRI & International Devotees (PayPal / Cards)", textHi: "NRI & International Devotees (PayPal / Cards)", url: "https://www.paypal.com/biz/fund?id=4FVN2ALUJ5GJ8", isExternal: true },
+      { textEn: "Maan Mandir Online Netbanking", textHi: "Maan Mandir Online Netbanking", url: "https://maanmandir.org/donate/", isExternal: true },
+      { textEn: "Mataji Gaushala Cow Adoption", textHi: "Mataji Gaushala Cow Adoption", url: "https://www.matajigaushala.org/donation", isExternal: true }
     ]
   },
   {
@@ -1330,7 +1330,7 @@ function registerServiceWorker() {
     navigator.serviceWorker.getRegistrations().then(registrations => {
       registrations.forEach(registration => registration.update());
     });
-    navigator.serviceWorker.register('./sw.js?v=59')
+    navigator.serviceWorker.register('./sw.js?v=60')
       .then(reg => {
         reg.onupdatefound = () => {
           const installingWorker = reg.installing;
