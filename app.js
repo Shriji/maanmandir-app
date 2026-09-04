@@ -766,9 +766,7 @@ window.openSideDrawer = function() {
   if (sideOverlay) sideOverlay.classList.add('active');
   if (sidePanel) {
     sidePanel.classList.add('active');
-    const fontScales = ['92%', '100%', '115%', '130%'];
-    sidePanel.style.fontSize = fontScales[fontScaleStep] || '100%';
-    void sidePanel.offsetWidth; // Force WebKit compositor reflow
+    void sidePanel.offsetHeight; // Force GPU compositor reflow
   }
   document.body.style.overflow = 'hidden';
 };
@@ -995,17 +993,8 @@ function applyFontStep(step) {
   fontScaleStep = step;
   localStorage.setItem('mm_font_step', fontScaleStep);
 
-  const fontScales = ['92%', '100%', '115%', '130%'];
-  const currentScale = fontScales[fontScaleStep] || '100%';
-
-  const appRoot = document.getElementById('app-root');
-  if (appRoot) appRoot.style.fontSize = currentScale;
-
-  const sidePanel = document.getElementById('side-drawer-panel');
-  if (sidePanel) sidePanel.style.fontSize = currentScale;
-
-  const drawerPanel = document.getElementById('drawer-panel');
-  if (drawerPanel) drawerPanel.style.fontSize = currentScale;
+  const fontScales = [95, 112, 128, 145];
+  document.documentElement.style.fontSize = fontScales[fontScaleStep] + '%';
 
   const decBtn = document.getElementById('btn-font-dec');
   const resetBtn = document.getElementById('btn-font-reset');
@@ -1614,7 +1603,7 @@ function registerServiceWorker() {
     caches.keys().then(keys => {
       keys.forEach(key => caches.delete(key));
     });
-    navigator.serviceWorker.register('./sw.js?v=77')
+    navigator.serviceWorker.register('./sw.js?v=78')
       .catch(err => console.error('Service Worker Registration Failed', err));
   }
 }
