@@ -1423,6 +1423,79 @@ window.closeModal = function() {
   if (modal) modal.classList.remove('active');
 };
 
+// Live Full-Text Search Engine: Scans through full-text contents & published literature
+let searchDebounceTimer = null;
+
+function fetchFullTextSearchResults(query) {
+  const container = document.getElementById('fulltext-search-results');
+  if (!container) return;
+
+  if (!query || query.trim().length < 2) {
+    container.innerHTML = '';
+    container.style.display = 'none';
+    return;
+  }
+
+  const cleanQuery = query.trim();
+  const isHi = currentLang === 'hi';
+  container.style.display = 'block';
+  container.innerHTML = `
+    <div style="padding:10px; background:var(--bg-tertiary); border-radius:var(--radius-sm); text-align:center; color:var(--text-muted); font-size:0.82rem; font-weight:700;">
+      <span class="live-red-dot-animated" style="display:inline-block; vertical-align:middle; margin-right:6px;"></span>
+      ${isHi ? `"${cleanQuery}" के लिए ग्रंथों व ग्रंथों के पाठ में खोज जारी है...` : `Scanning full text in publications for "${cleanQuery}"...`}
+    </div>
+  `;
+
+  if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+
+  searchDebounceTimer = setTimeout(() => {
+    fetch(`https://maanmandir.org/wp-json/wp/v2/posts?search=${encodeURIComponent(cleanQuery)}&per_page=10`)
+      .then(res => res.json())
+      .then(posts => {
+        if (!posts || posts.length === 0) {
+          container.innerHTML = `
+            <div style="background:var(--bg-tertiary); border:1px solid var(--border-light); border-radius:var(--radius-sm); padding:10px 12px; font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">
+              ℹ️ ${isHi ? `"${cleanQuery}" के लिए कोई पाठ मैच नहीं मिला।` : `No full-text paragraph matches found for "${cleanQuery}".`}
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = `
+          <div style="font-size:0.88rem; font-weight:800; color:var(--primary-blue); margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+            <span>📖</span>
+            <span>${isHi ? `"${cleanQuery}" शब्द के पावन संदर्भ व मैच (${posts.length}):` : `Full-Text Keyword Matches for "${cleanQuery}" (${posts.length}):`}</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+            ${posts.map(post => {
+              const title = post.title && post.title.rendered 
+                ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').replace(/<[^>]+>/g, '') 
+                : 'Maan Mandir Publication';
+              
+              let excerpt = post.excerpt && post.excerpt.rendered 
+                ? post.excerpt.rendered.replace(/<[^>]+>/g, '').replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim() 
+                : '';
+              if (excerpt.length > 150) excerpt = excerpt.substring(0, 150) + '...';
+
+              return `
+                <div style="background:var(--bg-primary); border:1px solid var(--border-blue); border-left:4px solid var(--primary-blue); border-radius:var(--radius-sm); padding:10px 12px; box-shadow:var(--shadow-sm);">
+                  <div style="font-weight:800; font-size:0.88rem; color:var(--primary-blue); margin-bottom:3px;">${title}</div>
+                  <div style="font-size:0.78rem; color:var(--text-medium); line-height:1.4; margin-bottom:8px;">${excerpt}</div>
+                  <a href="${post.link}" target="_blank" class="btn-outline" style="display:inline-flex; align-items:center; gap:4px; padding:4px 10px; font-size:0.75rem; text-decoration:none; font-weight:800;">
+                    📖 ${isHi ? 'पूरा पाठ / संदर्भ पढ़ें ↗' : 'Read Full Passage ↗'}
+                  </a>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      })
+      .catch(err => {
+        container.style.display = 'none';
+      });
+  }, 350);
+}
+
 // Global Instant Perform Search Function
 window.performSearch = function() {
   const searchInput = document.getElementById('global-search-input');
@@ -1448,6 +1521,9 @@ window.performSearch = function() {
   } else {
     renderMagazinesTab(query);
   }
+
+  // Trigger Live Full-Text Keyword Scanning across all books & publications
+  fetchFullTextSearchResults(query);
 };
 
 // Instant Realtime Search Filter Logic
