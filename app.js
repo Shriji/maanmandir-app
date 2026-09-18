@@ -363,6 +363,18 @@ const MAAN_MANDIR_YOUTUBE_CHANNELS = [
     cdnAvatar: "https://yt3.googleusercontent.com/fiTWUeXBJbI6J5JqGlByubdX-3FMTjTGxciGGlWccMurCcYl2sgrnUYsHaqR_Pw_pv-UySibaw=s176-c-k-c0x00ffffff-no-rj",
     descEn: "Medical care, emergency treatment, and rehabilitation webcasts from Cow Vet Hospital.",
     descHi: "गौ चिकित्सालय बरसाना से बीमार व घायल गौवंश की चिकित्सीय सेवा व अपडेट्स।"
+  },
+  {
+    id: "yt-kala-akadami",
+    nameEn: "Maan Mandir Kala Akadami",
+    nameHi: "मान मंदिर कला अकादमी",
+    handle: "@MaanMandirKalaAkadami",
+    url: "https://www.youtube.com/@MaanMandirKalaAkadami",
+    badgeEn: "KALA & SANGEET",
+    badgeHi: "कला व संगीत",
+    cdnAvatar: "",
+    descEn: "Devotional music, cultural Raag Seva, and classical arts by Maan Mandir Kala Akadami.",
+    descHi: "मान मंदिर कला अकादमी द्वारा प्रस्तुत पावन भक्ति संगीत, सांस्कृतिक प्रस्तुतियां एवं राग सेवा।"
   }
 ];
 
@@ -1679,7 +1691,7 @@ function registerServiceWorker() {
     caches.keys().then(keys => {
       keys.forEach(key => caches.delete(key));
     });
-    navigator.serviceWorker.register('./sw.js?v=78')
+    navigator.serviceWorker.register('./sw.js?v=80')
       .catch(err => console.error('Service Worker Registration Failed', err));
   }
 }
