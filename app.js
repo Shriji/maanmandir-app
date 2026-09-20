@@ -247,10 +247,13 @@ const MAANMANDIR_ORG_MENU_CATEGORIES = [
     titleHi: "सोशल मीडिया व कम्युनिटी",
     icon: "🌐",
     links: [
-      { textEn: "Official WhatsApp Channel", textHi: "आधिकारिक व्हाट्सएप चैनल", url: "https://whatsapp.com/channel/0029Va4x7nK29759H6O6R92N", isExternal: true },
-      { textEn: "Instagram (@maanmandir.barsana)", textHi: "इन्स्टाग्राम (@maanmandir.barsana)", url: "https://www.instagram.com/maanmandir.barsana/", isExternal: true },
-      { textEn: "Facebook (Maan Mandir Barsana)", textHi: "फ़ेसबुक (मान मंदिर बरसाना)", url: "https://www.facebook.com/MaanMandirBarsana/", isExternal: true },
-      { textEn: "YouTube (@MaanMandir)", textHi: "यूट्यूब (@MaanMandir)", url: "https://www.youtube.com/MaanMandir", isExternal: true }
+      { textEn: "Official Website (maanmandir.org)", textHi: "आधिकारिक वेबसाइट (maanmandir.org)", url: "https://maanmandir.org", isExternal: true },
+      { textEn: "Official WhatsApp Channel", textHi: "आधिकारिक व्हाट्सएप चैनल", url: "https://whatsapp.com/channel/0029VbD91RUIt5rmh4DA6P1p", isExternal: true },
+      { textEn: "Instagram (@shrimaanmandir)", textHi: "इन्स्टाग्राम (@shrimaanmandir)", url: "https://www.instagram.com/shrimaanmandir?igsh=MW4yaTB0dGc5OXN1Mg==", isExternal: true },
+      { textEn: "Facebook (ShriMaanMandir)", textHi: "फ़ेसबुक (ShriMaanMandir)", url: "https://www.facebook.com/ShriMaanMandir", isExternal: true },
+      { textEn: "Audio Satsang & Bhajan (YouTube)", textHi: "ऑडियो सत्संग व भजन (यूट्यूब)", url: "https://www.youtube.com/@MaanMandirSatsang/playlists", isExternal: true },
+      { textEn: "Maanini App (Google Play)", textHi: "मानिनी ऐप (गूगल प्ले)", url: "https://play.google.com/store/apps/details?id=com.maan.mandir", isExternal: true },
+      { textEn: "Maanmandir Photo Albums (Flickr)", textHi: "मान मंदिर फोटो एलबम (फ़्लिकर)", url: "https://www.flickr.com/photos/maanmandir/albums/", isExternal: true }
     ]
   },
   {
@@ -1131,11 +1134,24 @@ function renderHomeRecentUpdates() {
 // Official Maan Mandir Social Media & Devotee Community Catalog
 const MAAN_MANDIR_SOCIAL_PLATFORMS = [
   {
+    id: "soc-website",
+    nameEn: "Official Website Portal",
+    nameHi: "आधिकारिक वेबसाइट पोर्टल",
+    handle: "www.maanmandir.org",
+    url: "https://maanmandir.org",
+    icon: "🌐",
+    brandColor: "#d97706",
+    badgeEn: "MAIN PORTAL",
+    badgeHi: "मुख्य पोर्टल",
+    descEn: "Visit the official Shri Maan Mandir Seva Sansthan website for articles, news & info.",
+    descHi: "श्री मान मंदिर सेवा संस्थान की आधिकारिक वेबसाइट पर जाएँ।"
+  },
+  {
     id: "soc-whatsapp",
     nameEn: "Official WhatsApp Channel",
     nameHi: "आधिकारिक व्हाट्सएप चैनल",
     handle: "Maan Mandir Devotee Broadcast",
-    url: "https://whatsapp.com/channel/0029Va4x7nK29759H6O6R92N",
+    url: "https://whatsapp.com/channel/0029VbD91RUIt5rmh4DA6P1p",
     icon: "💬",
     brandColor: "#25D366",
     badgeEn: "DAILY UPDATES",
@@ -1147,8 +1163,8 @@ const MAAN_MANDIR_SOCIAL_PLATFORMS = [
     id: "soc-instagram",
     nameEn: "Instagram Official Page",
     nameHi: "इन्स्टाग्राम आधिकारिक पेज",
-    handle: "@maanmandir.barsana",
-    url: "https://www.instagram.com/maanmandir.barsana/",
+    handle: "@shrimaanmandir",
+    url: "https://www.instagram.com/shrimaanmandir?igsh=MW4yaTB0dGc5OXN1Mg==",
     icon: "📸",
     brandColor: "#E1306C",
     badgeEn: "REELS & DARSHAN",
@@ -1160,8 +1176,8 @@ const MAAN_MANDIR_SOCIAL_PLATFORMS = [
     id: "soc-facebook",
     nameEn: "Facebook Official Page",
     nameHi: "फ़ेसबुक आधिकारिक पेज",
-    handle: "Maan Mandir Seva Sansthan",
-    url: "https://www.facebook.com/MaanMandirBarsana/",
+    handle: "ShriMaanMandir",
+    url: "https://www.facebook.com/ShriMaanMandir",
     icon: "📘",
     brandColor: "#1877F2",
     badgeEn: "COMMUNITY PAGE",
@@ -1170,17 +1186,43 @@ const MAAN_MANDIR_SOCIAL_PLATFORMS = [
     descHi: "लाइव कार्यक्रम, सेवा समाचार, धार्मिक लेख एवं वैश्विक भक्त समुदाय समाचार।"
   },
   {
-    id: "soc-youtube",
-    nameEn: "YouTube Main Channel",
-    nameHi: "यूट्यूब मुख्य चैनल",
-    handle: "@MaanMandir",
-    url: "https://www.youtube.com/MaanMandir",
-    icon: "▶",
+    id: "soc-satsang",
+    nameEn: "Audio Satsang & Bhajan Playlists",
+    nameHi: "ऑडियो सत्संग व भजन प्लेलिस्ट",
+    handle: "@MaanMandirSatsang",
+    url: "https://www.youtube.com/@MaanMandirSatsang/playlists",
+    icon: "🎵",
     brandColor: "#FF0000",
-    badgeEn: "LIVE WEBCASTS",
-    badgeHi: "लाइव प्रसारण",
-    descEn: "Watch daily Live Pravachans, Srimad Bhagavat Kathas, and Gauseva webcasts in high definition.",
-    descHi: "नित्य लाइव प्रवचन, श्रीमद्भागवत कथाएं एवं गौसेवा कार्यक्रमों का सीधा प्रसारण।"
+    badgeEn: "PLAYLISTS",
+    badgeHi: "प्लेलिस्ट",
+    descEn: "Listen to complete Pravachan series, daily Satsang albums, and Braj Kirtan playlists on YouTube.",
+    descHi: "यूट्यूब पर संपूर्ण प्रवचन श्रृंखला, नित्य सत्संग एलबम एवं ब्रज कीर्तन प्लेलिस्ट सुनें।"
+  },
+  {
+    id: "soc-playstore",
+    nameEn: "Maanini App (Google Play)",
+    nameHi: "मानिनी ऐप (गूगल प्ले स्टोर)",
+    handle: "com.maan.mandir",
+    url: "https://play.google.com/store/apps/details?id=com.maan.mandir",
+    icon: "📲",
+    brandColor: "#0284c7",
+    badgeEn: "ANDROID APP",
+    badgeHi: "एंड्रॉइड ऐप",
+    descEn: "Download the official Android App for Maan Mandir Devotee Mobile Experience.",
+    descHi: "गूगल प्ले स्टोर से मानिनी / मान मंदिर का आधिकारिक एंड्रॉइड ऐप डाउनलोड करें।"
+  },
+  {
+    id: "soc-flickr",
+    nameEn: "Maanmandir Photos (Flickr)",
+    nameHi: "मान मंदिर फोटो एलबम (फ़्लिकर)",
+    handle: "flickr.com/photos/maanmandir",
+    url: "https://www.flickr.com/photos/maanmandir/albums/",
+    icon: "🖼️",
+    brandColor: "#ff0084",
+    badgeEn: "PHOTO ALBUMS",
+    badgeHi: "फोटो एलबम",
+    descEn: "Browse high-resolution photo archives of Dham Leela, Festivals, and Darshan.",
+    descHi: "बरसाना धाम उत्सवों, नित्य दर्शन एवं लीला स्थलों की हाई-डेफिनिशन फोटो एलबम देखें।"
   }
 ];
 
