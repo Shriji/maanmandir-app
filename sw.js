@@ -1,13 +1,13 @@
-// Maan Mandir Devotee Mobile Portal - Service Worker (v85)
-const CACHE_NAME = 'maanmandir-v85';
+// Maan Mandir Devotee Mobile Portal - Service Worker (v86)
+const CACHE_NAME = 'maanmandir-v86';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './styles.css?v=85',
-  './app.js?v=85',
+  './styles.css?v=86',
+  './app.js?v=86',
   './manifest.json',
-  './assets/images/app_icon.jpg?v=85',
-  './assets/images/maanini_app_logo.png?v=85',
+  './assets/images/app_icon.jpg?v=86',
+  './assets/images/maanini_app_logo.png?v=86',
   './assets/images/hero_banner.jpg?v=80',
   './assets/images/maan_bihari_lal_banner.jpg?v=80',
   './assets/images/gauseva_qr_standee.jpg?v=80',
