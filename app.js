@@ -395,199 +395,236 @@ const APP_DATA = {
 
 // Official MaanMandir.org Books Catalog with Real Website Covers
 const FALLBACK_WEBSITE_BOOKS = [
-  { 
-    id: "b1", 
-    titleEn: "Rasili Braj Yatra - Gujarati", 
-    titleHi: "रसीली ब्रज यात्रा - गुजराती", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/06/Rasili-Braj-Yatra-English-Cover-for-website-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-gujarati-3/", 
-    isNew: true, 
-    downloads: "382 Downloads" 
-  },
-  { 
-    id: "b2", 
-    titleEn: "Rasili Braj Yatra - English", 
-    titleHi: "रसीली ब्रज यात्रा - अंग्रेजी", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/06/Rasili-Braj-Yatra-English-Cover-for-website-1-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-english/", 
-    isNew: true, 
-    downloads: "379 Downloads" 
-  },
-  { 
-    id: "b3", 
-    titleEn: "Radha Sudha Nidhi - Short Gutka", 
-    titleHi: "श्री राधा सुधा निधि - लघुकथा गुटका", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2025/10/Radha-sudha-5-5x8-5.jpg", 
-    pdfUrl: "https://maanmandir.org/download/radha-sudha-nidhi-gutka/", 
-    isNew: true, 
-    downloads: "2.3K Downloads" 
-  },
-  { 
-    id: "b4", 
-    titleEn: "Bhagvatamritam - Part 02", 
-    titleHi: "भगवदामृतम् - द्वितीय भाग", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/bhagwatam-cover-part-02-1-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/bhagwatamritam-part-02/", 
-    isNew: false, 
-    downloads: "10.3K Downloads" 
-  },
-  { 
-    id: "b5", 
-    titleEn: "Bhagvatamritam - Part 01", 
-    titleHi: "भगवदामृतम् - प्रथम भाग", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/bhagwatam-cover-part-01-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/bhagwatamritam-part-01/", 
-    isNew: false, 
-    downloads: "10.4K Downloads" 
-  },
-  { 
-    id: "b6", 
-    titleEn: "Gahvar Pradeep - Gahvarvan Ke Diptimaan Sant", 
-    titleHi: "गह्वर प्रदीप - गह्वरवन के दीप्तिमान संत", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/Gahvar-Pradeep-Cover.jpg", 
-    pdfUrl: "https://maanmandir.org/download/gahvar-pradeep-gahvarvan-ke-jyotimaan-sant/", 
-    isNew: false, 
-    downloads: "9.4K Downloads" 
-  },
-  { 
-    id: "b7", 
-    titleEn: "Mandir Nirman Se Bhagwat Prapti", 
-    titleHi: "मंदिर निर्माण से भगवत प्राप्ति", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Mandir-Nirman-Se-Bhagwat-Prapti-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/mandir-nirman-se-bhagwat-prapti/", 
-    isNew: false, 
-    downloads: "10.1K Downloads" 
-  },
-  { 
-    id: "b8", 
-    titleEn: "Shri Chandra Sakhi Ji Rachit Pad", 
-    titleHi: "श्री चंद्रसखी जी रचित पद", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Chandra-Sakhi-Ji-Rachit-Pad-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/shri-chandra-sakhi-ji-rachit-pad/", 
-    isNew: false, 
-    downloads: "10.5K Downloads" 
-  },
-  { 
-    id: "b9", 
-    titleEn: "Shri Radha Ras", 
-    titleHi: "श्री राधा रस", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Radha-Ras-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/shri-radha-ras/", 
-    isNew: false, 
-    downloads: "10.8K Downloads" 
-  },
-  { 
-    id: "b10", 
-    titleEn: "Shri Radha Sudha Shatak", 
-    titleHi: "श्री राधा सुधा शतक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Radha-Sudha-Shatak-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/shri-radha-sudha-shatak/", 
-    isNew: false, 
-    downloads: "10.4K Downloads" 
-  }
+  { id: "b-dlm-12683", titleEn: "Rasili Braj Yatra -  Gujarati", titleHi: "Rasili Braj Yatra -  Gujarati", coverImg: "https://maanmandir.org/wp-content/uploads/2026/06/Rasili-Braj-Yatra-English-Cover-for-website.pdf", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-gujarati-3/", isNew: true, downloads: "0 Downloads" },
+  { id: "b-dlm-12667", titleEn: "Rasili Braj Yatra - English", titleHi: "Rasili Braj Yatra - English", coverImg: "https://maanmandir.org/wp-content/uploads/2026/06/Rasili-Braj-Yatra-English-Cover-for-website-1.pdf", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-english/", isNew: true, downloads: "0 Downloads" },
+  { id: "b-dlm-12602", titleEn: "Radha Sudha Nidhi - Gutka", titleHi: "Radha Sudha Nidhi - Gutka", coverImg: "https://maanmandir.org/wp-content/uploads/2025/10/Radha-sudha-5-5x8-5.jpg", pdfUrl: "https://maanmandir.org/download/radha-sudha-nidhi-gutka/", isNew: true, downloads: "0 Downloads" },
+  { id: "b-dlm-12313", titleEn: "Bhagvatamritam - Part 02", titleHi: "Bhagvatamritam - Part 02", coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/bhagwatam-cover-part-02-1.pdf", pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-02/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-12306", titleEn: "Bhagvatamritam - Part 01", titleHi: "Bhagvatamritam - Part 01", coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/bhagwatam-cover-part-01.pdf", pdfUrl: "https://maanmandir.org/download/bhagvatamritam-part-01/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-12300", titleEn: "Gahvar Pradeep -  Gahvarvan Ke Diptimaan Sant", titleHi: "Gahvar Pradeep -  Gahvarvan Ke Diptimaan Sant", coverImg: "https://maanmandir.org/wp-content/uploads/2023/09/Gahvar-Pradeep-Cover.jpg", pdfUrl: "https://maanmandir.org/download/gahvar-pradeep-gahvarvan-ke-jyotimaan-sant/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-12099", titleEn: "Mandir Nirman Se Bhagwat Prapti", titleHi: "Mandir Nirman Se Bhagwat Prapti", coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Mandir-Nirman-Se-Bhagwat-Prapti-front-page.pdf", pdfUrl: "https://maanmandir.org/download/mandir-nirman-se-bhagwat-prapti/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-12093", titleEn: "Shri Chandra Sakhi Ji Rachit Pad", titleHi: "Shri Chandra Sakhi Ji Rachit Pad", coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Chandra-Sakhi-Ji-Rachit-Pad-front-page.pdf", pdfUrl: "https://maanmandir.org/download/shri-chandra-sakhi-ji-rachit-pad/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-12087", titleEn: "Shri Radha Ras", titleHi: "Shri Radha Ras", coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Radha-Ras-front-page.pdf", pdfUrl: "https://maanmandir.org/download/shri-radha-ras/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-12081", titleEn: "Shri Radha Sudha Shatak", titleHi: "Shri Radha Sudha Shatak", coverImg: "https://maanmandir.org/wp-content/uploads/2023/03/Shri-Radha-Sudha-Shatak-front-page.pdf", pdfUrl: "https://maanmandir.org/download/shri-radha-sudha-shatak/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-12013", titleEn: "Shri Radha Naam Mahatma", titleHi: "Shri Radha Naam Mahatma", coverImg: "https://maanmandir.org/wp-content/uploads/2022/11/Shri-Radha-Naam-Mahatma-front-page.jpeg", pdfUrl: "https://maanmandir.org/download/shri-radha-naam-mahatma/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-11902", titleEn: "Rasili Braj Yatra - Gujarati", titleHi: "Rasili Braj Yatra - Gujarati", coverImg: "https://maanmandir.org/wp-content/uploads/2013/12/Rasili-Braj-Yatra-Banner.jpg", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-gujarati-2/", isNew: false, downloads: "0 Downloads" },
+  { id: "b-dlm-11887", titleEn: "Rasili Braj Yatra (Gujarati)", titleHi: "Rasili Braj Yatra (Gujarati)", coverImg: "https://maanmandir.org/wp-content/uploads/2013/12/Rasili-Braj-Yatra-Banner.jpg", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-gujarati/", isNew: false, downloads: "28 Downloads" },
+  { id: "b-dlm-11230", titleEn: "Bhagwat Ratna Manjusha (Sanskrit)", titleHi: "Bhagwat Ratna Manjusha (Sanskrit)", coverImg: "https://maanmandir.org/wp-content/uploads/2021/07/BHAGWAT-RATNA-MANJUSHA-SANSKRIT-FrongPage-2.jpg", pdfUrl: "https://maanmandir.org/download/bhagwat-ratna-manjusha-sanskrit/", isNew: false, downloads: "510 Downloads" },
+  { id: "b-dlm-10842", titleEn: "Shri Radha Sudha Nidhi", titleHi: "Shri Radha Sudha Nidhi", coverImg: "https://maanmandir.org/wp-content/uploads/2021/03/front-cover.jpg", pdfUrl: "https://maanmandir.org/download/shri-radha-sudha-nidhi/", isNew: false, downloads: "1570 Downloads" },
+  { id: "b-dlm-10836", titleEn: "Holi Sagar -  Collection of Rare Rasia of Rangili Holi", titleHi: "Holi Sagar -  Collection of Rare Rasia of Rangili Holi", coverImg: "https://maanmandir.org/wp-content/uploads/2021/03/Hori-sagar-with-Spine_RGB-scaled-e1616517280321.jpg", pdfUrl: "https://maanmandir.org/download/holi-sagar-collection-of-rare-rasia-of-rangili-holi/", isNew: false, downloads: "729 Downloads" },
+  { id: "b-dlm-10681", titleEn: "Swar Vanshi Ke Shabda Nupoor Ke - 2nd Edition", titleHi: "Swar Vanshi Ke Shabda Nupoor Ke - 2nd Edition", coverImg: "https://maanmandir.org/wp-content/uploads/2021/03/Swar-Vanshi-Ke-Shabda-Nupoor-Ke-Cover-Page-e1615413840735.jpg", pdfUrl: "https://maanmandir.org/download/swar-vanshi-ke-shabda-nupoor-ke-2nd-edition/", isNew: false, downloads: "568 Downloads" },
+  { id: "b-dlm-10562", titleEn: "Vrishbhanupur Shatakam - Shri Vanshi Ali Ji", titleHi: "Vrishbhanupur Shatakam - Shri Vanshi Ali Ji", coverImg: "https://maanmandir.org/wp-content/uploads/2021/01/Shri-Vrishbhanu-Shatak-Cover.png", pdfUrl: "https://maanmandir.org/download/vrishbhanupur-shatakam-vanshi-ali-ji/", isNew: false, downloads: "1310 Downloads" },
+  { id: "b-dlm-9766", titleEn: "Rasili Braj Yatra Vol 2", titleHi: "Rasili Braj Yatra Vol 2", coverImg: "https://maanmandir.org/wp-content/uploads/2013/12/Image-8-e1389975435509.jpg", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-vol-2/", isNew: false, downloads: "3439 Downloads" },
+  { id: "b-dlm-9756", titleEn: "Maan Mandir Ki Rangili Holi - Collection of Holi Rasiya", titleHi: "Maan Mandir Ki Rangili Holi - Collection of Holi Rasiya", coverImg: "https://maanmandir.org/wp-content/uploads/2018/03/holi-book-cover-page-e1520104752213.png", pdfUrl: "https://maanmandir.org/download/maan-mandir-ki-rangili-holi-collection-of-holi-rasiya/", isNew: false, downloads: "1218 Downloads" },
+  { id: "b-dlm-9579", titleEn: "Bhav Sagar Ki Yatra (Ek Bhayaavah Drashya)", titleHi: "Bhav Sagar Ki Yatra (Ek Bhayaavah Drashya)", coverImg: "https://maanmandir.org/wp-content/uploads/2017/07/bhav-sagar-ki-yatra.jpg", pdfUrl: "https://maanmandir.org/download/bhav-sagar-ki-yatra-ek-bhayaavah-drashya/", isNew: false, downloads: "10684 Downloads" },
+  { id: "b-dlm-9575", titleEn: "Satsang Saramrit (सत्संग सारामृत)", titleHi: "Satsang Saramrit (सत्संग सारामृत)", coverImg: "https://maanmandir.org/wp-content/uploads/2015/12/img_0763.jpeg", pdfUrl: "https://maanmandir.org/download/satsang-saramrit-%e0%a4%b8%e0%a4%a4%e0%a5%8d%e0%a4%b8%e0%a4%82%e0%a4%97-%e0%a4%b8%e0%a4%be%e0%a4%b0%e0%a4%be%e0%a4%ae%e0%a5%83%e0%a4%a4/", isNew: false, downloads: "614 Downloads" },
+  { id: "b-dlm-9405", titleEn: "Swar Vanshi Ke Shabda Nupoor Ke - Kirtan Raseshwari (Hindi)", titleHi: "Swar Vanshi Ke Shabda Nupoor Ke - Kirtan Raseshwari (Hindi)", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/SVSN.jpg", pdfUrl: "https://maanmandir.org/download/swar-vanshi-ke-shabda-nupoor-ke-kirtan-raseshwari-hindi/", isNew: false, downloads: "2225 Downloads" },
+  { id: "b-dlm-9400", titleEn: "Saar Grahita Part 02 - Collection of Lectures of Shri Ramesh Baba Ji Maharaj", titleHi: "Saar Grahita Part 02 - Collection of Lectures of Shri Ramesh Baba Ji Maharaj", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/saar-grahita-2-e1615598360159.jpg", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-02-collection-of-lectures-of-shri-ramesh-baba-ji-maharaj/", isNew: false, downloads: "1437 Downloads" },
+  { id: "b-dlm-9396", titleEn: "Saar Grahita Part 01 - Collection of Lectures of Shri Ramesh Baba Ji Maharaj", titleHi: "Saar Grahita Part 01 - Collection of Lectures of Shri Ramesh Baba Ji Maharaj", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/saar-grahita-1-e1615598268519.jpg", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-01-collection-of-lectures-of-shri-ramesh-baba-ji-maharaj/", isNew: false, downloads: "1720 Downloads" },
+  { id: "b-dlm-9390", titleEn: "Rasia Raseshwari - Collection of Braj Ke Rasias", titleHi: "Rasia Raseshwari - Collection of Braj Ke Rasias", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/rasiya-raseshwari.jpg", pdfUrl: "https://maanmandir.org/download/rasia-raseshwari-collection-of-braj-ke-rasias/", isNew: false, downloads: "10120 Downloads" },
+  { id: "b-dlm-9386", titleEn: "Prahlad Sabha - Collection of Pads For Children", titleHi: "Prahlad Sabha - Collection of Pads For Children", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/prahalad-sabha.jpg", pdfUrl: "https://maanmandir.org/download/prahlad-sabha/", isNew: false, downloads: "19391 Downloads" },
+  { id: "b-dlm-9375", titleEn: "Prabhat Pheri - Bhagwan Naam Mahima", titleHi: "Prabhat Pheri - Bhagwan Naam Mahima", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/prabhat_feri.png", pdfUrl: "https://maanmandir.org/download/prabhat-pheri-bhagwan-naam-mahima/", isNew: false, downloads: "2401 Downloads" },
+  { id: "b-dlm-9370", titleEn: "Meera Ke Prabhu Giridhar Nagar", titleHi: "Meera Ke Prabhu Giridhar Nagar", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/meera-ke-prabhu-giridhar-nagar.jpg", pdfUrl: "https://maanmandir.org/download/meera-ke-prabhu-giridhar-nagar/", isNew: false, downloads: "3320 Downloads" },
+  { id: "b-dlm-9365", titleEn: "Manini Yash Muktamala Part 02", titleHi: "Manini Yash Muktamala Part 02", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/manini-yash-muktamala-2.jpg", pdfUrl: "https://maanmandir.org/download/manini-yash-muktamala-part-02/", isNew: false, downloads: "3023 Downloads" },
+  { id: "b-dlm-9357", titleEn: "Manini Yash Muktamala Part 01", titleHi: "Manini Yash Muktamala Part 01", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/manini-yash-muktamala-1.jpg", pdfUrl: "https://maanmandir.org/download/manini-yash-muktamala-part-01/", isNew: false, downloads: "2509 Downloads" },
+  { id: "b-dlm-9347", titleEn: "Gahvarvan Tarangini", titleHi: "Gahvarvan Tarangini", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/gahvarvan-tarangini.jpg", pdfUrl: "https://maanmandir.org/download/gahvarvan-tarangini/", isNew: false, downloads: "5674 Downloads" },
+  { id: "b-dlm-9341", titleEn: "Barsana - Collection of Gazals", titleHi: "Barsana - Collection of Gazals", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/barsanacover.jpg", pdfUrl: "https://maanmandir.org/download/barsana-collection-of-gazals/", isNew: false, downloads: "5063 Downloads" },
+  { id: "b-dlm-9237", titleEn: "Saar Grahita Part 02", titleHi: "Saar Grahita Part 02", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/saar-grahita-2-e1615598360159.jpg", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-02/", isNew: false, downloads: "336 Downloads" },
+  { id: "b-dlm-2124", titleEn: "Swar Vanshi Ke Shabda Noopur Ke - English", titleHi: "Swar Vanshi Ke Shabda Noopur Ke - English", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/SVSN.jpg", pdfUrl: "https://maanmandir.org/download/swar-vanshi-ke-shabda-noopur-ke-english/", isNew: false, downloads: "1573 Downloads" },
+  { id: "b-dlm-2121", titleEn: "Melodious Yugal Mantra with Notation", titleHi: "Melodious Yugal Mantra with Notation", coverImg: "https://maanmandir.org/wp-content/uploads/2015/01/yugal-mantra-full-pdf-cover-e1615775613254.jpg", pdfUrl: "https://maanmandir.org/download/yugal-mantra-notation/", isNew: false, downloads: "1959 Downloads" },
+  { id: "b-dlm-2113", titleEn: "Rasili Braj Yatra Vol 1", titleHi: "Rasili Braj Yatra Vol 1", coverImg: "https://maanmandir.org/wp-content/uploads/2013/12/Rasili-Braj-Yatra-Banner.jpg", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-pdf-version-2/", isNew: false, downloads: "21279 Downloads" },
+  { id: "b-post-12607", titleEn: "Radha Sudha Nidhi - Gutka with large font size", titleHi: "Radha Sudha Nidhi - Gutka with large font size", coverImg: "https://maanmandir.org/wp-content/uploads/2025/10/Radha-sudha-5-5x8-5.jpg", pdfUrl: "https://maanmandir.org/download/radha-sudha-nidhi-gutka/?tmstv=1789933543", isNew: true, downloads: "2484 downloads" },
+  { id: "b-post-12017", titleEn: "Shri Radha Naam Mahatmya", titleHi: "Shri Radha Naam Mahatmya", coverImg: "https://maanmandir.org/wp-content/uploads/2022/11/Shri-Radha-Naam-Mahatma-front-page.jpeg", pdfUrl: "https://maanmandir.org/download/shri-radha-naam-mahatma/?tmstv=1789933543", isNew: false, downloads: "11494 downloads" },
+  { id: "b-post-12010", titleEn: "Prabhat Pheri Mahima - Naam Mahima", titleHi: "Prabhat Pheri Mahima - Naam Mahima", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/prabhat_feri.png", pdfUrl: "https://maanmandir.org/download/prabhat-pheri-bhagwan-naam-mahima/?tmstv=1789933543", isNew: false, downloads: "15695 downloads" },
+  { id: "b-post-11235", titleEn: "Bhagwat Ratna Manjusha (Sanskrit) - Collection of Very Important Shalokas From Shrimad Bhagwat Mahapuran", titleHi: "Bhagwat Ratna Manjusha (Sanskrit) - Collection of Very Important Shalokas From Shrimad Bhagwat Mahapuran", coverImg: "https://maanmandir.org/wp-content/uploads/2021/07/BHAGWAT-RATNA-MANJUSHA-SANSKRIT-FrongPage-2.jpg", pdfUrl: "https://maanmandir.org/download/bhagwat-ratna-manjusha-sanskrit/?tmstv=1789933543", isNew: false, downloads: "10919 downloads" },
+  { id: "b-post-10846", titleEn: "Shri Radha Sudha Nidhi -  Hindi Translation By Pujya Ramesh Baba Ji Maharaj", titleHi: "Shri Radha Sudha Nidhi -  Hindi Translation By Pujya Ramesh Baba Ji Maharaj", coverImg: "https://maanmandir.org/wp-content/uploads/2021/03/front-cover.jpg", pdfUrl: "https://maanmandir.org/download/shri-radha-sudha-nidhi/?tmstv=1789933543", isNew: false, downloads: "18192 downloads" },
+  { id: "b-post-10840", titleEn: "Holi Sagar - Collection of Rare Rasia of Rangili Holi", titleHi: "Holi Sagar - Collection of Rare Rasia of Rangili Holi", coverImg: "https://maanmandir.org/wp-content/uploads/2021/03/Hori-sagar-with-Spine_RGB-scaled-e1616517280321.jpg", pdfUrl: "https://maanmandir.org/download/holi-sagar-collection-of-rare-rasia-of-rangili-holi/?tmstv=1789933543", isNew: false, downloads: "11727 downloads" },
+  { id: "b-post-10806", titleEn: "Swar Vanshi Ke Shabda Nupoor Ke  (2nd Edition) - Collection of Yugal Kirtans", titleHi: "Swar Vanshi Ke Shabda Nupoor Ke  (2nd Edition) - Collection of Yugal Kirtans", coverImg: "https://maanmandir.org/wp-content/uploads/2021/03/Swar-Vanshi-Ke-Shabda-Nupoor-Ke-Cover-Page-e1615413840735.jpg", pdfUrl: "https://maanmandir.org/download/swar-vanshi-ke-shabda-nupoor-ke-2nd-edition/?tmstv=1789933543", isNew: false, downloads: "10952 downloads" },
+  { id: "b-post-10804", titleEn: "Vrishbhanupur Shatakam By Shri Vanshi Ali Ji", titleHi: "Vrishbhanupur Shatakam By Shri Vanshi Ali Ji", coverImg: "https://maanmandir.org/wp-content/uploads/2021/01/Shri-Vrishbhanu-Shatak-Cover.png", pdfUrl: "https://maanmandir.org/download/vrishbhanupur-shatakam-vanshi-ali-ji/?tmstv=1789933543", isNew: false, downloads: "13583 downloads" },
+  { id: "b-post-10795", titleEn: "Rasili Braj Yatra Volume  02 -  Encyclopedia of Braj", titleHi: "Rasili Braj Yatra Volume  02 -  Encyclopedia of Braj", coverImg: "https://maanmandir.org/wp-content/uploads/2013/12/Image-8-e1389975435509.jpg", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-vol-2/?tmstv=1789933543", isNew: false, downloads: "16424 downloads" },
+  { id: "b-post-10792", titleEn: "Maan Mandir Ki Rangili Holi – Collection of Braj Ke Holi Rasiya", titleHi: "Maan Mandir Ki Rangili Holi – Collection of Braj Ke Holi Rasiya", coverImg: "https://maanmandir.org/wp-content/uploads/2018/03/holi-book-cover-page-e1520104752213.png", pdfUrl: "https://maanmandir.org/download/maan-mandir-ki-rangili-holi-collection-of-holi-rasiya/?tmstv=1789933543", isNew: false, downloads: "11797 downloads" },
+  { id: "b-post-10788", titleEn: "Satsang Saramrit (सत्संग सारामृत) - Collection of Satsang Snippets", titleHi: "Satsang Saramrit (सत्संग सारामृत) - Collection of Satsang Snippets", coverImg: "https://maanmandir.org/wp-content/uploads/2015/12/img_0763.jpeg", pdfUrl: "https://maanmandir.org/download/satsang-saramrit-%e0%a4%b8%e0%a4%a4%e0%a5%8d%e0%a4%b8%e0%a4%82%e0%a4%97-%e0%a4%b8%e0%a4%be%e0%a4%b0%e0%a4%be%e0%a4%ae%e0%a5%83%e0%a4%a4/?tmstv=1789933543", isNew: false, downloads: "28849 downloads" },
+  { id: "b-post-10786", titleEn: "Saar Grahita Part 02 – Collection of Lectures of Shri Ramesh Baba Ji Maharaj", titleHi: "Saar Grahita Part 02 – Collection of Lectures of Shri Ramesh Baba Ji Maharaj", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/saar-grahita-2-e1615598360159.jpg", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-02-collection-of-lectures-of-shri-ramesh-baba-ji-maharaj/?tmstv=1789933543", isNew: false, downloads: "12183 downloads" },
+  { id: "b-post-10784", titleEn: "Saar Grahita Part 01 – Collection of Lectures of Shri Ramesh Baba Ji Maharaj", titleHi: "Saar Grahita Part 01 – Collection of Lectures of Shri Ramesh Baba Ji Maharaj", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/saar-grahita-1-e1615598268519.jpg", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-01-collection-of-lectures-of-shri-ramesh-baba-ji-maharaj/?tmstv=1789933543", isNew: false, downloads: "12745 downloads" },
+  { id: "b-post-10782", titleEn: "Rasia Raseshwari – Collection of Braj Ke Rasias", titleHi: "Rasia Raseshwari – Collection of Braj Ke Rasias", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/rasiya-raseshwari.jpg", pdfUrl: "https://maanmandir.org/download/rasia-raseshwari-collection-of-braj-ke-rasias/?tmstv=1789933543", isNew: false, downloads: "26337 downloads" },
+  { id: "b-post-10778", titleEn: "Prahlad Sabha – Collection of Poetries (Songs) For Children", titleHi: "Prahlad Sabha – Collection of Poetries (Songs) For Children", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/prahalad-sabha.jpg", pdfUrl: "https://maanmandir.org/download/prahlad-sabha/?tmstv=1789933543", isNew: false, downloads: "31845 downloads" },
+  { id: "b-post-10774", titleEn: "Meera Ke Prabhu Giridhar Nagar - Life Story of Meera Bai", titleHi: "Meera Ke Prabhu Giridhar Nagar - Life Story of Meera Bai", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/meera-ke-prabhu-giridhar-nagar.jpg", pdfUrl: "https://maanmandir.org/download/meera-ke-prabhu-giridhar-nagar/?tmstv=1789933543", isNew: false, downloads: "16608 downloads" },
+  { id: "b-post-10761", titleEn: "Manini Yash Muktamala Part 02 - Collection of Satsang Snippets", titleHi: "Manini Yash Muktamala Part 02 - Collection of Satsang Snippets", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/manini-yash-muktamala-2.jpg", pdfUrl: "https://maanmandir.org/download/manini-yash-muktamala-part-02/?tmstv=1789933543", isNew: false, downloads: "15238 downloads" },
+  { id: "b-post-10693", titleEn: "Rasili Braj Yatra Volume 01 - Encyclopedia of Braj", titleHi: "Rasili Braj Yatra Volume 01 - Encyclopedia of Braj", coverImg: "https://maanmandir.org/wp-content/uploads/2013/12/Rasili-Braj-Yatra-Banner.jpg", pdfUrl: "https://maanmandir.org/download/rasili-braj-yatra-pdf-version-2/?tmstv=1789933543", isNew: false, downloads: "51799 downloads" },
+  { id: "b-post-10758", titleEn: "Manini Yash Muktamala Part 01 - Collection of Satsang Snippets", titleHi: "Manini Yash Muktamala Part 01 - Collection of Satsang Snippets", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/manini-yash-muktamala-1.jpg", pdfUrl: "https://maanmandir.org/download/manini-yash-muktamala-part-01/?tmstv=1789933543", isNew: false, downloads: "13303 downloads" },
+  { id: "b-post-10748", titleEn: "Gahvarvan Tarangini - Collection of Satsang Snippets", titleHi: "Gahvarvan Tarangini - Collection of Satsang Snippets", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/gahvarvan-tarangini.jpg", pdfUrl: "https://maanmandir.org/download/gahvarvan-tarangini/?tmstv=1789933543", isNew: false, downloads: "19005 downloads" },
+  { id: "b-post-10743", titleEn: "Barsana – Collection of Gazals", titleHi: "Barsana – Collection of Gazals", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/barsanacover.jpg", pdfUrl: "https://maanmandir.org/download/barsana-collection-of-gazals/?tmstv=1789933543", isNew: false, downloads: "16649 downloads" },
+  { id: "b-post-10699", titleEn: "Saar Grahita - Collection of Satsang Snippets  Part 02", titleHi: "Saar Grahita - Collection of Satsang Snippets  Part 02", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/saar-grahita-2-e1615598360159.jpg", pdfUrl: "https://maanmandir.org/download/saar-grahita-part-02/?tmstv=1789933543", isNew: false, downloads: "8853 downloads" },
+  { id: "b-post-10695", titleEn: "Melodious Yugal Mantra With Notations", titleHi: "Melodious Yugal Mantra With Notations", coverImg: "https://maanmandir.org/wp-content/uploads/2015/01/yugal-mantra-full-pdf-cover-e1615775613254.jpg", pdfUrl: "https://maanmandir.org/download/yugal-mantra-notation/?tmstv=1789933543", isNew: false, downloads: "11603 downloads" }
 ];
 
 // Official MaanMandir.org Monthly Magazines Catalog
 const FALLBACK_WEBSITE_MAGAZINES = [
-  { 
-    id: "m1", 
-    titleEn: "Maan Mandir Patrika June 2026", 
-    titleHi: "मान मंदिर मासिक पत्रिका - जून २०२६ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-06-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-june-2026/", 
-    isNew: true, 
-    downloads: "271 Downloads" 
-  },
-  { 
-    id: "m2", 
-    titleEn: "Maan Mandir Patrika May 2026", 
-    titleHi: "मान मंदिर मासिक पत्रिका - मई २०२६ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-05-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-may-2026/", 
-    isNew: true, 
-    downloads: "235 Downloads" 
-  },
-  { 
-    id: "m3", 
-    titleEn: "Maan Mandir Patrika April 2026", 
-    titleHi: "मान मंदिर मासिक पत्रिका - अप्रैल २०२६ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-04-Patrika-frong-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-april-2026/", 
-    isNew: true, 
-    downloads: "213 Downloads" 
-  },
-  { 
-    id: "m4", 
-    titleEn: "Maan Mandir Patrika March 2026", 
-    titleHi: "मान मंदिर मासिक पत्रिका - मार्च २०२६ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-03-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-mar-2026/", 
-    isNew: false, 
-    downloads: "122 Downloads" 
-  },
-  { 
-    id: "m5", 
-    titleEn: "Maan Mandir Patrika February 2026", 
-    titleHi: "मान मंदिर मासिक पत्रिका - फरवरी २०२६ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2026-02-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-feb-2026/", 
-    isNew: false, 
-    downloads: "2.7K Downloads" 
-  },
-  { 
-    id: "m6", 
-    titleEn: "Maan Mandir Patrika January 2026", 
-    titleHi: "मान मंदिर मासिक पत्रिका - जनवरी २०२६ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2026-01-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-jan-2026/", 
-    isNew: false, 
-    downloads: "2.7K Downloads" 
-  },
-  { 
-    id: "m7", 
-    titleEn: "Maan Mandir Patrika December 2025", 
-    titleHi: "मान मंदिर मासिक पत्रिका - दिसंबर २०२५ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-12-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-dec-2025/", 
-    isNew: false, 
-    downloads: "2.6K Downloads" 
-  },
-  { 
-    id: "m8", 
-    titleEn: "Maan Mandir Patrika November 2025", 
-    titleHi: "मान मंदिर मासिक पत्रिका - नवंबर २०२५ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-11-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-nov-2025/", 
-    isNew: false, 
-    downloads: "1.8K Downloads" 
-  },
-  { 
-    id: "m9", 
-    titleEn: "Maan Mandir Patrika October 2025", 
-    titleHi: "मान मंदिर मासिक पत्रिका - अक्टूबर २०२५ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-10-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-oct-2025/", 
-    isNew: false, 
-    downloads: "1.8K Downloads" 
-  },
-  { 
-    id: "m10", 
-    titleEn: "Maan Mandir Patrika September 2025", 
-    titleHi: "मान मंदिर मासिक पत्रिका - सितंबर २०२५ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-09-Patrika-front-page-pdf.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-sep-2025/", 
-    isNew: false, 
-    downloads: "1.7K Downloads" 
-  },
-  { 
-    id: "m11", 
-    titleEn: "Maan Mandir Patrika August 2025", 
-    titleHi: "मान मंदिर मासिक पत्रिका - अगस्त २०२५ अंक", 
-    coverImg: "https://maanmandir.org/wp-content/uploads/2025/08/2025-08-Patrika-front-page.jpg", 
-    pdfUrl: "https://maanmandir.org/download/patrika-aug-2025/", 
-    isNew: false, 
-    downloads: "4.8K Downloads" 
-  }
+  { id: "m-dlm-12708", titleEn: "Patrika June 2026", titleHi: "Patrika June 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-06-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-june-2026/", isNew: true, downloads: "0 Downloads" },
+  { id: "m-dlm-12702", titleEn: "Patrika May 2026", titleHi: "Patrika May 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-05-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-may-2026/", isNew: true, downloads: "0 Downloads" },
+  { id: "m-dlm-12696", titleEn: "Patrika April 2026", titleHi: "Patrika April 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-04-Patrika-frong-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-april-2026/", isNew: true, downloads: "0 Downloads" },
+  { id: "m-dlm-12690", titleEn: "Patrika Mar 2026", titleHi: "Patrika Mar 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-03-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-mar-2026/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12645", titleEn: "Patrika Feb 2026", titleHi: "Patrika Feb 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2026-02-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-feb-2026/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12639", titleEn: "Patrika Jan 2026", titleHi: "Patrika Jan 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2026-01-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-jan-2026/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12633", titleEn: "Patrika Dec 2025", titleHi: "Patrika Dec 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-12-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-dec-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12627", titleEn: "Patrika Nov 2025", titleHi: "Patrika Nov 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-11-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-nov-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12621", titleEn: "Patrika Oct 2025", titleHi: "Patrika Oct 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-10-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-oct-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12613", titleEn: "Patrika Sep 2025", titleHi: "Patrika Sep 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-09-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-sep-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12581", titleEn: "Patrika Aug 2025", titleHi: "Patrika Aug 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/08/2025-08-Patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-aug-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12575", titleEn: "Patrika July 2025", titleHi: "Patrika July 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/08/2025-07-Patrika-frong-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12562", titleEn: "Patrika June 2025", titleHi: "Patrika June 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/06/2025-06-Patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12556", titleEn: "Patrika May 2025", titleHi: "Patrika May 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/06/2025-05-Patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12549", titleEn: "Patrika April 2025", titleHi: "Patrika April 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/06/2025-04-Patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12540", titleEn: "Patrika March 2025", titleHi: "Patrika March 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/06/2025-03-Patrika-frpnt-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-march-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12516", titleEn: "Patrika Feburary 2025", titleHi: "Patrika Feburary 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/02/2025-02-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-feburary-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12510", titleEn: "Patika Januray - 2025", titleHi: "Patika Januray - 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/02/2025-01-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patika-januray-2025/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12504", titleEn: "Patika December - 2024", titleHi: "Patika December - 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2025/01/2024-12-Patrika-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patika-december-2024/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12407", titleEn: "Patrika August 2024", titleHi: "Patrika August 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/08/2024-08-patrika-cover-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-august-2024/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12400", titleEn: "Patrika June 2024", titleHi: "Patrika June 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/08/2024-06-patrika-cover-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-june-2024/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12392", titleEn: "Patrika May 2024", titleHi: "Patrika May 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/05/2024-05-patrika-cover-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-may-2024/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12386", titleEn: "Patrika April 2024", titleHi: "Patrika April 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/05/2024-04-patrika-Cover-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-april-2024/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12380", titleEn: "Patrika Mar 2024", titleHi: "Patrika Mar 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/05/2024-03-patrika-cover-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-mar-2024/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12373", titleEn: "Patrika Feb 2024", titleHi: "Patrika Feb 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/05/2024-02-patrika-cover-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-feb-2024/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12259", titleEn: "Patrika August 2023", titleHi: "Patrika August 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/08/2023-08-patrika-cover.pdf", pdfUrl: "https://maanmandir.org/download/patrika-august-2023/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12253", titleEn: "Patrika July 2023", titleHi: "Patrika July 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/08/2023-07-patrika-cover.pdf", pdfUrl: "https://maanmandir.org/download/patrika-july-2023/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12246", titleEn: "Patrika June 2023", titleHi: "Patrika June 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/08/2023-06-patrika-cover.pdf", pdfUrl: "https://maanmandir.org/download/patrika-june-2023/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12160", titleEn: "Patrika May 2023", titleHi: "Patrika May 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/05/2023-05-patrika-cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2023/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12070", titleEn: "Patrika Mar 2023", titleHi: "Patrika Mar 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/02/2023-03-Mar-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-mar-2023/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12063", titleEn: "Patrika Jan 2023", titleHi: "Patrika Jan 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/02/2023-01-Jan-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-jan-2023/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-12047", titleEn: "Patrika Nov 2022", titleHi: "Patrika Nov 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2023/02/2022-11-Nov-front-page.pdf", pdfUrl: "https://maanmandir.org/download/patrika-nov-2022/", isNew: false, downloads: "0 Downloads" },
+  { id: "m-dlm-11881", titleEn: "Patrika Aug 2022", titleHi: "Patrika Aug 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/07/August-2022_Maan-Mandir-Patrika-Front-Page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-aug-2022/", isNew: false, downloads: "287 Downloads" },
+  { id: "m-dlm-11867", titleEn: "Patrika July 2022", titleHi: "Patrika July 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/06/July_2022_Maan-Mandir-Patrika_Cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2022/", isNew: false, downloads: "230 Downloads" },
+  { id: "m-dlm-11857", titleEn: "Patrika June 2022", titleHi: "Patrika June 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/06/June_2022_Maan-Mandir-Patrika_Cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2022/", isNew: false, downloads: "157 Downloads" },
+  { id: "m-dlm-11837", titleEn: "Patrika May 2022", titleHi: "Patrika May 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/05/May-2022_Maan-Mandir-Patrika-coverpage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2022/", isNew: false, downloads: "307 Downloads" },
+  { id: "m-dlm-11831", titleEn: "Patrika April 2022", titleHi: "Patrika April 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/05/April_2022_Maan-Mandir-Patrika-coverpage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2022/", isNew: false, downloads: "81 Downloads" },
+  { id: "m-dlm-11785", titleEn: "Patrika January 2022", titleHi: "Patrika January 2022", coverImg: "https://maanmandir.org/wp-content/uploads/dlm_uploads/2022/02/Maan-Mandir-Patrika-January-2022-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-january-2022/", isNew: false, downloads: "132 Downloads" },
+  { id: "m-dlm-11774", titleEn: "Patrika December 2021", titleHi: "Patrika December 2021", coverImg: "https://maanmandir.org/wp-content/uploads/dlm_uploads/2022/02/Maan_Mandir_Patrika_December_2021_front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-december-2021/", isNew: false, downloads: "79 Downloads" },
+  { id: "m-dlm-11766", titleEn: "Patrika November 2021", titleHi: "Patrika November 2021", coverImg: "https://maanmandir.org/wp-content/uploads/2022/02/Maan_Mandir_Patrika_November_2021_frontpage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-november-2021/", isNew: false, downloads: "77 Downloads" },
+  { id: "m-dlm-11759", titleEn: "Patrika October 2021", titleHi: "Patrika October 2021", coverImg: "https://maanmandir.org/wp-content/uploads/dlm_uploads/2022/02/Maan_Mandir_Patrika_October_2021_frontpage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-october-2021/", isNew: false, downloads: "65 Downloads" },
+  { id: "m-dlm-11749", titleEn: "Patrika September 2021", titleHi: "Patrika September 2021", coverImg: "https://maanmandir.org/wp-content/uploads/dlm_uploads/2022/02/Maan_Mandir_Patrika_September_2021_frontPage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-september-2021/", isNew: false, downloads: "56 Downloads" },
+  { id: "m-dlm-11246", titleEn: "Patrika August 2021", titleHi: "Patrika August 2021", coverImg: "https://maanmandir.org/wp-content/uploads/2021/07/2021-08-cover-page-e1627608718725.jpg", pdfUrl: "https://maanmandir.org/download/patrika-august-2021/", isNew: false, downloads: "320 Downloads" },
+  { id: "m-dlm-11237", titleEn: "Patrika July 2021", titleHi: "Patrika July 2021", coverImg: "https://maanmandir.org/wp-content/uploads/2021/07/2021-07-cover-page-scaled-e1627608169800.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2021/", isNew: false, downloads: "167 Downloads" },
+  { id: "m-dlm-10471", titleEn: "Patrika April 2020", titleHi: "Patrika April 2020", coverImg: "https://maanmandir.org/wp-content/uploads/2020/04/2020-04-Cover-Page-e1587267244618.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2020/", isNew: false, downloads: "1707 Downloads" },
+  { id: "m-dlm-10465", titleEn: "Patrika March 2020", titleHi: "Patrika March 2020", coverImg: "https://maanmandir.org/wp-content/uploads/2020/04/2020-03-Patrika-Cover-e1587266133257.jpg", pdfUrl: "https://maanmandir.org/download/patrika-march-2020/", isNew: false, downloads: "461 Downloads" },
+  { id: "m-dlm-10459", titleEn: "Patrika February 2020", titleHi: "Patrika February 2020", coverImg: "https://maanmandir.org/wp-content/uploads/2020/04/2020-02-cover-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-february-2020/", isNew: false, downloads: "404 Downloads" },
+  { id: "m-dlm-10450", titleEn: "Patrika January 2020", titleHi: "Patrika January 2020", coverImg: "https://maanmandir.org/wp-content/uploads/2020/04/2020-01-cover-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-january-2020/", isNew: false, downloads: "361 Downloads" },
+  { id: "m-dlm-10442", titleEn: "Patrika  December 2019", titleHi: "Patrika  December 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2020/03/871D7B00-757D-4C37-B44D-8CCC9DB79607-e1584229235438.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-december-2019/", isNew: false, downloads: "456 Downloads" },
+  { id: "m-dlm-10420", titleEn: "Patrika  November 2019", titleHi: "Patrika  November 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2020/01/2019-11-cover-page-e1578281976351.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-november-2019/", isNew: false, downloads: "387 Downloads" },
+  { id: "m-dlm-10405", titleEn: "Patrika October 2019", titleHi: "Patrika October 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/10/2019-10-cover-page.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-october-2019/", isNew: false, downloads: "1073 Downloads" },
+  { id: "m-dlm-10399", titleEn: "Patrika September 2019", titleHi: "Patrika September 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/10/2019-09-cover-page.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-september-2019/", isNew: false, downloads: "444 Downloads" },
+  { id: "m-dlm-10385", titleEn: "Patrika August 2019", titleHi: "Patrika August 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/10/2019-08-cover-page.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-august-2019/", isNew: false, downloads: "528 Downloads" },
+  { id: "m-dlm-10376", titleEn: "Patrika July 2019", titleHi: "Patrika July 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/07/patrika-july-2019-cover-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2019/", isNew: false, downloads: "1132 Downloads" },
+  { id: "m-dlm-10367", titleEn: "Patrika June 2019", titleHi: "Patrika June 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/07/patrika-june-2019-cover-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2019/", isNew: false, downloads: "510 Downloads" },
+  { id: "m-dlm-10351", titleEn: "Patrika April 2019", titleHi: "Patrika April 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/07/2019-04-cover-page.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-april-2019/", isNew: false, downloads: "373 Downloads" },
+  { id: "m-dlm-10287", titleEn: "Patrika Mar 2019", titleHi: "Patrika Mar 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/02/2019-03-cover-page-1-1.jpg", pdfUrl: "https://maanmandir.org/download/patrika-mar-2019/", isNew: false, downloads: "1007 Downloads" },
+  { id: "m-dlm-10275", titleEn: "Patrika Feb 2019", titleHi: "Patrika Feb 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/01/2019-02-patrika-cover-1-320px.jpg", pdfUrl: "https://maanmandir.org/download/patrika-feb-2019/", isNew: false, downloads: "816 Downloads" },
+  { id: "m-dlm-10237", titleEn: "Patrika Jan 2019", titleHi: "Patrika Jan 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/01/2019-01-patrika-cover-page-e1546728795957.jpg", pdfUrl: "https://maanmandir.org/download/patrika-jan-2019/", isNew: false, downloads: "579 Downloads" },
+  { id: "m-dlm-10224", titleEn: "Patrika Dec 2018", titleHi: "Patrika Dec 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2019/01/2018-12-patrika-cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-dec-2018/", isNew: false, downloads: "463 Downloads" },
+  { id: "m-dlm-10218", titleEn: "Patrika Nov 2018", titleHi: "Patrika Nov 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2019/01/2018-11-patrika-cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-nov-2018/", isNew: false, downloads: "544 Downloads" },
+  { id: "m-dlm-10156", titleEn: "Patrika Oct 2018", titleHi: "Patrika Oct 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/09/2018-10-patrika-cover-e1537667660313.jpg", pdfUrl: "https://maanmandir.org/download/patrika-oct-2018/", isNew: false, downloads: "840 Downloads" },
+  { id: "m-dlm-10148", titleEn: "Patrika Sep 2018", titleHi: "Patrika Sep 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/09/2018-09-patrika-cover-e1537667029389.jpg", pdfUrl: "https://maanmandir.org/download/patrika-sep-2018/", isNew: false, downloads: "689 Downloads" },
+  { id: "m-dlm-10112", titleEn: "Patrika August 2018", titleHi: "Patrika August 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-08-patrika-cover-e1535414121330.jpg", pdfUrl: "https://maanmandir.org/download/patrika-august-2018/", isNew: false, downloads: "562 Downloads" },
+  { id: "m-dlm-10104", titleEn: "Patrika July 2018", titleHi: "Patrika July 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-07-patrika-cover-page-e1535413424114.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2018/", isNew: false, downloads: "406 Downloads" },
+  { id: "m-dlm-10096", titleEn: "Patrika June 2016", titleHi: "Patrika June 2016", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-06-patrika-cover-page-e1535412954277.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2016/", isNew: false, downloads: "399 Downloads" },
+  { id: "m-dlm-10079", titleEn: "Patrika April 2018", titleHi: "Patrika April 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-04-patrika-cover-e1535405580743.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2018-2/", isNew: false, downloads: "207 Downloads" },
+  { id: "m-dlm-10089", titleEn: "Patrika May 2018", titleHi: "Patrika May 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-05-patrika-cover-page-e1535406405576.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2018/", isNew: false, downloads: "385 Downloads" },
+  { id: "m-dlm-9973", titleEn: "Patrika Mar 2018", titleHi: "Patrika Mar 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-03-Patrika-cover-page-e1534214889235.jpg", pdfUrl: "https://maanmandir.org/download/patrika-mar-2018/", isNew: false, downloads: "351 Downloads" },
+  { id: "m-dlm-9846", titleEn: "Patrika Jan 2018", titleHi: "Patrika Jan 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/05/D7A3747E-8118-4A7A-B0A4-F5F4421DD3D1-e1526644804472.jpeg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2018-january/", isNew: false, downloads: "844 Downloads" },
+  { id: "m-dlm-9828", titleEn: "Maan Mandir Patrika - 2017 Dec", titleHi: "मान मंदिर मासिक पत्रिका - 2017 Dec", coverImg: "https://maanmandir.org/wp-content/uploads/2018/05/043E4FAC-EDDC-4876-BDA9-BEB2ED65765E-e1526585926814.jpeg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-dec/", isNew: false, downloads: "301 Downloads" },
+  { id: "m-dlm-9697", titleEn: "Maan Mandir Patrika 2017 November", titleHi: "मान मंदिर मासिक पत्रिका 2017 November", coverImg: "https://maanmandir.org/wp-content/uploads/2017/10/nov.2017-patrika-title-e1509248623826.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-november/", isNew: false, downloads: "536 Downloads" },
+  { id: "m-dlm-9687", titleEn: "Maan Mandir Patrika 2017 October", titleHi: "मान मंदिर मासिक पत्रिका 2017 October", coverImg: "https://maanmandir.org/wp-content/uploads/2017/10/oct-2017-front-e1509248468917.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-october/", isNew: false, downloads: "442 Downloads" },
+  { id: "m-dlm-9676", titleEn: "Maan Mandir Patrika 2017 September", titleHi: "मान मंदिर मासिक पत्रिका 2017 September", coverImg: "https://maanmandir.org/wp-content/uploads/2017/10/september-patrika-2017-final-page-1-e1509247529964.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-september/", isNew: false, downloads: "679 Downloads" },
+  { id: "m-dlm-9600", titleEn: "Maan Mandir Patrika 2017 August", titleHi: "मान मंदिर मासिक पत्रिका 2017 August", coverImg: "https://maanmandir.org/wp-content/uploads/2017/07/Mand-Mandir-Patrika-2017-August-Front-e1500849305172.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-august/", isNew: false, downloads: "584 Downloads" },
+  { id: "m-dlm-9593", titleEn: "Maan Mandir Patrika May 2017", titleHi: "मान मंदिर मासिक पत्रिका May 2017", coverImg: "https://maanmandir.org/wp-content/uploads/2017/07/Maan-Mandir-May-2017-Front-Page-e1500573289575.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-may-2017-2/", isNew: false, downloads: "416 Downloads" },
+  { id: "m-dlm-9589", titleEn: "Maan Mandir Patrika April 2017", titleHi: "मान मंदिर मासिक पत्रिका April 2017", coverImg: "https://maanmandir.org/wp-content/uploads/2017/07/patrika-april-2017-fron-page-e1500573063758.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-may-2017/", isNew: false, downloads: "553 Downloads" },
+  { id: "m-dlm-9564", titleEn: "Maan Mandir Patrika 2017 July", titleHi: "मान मंदिर मासिक पत्रिका 2017 July", coverImg: "https://maanmandir.org/wp-content/uploads/2017/07/maan-mandir-2-e1499304771922.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-july/", isNew: false, downloads: "796 Downloads" },
+  { id: "m-dlm-9551", titleEn: "Maan Mandir Patrika 2017 June", titleHi: "मान मंदिर मासिक पत्रिका 2017 June", coverImg: "https://maanmandir.org/wp-content/uploads/2017/06/maan-mandir-1-e1498508604526.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-june/", isNew: false, downloads: "499 Downloads" },
+  { id: "m-dlm-9523", titleEn: "Maan Mandir Patrika 2017 March", titleHi: "मान मंदिर मासिक पत्रिका 2017 March", coverImg: "https://maanmandir.org/wp-content/uploads/2017/03/patrika-march-2017-e1500573658955.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-march/", isNew: false, downloads: "689 Downloads" },
+  { id: "m-dlm-9519", titleEn: "Maan Mandir Patrika 2017 Feb", titleHi: "मान मंदिर मासिक पत्रिका 2017 Feb", coverImg: "https://maanmandir.org/wp-content/uploads/2017/03/patrika-feb-2017-e1500573552790.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2017-feb/", isNew: false, downloads: "1142 Downloads" },
+  { id: "m-dlm-9478", titleEn: "Maan Mandir Patrika 2016 October", titleHi: "मान मंदिर मासिक पत्रिका 2016 October", coverImg: "https://maanmandir.org/wp-content/uploads/2016/10/Maan-Mandir-Patrika-October-2016-Cover-Page-e1476934907807.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2016-october/", isNew: false, downloads: "604 Downloads" },
+  { id: "m-dlm-9425", titleEn: "Maan Mandir Patrika 2016 September", titleHi: "मान मंदिर मासिक पत्रिका 2016 September", coverImg: "https://maanmandir.org/wp-content/uploads/2016/09/Maan-Mandir-Patrika-2016-Sep-Cover.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2016-september/", isNew: false, downloads: "760 Downloads" },
+  { id: "m-dlm-9420", titleEn: "Maan Mandir Patrika 2016 July", titleHi: "मान मंदिर मासिक पत्रिका 2016 July", coverImg: "https://maanmandir.org/wp-content/uploads/2016/08/Maan-Mandir-2016-08-Aug.jpg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2016-july/", isNew: false, downloads: "1490 Downloads" },
+  { id: "m-post-12712", titleEn: "Maan Mandir Patrika June 2026", titleHi: "मान मंदिर मासिक पत्रिका June 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-06-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2026/?tmstv=1789933547", isNew: true, downloads: "616 downloads" },
+  { id: "m-post-12706", titleEn: "Maan Mandir Patrika May 2026", titleHi: "मान मंदिर मासिक पत्रिका May 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-05-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2026/?tmstv=1789933547", isNew: true, downloads: "548 downloads" },
+  { id: "m-post-12700", titleEn: "Maan Mandir Patrika April 2026", titleHi: "मान मंदिर मासिक पत्रिका April 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-04-Patrika-frong-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2026/?tmstv=1789933547", isNew: true, downloads: "539 downloads" },
+  { id: "m-post-12694", titleEn: "Maan Mandir Patrika Mar 2026", titleHi: "मान मंदिर मासिक पत्रिका Mar 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/07/2026-03-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-mar-2026/?tmstv=1789933547", isNew: false, downloads: "264 downloads" },
+  { id: "m-post-12651", titleEn: "Maan Mandir Patrika Feb 2026", titleHi: "मान मंदिर मासिक पत्रिका Feb 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2026-02-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-feb-2026/?tmstv=1789933547", isNew: false, downloads: "3042 downloads" },
+  { id: "m-post-12643", titleEn: "Maan Mandir Patrika Jan 2026", titleHi: "मान मंदिर मासिक पत्रिका Jan 2026", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2026-01-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-jan-2026/?tmstv=1789933547", isNew: false, downloads: "3082 downloads" },
+  { id: "m-post-12637", titleEn: "Maan Mandir Patrika Dec 2025", titleHi: "मान मंदिर मासिक पत्रिका Dec 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-12-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-dec-2025/?tmstv=1789933547", isNew: false, downloads: "2944 downloads" },
+  { id: "m-post-12631", titleEn: "Maan Mandir Patrika Nov 2025", titleHi: "मान मंदिर मासिक पत्रिका Nov 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-11-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-nov-2025/?tmstv=1789933547", isNew: false, downloads: "2077 downloads" },
+  { id: "m-post-12625", titleEn: "Maan Mandir Patrika Oct 2025", titleHi: "मान मंदिर मासिक पत्रिका Oct 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-10-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-oct-2025/?tmstv=1789933547", isNew: false, downloads: "2063 downloads" },
+  { id: "m-post-12617", titleEn: "Maan Mandir Patrika Sep 2025", titleHi: "मान मंदिर मासिक पत्रिका Sep 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2026/02/2025-09-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-sep-2025/?tmstv=1789933547", isNew: false, downloads: "1970 downloads" },
+  { id: "m-post-12585", titleEn: "Maan Mandir Patrika August 2025", titleHi: "मान मंदिर मासिक पत्रिका August 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/08/2025-08-Patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-aug-2025/?tmstv=1789933547", isNew: false, downloads: "5065 downloads" },
+  { id: "m-post-12579", titleEn: "Maan Mandir Patrika July 2025", titleHi: "मान मंदिर मासिक पत्रिका July 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/08/2025-07-Patrika-frong-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2025/?tmstv=1789933547", isNew: false, downloads: "5028 downloads" },
+  { id: "m-post-12566", titleEn: "Maan Mandir Patrika - June 2025", titleHi: "मान मंदिर मासिक पत्रिका - June 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/06/2025-06-Patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2025/?tmstv=1789933547", isNew: false, downloads: "6801 downloads" },
+  { id: "m-post-12560", titleEn: "Maan Mandir Patrika - May 2025", titleHi: "मान मंदिर मासिक पत्रिका - May 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/06/2025-05-Patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2025/?tmstv=1789933547", isNew: false, downloads: "5521 downloads" },
+  { id: "m-post-12553", titleEn: "Maan Mandir Patrika - April 2025", titleHi: "मान मंदिर मासिक पत्रिका - April 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/06/2025-04-Patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2025/?tmstv=1789933547", isNew: false, downloads: "5636 downloads" },
+  { id: "m-post-12546", titleEn: "Maan Mandir Patrika - Mar 2025", titleHi: "मान मंदिर मासिक पत्रिका - Mar 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/06/2025-03-Patrika-frpnt-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-march-2025/?tmstv=1789933547", isNew: false, downloads: "5109 downloads" },
+  { id: "m-post-12520", titleEn: "Maan Mandir Patrika - Feb 2025", titleHi: "मान मंदिर मासिक पत्रिका - Feb 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/02/2025-02-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-feburary-2025/?tmstv=1789933547", isNew: false, downloads: "7342 downloads" },
+  { id: "m-post-12514", titleEn: "Maan Mandir Patrika - Jan 2025", titleHi: "मान मंदिर मासिक पत्रिका - Jan 2025", coverImg: "https://maanmandir.org/wp-content/uploads/2025/02/2025-01-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patika-januray-2025/?tmstv=1789933547", isNew: false, downloads: "6946 downloads" },
+  { id: "m-post-12507", titleEn: "Maan Mandir Patrika – Dec 2024", titleHi: "मान मंदिर मासिक पत्रिका – Dec 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2025/01/2024-12-Patrika-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patika-december-2024/?tmstv=1789933547", isNew: false, downloads: "6928 downloads" },
+  { id: "m-post-12486", titleEn: "Maan Mandir Patrika - Nov 2024", titleHi: "मान मंदिर मासिक पत्रिका - Nov 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/10/2024-11-patrika-cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patika-november-2024/?tmstv=1789933547", isNew: false, downloads: "4074 downloads" },
+  { id: "m-post-12480", titleEn: "Maan Mandir Patrika - Oct 2024", titleHi: "मान मंदिर मासिक पत्रिका - Oct 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/10/2024-10-patrika-cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-october-2024/?tmstv=1789933547", isNew: false, downloads: "4377 downloads" },
+  { id: "m-post-12473", titleEn: "Maan Mandir Patrika - Sep 2024", titleHi: "मान मंदिर मासिक पत्रिका - Sep 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/10/2024-09-patrika-cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-september-2024/?tmstv=1789933547", isNew: false, downloads: "3730 downloads" },
+  { id: "m-post-12411", titleEn: "Maan Mandir Patrika - August 2024", titleHi: "मान मंदिर मासिक पत्रिका - August 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/08/2024-08-patrika-cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-august-2024/?tmstv=1789933547", isNew: false, downloads: "9705 downloads" },
+  { id: "m-post-12404", titleEn: "Maan Mandir Patrika - June 2024", titleHi: "मान मंदिर मासिक पत्रिका - June 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/08/2024-06-patrika-cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2024/?tmstv=1789933547", isNew: false, downloads: "9096 downloads" },
+  { id: "m-post-12396", titleEn: "Maan Mandir Patrika - May 2024", titleHi: "मान मंदिर मासिक पत्रिका - May 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/05/2024-05-patrika-cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2024/?tmstv=1789933547", isNew: false, downloads: "11717 downloads" },
+  { id: "m-post-12390", titleEn: "Maan Mandir Patrika - April 2024", titleHi: "मान मंदिर मासिक पत्रिका - April 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/05/2024-04-patrika-Cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2024/?tmstv=1789933547", isNew: false, downloads: "11590 downloads" },
+  { id: "m-post-12384", titleEn: "Maan Mandir Patrika - Mar 2024", titleHi: "मान मंदिर मासिक पत्रिका - Mar 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/05/2024-03-patrika-cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-mar-2024/?tmstv=1789933547", isNew: false, downloads: "10918 downloads" },
+  { id: "m-post-12377", titleEn: "Maan Mandir Patrika - Feb 2024", titleHi: "मान मंदिर मासिक पत्रिका - Feb 2024", coverImg: "https://maanmandir.org/wp-content/uploads/2024/05/2024-02-patrika-cover-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-feb-2024/?tmstv=1789933547", isNew: false, downloads: "10239 downloads" },
+  { id: "m-post-12368", titleEn: "Maan Mandir Patika - Dec 2023", titleHi: "Maan Mandir Patika - Dec 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/11/2023-12-patrika-cover-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-december-2023/?tmstv=1789933547", isNew: false, downloads: "7143 downloads" },
+  { id: "m-post-12361", titleEn: "Maan Mandir Patrika - Nov 2023", titleHi: "मान मंदिर मासिक पत्रिका - Nov 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/11/2023-11-patrika-cover-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-november-2023/?tmstv=1789933547", isNew: false, downloads: "7209 downloads" },
+  { id: "m-post-12355", titleEn: "Maan Mandir Patrika - Oct 2023", titleHi: "मान मंदिर मासिक पत्रिका - Oct 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/11/2023-10-patrika-cover-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-october-2023/?tmstv=1789933547", isNew: false, downloads: "8628 downloads" },
+  { id: "m-post-12348", titleEn: "Maan Mandir Patrika - Sep 2023", titleHi: "मान मंदिर मासिक पत्रिका - Sep 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/11/2023-09-patrika-cover-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-sep-2023/?tmstv=1789933547", isNew: false, downloads: "5699 downloads" },
+  { id: "m-post-12263", titleEn: "Maan Mandir Patrika - Aug 2023", titleHi: "मान मंदिर मासिक पत्रिका - Aug 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/08/2023-08-patrika-cover-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-august-2023/?tmstv=1789933547", isNew: false, downloads: "13863 downloads" },
+  { id: "m-post-12250", titleEn: "Maan Mandir Patrika - June 2023", titleHi: "मान मंदिर मासिक पत्रिका - June 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/08/2023-06-patrika-cover-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2023/?tmstv=1789933547", isNew: false, downloads: "13414 downloads" },
+  { id: "m-post-12179", titleEn: "Maan Mandir Patrika - April 2023", titleHi: "मान मंदिर मासिक पत्रिका - April 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/06/2023-04-patrika-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2023/?tmstv=1789933548", isNew: false, downloads: "6285 downloads" },
+  { id: "m-post-12171", titleEn: "Maan Mandir Patrika - May 2023", titleHi: "मान मंदिर मासिक पत्रिका - May 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/05/2023-05-patrika-cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2023/?tmstv=1789933548", isNew: false, downloads: "13547 downloads" },
+  { id: "m-post-12074", titleEn: "Maan Mandir Patrika - Mar 2023", titleHi: "मान मंदिर मासिक पत्रिका - Mar 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/02/2023-03-Mar-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-mar-2023/?tmstv=1789933548", isNew: false, downloads: "13982 downloads" },
+  { id: "m-post-12068", titleEn: "Maan Mandir Patrika - Jan 2023", titleHi: "मान मंदिर मासिक पत्रिका - Jan 2023", coverImg: "https://maanmandir.org/wp-content/uploads/2023/02/2023-01-Jan-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-jan-2023/?tmstv=1789933548", isNew: false, downloads: "14347 downloads" },
+  { id: "m-post-12061", titleEn: "Maan Mandir Patrika - Dec 2022", titleHi: "मान मंदिर मासिक पत्रिका - Dec 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2023/02/2022-Dec-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-dec-2022/?tmstv=1789933548", isNew: false, downloads: "6102 downloads" },
+  { id: "m-post-12053", titleEn: "Maan Mandir Patrika - Nov 2022", titleHi: "मान मंदिर मासिक पत्रिका - Nov 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2023/02/2022-11-Nov-front-page-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-nov-2022/?tmstv=1789933548", isNew: false, downloads: "13733 downloads" },
+  { id: "m-post-11885", titleEn: "Maan Mandir Patrika - Aug 2022", titleHi: "मान मंदिर मासिक पत्रिका - Aug 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/07/August-2022_Maan-Mandir-Patrika-Front-Page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-aug-2022/?tmstv=1789933548", isNew: false, downloads: "14843 downloads" },
+  { id: "m-post-11871", titleEn: "Maan Mandir Patrika - July 2022", titleHi: "मान मंदिर मासिक पत्रिका - July 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/06/July_2022_Maan-Mandir-Patrika_Cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2022/?tmstv=1789933548", isNew: false, downloads: "14450 downloads" },
+  { id: "m-post-11863", titleEn: "Maan Mandir Patrika - June 2022", titleHi: "मान मंदिर मासिक पत्रिका - June 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/06/June_2022_Maan-Mandir-Patrika_Cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2022/?tmstv=1789933548", isNew: false, downloads: "14492 downloads" },
+  { id: "m-post-11841", titleEn: "Maan Mandir Patrika - May 2022", titleHi: "मान मंदिर मासिक पत्रिका - May 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/05/May-2022_Maan-Mandir-Patrika-coverpage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2022/?tmstv=1789933548", isNew: false, downloads: "14422 downloads" },
+  { id: "m-post-11835", titleEn: "Maan Mandir Patrika - April 2022", titleHi: "मान मंदिर मासिक पत्रिका - April 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/05/April_2022_Maan-Mandir-Patrika-coverpage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2022/?tmstv=1789933548", isNew: false, downloads: "14131 downloads" },
+  { id: "m-post-11818", titleEn: "Maan Mandir Patrika - March 2022", titleHi: "मान मंदिर मासिक पत्रिका - March 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/04/2022-March-MaanMandirPatrika-cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-march-2022/?tmstv=1789933548", isNew: false, downloads: "5662 downloads" },
+  { id: "m-post-11800", titleEn: "Maan Mandir Patrika - February 2022", titleHi: "मान मंदिर मासिक पत्रिका - February 2022", coverImg: "https://maanmandir.org/wp-content/uploads/2022/02/Maan-Mandir-PatrikaFebruary-2022-pdf.jpg", pdfUrl: "https://maanmandir.org/download/patrika-february-2022/?tmstv=1789933548", isNew: false, downloads: "5330 downloads" },
+  { id: "m-post-11789", titleEn: "Maan Mandir Patrika - January 2022", titleHi: "मान मंदिर मासिक पत्रिका - January 2022", coverImg: "https://maanmandir.org/wp-content/uploads/dlm_uploads/2022/02/Maan-Mandir-Patrika-January-2022-front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-january-2022/?tmstv=1789933548", isNew: false, downloads: "13862 downloads" },
+  { id: "m-post-11780", titleEn: "Maan Mandir Patrika - December 2021", titleHi: "मान मंदिर मासिक पत्रिका - December 2021", coverImg: "https://maanmandir.org/wp-content/uploads/dlm_uploads/2022/02/Maan_Mandir_Patrika_December_2021_front-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-december-2021/?tmstv=1789933548", isNew: false, downloads: "13493 downloads" },
+  { id: "m-post-11771", titleEn: "Maan Mandir Patrika - November 2021", titleHi: "मान मंदिर मासिक पत्रिका - November 2021", coverImg: "https://maanmandir.org/wp-content/uploads/2022/02/Maan_Mandir_Patrika_November_2021_frontpage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-november-2021/?tmstv=1789933548", isNew: false, downloads: "12922 downloads" },
+  { id: "m-post-11764", titleEn: "Maan Mandir Patrika - October 2021", titleHi: "मान मंदिर मासिक पत्रिका - October 2021", coverImg: "https://maanmandir.org/wp-content/uploads/dlm_uploads/2022/02/Maan_Mandir_Patrika_October_2021_frontpage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-october-2021/?tmstv=1789933548", isNew: false, downloads: "14067 downloads" },
+  { id: "m-post-11757", titleEn: "Maan Mandir Patrika - September 2021", titleHi: "मान मंदिर मासिक पत्रिका - September 2021", coverImg: "https://maanmandir.org/wp-content/uploads/dlm_uploads/2022/02/Maan_Mandir_Patrika_September_2021_frontPage.jpg", pdfUrl: "https://maanmandir.org/download/patrika-september-2021/?tmstv=1789933548", isNew: false, downloads: "12944 downloads" },
+  { id: "m-post-11250", titleEn: "Maan Mandir Patrika - August 2021", titleHi: "मान मंदिर मासिक पत्रिका - August 2021", coverImg: "https://maanmandir.org/wp-content/uploads/2021/07/2021-08-cover-page-e1627608718725.jpg", pdfUrl: "https://maanmandir.org/download/patrika-august-2021/?tmstv=1789933548", isNew: false, downloads: "14234 downloads" },
+  { id: "m-post-11241", titleEn: "Maan Mandir Patrika - July 2021", titleHi: "मान मंदिर मासिक पत्रिका - July 2021", coverImg: "https://maanmandir.org/wp-content/uploads/2021/07/2021-07-cover-page-scaled-e1627608169800.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2021/?tmstv=1789933548", isNew: false, downloads: "13640 downloads" },
+  { id: "m-post-10475", titleEn: "Maan Mandir Patrika – April 2020", titleHi: "मान मंदिर मासिक पत्रिका – April 2020", coverImg: "https://maanmandir.org/wp-content/uploads/2020/04/2020-04-Cover-Page-e1587267244618.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2020/?tmstv=1789933548", isNew: false, downloads: "13932 downloads" },
+  { id: "m-post-10469", titleEn: "Maan Mandir Patrika – March 2020", titleHi: "मान मंदिर मासिक पत्रिका – March 2020", coverImg: "https://maanmandir.org/wp-content/uploads/2020/04/2020-03-Patrika-Cover-e1587266133257.jpg", pdfUrl: "https://maanmandir.org/download/patrika-march-2020/?tmstv=1789933548", isNew: false, downloads: "11290 downloads" },
+  { id: "m-post-10463", titleEn: "Maan Mandir Patrika – February 2020", titleHi: "मान मंदिर मासिक पत्रिका – February 2020", coverImg: "https://maanmandir.org/wp-content/uploads/2020/04/2020-02-cover-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-february-2020/?tmstv=1789933548", isNew: false, downloads: "11250 downloads" },
+  { id: "m-post-10457", titleEn: "Maan Mandir Patrika – January 2020", titleHi: "मान मंदिर मासिक पत्रिका – January 2020", coverImg: "https://maanmandir.org/wp-content/uploads/2020/04/2020-01-cover-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-january-2020/?tmstv=1789933548", isNew: false, downloads: "10963 downloads" },
+  { id: "m-post-10447", titleEn: "Maan Mandir Patrika - December 2019", titleHi: "मान मंदिर मासिक पत्रिका - December 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2020/03/871D7B00-757D-4C37-B44D-8CCC9DB79607-e1584229235438.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-december-2019/?tmstv=1789933548", isNew: false, downloads: "10146 downloads" },
+  { id: "m-post-10440", titleEn: "Maan Mandir Patrika - November 2019", titleHi: "मान मंदिर मासिक पत्रिका - November 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2020/01/2019-11-cover-page-e1578281976351.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-november-2019/?tmstv=1789933548", isNew: false, downloads: "10151 downloads" },
+  { id: "m-post-10410", titleEn: "Maan Mandir Patrika - October 2019", titleHi: "मान मंदिर मासिक पत्रिका - October 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/10/2019-10-cover-page.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-october-2019/?tmstv=1789933548", isNew: false, downloads: "12206 downloads" },
+  { id: "m-post-10403", titleEn: "Maan Mandir Patrika - September 2019", titleHi: "मान मंदिर मासिक पत्रिका - September 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/10/2019-09-cover-page.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-september-2019/?tmstv=1789933548", isNew: false, downloads: "10505 downloads" },
+  { id: "m-post-10391", titleEn: "Maan Mandir Patrika - August 2019", titleHi: "मान मंदिर मासिक पत्रिका - August 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/10/2019-08-cover-page.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-august-2019/?tmstv=1789933548", isNew: false, downloads: "10462 downloads" },
+  { id: "m-post-10378", titleEn: "Maan Mandir Patrika - July 2019", titleHi: "मान मंदिर मासिक पत्रिका - July 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/07/patrika-july-2019-cover-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2019/?tmstv=1789933548", isNew: false, downloads: "13212 downloads" },
+  { id: "m-post-10371", titleEn: "Maan Mandir Patrika - June 2019", titleHi: "मान मंदिर मासिक पत्रिका - June 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/07/patrika-june-2019-cover-page.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2019/?tmstv=1789933548", isNew: false, downloads: "11207 downloads" },
+  { id: "m-post-10363", titleEn: "Maan Mandir Patrika - May 2019", titleHi: "मान मंदिर मासिक पत्रिका - May 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/07/2019-05-cover-page-1.png", pdfUrl: "https://maanmandir.org/download/patrika-may-2019/?tmstv=1789933548", isNew: false, downloads: "3890 downloads" },
+  { id: "m-post-10356", titleEn: "Maan Mandir Patrika – April 2019", titleHi: "मान मंदिर मासिक पत्रिका – April 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/07/2019-04-cover-page.jpeg", pdfUrl: "https://maanmandir.org/download/patrika-april-2019/?tmstv=1789933548", isNew: false, downloads: "11417 downloads" },
+  { id: "m-post-10292", titleEn: "Maan Mandir Patrika – Mar 2019", titleHi: "मान मंदिर मासिक पत्रिका – Mar 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/02/2019-03-cover-page-1-1.jpg", pdfUrl: "https://maanmandir.org/download/patrika-mar-2019/?tmstv=1789933548", isNew: false, downloads: "12884 downloads" },
+  { id: "m-post-10280", titleEn: "Maan Mandir Patrika - Feb 2019", titleHi: "मान मंदिर मासिक पत्रिका - Feb 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/01/2019-02-patrika-cover-1-320px.jpg", pdfUrl: "https://maanmandir.org/download/patrika-feb-2019/?tmstv=1789933548", isNew: false, downloads: "12135 downloads" },
+  { id: "m-post-10235", titleEn: "Maan Mandir Patrika - Jan 2019", titleHi: "मान मंदिर मासिक पत्रिका - Jan 2019", coverImg: "https://maanmandir.org/wp-content/uploads/2019/01/2019-01-patrika-cover-page-e1546728795957.jpg", pdfUrl: "https://maanmandir.org/download/patrika-jan-2019/?tmstv=1789933548", isNew: false, downloads: "11355 downloads" },
+  { id: "m-post-10233", titleEn: "Maan Mandir Patrika - Dec 2018", titleHi: "मान मंदिर मासिक पत्रिका - Dec 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2019/01/2018-12-patrika-cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-dec-2018/?tmstv=1789933548", isNew: false, downloads: "10950 downloads" },
+  { id: "m-post-10231", titleEn: "Maan Mandir Patrika - Nov 2018", titleHi: "मान मंदिर मासिक पत्रिका - Nov 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2019/01/2018-11-patrika-cover.jpg", pdfUrl: "https://maanmandir.org/download/patrika-nov-2018/?tmstv=1789933548", isNew: false, downloads: "11420 downloads" },
+  { id: "m-post-10160", titleEn: "Maan Mandir  Patrika - Oct 2018", titleHi: "Maan Mandir  Patrika - Oct 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/09/2018-10-patrika-cover-e1537667660313.jpg", pdfUrl: "https://maanmandir.org/download/patrika-oct-2018/?tmstv=1789933548", isNew: false, downloads: "12017 downloads" },
+  { id: "m-post-10153", titleEn: "Maan Mandir Patrika - Sep 2018", titleHi: "मान मंदिर मासिक पत्रिका - Sep 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/09/2018-09-patrika-cover-e1537667029389.jpg", pdfUrl: "https://maanmandir.org/download/patrika-sep-2018/?tmstv=1789933548", isNew: false, downloads: "11633 downloads" },
+  { id: "m-post-10111", titleEn: "Maan Mandir Patrika – August 2018", titleHi: "मान मंदिर मासिक पत्रिका – August 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-08-patrika-cover-e1535414121330.jpg", pdfUrl: "https://maanmandir.org/download/patrika-august-2018/?tmstv=1789933548", isNew: false, downloads: "11282 downloads" },
+  { id: "m-post-10103", titleEn: "Maan Mandir Patrika – July 2018", titleHi: "मान मंदिर मासिक पत्रिका – July 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-07-patrika-cover-page-e1535413424114.jpg", pdfUrl: "https://maanmandir.org/download/patrika-july-2018/?tmstv=1789933548", isNew: false, downloads: "10634 downloads" },
+  { id: "m-post-10097", titleEn: "Maan Mandir Patrika – June 2018", titleHi: "मान मंदिर मासिक पत्रिका – June 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-06-patrika-cover-page-e1535412954277.jpg", pdfUrl: "https://maanmandir.org/download/patrika-june-2016/?tmstv=1789933548", isNew: false, downloads: "10532 downloads" },
+  { id: "m-post-10088", titleEn: "Maan Mandir Patrika – May 2018", titleHi: "मान मंदिर मासिक पत्रिका – May 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-05-patrika-cover-page-e1535406405576.jpg", pdfUrl: "https://maanmandir.org/download/patrika-may-2018/?tmstv=1789933548", isNew: false, downloads: "10909 downloads" },
+  { id: "m-post-10086", titleEn: "Maan Mandir Patrika – April 2018", titleHi: "मान मंदिर मासिक पत्रिका – April 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-04-patrika-cover-e1535405580743.jpg", pdfUrl: "https://maanmandir.org/download/patrika-april-2018/?tmstv=1789933548", isNew: false, downloads: "3199 downloads" },
+  { id: "m-post-9977", titleEn: "Maan Mandir Patrika – March 2018", titleHi: "मान मंदिर मासिक पत्रिका – March 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/08/2018-03-Patrika-cover-page-e1534214889235.jpg", pdfUrl: "https://maanmandir.org/download/patrika-mar-2018/?tmstv=1789933548", isNew: false, downloads: "10637 downloads" },
+  { id: "m-post-9935", titleEn: "Maan Mandir Patrika - Feburary 2018", titleHi: "मान मंदिर मासिक पत्रिका - Feburary 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/06/2018-02-patrika-cover-page-e1529349397763.jpg", pdfUrl: "https://maanmandir.org/download/patrika-feb-2018/?tmstv=1789933548", isNew: false, downloads: "3317 downloads" },
+  { id: "m-post-9943", titleEn: "Maan Mandir Patrika – Jan 2018", titleHi: "मान मंदिर मासिक पत्रिका – Jan 2018", coverImg: "https://maanmandir.org/wp-content/uploads/2018/05/D7A3747E-8118-4A7A-B0A4-F5F4421DD3D1-e1526644804472.jpeg", pdfUrl: "https://maanmandir.org/download/maan-mandir-patrika-2018-january/?tmstv=1789933548", isNew: false, downloads: "10931 downloads" }
 ];
 
 // DOM Initialization
@@ -863,147 +900,177 @@ function renderSideDrawerMenu() {
   `).join('');
 }
 
-// Fetch Live Books with Real WordPress Titles & Cover Artworks (Category 208)
+// Fetch Live Books with Real WordPress Titles & Cover Artworks (DLM Category 207 & Post Category 208)
 async function fetchLiveWebsiteBooks() {
-  fetchedBooksList = FALLBACK_WEBSITE_BOOKS; // Start with verified catalog immediately
+  fetchedBooksList = FALLBACK_WEBSITE_BOOKS; // Start with verified catalog of 60 books immediately
 
   try {
-    let allPosts = [];
-    let page = 1;
-    let totalPages = 1;
-    do {
-      const res = await fetch(`https://maanmandir.org/wp-json/wp/v2/posts?categories=208&per_page=100&page=${page}`);
-      if (!res.ok) break;
-      const totalPagesHeader = res.headers.get('X-WP-TotalPages');
-      if (totalPagesHeader) totalPages = parseInt(totalPagesHeader, 10);
-      const posts = await res.json();
-      if (Array.isArray(posts) && posts.length > 0) {
-        allPosts = allPosts.concat(posts);
-      } else {
-        break;
-      }
-      page++;
-    } while (page <= totalPages);
+    const booksMap = new Map();
+    FALLBACK_WEBSITE_BOOKS.forEach(b => booksMap.set(b.titleEn.toLowerCase(), b));
 
-    if (allPosts.length > 0) {
-      const parsedBooks = [];
-      allPosts.forEach((post, idx) => {
-        let cleanTitle = post.title && post.title.rendered 
-          ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
-          : 'Maan Mandir Book';
-
-        let coverImgUrl = '';
-        let pdfDownloadUrl = '';
-        let downloadCount = 'Synced';
-
-        if (post.content && post.content.rendered) {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(post.content.rendered, 'text/html');
-          
-          const imgEl = doc.querySelector('img');
-          if (imgEl) coverImgUrl = imgEl.getAttribute('src');
-
-          const linkEl = doc.querySelector('a.dlm-download-link');
-          if (linkEl) pdfDownloadUrl = linkEl.getAttribute('href');
-
-          const countEl = doc.querySelector('.dlm-download-count');
-          if (countEl) downloadCount = countEl.textContent.trim();
-        }
-
-        if (cleanTitle && pdfDownloadUrl) {
-          parsedBooks.push({
-            id: `wp-post-${post.id}`,
-            titleEn: cleanTitle,
-            titleHi: cleanTitle,
-            coverImg: coverImgUrl || FALLBACK_WEBSITE_BOOKS[idx % FALLBACK_WEBSITE_BOOKS.length].coverImg,
-            pdfUrl: pdfDownloadUrl,
-            isNew: idx < 3,
-            downloads: downloadCount
-          });
-        }
-      });
-
-      if (parsedBooks.length > 0) {
-        fetchedBooksList = parsedBooks;
-        const searchInput = document.getElementById('global-search-input');
-        const query = searchInput ? searchInput.value.trim() : '';
-        if (currentSubTab === 'books') renderBooksTab(query);
+    // 1. Fetch DLM Download Category 207
+    const dlmRes = await fetch('https://maanmandir.org/wp-json/wp/v2/dlm_download?dlm_download_category=207&per_page=100&_embed');
+    if (dlmRes.ok) {
+      const dlmBooks = await dlmRes.json();
+      if (Array.isArray(dlmBooks)) {
+        dlmBooks.forEach((item, idx) => {
+          let title = item.title && item.title.rendered ? item.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim() : '';
+          let pdfUrl = item.link ? item.link.split('?')[0] : '';
+          let coverImg = '';
+          if (item._embedded && item._embedded['wp:featuredmedia'] && item._embedded['wp:featuredmedia'][0]) {
+            coverImg = item._embedded['wp:featuredmedia'][0].source_url || '';
+          }
+          if (title && pdfUrl) {
+            booksMap.set(title.toLowerCase(), {
+              id: `b-dlm-${item.id}`,
+              titleEn: title,
+              titleHi: title,
+              coverImg: coverImg,
+              pdfUrl: pdfUrl,
+              isNew: idx < 3,
+              downloads: item.download_count ? `${item.download_count} Downloads` : 'Direct Download'
+            });
+          }
+        });
       }
     }
+
+    // 2. Fetch Posts Category 208
+    const postRes = await fetch('https://maanmandir.org/wp-json/wp/v2/posts?categories=208&per_page=100&_embed');
+    if (postRes.ok) {
+      const postBooks = await postRes.json();
+      if (Array.isArray(postBooks)) {
+        postBooks.forEach((post, idx) => {
+          let title = post.title && post.title.rendered ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim() : '';
+          let coverImg = '';
+          let pdfUrl = '';
+          let downloads = 'Direct Download';
+
+          if (post.content && post.content.rendered) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(post.content.rendered, 'text/html');
+            const img = doc.querySelector('img');
+            if (img) coverImg = img.getAttribute('src');
+            const link = doc.querySelector('a.dlm-download-link');
+            if (link) pdfUrl = link.getAttribute('href');
+            const count = doc.querySelector('.dlm-download-count');
+            if (count) downloads = count.textContent.trim();
+          }
+
+          if (title && pdfUrl) {
+            const key = title.toLowerCase();
+            if (!booksMap.has(key)) {
+              booksMap.set(key, {
+                id: `b-post-${post.id}`,
+                titleEn: title,
+                titleHi: title,
+                coverImg: coverImg,
+                pdfUrl: pdfUrl,
+                isNew: idx < 3,
+                downloads: downloads
+              });
+            }
+          }
+        });
+      }
+    }
+
+    const mergedList = Array.from(booksMap.values());
+    if (mergedList.length > 0) {
+      fetchedBooksList = mergedList;
+      const searchInput = document.getElementById('global-search-input');
+      const query = searchInput ? searchInput.value.trim() : '';
+      if (currentSubTab === 'books') renderBooksTab(query);
+    }
   } catch(err) {
-    console.log('Website Live Fetch Sync (Books): Using pre-cached catalog', err);
+    console.log('Website Live Fetch Sync (Books): Using verified catalog', err);
   }
 }
 
-// Fetch Live Magazine Posts with Real WordPress Titles & Front-Page Cover Artworks (Category 175)
+// Fetch Live Magazine Posts with Real WordPress Titles & Front-Page Cover Artworks (DLM Category 174 & Post Category 175)
 async function fetchLiveWebsiteMagazines() {
-  fetchedMagazinesList = FALLBACK_WEBSITE_MAGAZINES; // Start with verified catalog immediately
+  fetchedMagazinesList = FALLBACK_WEBSITE_MAGAZINES; // Start with verified catalog of 166 magazines immediately
 
   try {
-    let allPosts = [];
-    let page = 1;
-    let totalPages = 1;
-    do {
-      const res = await fetch(`https://maanmandir.org/wp-json/wp/v2/posts?categories=175&per_page=100&page=${page}`);
-      if (!res.ok) break;
-      const totalPagesHeader = res.headers.get('X-WP-TotalPages');
-      if (totalPagesHeader) totalPages = parseInt(totalPagesHeader, 10);
-      const posts = await res.json();
-      if (Array.isArray(posts) && posts.length > 0) {
-        allPosts = allPosts.concat(posts);
-      } else {
-        break;
-      }
-      page++;
-    } while (page <= totalPages);
+    const patrikaMap = new Map();
+    FALLBACK_WEBSITE_MAGAZINES.forEach(m => patrikaMap.set(m.titleEn.toLowerCase(), m));
 
-    if (allPosts.length > 0) {
-      const parsedMagazines = [];
-      allPosts.forEach((post, idx) => {
-        let cleanTitle = post.title && post.title.rendered 
-          ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
-          : 'Maan Mandir Patrika';
-
-        let coverImgUrl = '';
-        let pdfDownloadUrl = '';
-        let downloadCount = 'Synced';
-
-        if (post.content && post.content.rendered) {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(post.content.rendered, 'text/html');
-          
-          const imgEl = doc.querySelector('img');
-          if (imgEl) coverImgUrl = imgEl.getAttribute('src');
-
-          const linkEl = doc.querySelector('a.dlm-download-link');
-          if (linkEl) pdfDownloadUrl = linkEl.getAttribute('href');
-
-          const countEl = doc.querySelector('.dlm-download-count');
-          if (countEl) downloadCount = countEl.textContent.trim();
-        }
-
-        if (cleanTitle && pdfDownloadUrl) {
-          parsedMagazines.push({
-            id: `wp-mag-${post.id}`,
-            titleEn: cleanTitle,
-            titleHi: cleanTitle.replace('Maan Mandir Patrika', 'मान मंदिर मासिक पत्रिका'),
-            coverImg: coverImgUrl || FALLBACK_WEBSITE_MAGAZINES[idx % FALLBACK_WEBSITE_MAGAZINES.length].coverImg,
-            pdfUrl: pdfDownloadUrl,
-            isNew: idx < 3,
-            downloads: downloadCount
-          });
-        }
-      });
-
-      if (parsedMagazines.length > 0) {
-        fetchedMagazinesList = parsedMagazines;
-        const searchInput = document.getElementById('global-search-input');
-        const query = searchInput ? searchInput.value.trim() : '';
-        if (currentSubTab === 'magazines') renderMagazinesTab(query);
+    // 1. Fetch DLM Category 174
+    const dlmRes = await fetch('https://maanmandir.org/wp-json/wp/v2/dlm_download?dlm_download_category=174&per_page=100&_embed');
+    if (dlmRes.ok) {
+      const dlmPatrika = await dlmRes.json();
+      if (Array.isArray(dlmPatrika)) {
+        dlmPatrika.forEach((item, idx) => {
+          let title = item.title && item.title.rendered ? item.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim() : '';
+          let pdfUrl = item.link ? item.link.split('?')[0] : '';
+          let coverImg = '';
+          if (item._embedded && item._embedded['wp:featuredmedia'] && item._embedded['wp:featuredmedia'][0]) {
+            coverImg = item._embedded['wp:featuredmedia'][0].source_url || '';
+          }
+          if (title && pdfUrl) {
+            patrikaMap.set(title.toLowerCase(), {
+              id: `m-dlm-${item.id}`,
+              titleEn: title,
+              titleHi: title.replace('Maan Mandir Patrika', 'मान मंदिर मासिक पत्रिका'),
+              coverImg: coverImg,
+              pdfUrl: pdfUrl,
+              isNew: idx < 3,
+              downloads: item.download_count ? `${item.download_count} Downloads` : 'Direct Download'
+            });
+          }
+        });
       }
     }
+
+    // 2. Fetch Posts Category 175
+    const postRes = await fetch('https://maanmandir.org/wp-json/wp/v2/posts?categories=175&per_page=100&_embed');
+    if (postRes.ok) {
+      const postPatrika = await postRes.json();
+      if (Array.isArray(postPatrika)) {
+        postPatrika.forEach((post, idx) => {
+          let title = post.title && post.title.rendered ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim() : '';
+          let coverImg = '';
+          let pdfUrl = '';
+          let downloads = 'Direct Download';
+
+          if (post.content && post.content.rendered) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(post.content.rendered, 'text/html');
+            const img = doc.querySelector('img');
+            if (img) coverImg = img.getAttribute('src');
+            const link = doc.querySelector('a.dlm-download-link');
+            if (link) pdfUrl = link.getAttribute('href');
+            const count = doc.querySelector('.dlm-download-count');
+            if (count) downloads = count.textContent.trim();
+          }
+
+          if (title && pdfUrl) {
+            const key = title.toLowerCase();
+            if (!patrikaMap.has(key)) {
+              patrikaMap.set(key, {
+                id: `m-post-${post.id}`,
+                titleEn: title,
+                titleHi: title.replace('Maan Mandir Patrika', 'मान मंदिर मासिक पत्रिका'),
+                coverImg: coverImg,
+                pdfUrl: pdfUrl,
+                isNew: idx < 3,
+                downloads: downloads
+              });
+            }
+          }
+        });
+      }
+    }
+
+    const mergedList = Array.from(patrikaMap.values());
+    if (mergedList.length > 0) {
+      fetchedMagazinesList = mergedList;
+      const searchInput = document.getElementById('global-search-input');
+      const query = searchInput ? searchInput.value.trim() : '';
+      if (currentSubTab === 'magazines') renderMagazinesTab(query);
+    }
   } catch(err) {
-    console.log('Website Live Fetch Sync (Magazines): Using pre-cached magazine catalog', err);
+    console.log('Website Live Fetch Sync (Magazines): Using verified magazine catalog', err);
   }
 }
 
