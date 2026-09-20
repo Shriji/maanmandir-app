@@ -188,6 +188,9 @@ let isAudioPlaying = false;
 let currentSubTab = 'books'; // 'books' or 'magazines'
 let fetchedBooksList = [];
 let fetchedMagazinesList = [];
+let booksCurrentPage = 1;
+let magazinesCurrentPage = 1;
+const PUBLICATIONS_PER_PAGE = 8;
 
 // Side Navigation Drawer Categories Structured as Requested
 const MAANMANDIR_ORG_MENU_CATEGORIES = [
@@ -861,124 +864,154 @@ function renderSideDrawerMenu() {
 }
 
 // Fetch Live Books with Real WordPress Titles & Cover Artworks (Category 208)
-function fetchLiveWebsiteBooks() {
+async function fetchLiveWebsiteBooks() {
   fetchedBooksList = FALLBACK_WEBSITE_BOOKS; // Start with verified catalog immediately
 
-  fetch('https://maanmandir.org/wp-json/wp/v2/posts?categories=208&per_page=50')
-    .then(res => res.json())
-    .then(posts => {
-      if (posts && posts.length > 0) {
-        const parsedBooks = [];
-        posts.forEach((post, idx) => {
-          let cleanTitle = post.title && post.title.rendered 
-            ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
-            : 'Maan Mandir Book';
-
-          let coverImgUrl = '';
-          let pdfDownloadUrl = '';
-          let downloadCount = 'Synced';
-
-          if (post.content && post.content.rendered) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(post.content.rendered, 'text/html');
-            
-            const imgEl = doc.querySelector('img');
-            if (imgEl) coverImgUrl = imgEl.getAttribute('src');
-
-            const linkEl = doc.querySelector('a.dlm-download-link');
-            if (linkEl) pdfDownloadUrl = linkEl.getAttribute('href');
-
-            const countEl = doc.querySelector('.dlm-download-count');
-            if (countEl) downloadCount = countEl.textContent.trim();
-          }
-
-          if (cleanTitle && pdfDownloadUrl) {
-            parsedBooks.push({
-              id: `wp-post-${post.id}`,
-              titleEn: cleanTitle,
-              titleHi: cleanTitle,
-              coverImg: coverImgUrl || FALLBACK_WEBSITE_BOOKS[idx % FALLBACK_WEBSITE_BOOKS.length].coverImg,
-              pdfUrl: pdfDownloadUrl,
-              isNew: idx < 3,
-              downloads: downloadCount
-            });
-          }
-        });
-
-        if (parsedBooks.length > 0) {
-          fetchedBooksList = parsedBooks;
-          const searchInput = document.getElementById('global-search-input');
-          const query = searchInput ? searchInput.value.trim() : '';
-          if (currentSubTab === 'books') renderBooksTab(query);
-        }
+  try {
+    let allPosts = [];
+    let page = 1;
+    let totalPages = 1;
+    do {
+      const res = await fetch(`https://maanmandir.org/wp-json/wp/v2/posts?categories=208&per_page=100&page=${page}`);
+      if (!res.ok) break;
+      const totalPagesHeader = res.headers.get('X-WP-TotalPages');
+      if (totalPagesHeader) totalPages = parseInt(totalPagesHeader, 10);
+      const posts = await res.json();
+      if (Array.isArray(posts) && posts.length > 0) {
+        allPosts = allPosts.concat(posts);
+      } else {
+        break;
       }
-    })
-    .catch(err => {
-      console.log('Website Live Fetch Sync (Books): Using pre-cached catalog', err);
-    });
+      page++;
+    } while (page <= totalPages);
+
+    if (allPosts.length > 0) {
+      const parsedBooks = [];
+      allPosts.forEach((post, idx) => {
+        let cleanTitle = post.title && post.title.rendered 
+          ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
+          : 'Maan Mandir Book';
+
+        let coverImgUrl = '';
+        let pdfDownloadUrl = '';
+        let downloadCount = 'Synced';
+
+        if (post.content && post.content.rendered) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(post.content.rendered, 'text/html');
+          
+          const imgEl = doc.querySelector('img');
+          if (imgEl) coverImgUrl = imgEl.getAttribute('src');
+
+          const linkEl = doc.querySelector('a.dlm-download-link');
+          if (linkEl) pdfDownloadUrl = linkEl.getAttribute('href');
+
+          const countEl = doc.querySelector('.dlm-download-count');
+          if (countEl) downloadCount = countEl.textContent.trim();
+        }
+
+        if (cleanTitle && pdfDownloadUrl) {
+          parsedBooks.push({
+            id: `wp-post-${post.id}`,
+            titleEn: cleanTitle,
+            titleHi: cleanTitle,
+            coverImg: coverImgUrl || FALLBACK_WEBSITE_BOOKS[idx % FALLBACK_WEBSITE_BOOKS.length].coverImg,
+            pdfUrl: pdfDownloadUrl,
+            isNew: idx < 3,
+            downloads: downloadCount
+          });
+        }
+      });
+
+      if (parsedBooks.length > 0) {
+        fetchedBooksList = parsedBooks;
+        const searchInput = document.getElementById('global-search-input');
+        const query = searchInput ? searchInput.value.trim() : '';
+        if (currentSubTab === 'books') renderBooksTab(query);
+      }
+    }
+  } catch(err) {
+    console.log('Website Live Fetch Sync (Books): Using pre-cached catalog', err);
+  }
 }
 
 // Fetch Live Magazine Posts with Real WordPress Titles & Front-Page Cover Artworks (Category 175)
-function fetchLiveWebsiteMagazines() {
+async function fetchLiveWebsiteMagazines() {
   fetchedMagazinesList = FALLBACK_WEBSITE_MAGAZINES; // Start with verified catalog immediately
 
-  fetch('https://maanmandir.org/wp-json/wp/v2/posts?categories=175&per_page=50')
-    .then(res => res.json())
-    .then(posts => {
-      if (posts && posts.length > 0) {
-        const parsedMagazines = [];
-        posts.forEach((post, idx) => {
-          let cleanTitle = post.title && post.title.rendered 
-            ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
-            : 'Maan Mandir Patrika';
-
-          let coverImgUrl = '';
-          let pdfDownloadUrl = '';
-          let downloadCount = 'Synced';
-
-          if (post.content && post.content.rendered) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(post.content.rendered, 'text/html');
-            
-            const imgEl = doc.querySelector('img');
-            if (imgEl) coverImgUrl = imgEl.getAttribute('src');
-
-            const linkEl = doc.querySelector('a.dlm-download-link');
-            if (linkEl) pdfDownloadUrl = linkEl.getAttribute('href');
-
-            const countEl = doc.querySelector('.dlm-download-count');
-            if (countEl) downloadCount = countEl.textContent.trim();
-          }
-
-          if (cleanTitle && pdfDownloadUrl) {
-            parsedMagazines.push({
-              id: `wp-mag-${post.id}`,
-              titleEn: cleanTitle,
-              titleHi: cleanTitle.replace('Maan Mandir Patrika', 'मान मंदिर मासिक पत्रिका'),
-              coverImg: coverImgUrl || FALLBACK_WEBSITE_MAGAZINES[idx % FALLBACK_WEBSITE_MAGAZINES.length].coverImg,
-              pdfUrl: pdfDownloadUrl,
-              isNew: idx < 3,
-              downloads: downloadCount
-            });
-          }
-        });
-
-        if (parsedMagazines.length > 0) {
-          fetchedMagazinesList = parsedMagazines;
-          const searchInput = document.getElementById('global-search-input');
-          const query = searchInput ? searchInput.value.trim() : '';
-          if (currentSubTab === 'magazines') renderMagazinesTab(query);
-        }
+  try {
+    let allPosts = [];
+    let page = 1;
+    let totalPages = 1;
+    do {
+      const res = await fetch(`https://maanmandir.org/wp-json/wp/v2/posts?categories=175&per_page=100&page=${page}`);
+      if (!res.ok) break;
+      const totalPagesHeader = res.headers.get('X-WP-TotalPages');
+      if (totalPagesHeader) totalPages = parseInt(totalPagesHeader, 10);
+      const posts = await res.json();
+      if (Array.isArray(posts) && posts.length > 0) {
+        allPosts = allPosts.concat(posts);
+      } else {
+        break;
       }
-    })
-    .catch(err => {
-      console.log('Website Live Fetch Sync (Magazines): Using pre-cached magazine catalog', err);
-    });
+      page++;
+    } while (page <= totalPages);
+
+    if (allPosts.length > 0) {
+      const parsedMagazines = [];
+      allPosts.forEach((post, idx) => {
+        let cleanTitle = post.title && post.title.rendered 
+          ? post.title.rendered.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").replace(/&amp;/g, '&').trim()
+          : 'Maan Mandir Patrika';
+
+        let coverImgUrl = '';
+        let pdfDownloadUrl = '';
+        let downloadCount = 'Synced';
+
+        if (post.content && post.content.rendered) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(post.content.rendered, 'text/html');
+          
+          const imgEl = doc.querySelector('img');
+          if (imgEl) coverImgUrl = imgEl.getAttribute('src');
+
+          const linkEl = doc.querySelector('a.dlm-download-link');
+          if (linkEl) pdfDownloadUrl = linkEl.getAttribute('href');
+
+          const countEl = doc.querySelector('.dlm-download-count');
+          if (countEl) downloadCount = countEl.textContent.trim();
+        }
+
+        if (cleanTitle && pdfDownloadUrl) {
+          parsedMagazines.push({
+            id: `wp-mag-${post.id}`,
+            titleEn: cleanTitle,
+            titleHi: cleanTitle.replace('Maan Mandir Patrika', 'मान मंदिर मासिक पत्रिका'),
+            coverImg: coverImgUrl || FALLBACK_WEBSITE_MAGAZINES[idx % FALLBACK_WEBSITE_MAGAZINES.length].coverImg,
+            pdfUrl: pdfDownloadUrl,
+            isNew: idx < 3,
+            downloads: downloadCount
+          });
+        }
+      });
+
+      if (parsedMagazines.length > 0) {
+        fetchedMagazinesList = parsedMagazines;
+        const searchInput = document.getElementById('global-search-input');
+        const query = searchInput ? searchInput.value.trim() : '';
+        if (currentSubTab === 'magazines') renderMagazinesTab(query);
+      }
+    }
+  } catch(err) {
+    console.log('Website Live Fetch Sync (Magazines): Using pre-cached magazine catalog', err);
+  }
 }
 
 // Switch Sub Tab (Books vs Magazines)
 window.switchPublicationSubTab = function(subTab) {
   currentSubTab = subTab;
+  booksCurrentPage = 1;
+  magazinesCurrentPage = 1;
 
   const booksBtn = document.getElementById('btn-subtab-books');
   const magBtn = document.getElementById('btn-subtab-magazines');
@@ -1315,8 +1348,69 @@ function renderYouTubeTab() {
   `).join('');
 }
 
-// Render Books Section with Single Direct Download / Open Button & Search Filter
-function renderBooksTab(searchQuery = '') {
+// Change Publication Page Global Handler
+window.changePublicationPage = function(subTab, newPage) {
+  const searchInput = document.getElementById('global-search-input');
+  const query = searchInput ? searchInput.value.trim() : '';
+
+  if (subTab === 'books') {
+    booksCurrentPage = newPage;
+    renderBooksTab(query, newPage);
+  } else {
+    magazinesCurrentPage = newPage;
+    renderMagazinesTab(query, newPage);
+  }
+
+  const container = document.getElementById('tab-books');
+  if (container) {
+    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
+// Render Pagination Controls HTML
+function renderPaginationHtml(subTab, currentPage, totalPages, totalItems, startIndex, endIndex) {
+  if (totalItems <= PUBLICATIONS_PER_PAGE) return '';
+
+  const isHi = currentLang === 'hi';
+  const actualEnd = Math.min(endIndex, totalItems);
+  const fromNum = startIndex + 1;
+
+  const infoText = isHi 
+    ? `कुल ${totalItems} में से ${fromNum}–${actualEnd} (पृष्ठ ${currentPage} / ${totalPages})`
+    : `Showing ${fromNum}–${actualEnd} of ${totalItems} (Page ${currentPage} of ${totalPages})`;
+
+  let pagesHtml = '';
+  for (let i = 1; i <= totalPages; i++) {
+    if (totalPages > 6 && Math.abs(i - currentPage) > 2 && i !== 1 && i !== totalPages) {
+      if (i === 2 && currentPage > 4) pagesHtml += `<span style="padding: 0 4px; color: var(--text-muted); align-self: center;">...</span>`;
+      if (i === totalPages - 1 && currentPage < totalPages - 3) pagesHtml += `<span style="padding: 0 4px; color: var(--text-muted); align-self: center;">...</span>`;
+      continue;
+    }
+    pagesHtml += `
+      <button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="window.changePublicationPage('${subTab}', ${i})">
+        ${i}
+      </button>
+    `;
+  }
+
+  return `
+    <div class="pagination-wrapper">
+      <div class="pagination-info">${infoText}</div>
+      <div class="pagination-controls">
+        <button class="pagination-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="window.changePublicationPage('${subTab}', ${currentPage - 1})">
+          ${isHi ? '‹ पिछला' : '‹ Prev'}
+        </button>
+        ${pagesHtml}
+        <button class="pagination-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="window.changePublicationPage('${subTab}', ${currentPage + 1})">
+          ${isHi ? 'अगला ›' : 'Next ›'}
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// Render Books Section with Pagination & Search Filter
+function renderBooksTab(searchQuery = '', page = null) {
   const container = document.getElementById('books-catalog-list');
   if (!container) return;
 
@@ -1331,7 +1425,12 @@ function renderBooksTab(searchQuery = '') {
     );
   }
 
-  if (booksToRender.length === 0) {
+  if (page !== null) {
+    booksCurrentPage = page;
+  }
+
+  const totalItems = booksToRender.length;
+  if (totalItems === 0) {
     container.innerHTML = `
       <div style="text-align:center; padding:35px 15px; color:var(--text-muted);">
         <div style="font-size:2rem; margin-bottom:8px;">🔍</div>
@@ -1342,7 +1441,15 @@ function renderBooksTab(searchQuery = '') {
     return;
   }
 
-  container.innerHTML = booksToRender.map(book => `
+  const totalPages = Math.ceil(totalItems / PUBLICATIONS_PER_PAGE) || 1;
+  if (booksCurrentPage > totalPages) booksCurrentPage = totalPages;
+  if (booksCurrentPage < 1) booksCurrentPage = 1;
+
+  const startIndex = (booksCurrentPage - 1) * PUBLICATIONS_PER_PAGE;
+  const endIndex = startIndex + PUBLICATIONS_PER_PAGE;
+  const pageItems = booksToRender.slice(startIndex, endIndex);
+
+  const cardsHtml = pageItems.map(book => `
     <div class="book-card">
       <div class="book-cover" style="${book.coverImg ? `background: url('${book.coverImg}') center/cover no-repeat;` : ''}">
         ${!book.coverImg ? `
@@ -1365,10 +1472,13 @@ function renderBooksTab(searchQuery = '') {
       </div>
     </div>
   `).join('');
+
+  const paginationHtml = renderPaginationHtml('books', booksCurrentPage, totalPages, totalItems, startIndex, endIndex);
+  container.innerHTML = cardsHtml + paginationHtml;
 }
 
-// Render Monthly Magazine Section with Single Direct Download / Open Button & Search Filter
-function renderMagazinesTab(searchQuery = '') {
+// Render Monthly Magazine Section with Pagination & Search Filter
+function renderMagazinesTab(searchQuery = '', page = null) {
   const container = document.getElementById('books-catalog-list');
   if (!container) return;
 
@@ -1383,7 +1493,12 @@ function renderMagazinesTab(searchQuery = '') {
     );
   }
 
-  if (magsToRender.length === 0) {
+  if (page !== null) {
+    magazinesCurrentPage = page;
+  }
+
+  const totalItems = magsToRender.length;
+  if (totalItems === 0) {
     container.innerHTML = `
       <div style="text-align:center; padding:35px 15px; color:var(--text-muted);">
         <div style="font-size:2rem; margin-bottom:8px;">🔍</div>
@@ -1394,7 +1509,15 @@ function renderMagazinesTab(searchQuery = '') {
     return;
   }
 
-  container.innerHTML = magsToRender.map(mag => `
+  const totalPages = Math.ceil(totalItems / PUBLICATIONS_PER_PAGE) || 1;
+  if (magazinesCurrentPage > totalPages) magazinesCurrentPage = totalPages;
+  if (magazinesCurrentPage < 1) magazinesCurrentPage = 1;
+
+  const startIndex = (magazinesCurrentPage - 1) * PUBLICATIONS_PER_PAGE;
+  const endIndex = startIndex + PUBLICATIONS_PER_PAGE;
+  const pageItems = magsToRender.slice(startIndex, endIndex);
+
+  const cardsHtml = pageItems.map(mag => `
     <div class="book-card">
       <div class="book-cover" style="${mag.coverImg ? `background: url('${mag.coverImg}') center/cover no-repeat;` : 'background: linear-gradient(135deg, var(--primary-blue), #0f52ba);'}">
         ${!mag.coverImg ? `
@@ -1417,6 +1540,9 @@ function renderMagazinesTab(searchQuery = '') {
       </div>
     </div>
   `).join('');
+
+  const paginationHtml = renderPaginationHtml('magazines', magazinesCurrentPage, totalPages, totalItems, startIndex, endIndex);
+  container.innerHTML = cardsHtml + paginationHtml;
 }
 
 // Switch Tab Programmatically
