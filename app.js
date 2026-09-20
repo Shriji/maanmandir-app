@@ -1750,6 +1750,10 @@ window.performSearch = function() {
 
   const query = searchInput.value.trim();
 
+  // Reset page to page 1 whenever search query changes
+  booksCurrentPage = 1;
+  magazinesCurrentPage = 1;
+
   // Only switch active tab pane if user is NOT already on Publications tab
   const booksPane = document.getElementById('tab-books');
   if (booksPane && !booksPane.classList.contains('active')) {
@@ -1764,9 +1768,9 @@ window.performSearch = function() {
   }
 
   if (currentSubTab === 'books') {
-    renderBooksTab(query);
+    renderBooksTab(query, 1);
   } else {
-    renderMagazinesTab(query);
+    renderMagazinesTab(query, 1);
   }
 
   // Trigger Live Full-Text Keyword Scanning across all books & publications
